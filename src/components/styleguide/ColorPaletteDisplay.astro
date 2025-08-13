@@ -1,0 +1,309 @@
+---
+import colorPalettes from "@/data/color-palettes.json";
+import PaletteHeader from './PaletteHeader.astro';
+import ColorGroup from './ColorGroup.astro';
+import CopyToast from './CopyToast.astro';
+
+interface Props {
+  showActiveOnly?: boolean;
+  class?: string;
+}
+
+const { showActiveOnly = false, class: className } = Astro.props;
+
+// Group colors by category for better organization
+const colorGroups = [
+  {
+    name: "Backgrounds",
+    colors: ["bg", "cardBg", "sectionBg", "quaternary"],
+    description: "Primary background colors used throughout the interface"
+  },
+  {
+    name: "Text Colors",
+    colors: ["headline", "subHeadline", "paragraph", "cardText"],
+    description: "Typography colors for headings, body text, and card content"
+  },
+  {
+    name: "Action Colors",
+    colors: ["button", "buttonText", "link"],
+    description: "Interactive elements like buttons and links"
+  },
+  {
+    name: "Accent Colors",
+    colors: ["highlight", "secondary", "tertiary", "stroke"],
+    description: "Accent colors for highlights, borders, and visual emphasis"
+  }
+];
+
+// CSS variable mapping
+const cssVariableMap: Record<string, string> = {
+  bg: "--color-theme-bg",
+  cardBg: "--color-theme-card-bg",
+  sectionBg: "--color-theme-section-bg",
+  headline: "--color-theme-headline",
+  subHeadline: "--color-theme-sub-headline",
+  paragraph: "--color-theme-paragraph",
+  cardText: "--color-theme-card-text",
+  button: "--color-theme-button",
+  buttonText: "--color-theme-button-text",
+  link: "--color-theme-link",
+  stroke: "--color-theme-stroke",
+  highlight: "--color-theme-highlight",
+  secondary: "--color-theme-secondary",
+  tertiary: "--color-theme-tertiary",
+  quaternary: "--color-theme-quaternary"
+};
+---
+
+<div class:list={["color-palette-display", className]}>
+  {colorPalettes.palettes.map((palette) => (
+    <details 
+      class="palette-section mb-6 rounded-lg theme-card-bg border overflow-hidden"
+      style="border-color: var(--color-theme-stroke);"
+      data-palette-id={palette.id}
+    >
+      <PaletteHeader palette={palette} />
+
+      <!-- Color Groups -->
+      <div class="color-groups space-y-8 p-6">
+        {colorGroups.map((group) => (
+          <ColorGroup 
+            group={group}
+            palette={palette}
+            cssVariableMap={cssVariableMap}
+          />
+        ))}
+      </div>
+    </details>
+  ))}
+</div>
+
+<!-- Toast notification for copy feedback -->
+<CopyToast />
+
+<style>
+  .color-palette-display {
+    scroll-behavior: smooth;
+  }
+  
+  .palette-section {
+    scroll-margin-top: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .palette-section[data-current-theme="true"] {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+    border-width: 2px;
+    border-color: var(--color-theme-button) !important;
+  }
+  
+  .palette-section[data-current-theme="true"]::before {
+    content: "Currently Active";
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: var(--color-theme-button);
+    color: var(--color-theme-button-text);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 10;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    class ColorPaletteDisplay {
+      /** @type {NodeListOf<HTMLButtonElement>} */
+      copyButtons;
+      /** @type {HTMLElement | null} */
+      toast;
+      /** @type {string} */
+      currentTheme;
+      /** @type {NodeListOf<HTMLDetailsElement>} */
+      accordionItems;
+
+      constructor() {
+        this.copyButtons = document.querySelectorAll('.copy-btn');
+        this.toast = document.getElementById('copy-toast');
+        this.currentTheme = this.getCurrentTheme();
+        this.accordionItems = document.querySelectorAll('.palette-section');
+        
+        this.init();
+      }
+      
+      init() {
+        this.setupThemeObservers();
+        this.highlightCurrentTheme();
+        this.setupCopyButtons();
+        this.setupAccordionBehavior();
+        this.prioritizeActivePalette();
+        
+        // Listen for theme ready event from selector
+        document.addEventListener('themeReady', (e) => {
+          try {
+            // @ts-ignore
+            const themeId = e?.detail?.themeId;
+            if (themeId && themeId !== this.currentTheme) {
+              this.currentTheme = themeId;
+              this.highlightCurrentTheme();
+              this.prioritizeActivePalette();
+            }
+          } catch {}
+        });
+      }
+      
+      getCurrentTheme() {
+        const stored = this.getStoredTheme();
+        if (stored) return stored;
+        return (
+          document.documentElement.getAttribute('data-theme') ||
+          document.body.getAttribute('data-theme') ||
+          'palette-1'
+        );
+      }
+
+      getStoredTheme() {
+        try {
+          return localStorage.getItem('selected-theme');
+        } catch {
+          return null;
+        }
+      }
+
+      setupThemeObservers() {
+        const applyFromAttr = () => {
+          const attrTheme =
+            document.documentElement.getAttribute('data-theme') ||
+            document.body.getAttribute('data-theme');
+          if (attrTheme && attrTheme !== this.currentTheme) {
+            this.currentTheme = attrTheme;
+            this.highlightCurrentTheme();
+            this.prioritizeActivePalette();
+          }
+        };
+
+        // Observe attribute changes to data-theme
+        const observer = new MutationObserver((mutations) => {
+          for (const m of mutations) {
+            if (m.type === 'attributes' && (m.attributeName === 'data-theme')) {
+              applyFromAttr();
+              break;
+            }
+          }
+        });
+        observer.observe(document.documentElement, { attributes: true });
+        observer.observe(document.body, { attributes: true });
+
+        // Apply once on init in case theme already present
+        applyFromAttr();
+      }
+      
+      highlightCurrentTheme() {
+        // Remove current theme highlighting
+        this.accordionItems.forEach(section => {
+          section.removeAttribute('data-current-theme');
+          section.removeAttribute('open');
+        });
+        
+        // Add highlighting to current theme
+        const currentSection = document.querySelector(`[data-palette-id="${this.currentTheme}"]`);
+        if (currentSection) {
+          currentSection.setAttribute('data-current-theme', 'true');
+          currentSection.setAttribute('open', 'true');
+        }
+      }
+      
+      setupAccordionBehavior() {
+        // Only allow one open at a time
+        this.accordionItems.forEach(item => {
+          item.addEventListener('toggle', () => {
+            if (item.open) {
+              this.accordionItems.forEach(other => {
+                if (other !== item) other.removeAttribute('open');
+              });
+            }
+          });
+        });
+      }
+
+      prioritizeActivePalette() {
+        const container = document.querySelector('.color-palette-display');
+        if (!container) return;
+        const active = container.querySelector(`[data-palette-id="${this.currentTheme}"]`);
+        if (active && active.parentElement === container) {
+          container.prepend(active);
+        }
+      }
+
+      setupCopyButtons() {
+        this.copyButtons.forEach(button => {
+          button.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const textToCopy = button.dataset.copyText;
+            
+            if (textToCopy) {
+              try {
+                await navigator.clipboard.writeText(textToCopy);
+                this.showToast();
+                
+                // Add visual feedback to the button
+                const originalContent = button.innerHTML;
+                button.innerHTML = `
+                  <svg class="w-3 h-3 theme-paragraph" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                `;
+                
+                setTimeout(() => {
+                  button.innerHTML = originalContent;
+                }, 1000);
+                
+              } catch (err) {
+                console.error('Failed to copy to clipboard:', err);
+                // Fallback for older browsers
+                this.fallbackCopy(textToCopy);
+              }
+            }
+          });
+        });
+      }
+      
+      fallbackCopy(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+          document.execCommand('copy');
+          this.showToast();
+        } catch (err) {
+          console.error('Fallback copy failed:', err);
+        }
+        
+        document.body.removeChild(textArea);
+      }
+      
+      showToast() {
+        if (!this.toast) return;
+        
+        this.toast.classList.add('show');
+        
+        setTimeout(() => {
+          this.toast.classList.remove('show');
+        }, 2000);
+      }
+    }
+    
+    // Initialize the color palette display
+    new ColorPaletteDisplay();
+  });
+</script>

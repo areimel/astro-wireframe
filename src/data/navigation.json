@@ -1,0 +1,100 @@
+{
+  "header": {
+    "menuitems": [
+      {
+        "title": "Features",
+        "path": "#",
+        "children": [
+          { "title": "Analytics", "path": "/analytics" },
+          { "title": "Accessibility", "path": "/accessibility" },
+          { "title": "SEO", "path": "/seo" },
+          { 
+            "title": "Styleguide", 
+            "path": "/styleguide",
+            "children": [
+              { "title": "Colors", "path": "/styleguide/colors" },
+              { "title": "Typography", "path": "/styleguide/typography" },
+              { "title": "Buttons", "path": "/styleguide/buttons" },
+              { "title": "Cards", "path": "/styleguide/cards" },
+              { "title": "Icons", "path": "/styleguide/icons" },
+              { "title": "Spacing", "path": "/styleguide/spacing" }
+            ]
+          },
+          { "title": "404 Page", "path": "/404" }
+        ]
+      },
+      {
+        "title": "Dynamic Pages",
+        "path": "#",
+        "children": [
+          { "title": "Blog", "path": "/blog" },
+          { "title": "Case Studies", "path": "/case-studies" },
+          { "title": "Products", "path": "/products" },
+          { "title": "Careers", "path": "/careers" }
+        ]
+      },
+      {
+        "title": "About",
+        "path": "/about"
+      },
+      {
+        "title": "Blog",
+        "path": "/blog"
+      },
+      {
+        "title": "Contact",
+        "path": "/contact"
+      }
+    ]
+  },
+  "footer": {
+    "social": [
+      {
+        "name": "Twitter",
+        "url": "https://twitter.com/astroship",
+        "icon": "bx:bxl-twitter"
+      },
+      {
+        "name": "Facebook",
+        "url": "https://facebook.com/astroship",
+        "icon": "bx:bxl-facebook"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com/company/astroship",
+        "icon": "bx:bxl-linkedin"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/astroship",
+        "icon": "bx:bxl-github"
+      }
+    ],
+    "legal": [
+      { "title": "Privacy Policy", "path": "/privacy-policy" },
+      { "title": "Terms of Service", "path": "/terms" },
+      { "title": "Cookie Policy", "path": "/cookie-policy" }
+    ],
+    "sections": [
+      {
+        "title": "Product",
+        "links": [
+          { "title": "Features", "path": "/" },
+          { "title": "Pricing", "path": "/pricing" },
+          { "title": "Case Studies", "path": "/case-studies" },
+          { "title": "Products", "path": "/products" },
+          { "title": "Changelog", "path": "#" }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          { "title": "About", "path": "/about" },
+          { "title": "Contact", "path": "/contact" },
+          { "title": "Careers", "path": "/careers" },
+          { "title": "Blog", "path": "/blog" }
+        ]
+      }
+    ]
+  }
+}

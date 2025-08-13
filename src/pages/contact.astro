@@ -1,0 +1,43 @@
+---
+import Contactform from "@/components/FormComponents/contactform.astro";
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import contactData from "@/data/contact.json";
+---
+
+<Layout title="Contact">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">{contactData.title}</Fragment>
+      <Fragment slot="desc">{contactData.description}</Fragment>
+    </Sectionhead>
+
+    <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
+      <div>
+        <h2 class="font-medium text-2xl text-gray-800">{contactData.heading}</h2>
+        <p class="text-lg leading-relaxed text-slate-500 mt-3">
+          {contactData.subheading}
+        </p>
+        <div class="mt-5">
+          <div class="flex items-center mt-2 space-x-2 text-gray-600">
+            <Icon class="text-gray-400 w-4 h-4" name={contactData.address.icon} />
+            <span>{contactData.address.text}</span>
+          </div>
+          <div class="flex items-center mt-2 space-x-2 text-gray-600">
+            <Icon class="text-gray-400 w-4 h-4" name={contactData.email.icon} />
+            <a href={contactData.email.href}>{contactData.email.text}</a>
+          </div>
+          <div class="flex items-center mt-2 space-x-2 text-gray-600">
+            <Icon class="text-gray-400 w-4 h-4" name={contactData.phone.icon} />
+            <a href={contactData.phone.href}>{contactData.phone.text}</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <Contactform />
+      </div>
+    </div>
+  </Container>
+</Layout>

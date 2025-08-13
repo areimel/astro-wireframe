@@ -1,0 +1,20 @@
+{
+	"siteName": "ARDA Astro Template",
+	"defaultTitle": "ARDA Astro Template - Starter Template built with Astro and TailwindCSS",
+	"defaultDescription": "ARDA Astro Template is a starter website template built with Astro and TailwindCSS. Built by",
+	"openGraphImage": "/opengraph.jpg",
+	"twitter": {
+		"creator": "@ardacodes",
+		"site": "@ardacodes",
+		"card": "summary_large_image"
+	},
+	"openGraph": {
+		"basic": {
+			"type": "website",
+			"title": "ARDA Astro Template - Starter Template built with Astro and TailwindCSS"
+		},
+		"image": {
+			"alt": "ARDA Astro Template Homepage Screenshot"
+		}
+	}
+} 

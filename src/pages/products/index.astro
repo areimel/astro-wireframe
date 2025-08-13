@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+import ProductCard from "@/components/cards/ProductCard.astro";
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import productsData from "@/data/products.json";
+
+// Filter products entries with 'draft: false' & date before current date
+const publishedProductsEntries = await getCollection("products", ({ data }) => {
+  return !data.draft && data.publishDate < new Date();
+});
+
+// Sort content entries by publication date
+publishedProductsEntries.sort(function (a, b) {
+  return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
+});
+---
+
+<Layout title="Products">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">{productsData.title}</Fragment>
+      <Fragment slot="desc">
+        {productsData.description}
+      </Fragment>
+    </Sectionhead>
+    <main class="mt-16">
+      <ul class="grid gap-16 max-w-4xl mx-auto">
+        {publishedProductsEntries.map((productEntry, index) => (
+          <li>
+            <ProductCard
+              href={`/products/${productEntry.slug}`}
+              image={productEntry.data.image}
+              category={productEntry.data.category}
+              title={productEntry.data.title}
+              price={productEntry.data.price}
+              snippet={productEntry.data.snippet}
+              publishDate={productEntry.data.publishDate}
+              index={index}
+            />
+          </li>
+        ))}
+      </ul>
+    </main>
+  </Container>
+</Layout>

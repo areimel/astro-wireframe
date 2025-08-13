@@ -1,0 +1,25 @@
+---
+import Container from "@/components/container.astro";
+import NavBarDesktop from "./NavBarDesktop.astro";
+import NavBarMobile from "./NavBarMobile.astro";
+---
+
+<Container>
+  <header class="flex flex-col lg:flex-row justify-between items-center my-5">
+    <!-- Desktop Navigation -->
+    <NavBarDesktop />
+    
+    <!-- Mobile Navigation -->
+    <NavBarMobile />
+    
+    <div>
+      <!-- <div class="hidden lg:flex items-center gap-4">
+        <a href="#">Log in</a>
+        <Link href="#" size="md">Sign up</Link>
+      </div> -->
+    </div>
+  </header>
+</Container>
+
+<!-- Mobile Menu Overlay Container - needs to be outside Container for full screen -->
+<div id="mobile-menu-container"></div>

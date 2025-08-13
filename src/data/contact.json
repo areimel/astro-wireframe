@@ -1,0 +1,20 @@
+{
+	"title": "Contact",
+	"description": "We are a here to help.",
+	"heading": "Contact ARDA",
+	"subheading": "Have something to say? We are here to help. Fill up the form or send email or call phone.",
+	"address": {
+		"text": "Philadelphia, PA",
+		"icon": "uil:map-marker"
+	},
+	"email": {
+		"text": "info@advancedresearch.dev",
+		"href": "mailto:info@advancedresearch.dev",
+		"icon": "uil:envelope"
+	},
+	"phone": {
+		"text": "+1 (610) 908 6127",
+		"href": "tel:+1 (610) 908 6127",
+		"icon": "uil:phone"
+	}
+} 

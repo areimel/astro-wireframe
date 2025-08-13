@@ -1,0 +1,79 @@
+---
+import { SEO } from "astro-seo";
+import Footer from "@/components/NavigationComponents/footer.astro";
+import Navbar from "@/components/navbar/navbar.astro";
+import ColorPaletteSelector from "@/components/ThemeComponents/ColorPaletteSelector.astro";
+import LoadingScreen from "@/components/LoadingScreen.astro";
+import GoogleTagManagerHead from "@/components/HeadComponents/GoogleTagManagerHead.astro";
+import GoogleTagManagerBody from "@/components/HeadComponents/GoogleTagManagerBody.astro";
+
+// Styles & Fonts
+import "@fontsource-variable/inter/index.css";
+import "@fontsource-variable/bricolage-grotesque";
+import "../styles/global.css";
+
+// Data
+import seoData from "@/data/seo.json";
+
+
+export interface Props {
+  title: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+const resolvedImageWithDomain = new URL(
+  seoData.openGraphImage,
+  Astro.site
+).toString();
+
+const { title } = Astro.props;
+
+const makeTitle = title
+  ? title + " | " + seoData.siteName
+  : seoData.defaultTitle;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <GoogleTagManagerHead />
+    <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
+    <SEO
+      title={makeTitle}
+      description={seoData.defaultDescription}
+      canonical={canonicalURL}
+      twitter={seoData.twitter}
+      openGraph={{
+        basic: {
+          url: canonicalURL,
+          type: seoData.openGraph.basic.type,
+          title: seoData.openGraph.basic.title,
+          image: resolvedImageWithDomain,
+        },
+        image: seoData.openGraph.image,
+      }}
+    />
+  </head>
+  <body class="theme-bg" data-theme="palette-1">
+    <LoadingScreen />
+    <div class="page-content">
+      <GoogleTagManagerBody />
+      <Navbar />
+      <slot />
+      <Footer />
+      <ColorPaletteSelector />
+    </div>
+    <style is:global>
+      /* Improve Page speed */
+      /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
+      img {
+        content-visibility: auto;
+      }
+    </style>
+  </body>
+</html>
