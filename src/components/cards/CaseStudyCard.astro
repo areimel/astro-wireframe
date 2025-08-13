@@ -14,7 +14,7 @@ interface CaseStudyCardProps {
 const { href, image, industry, title, client, publishDate, index } = Astro.props as CaseStudyCardProps;
 ---
 
-<a href={href}>
+<a href={href} class="wireframe-box doodle block p-4 hover:opacity-80 transition-opacity">
 	<div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
 		<Picture
 			src={image.src}
@@ -27,21 +27,20 @@ const { href, image, industry, title, client, publishDate, index } = Astro.props
 			class="w-full rounded-md object-cover object-center bg-white"
 		/>
 		<div>
-			<span class="uppercase tracking-wider text-sm font-medium" style="color: var(--color-theme-button);">
+			<span class="wireframe-text uppercase tracking-wider text-sm font-medium" style="color: var(--color-theme-button);">
 				{industry}
 			</span>
 
-			<h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 theme-headline">
+			<h2 class="wireframe-heading text-3xl font-semibold leading-snug tracking-tight mt-1">
 				{title}
 			</h2>
 
-			<div class="flex gap-2 mt-3">
-				<span class="theme-paragraph">
+			<div class="wireframe-text flex gap-2 mt-3 text-sm">
+				<span>
 					{client}
 				</span>
-				<span class="theme-paragraph">• </span>
+				<span>• </span>
 				<time
-					class="theme-paragraph"
 					datetime={publishDate.toISOString()}>
 					{publishDate.toDateString()}
 				</time>

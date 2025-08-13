@@ -22,83 +22,90 @@ import { Icon } from "astro-icon/components";
           </a>
         </div>
         
-        <h1 class="text-5xl lg:text-6xl font-bold theme-headline mb-4">
-          Spacing System
+        <h1 class="text-5xl lg:text-6xl wireframe-heading mb-4">
+          Wireframe Spacing System
         </h1>
-        <p class="text-xl theme-paragraph max-w-3xl mx-auto">
-          A comprehensive guide to our spacing system including padding, margins, 
-          gaps, and responsive spacing patterns using Tailwind's consistent scale.
-        </p>
+        <div class="wireframe-section max-w-4xl mx-auto">
+          <p class="text-xl wireframe-text mb-6">
+            A comprehensive guide to wireframe spacing including padding, margins, gaps, and responsive 
+            patterns with hand-drawn borders and authentic sketch aesthetics for prototyping.
+          </p>
+          <div class="wireframe-box p-4 text-center">
+            <span class="wireframe-text text-sm">
+              ✏️ All spacing examples feature DoodleCSS integration and monochrome theme adaptation
+            </span>
+          </div>
+        </div>
       </div>
 
       <!-- Quick Navigation -->
-      <nav class="mb-16 p-6 rounded-lg theme-card-bg">
-        <h2 class="text-2xl font-semibold theme-headline mb-4">Page Navigation</h2>
+      <nav class="mb-16 p-6 wireframe-box">
+        <h2 class="text-2xl font-semibold wireframe-heading mb-4">Page Navigation</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <a href="#spacing-scale" class="theme-link hover:underline flex items-center gap-2">
-            <Icon name="bx:bx-ruler" class="w-4 h-4" style="color: var(--color-theme-link);" />
-            Spacing Scale
+          <a href="#spacing-scale" class="wireframe-text hover:opacity-75 flex items-center gap-2">
+            <Icon name="bx:bx-ruler" class="w-4 h-4" style="color: var(--color-theme-button);" />
+            Wireframe Scale
           </a>
-          <a href="#padding" class="theme-link hover:underline flex items-center gap-2">
-            <Icon name="bx:bx-border-inner" class="w-4 h-4" style="color: var(--color-theme-link);" />
+          <a href="#padding" class="wireframe-text hover:opacity-75 flex items-center gap-2">
+            <Icon name="bx:bx-border-inner" class="w-4 h-4" style="color: var(--color-theme-button);" />
             Padding Examples
           </a>
-          <a href="#margins" class="theme-link hover:underline flex items-center gap-2">
-            <Icon name="bx:bx-border-outer" class="w-4 h-4" style="color: var(--color-theme-link);" />
+          <a href="#margins" class="wireframe-text hover:opacity-75 flex items-center gap-2">
+            <Icon name="bx:bx-border-outer" class="w-4 h-4" style="color: var(--color-theme-button);" />
             Margin Examples
           </a>
-          <a href="#gaps" class="theme-link hover:underline flex items-center gap-2">
-            <Icon name="bx:bx-grid" class="w-4 h-4" style="color: var(--color-theme-link);" />
-            Gap & Grid Systems
+          <a href="#gaps" class="wireframe-text hover:opacity-75 flex items-center gap-2">
+            <Icon name="bx:bx-grid" class="w-4 h-4" style="color: var(--color-theme-button);" />
+            Grid Systems
           </a>
-          <a href="#responsive" class="theme-link hover:underline flex items-center gap-2">
-            <Icon name="bx:bx-mobile" class="w-4 h-4" style="color: var(--color-theme-link);" />
+          <a href="#responsive" class="wireframe-text hover:opacity-75 flex items-center gap-2">
+            <Icon name="bx:bx-mobile" class="w-4 h-4" style="color: var(--color-theme-button);" />
             Responsive Spacing
           </a>
-          <a href="#patterns" class="theme-link hover:underline flex items-center gap-2">
-            <Icon name="bx:bx-cube" class="w-4 h-4" style="color: var(--color-theme-link);" />
-            Component Patterns
+          <a href="#patterns" class="wireframe-text hover:opacity-75 flex items-center gap-2">
+            <Icon name="bx:bx-cube" class="w-4 h-4" style="color: var(--color-theme-button);" />
+            Wireframe Patterns
           </a>
-          <a href="#best-practices" class="theme-link hover:underline flex items-center gap-2">
-            <Icon name="bx:bx-check-circle" class="w-4 h-4" style="color: var(--color-theme-link);" />
+          <a href="#best-practices" class="wireframe-text hover:opacity-75 flex items-center gap-2">
+            <Icon name="bx:bx-check-circle" class="w-4 h-4" style="color: var(--color-theme-button);" />
             Best Practices
           </a>
-          <a href="#reference" class="theme-link hover:underline flex items-center gap-2">
-            <Icon name="bx:bx-book" class="w-4 h-4" style="color: var(--color-theme-link);" />
+          <a href="#reference" class="wireframe-text hover:opacity-75 flex items-center gap-2">
+            <Icon name="bx:bx-book" class="w-4 h-4" style="color: var(--color-theme-button);" />
             Quick Reference
           </a>
         </div>
       </nav>
 
       <!-- Introduction -->
-      <div class="mb-16 p-8 rounded-lg theme-section-bg">
+      <div class="mb-16 p-8 wireframe-section">
         <div class="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h2 class="text-3xl font-bold theme-headline mb-4">Design System Spacing</h2>
-            <p class="theme-paragraph text-lg leading-relaxed mb-6">
-              Our spacing system is built on Tailwind CSS's consistent scale where each unit 
-              represents 0.25rem (4px). This creates predictable, harmonious spacing 
-              throughout the entire application.
+            <h2 class="text-3xl font-bold wireframe-heading mb-4">Wireframe Spacing System</h2>
+            <p class="wireframe-text text-lg leading-relaxed mb-6">
+              Our wireframe spacing system combines Tailwind CSS's consistent 4px scale with 
+              authentic hand-drawn borders and monochrome aesthetics. Perfect for rapid 
+              prototyping and design documentation.
             </p>
             <div class="flex flex-col sm:flex-row gap-4">
-              <div class="flex items-center gap-3 p-3 rounded-lg theme-card-bg">
+              <div class="flex items-center gap-3 p-3 wireframe-box">
                 <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
-                <span class="theme-card-text font-medium">Consistent Scale</span>
+                <span class="wireframe-text font-medium">Hand-drawn Scale</span>
               </div>
-              <div class="flex items-center gap-3 p-3 rounded-lg theme-card-bg">
+              <div class="flex items-center gap-3 p-3 wireframe-box">
                 <Icon name="bx:bx-mobile-alt" class="w-5 h-5" style="color: var(--color-theme-button);" />
-                <span class="theme-card-text font-medium">Responsive Ready</span>
+                <span class="wireframe-text font-medium">Responsive Ready</span>
               </div>
-              <div class="flex items-center gap-3 p-3 rounded-lg theme-card-bg">
+              <div class="flex items-center gap-3 p-3 wireframe-box">
                 <Icon name="bx:bx-palette" class="w-5 h-5" style="color: var(--color-theme-button);" />
-                <span class="theme-card-text font-medium">Theme Integrated</span>
+                <span class="wireframe-text font-medium">Monochrome Themes</span>
               </div>
             </div>
           </div>
           <div class="flex justify-center">
-            <div class="w-64 h-64 theme-card-bg rounded-lg border-4 border-dashed flex items-center justify-center relative" style="border-color: var(--color-theme-stroke); opacity: 0.5;">
+            <div class="w-64 h-64 wireframe-box flex items-center justify-center relative">
               <div class="absolute inset-4 flex items-center justify-center">
-                <div class="w-full h-full theme-button rounded flex items-center justify-center" style="background-color: var(--color-theme-button); opacity: 0.2;">
+                <div class="w-full h-full wireframe-section flex items-center justify-center">
                   <Icon name="bx:bx-ruler" class="w-12 h-12" style="color: var(--color-theme-button);" />
                 </div>
               </div>
@@ -111,66 +118,66 @@ import { Icon } from "astro-icon/components";
         </div>
       </div>
 
-      <!-- Main Spacing Scale Section -->
+      <!-- Main Wireframe Spacing Section -->
       <div id="spacing-scale">
         <ComponentGrid 
-          title="Spacing Scale & Examples" 
-          description="Interactive demonstrations of our spacing system including padding, margins, gaps, and responsive patterns"
+          title="Wireframe Spacing Scale" 
+          description="Interactive demonstrations of wireframe spacing with hand-drawn borders, monochrome styling, and authentic sketch aesthetics"
           columns={1}
         >
           <SpacingScale />
         </ComponentGrid>
       </div>
 
-      <!-- Key Concepts Quick Reference -->
+      <!-- Key Wireframe Concepts -->
       <div class="mb-16">
         <ComponentGrid 
-          title="Key Spacing Concepts" 
-          description="Essential spacing concepts and when to use each approach"
+          title="Key Wireframe Spacing Concepts" 
+          description="Essential wireframe spacing concepts with hand-drawn styling and monochrome aesthetics"
           columns={3}
         >
-          <div class="p-6 rounded-lg theme-card-bg">
+          <div class="p-6 wireframe-box">
             <div class="flex items-center gap-3 mb-4">
               <Icon name="bx:bx-border-inner" class="w-6 h-6" style="color: var(--color-theme-button);" />
-              <h3 class="text-lg font-semibold theme-headline">Padding</h3>
+              <h3 class="text-lg font-semibold wireframe-heading">Wireframe Padding</h3>
             </div>
-            <p class="theme-card-text mb-4">
-              Internal spacing within elements. Use for button sizing, card content, and form field spacing.
+            <p class="wireframe-text mb-4">
+              Internal spacing within wireframe elements. Perfect for button prototypes, card mockups, and form field spacing.
             </p>
             <div class="space-y-2">
-              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">p-4</code>
-              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">px-6 py-3</code>
-              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">pt-8</code>
+              <code class="text-sm px-2 py-1 wireframe-section wireframe-text">p-4</code>
+              <code class="text-sm px-2 py-1 wireframe-section wireframe-text">px-6 py-3</code>
+              <code class="text-sm px-2 py-1 wireframe-section wireframe-text">pt-8</code>
             </div>
           </div>
 
-          <div class="p-6 rounded-lg theme-card-bg">
+          <div class="p-6 wireframe-box">
             <div class="flex items-center gap-3 mb-4">
-              <Icon name="bx:bx-border-outer" class="w-6 h-6" style="color: var(--color-theme-secondary);" />
-              <h3 class="text-lg font-semibold theme-headline">Margin</h3>
+              <Icon name="bx:bx-border-outer" class="w-6 h-6" style="color: var(--color-theme-button);" />
+              <h3 class="text-lg font-semibold wireframe-heading">Wireframe Margin</h3>
             </div>
-            <p class="theme-card-text mb-4">
-              External spacing between elements. Use for content separation, centering, and layout positioning.
+            <p class="wireframe-text mb-4">
+              External spacing between wireframe elements. Essential for content separation and layout positioning in prototypes.
             </p>
             <div class="space-y-2">
-              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">mt-8</code>
-              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">mx-auto</code>
-              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">mb-4</code>
+              <code class="text-sm px-2 py-1 wireframe-section wireframe-text">mt-8</code>
+              <code class="text-sm px-2 py-1 wireframe-section wireframe-text">mx-auto</code>
+              <code class="text-sm px-2 py-1 wireframe-section wireframe-text">mb-4</code>
             </div>
           </div>
 
-          <div class="p-6 rounded-lg theme-card-bg">
+          <div class="p-6 wireframe-box">
             <div class="flex items-center gap-3 mb-4">
-              <Icon name="bx:bx-grid" class="w-6 h-6" style="color: var(--color-theme-tertiary);" />
-              <h3 class="text-lg font-semibold theme-headline">Gap</h3>
+              <Icon name="bx:bx-grid" class="w-6 h-6" style="color: var(--color-theme-button);" />
+              <h3 class="text-lg font-semibold wireframe-heading">Wireframe Gap</h3>
             </div>
-            <p class="theme-card-text mb-4">
-              Space between flex and grid items. Use for consistent spacing in layouts without affecting external margins.
+            <p class="wireframe-text mb-4">
+              Space between wireframe flex and grid items. Ideal for consistent spacing in layout prototypes.
             </p>
             <div class="space-y-2">
-              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">gap-6</code>
-              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">gap-x-8</code>
-              <code class="text-sm px-2 py-1 rounded theme-quaternary-bg theme-card-text">space-y-4</code>
+              <code class="text-sm px-2 py-1 wireframe-section wireframe-text">gap-6</code>
+              <code class="text-sm px-2 py-1 wireframe-section wireframe-text">gap-x-8</code>
+              <code class="text-sm px-2 py-1 wireframe-section wireframe-text">space-y-4</code>
             </div>
           </div>
         </ComponentGrid>

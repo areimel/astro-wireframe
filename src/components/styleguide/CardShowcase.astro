@@ -30,163 +30,166 @@ const pricingPlans = [
 ---
 
 <div class="card-showcase space-y-16">
-  <!-- Basic Cards -->
+  <!-- Wireframe Basic Cards -->
   <ComponentGrid 
-    title="Basic Cards" 
-    description="Simple content cards with theme-card-bg styling and consistent spacing"
+    title="Wireframe Basic Cards" 
+    description="Hand-drawn cards with DoodleCSS borders, monochrome styling, and authentic sketch aesthetics"
     columns={3}
   >
-    <!-- Simple Card -->
+    <!-- Simple Wireframe Card -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="p-6 rounded-lg theme-card-bg max-w-sm">
-          <h3 class="font-semibold text-lg theme-headline mb-2">Card Title</h3>
-          <p class="theme-paragraph">This is a basic card with simple content and consistent theming.</p>
+        <div class="p-6 wireframe-box max-w-sm">
+          <h3 class="wireframe-heading text-lg mb-2">Card Title</h3>
+          <p class="wireframe-text">This is a wireframe card with hand-drawn borders and monochrome styling.</p>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Simple Card</h4>
-        <p class="text-sm theme-paragraph mb-3">Basic card structure with theme-card-bg and standard padding</p>
+        <h4 class="font-semibold theme-headline mb-2">Simple Wireframe Card</h4>
+        <p class="text-sm theme-paragraph mb-3">Basic wireframe card with DoodleCSS borders and authentic sketch styling</p>
         <code class="code-snippet">
-          {generateCodeSnippet(`<div class="p-6 rounded-lg theme-card-bg">
-  <h3 class="font-semibold text-lg theme-headline">Card Title</h3>
-  <p class="theme-paragraph">Card content...</p>
+          {generateCodeSnippet(`<div class="p-6 wireframe-box">
+  <h3 class="wireframe-heading text-lg">Card Title</h3>
+  <p class="wireframe-text">Card content...</p>
 </div>`)}
         </code>
       </div>
     </div>
 
-    <!-- Card with Header/Body/Footer -->
+    <!-- Wireframe Card with Sections -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="rounded-lg theme-card-bg max-w-sm overflow-hidden">
-          <div class="px-6 py-4 border-b border-gray-200">
-            <h3 class="font-semibold text-lg theme-headline">Header</h3>
+        <div class="wireframe-box max-w-sm">
+          <div class="px-6 py-4 wireframe-section">
+            <h3 class="wireframe-heading text-lg">Header</h3>
           </div>
           <div class="px-6 py-4">
-            <p class="theme-paragraph">Main content area with structured layout.</p>
+            <p class="wireframe-text">Main content area with hand-drawn dividers and sketch styling.</p>
           </div>
-          <div class="px-6 py-4 border-t border-gray-200">
-            <p class="text-sm theme-paragraph opacity-75">Footer content</p>
+          <div class="px-6 py-4 wireframe-section">
+            <p class="text-sm wireframe-text opacity-75">Footer content</p>
           </div>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Structured Card</h4>
-        <p class="text-sm theme-paragraph mb-3">Card with distinct header, body, and footer sections</p>
+        <h4 class="font-semibold theme-headline mb-2">Structured Wireframe Card</h4>
+        <p class="text-sm theme-paragraph mb-3">Multi-section wireframe card with hand-drawn dividers</p>
         <code class="code-snippet">
-          {generateCodeSnippet(`<div class="rounded-lg theme-card-bg overflow-hidden">
-  <div class="px-6 py-4 border-b border-gray-200">
-    <h3 class="font-semibold text-lg theme-headline">Header</h3>
+          {generateCodeSnippet(`<div class="wireframe-box">
+  <div class="px-6 py-4 wireframe-section">
+    <h3 class="wireframe-heading text-lg">Header</h3>
   </div>
   <div class="px-6 py-4">
-    <p class="theme-paragraph">Content...</p>
+    <p class="wireframe-text">Content...</p>
   </div>
-  <div class="px-6 py-4 border-t border-gray-200">
-    <p class="text-sm theme-paragraph">Footer</p>
+  <div class="px-6 py-4 wireframe-section">
+    <p class="text-sm wireframe-text">Footer</p>
   </div>
 </div>`)}
         </code>
       </div>
     </div>
 
-    <!-- Card with Action -->
+    <!-- Wireframe Action Card -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="p-6 rounded-lg theme-card-bg max-w-sm">
-          <h3 class="font-semibold text-lg theme-headline mb-2">Action Card</h3>
-          <p class="theme-paragraph mb-4">Card with integrated action button for user interaction.</p>
-          <Button size="md" style="primary">Take Action</Button>
+        <div class="p-6 wireframe-box max-w-sm">
+          <h3 class="wireframe-heading text-lg mb-2">Action Card</h3>
+          <p class="wireframe-text mb-4">Wireframe card with hand-drawn button for prototyping interactions.</p>
+          <Button size="md" style="primary" class="doodle">Take Action</Button>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Action Card</h4>
-        <p class="text-sm theme-paragraph mb-3">Card with integrated button or link for user actions</p>
+        <h4 class="font-semibold theme-headline mb-2">Wireframe Action Card</h4>
+        <p class="text-sm theme-paragraph mb-3">Action card with DoodleCSS button styling for authentic wireframes</p>
         <code class="code-snippet">
-          {generateCodeSnippet(`<div class="p-6 rounded-lg theme-card-bg">
-  <h3 class="font-semibold text-lg theme-headline">Title</h3>
-  <p class="theme-paragraph mb-4">Content...</p>
-  <Button style="primary">Take Action</Button>
+          {generateCodeSnippet(`<div class="p-6 wireframe-box">
+  <h3 class="wireframe-heading text-lg">Title</h3>
+  <p class="wireframe-text mb-4">Content...</p>
+  <Button style="primary" class="doodle">Take Action</Button>
 </div>`)}
         </code>
       </div>
     </div>
   </ComponentGrid>
 
-  <!-- Feature Cards -->
+  <!-- Wireframe Feature Cards -->
   <ComponentGrid 
-    title="Feature Cards" 
-    description="Icon-based cards similar to the features.astro component pattern"
+    title="Wireframe Feature Cards" 
+    description="Hand-drawn icon cards with monochrome styling for authentic wireframe prototypes"
     columns={2}
   >
-    <!-- Icon Feature Card -->
+    <!-- Wireframe Icon Feature -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="flex gap-4 items-start max-w-sm">
-          <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" style="background-color: var(--color-theme-button);">
-            <Icon name="bx:bxs-star" class="text-white" />
+        <div class="flex gap-4 items-start max-w-sm wireframe-box p-4">
+          <div class="mt-1 w-8 h-8 shrink-0 wireframe-section p-2">
+            <Icon name="bx:bxs-star" class="w-4 h-4" style="color: var(--color-theme-button);" />
           </div>
           <div>
-            <h3 class="font-semibold text-lg theme-headline">Premium Feature</h3>
-            <p class="mt-2 leading-relaxed theme-paragraph">Advanced functionality with icon-based visual hierarchy.</p>
+            <h3 class="wireframe-heading text-lg">Premium Feature</h3>
+            <p class="mt-2 leading-relaxed wireframe-text">Advanced functionality with hand-drawn icon styling.</p>
           </div>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Icon Feature</h4>
-        <p class="text-sm theme-paragraph mb-3">Feature card with circular icon background (matches features.astro pattern)</p>
+        <h4 class="font-semibold theme-headline mb-2">Wireframe Icon Feature</h4>
+        <p class="text-sm theme-paragraph mb-3">Feature card with hand-drawn icon container and monochrome styling</p>
         <code class="code-snippet">
-          {generateCodeSnippet(`<div class="flex gap-4 items-start">
-  <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" 
-       style="background-color: var(--color-theme-button);">
-    <Icon name="bx:bxs-star" class="text-white" />
+          {generateCodeSnippet(`<div class="flex gap-4 items-start wireframe-box p-4">
+  <div class="mt-1 w-8 h-8 shrink-0 wireframe-section p-2">
+    <Icon name="bx:bxs-star" class="w-4 h-4" 
+          style="color: var(--color-theme-button);" />
   </div>
   <div>
-    <h3 class="font-semibold text-lg theme-headline">Title</h3>
-    <p class="mt-2 leading-relaxed theme-paragraph">Description...</p>
+    <h3 class="wireframe-heading text-lg">Title</h3>
+    <p class="wireframe-text">Description...</p>
   </div>
 </div>`)}
         </code>
       </div>
     </div>
 
-    <!-- Feature Grid -->
+    <!-- Wireframe Feature Grid -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="grid gap-8 max-w-lg">
-          <div class="flex gap-4 items-start">
-            <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" style="background-color: var(--color-theme-button);">
-              <Icon name="bx:bxs-bolt-circle" class="text-white" />
+        <div class="wireframe-section p-4 max-w-lg">
+          <div class="space-y-6">
+            <div class="flex gap-4 items-start">
+              <div class="mt-1 w-8 h-8 shrink-0 wireframe-box p-2">
+                <Icon name="bx:bxs-bolt-circle" class="w-4 h-4" style="color: var(--color-theme-button);" />
+              </div>
+              <div>
+                <h3 class="wireframe-heading text-lg">Fast Performance</h3>
+                <p class="mt-2 leading-relaxed wireframe-text text-sm">Lightning-fast with authentic wireframe styling and minimal overhead.</p>
+              </div>
             </div>
-            <div>
-              <h3 class="font-semibold text-lg theme-headline">Fast Performance</h3>
-              <p class="mt-2 leading-relaxed theme-paragraph text-sm">Lightning-fast loading times with optimized components and minimal JavaScript.</p>
-            </div>
-          </div>
-          <div class="flex gap-4 items-start">
-            <div class="mt-1 rounded-full p-2 w-8 h-8 shrink-0" style="background-color: var(--color-theme-button);">
-              <Icon name="bx:bxs-wrench" class="text-white" />
-            </div>
-            <div>
-              <h3 class="font-semibold text-lg theme-headline">Developer Experience</h3>
-              <p class="mt-2 leading-relaxed theme-paragraph text-sm">Built with modern tooling and best practices for an excellent development workflow.</p>
+            <div class="flex gap-4 items-start">
+              <div class="mt-1 w-8 h-8 shrink-0 wireframe-box p-2">
+                <Icon name="bx:bxs-wrench" class="w-4 h-4" style="color: var(--color-theme-button);" />
+              </div>
+              <div>
+                <h3 class="wireframe-heading text-lg">Developer Experience</h3>
+                <p class="mt-2 leading-relaxed wireframe-text text-sm">Built with DoodleCSS and hand-drawn aesthetics for rapid prototyping.</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Feature Grid</h4>
-        <p class="text-sm theme-paragraph mb-3">Multiple feature cards in a grid layout</p>
+        <h4 class="font-semibold theme-headline mb-2">Wireframe Feature Grid</h4>
+        <p class="text-sm theme-paragraph mb-3">Multiple wireframe features with consistent hand-drawn styling</p>
         <code class="code-snippet">
-          {generateCodeSnippet(`<div class="grid gap-8">
-  <div class="flex gap-4 items-start">
-    <div class="rounded-full p-2 w-8 h-8" 
-         style="background-color: var(--color-theme-button);">
-      <Icon name="bx:bxs-star" class="text-white" />
-    </div>
-    <div>
-      <h3 class="theme-headline">Feature Title</h3>
-      <p class="theme-paragraph">Feature description...</p>
+          {generateCodeSnippet(`<div class="wireframe-section p-4">
+  <div class="space-y-6">
+    <div class="flex gap-4 items-start">
+      <div class="wireframe-box p-2 w-8 h-8">
+        <Icon name="bx:bxs-bolt" style="color: var(--color-theme-button);" />
+      </div>
+      <div>
+        <h3 class="wireframe-heading">Feature Title</h3>
+        <p class="wireframe-text">Description...</p>
+      </div>
     </div>
   </div>
 </div>`)}
@@ -195,44 +198,44 @@ const pricingPlans = [
     </div>
   </ComponentGrid>
 
-  <!-- Bordered Cards (Pricing Style) -->
+  <!-- Wireframe Pricing Cards -->
   <ComponentGrid 
-    title="Bordered Cards" 
-    description="Cards with borders similar to pricing.astro component pattern"
+    title="Wireframe Pricing Cards" 
+    description="Hand-drawn pricing cards with DoodleCSS borders perfect for wireframe mockups and prototypes"
     columns={2}
   >
-    <!-- Basic Bordered Card -->
+    <!-- Basic Wireframe Pricing -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="border-2 border-[#D8DEE9] border-opacity-50 py-5 px-6 rounded-md max-w-sm">
-          <div class="text-center">
-            <h4 class="text-lg font-medium theme-paragraph">Basic Plan</h4>
-            <p class="mt-3 text-4xl font-bold theme-headline">$19</p>
+        <div class="wireframe-box py-5 px-6 max-w-sm">
+          <div class="text-center wireframe-section pb-4">
+            <h4 class="text-lg wireframe-heading">Basic Plan</h4>
+            <p class="mt-3 text-4xl wireframe-heading">$19</p>
           </div>
-          <ul class="grid mt-8 text-left gap-y-4">
-            <li class="flex items-start gap-3 theme-paragraph">
-              <Tick class="w-6 h-6" />
+          <ul class="space-y-4 mt-6">
+            <li class="flex items-start gap-3 wireframe-text">
+              <Tick class="w-6 h-6" style="color: var(--color-theme-button);" />
               <span>Feature included</span>
             </li>
-            <li class="flex items-start gap-3 theme-paragraph">
-              <Tick class="w-6 h-6" />
+            <li class="flex items-start gap-3 wireframe-text">
+              <Tick class="w-6 h-6" style="color: var(--color-theme-button);" />
               <span>Another feature</span>
             </li>
           </ul>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Bordered Pricing</h4>
-        <p class="text-sm theme-paragraph mb-3">Pricing card with border styling (matches pricing.astro pattern)</p>
+        <h4 class="font-semibold theme-headline mb-2">Wireframe Pricing</h4>
+        <p class="text-sm theme-paragraph mb-3">Hand-drawn pricing card with DoodleCSS borders and authentic sketch styling</p>
         <code class="code-snippet">
-          {generateCodeSnippet(`<div class="border-2 border-[#D8DEE9] border-opacity-50 py-5 px-6 rounded-md">
-  <div class="text-center">
-    <h4 class="text-lg font-medium theme-paragraph">Plan Name</h4>
-    <p class="mt-3 text-4xl font-bold theme-headline">$19</p>
+          {generateCodeSnippet(`<div class="wireframe-box py-5 px-6">
+  <div class="text-center wireframe-section pb-4">
+    <h4 class="wireframe-heading">Plan Name</h4>
+    <p class="text-4xl wireframe-heading">$19</p>
   </div>
-  <ul class="grid mt-8 text-left gap-y-4">
-    <li class="flex items-start gap-3 theme-paragraph">
-      <Tick class="w-6 h-6" />
+  <ul class="space-y-4 mt-6">
+    <li class="flex items-start gap-3 wireframe-text">
+      <Tick class="w-6 h-6" style="color: var(--color-theme-button);" />
       <span>Feature</span>
     </li>
   </ul>
@@ -241,47 +244,50 @@ const pricingPlans = [
       </div>
     </div>
 
-    <!-- Complete Pricing Card -->
+    <!-- Complete Wireframe Pricing -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="border-2 border-[#D8DEE9] border-opacity-50 py-5 px-6 rounded-md max-w-sm">
-          <div class="text-center">
-            <h4 class="text-lg font-medium theme-paragraph">Pro Plan</h4>
-            <p class="mt-3 text-4xl font-bold theme-headline">$49</p>
+        <div class="wireframe-box py-5 px-6 max-w-sm">
+          <div class="text-center wireframe-section pb-4">
+            <h4 class="text-lg wireframe-heading">Pro Plan</h4>
+            <p class="mt-3 text-4xl wireframe-heading">$49</p>
           </div>
-          <ul class="grid mt-8 text-left gap-y-4">
-            <li class="flex items-start gap-3 theme-paragraph">
-              <Tick class="w-6 h-6" />
+          <ul class="space-y-4 mt-6">
+            <li class="flex items-start gap-3 wireframe-text">
+              <Tick class="w-6 h-6" style="color: var(--color-theme-button);" />
               <span>Everything in Basic</span>
             </li>
-            <li class="flex items-start gap-3 theme-paragraph">
-              <Tick class="w-6 h-6" />
+            <li class="flex items-start gap-3 wireframe-text">
+              <Tick class="w-6 h-6" style="color: var(--color-theme-button);" />
               <span>Advanced features</span>
             </li>
-            <li class="flex items-start gap-3 theme-paragraph">
-              <Tick class="w-6 h-6" />
+            <li class="flex items-start gap-3 wireframe-text">
+              <Tick class="w-6 h-6" style="color: var(--color-theme-button);" />
               <span>Priority support</span>
             </li>
           </ul>
           <div class="flex mt-8">
-            <Link href="#" block style="primary">Get Started</Link>
+            <Link href="#" block style="primary" class="doodle">Get Started</Link>
           </div>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Complete Pricing</h4>
-        <p class="text-sm theme-paragraph mb-3">Full pricing card with features list and CTA button</p>
+        <h4 class="font-semibold theme-headline mb-2">Complete Wireframe Pricing</h4>
+        <p class="text-sm theme-paragraph mb-3">Full wireframe pricing card with hand-drawn button and authentic sketch aesthetics</p>
         <code class="code-snippet">
-          {generateCodeSnippet(`<div class="border-2 border-[#D8DEE9] border-opacity-50 py-5 px-6 rounded-md">
+          {generateCodeSnippet(`<div class="wireframe-box py-5 px-6">
   <!-- Header with pricing -->
-  <div class="text-center">...</div>
+  <div class="text-center wireframe-section pb-4">
+    <h4 class="wireframe-heading">Plan Name</h4>
+    <p class="text-4xl wireframe-heading">$49</p>
+  </div>
   
   <!-- Features list -->
-  <ul class="grid mt-8 text-left gap-y-4">...</ul>
+  <ul class="space-y-4 mt-6">...</ul>
   
   <!-- CTA Button -->
   <div class="flex mt-8">
-    <Link href="#" block style="primary">Get Started</Link>
+    <Link href="#" block style="primary" class="doodle">Get Started</Link>
   </div>
 </div>`)}
         </code>
@@ -289,62 +295,89 @@ const pricingPlans = [
     </div>
   </ComponentGrid>
 
-  <!-- Image Cards -->
+  <!-- Wireframe Layout Cards -->
   <ComponentGrid 
-    title="Image Cards" 
-    description="Cards featuring images with various layouts and overlays"
+    title="Wireframe Layout Cards" 
+    description="Cards with placeholder content areas and hand-drawn styling for mockups and prototypes"
     columns={2}
   >
-    <!-- Image with Content -->
+    <!-- Wireframe Media Card -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="rounded-lg theme-card-bg overflow-hidden max-w-sm">
-          <div class="h-48 bg-gradient-to-br from-blue-400 to-purple-500"></div>
+        <div class="wireframe-box max-w-sm">
+          <div class="wireframe-section p-6 text-center">
+            <div class="w-16 h-16 mx-auto mb-4 wireframe-box flex items-center justify-center">
+              <Icon name="bx:bx-image" class="w-8 h-8" style="color: var(--color-theme-button);" />
+            </div>
+            <p class="wireframe-text text-sm opacity-75">[Image Placeholder]</p>
+          </div>
           <div class="p-6">
-            <h3 class="font-semibold text-lg theme-headline mb-2">Image Card</h3>
-            <p class="theme-paragraph">Card with image header and content below.</p>
+            <h3 class="wireframe-heading text-lg mb-2">Media Card</h3>
+            <p class="wireframe-text">Card with placeholder media area perfect for wireframing layouts.</p>
           </div>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Image Header</h4>
-        <p class="text-sm theme-paragraph mb-3">Card with image at top and content below</p>
+        <h4 class="font-semibold theme-headline mb-2">Wireframe Media Card</h4>
+        <p class="text-sm theme-paragraph mb-3">Card with hand-drawn media placeholder and authentic wireframe styling</p>
         <code class="code-snippet">
-          {generateCodeSnippet(`<div class="rounded-lg theme-card-bg overflow-hidden">
-  <img src="image.jpg" alt="Description" class="w-full h-48 object-cover" />
+          {generateCodeSnippet(`<div class="wireframe-box">
+  <div class="wireframe-section p-6 text-center">
+    <div class="wireframe-box w-16 h-16 mx-auto mb-4">
+      <Icon name="bx:bx-image" style="color: var(--color-theme-button);" />
+    </div>
+    <p class="wireframe-text opacity-75">[Image Placeholder]</p>
+  </div>
   <div class="p-6">
-    <h3 class="font-semibold text-lg theme-headline">Title</h3>
-    <p class="theme-paragraph">Content...</p>
+    <h3 class="wireframe-heading">Title</h3>
+    <p class="wireframe-text">Content...</p>
   </div>
 </div>`)}
         </code>
       </div>
     </div>
 
-    <!-- Image with Overlay -->
+    <!-- Wireframe Content Block -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="relative rounded-lg overflow-hidden max-w-sm">
-          <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500"></div>
-          <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-            <div class="p-6 text-white">
-              <h3 class="font-semibold text-lg mb-2">Overlay Card</h3>
-              <p class="text-sm opacity-90">Content overlaid on image background.</p>
+        <div class="wireframe-box max-w-sm p-6">
+          <div class="wireframe-section mb-4 p-4">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 wireframe-box flex items-center justify-center">
+                <Icon name="bx:bx-user" class="w-6 h-6" style="color: var(--color-theme-button);" />
+              </div>
+              <div class="flex-1">
+                <div class="wireframe-text text-sm">Username</div>
+                <div class="wireframe-text text-xs opacity-75">@handle</div>
+              </div>
             </div>
+            <p class="wireframe-text text-sm">Content block with user info and wireframe styling for social media mockups.</p>
+          </div>
+          <div class="flex gap-2">
+            <button class="px-3 py-1 text-xs wireframe-box">Like</button>
+            <button class="px-3 py-1 text-xs wireframe-box">Share</button>
           </div>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Image Overlay</h4>
-        <p class="text-sm theme-paragraph mb-3">Card with content overlaid on image background</p>
+        <h4 class="font-semibold theme-headline mb-2">Wireframe Content Block</h4>
+        <p class="text-sm theme-paragraph mb-3">Social media style card with user info and interaction elements</p>
         <code class="code-snippet">
-          {generateCodeSnippet(`<div class="relative rounded-lg overflow-hidden">
-  <img src="image.jpg" alt="Description" class="w-full h-48 object-cover" />
-  <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-    <div class="p-6 text-white">
-      <h3 class="font-semibold text-lg">Title</h3>
-      <p class="text-sm">Content...</p>
+          {generateCodeSnippet(`<div class="wireframe-box p-6">
+  <div class="wireframe-section mb-4 p-4">
+    <div class="flex items-center gap-3 mb-3">
+      <div class="wireframe-box w-12 h-12">
+        <Icon name="bx:bx-user" />
+      </div>
+      <div>
+        <div class="wireframe-text">Username</div>
+        <div class="wireframe-text opacity-75">@handle</div>
+      </div>
     </div>
+    <p class="wireframe-text">Content text...</p>
+  </div>
+  <div class="flex gap-2">
+    <button class="wireframe-box px-3 py-1">Action</button>
   </div>
 </div>`)}
         </code>
@@ -352,54 +385,54 @@ const pricingPlans = [
     </div>
   </ComponentGrid>
 
-  <!-- Card Spacing and Padding -->
+  <!-- Wireframe Spacing Variations -->
   <ComponentGrid 
-    title="Spacing Variations" 
-    description="Different padding and spacing options for various use cases"
+    title="Wireframe Spacing Variations" 
+    description="Different padding and spacing options for wireframe cards across various mockup scenarios"
     columns={3}
   >
-    <!-- Compact Card -->
+    <!-- Compact Wireframe -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="p-4 rounded-lg theme-card-bg max-w-sm">
-          <h3 class="font-medium theme-headline mb-1">Compact</h3>
-          <p class="text-sm theme-paragraph">Minimal padding for dense layouts.</p>
+        <div class="p-4 wireframe-box max-w-sm">
+          <h3 class="wireframe-heading mb-1">Compact</h3>
+          <p class="text-sm wireframe-text">Minimal padding for dense wireframe layouts.</p>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Compact (p-4)</h4>
-        <p class="text-sm theme-paragraph mb-3">Minimal padding for dense information</p>
-        <code class="code-snippet">p-4 rounded-lg theme-card-bg</code>
+        <h4 class="font-semibold theme-headline mb-2">Compact Wireframe (p-4)</h4>
+        <p class="text-sm theme-paragraph mb-3">Minimal padding with hand-drawn borders for dense information</p>
+        <code class="code-snippet">p-4 wireframe-box</code>
       </div>
     </div>
 
-    <!-- Standard Card -->
+    <!-- Standard Wireframe -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="p-6 rounded-lg theme-card-bg max-w-sm">
-          <h3 class="font-medium theme-headline mb-2">Standard</h3>
-          <p class="text-sm theme-paragraph">Default padding for most use cases.</p>
+        <div class="p-6 wireframe-box max-w-sm">
+          <h3 class="wireframe-heading mb-2">Standard</h3>
+          <p class="text-sm wireframe-text">Default padding for most wireframe use cases.</p>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Standard (p-6)</h4>
-        <p class="text-sm theme-paragraph mb-3">Default padding used throughout the design system</p>
-        <code class="code-snippet">p-6 rounded-lg theme-card-bg</code>
+        <h4 class="font-semibold theme-headline mb-2">Standard Wireframe (p-6)</h4>
+        <p class="text-sm theme-paragraph mb-3">Default padding with DoodleCSS styling used throughout the wireframe system</p>
+        <code class="code-snippet">p-6 wireframe-box</code>
       </div>
     </div>
 
-    <!-- Spacious Card -->
+    <!-- Spacious Wireframe -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <div class="p-8 rounded-lg theme-card-bg max-w-sm">
-          <h3 class="font-medium theme-headline mb-3">Spacious</h3>
-          <p class="text-sm theme-paragraph">Extra padding for hero sections or emphasis.</p>
+        <div class="p-8 wireframe-box max-w-sm">
+          <h3 class="wireframe-heading mb-3">Spacious</h3>
+          <p class="text-sm wireframe-text">Extra padding for hero sections or emphasis in wireframe designs.</p>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Spacious (p-8)</h4>
-        <p class="text-sm theme-paragraph mb-3">Extra padding for important content or hero sections</p>
-        <code class="code-snippet">p-8 rounded-lg theme-card-bg</code>
+        <h4 class="font-semibold theme-headline mb-2">Spacious Wireframe (p-8)</h4>
+        <p class="text-sm theme-paragraph mb-3">Extra padding with authentic hand-drawn styling for important content</p>
+        <code class="code-snippet">p-8 wireframe-box</code>
       </div>
     </div>
   </ComponentGrid>
@@ -532,64 +565,66 @@ const pricingPlans = [
     </div>
   </ComponentGrid>
 
-  <!-- Theme Adaptation -->
+  <!-- Monochrome Theme Adaptation -->
   <ComponentGrid 
-    title="Theme Adaptation" 
-    description="How cards adapt to different theme configurations"
+    title="Monochrome Theme Adaptation" 
+    description="How wireframe cards adapt across the 8 monochrome themes with authentic hand-drawn aesthetics"
     columns={2}
   >
-    <!-- Theme Colors Demo -->
+    <!-- Monochrome Demo -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
         <div class="space-y-4 max-w-sm">
-          <div class="p-4 rounded-lg theme-card-bg">
-            <h4 class="font-medium theme-headline">Card Background</h4>
-            <p class="text-sm theme-paragraph">Uses theme-card-bg variable</p>
+          <div class="p-4 wireframe-box">
+            <h4 class="wireframe-heading">Wireframe Card</h4>
+            <p class="text-sm wireframe-text">Adapts to all 8 monochrome themes</p>
           </div>
-          <div class="p-4 rounded-lg" style="background-color: var(--color-theme-main);">
-            <h4 class="font-medium theme-headline">Main Background</h4>
-            <p class="text-sm theme-paragraph">Uses theme-main for contrast</p>
+          <div class="p-4 wireframe-section">
+            <h4 class="wireframe-heading">Section Block</h4>
+            <p class="text-sm wireframe-text">Hand-drawn dividers and borders</p>
           </div>
         </div>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Theme Variables</h4>
-        <p class="text-sm theme-paragraph mb-3">Cards automatically adapt to current theme colors</p>
+        <h4 class="font-semibold theme-headline mb-2">Monochrome Variables</h4>
+        <p class="text-sm theme-paragraph mb-3">Wireframe cards automatically adapt to all 8 monochrome themes</p>
         <code class="code-snippet">
-          {generateCodeSnippet(`<!-- Card background -->
-theme-card-bg
+          {generateCodeSnippet(`<!-- Wireframe elements -->
+wireframe-box
+wireframe-section
+wireframe-heading
+wireframe-text
 
-<!-- Main background -->
-background-color: var(--color-theme-main)
-
-<!-- Text colors -->
-theme-headline
-theme-paragraph`)}
+<!-- DoodleCSS integration -->
+.doodle class for authentic borders`)}
         </code>
       </div>
     </div>
 
-    <!-- Accessibility -->
+    <!-- Wireframe Features -->
     <div class="showcase-item">
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Accessibility Features</h4>
+        <h4 class="font-semibold theme-headline mb-2">Wireframe Features</h4>
         <div class="space-y-3 text-sm theme-paragraph">
           <div>
-            <h5 class="font-medium theme-headline mb-1">Color Contrast</h5>
-            <p>Theme colors maintain accessible contrast ratios across all themes</p>
+            <h5 class="font-medium theme-headline mb-1">Hand-Drawn Borders</h5>
+            <p>Authentic DoodleCSS borders with natural sketch variations</p>
           </div>
           <div>
-            <h5 class="font-medium theme-headline mb-1">Focus States</h5>
-            <p>Interactive cards include focus-visible states for keyboard navigation</p>
+            <h5 class="font-medium theme-headline mb-1">Monochrome Themes</h5>
+            <p>8 carefully crafted monochrome palettes for wireframe consistency</p>
           </div>
           <div>
-            <h5 class="font-medium theme-headline mb-1">Screen Readers</h5>
-            <p>Semantic HTML structure with proper heading hierarchy and alt text</p>
+            <h5 class="font-medium theme-headline mb-1">Prototyping Ready</h5>
+            <p>Perfect for rapid prototyping and design system documentation</p>
           </div>
           <div>
-            <h5 class="font-medium theme-headline mb-1">Responsive Design</h5>
-            <p>Cards remain usable and readable at all screen sizes</p>
+            <h5 class="font-medium theme-headline mb-1">Short Stack Font</h5>
+            <p>Integrated with authentic handwritten typography for complete wireframe aesthetic</p>
           </div>
+        </div>
+        <div class="mt-4 p-3 wireframe-box text-center">
+          <span class="wireframe-text text-sm">🎨 Try switching themes to see monochrome adaptation!</span>
         </div>
       </div>
     </div>

@@ -11,12 +11,12 @@ import Link from "@/components/ui/link.astro";
     <Container>
       <!-- Header Section -->
       <div class="py-16 text-center">
-        <h1 class="text-5xl lg:text-6xl font-bold theme-headline mb-4">
-          Typography
+        <h1 class="text-5xl lg:text-6xl wireframe-heading mb-4">
+          Wireframe Typography
         </h1>
-        <p class="text-xl theme-paragraph max-w-2xl mx-auto mb-8">
-          Font hierarchy, text styles, and reading patterns using Inter Variable and Bricolage Grotesque Variable.
-          Explore our complete typography system with theme-aware styling.
+        <p class="text-xl wireframe-text max-w-2xl mx-auto mb-8">
+          Hand-drawn typography using Short Stack font for authentic wireframe aesthetics.
+          Explore our monochrome typography system with DoodleCSS enhancements.
         </p>
         
         <!-- Back to Styleguide Navigation -->
@@ -34,48 +34,119 @@ import Link from "@/components/ui/link.astro";
       <!-- Typography Section -->
       <div id="typography">
         <ComponentGrid 
-          title="Typography System" 
-          description="Complete overview of our typography hierarchy, font families, text styles, and theme-aware color classes"
+          title="Wireframe Typography System" 
+          description="Hand-drawn typography using Short Stack font, optimized for sketchy wireframe aesthetics with monochrome color themes"
           columns={1}
         >
           <TypographyShowcase />
         </ComponentGrid>
       </div>
 
+      <!-- Wireframe Typography Showcase -->
+      <div class="py-16">
+        <ComponentGrid 
+          title="Wireframe Typography Showcase" 
+          description="Hand-drawn text styles and wireframe-specific classes for authentic sketch aesthetics"
+          columns={1}
+        >
+          <!-- Wireframe vs Standard Comparison -->
+          <div class="grid lg:grid-cols-2 gap-8">
+            <div class="wireframe-box p-6 doodle">
+              <h3 class="text-lg wireframe-heading mb-4">Wireframe Classes</h3>
+              <div class="space-y-4">
+                <div>
+                  <p class="text-sm theme-card-text mb-1">wireframe-heading</p>
+                  <h2 class="text-2xl wireframe-heading">Hand-drawn Heading</h2>
+                </div>
+                <div>
+                  <p class="text-sm theme-card-text mb-1">wireframe-text</p>
+                  <p class="wireframe-text">Hand-drawn body text with Short Stack font for authentic sketchy feel.</p>
+                </div>
+                <div>
+                  <p class="text-sm theme-card-text mb-1">Button with doodle class</p>
+                  <button class="theme-button-primary doodle px-4 py-2 rounded">Wireframe Button</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="wireframe-box p-6 doodle">
+              <h3 class="text-lg wireframe-heading mb-4">Standard Theme Classes</h3>
+              <div class="space-y-4">
+                <div>
+                  <p class="text-sm theme-card-text mb-1">theme-headline</p>
+                  <h2 class="text-2xl theme-headline">Standard Heading</h2>
+                </div>
+                <div>
+                  <p class="text-sm theme-card-text mb-1">theme-paragraph</p>
+                  <p class="theme-paragraph">Standard body text using the default font stack for clean typography.</p>
+                </div>
+                <div>
+                  <p class="text-sm theme-card-text mb-1">Standard button</p>
+                  <button class="theme-button-primary px-4 py-2 rounded">Standard Button</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ComponentGrid>
+      </div>
+      
       <!-- Quick Reference Section -->
       <div class="py-16">
         <ComponentGrid 
           title="Quick Reference" 
-          description="Common typography patterns and their corresponding CSS classes"
+          description="Wireframe typography classes and their corresponding CSS properties"
           columns={2}
         >
-          <!-- Theme Classes Reference -->
-          <div class="p-6 rounded-lg theme-card-bg">
-            <h3 class="text-lg font-semibold theme-headline mb-4">Theme Text Classes</h3>
+          <!-- Wireframe Classes Reference -->
+          <div class="wireframe-box p-6 doodle">
+            <h3 class="text-lg wireframe-heading mb-4">Wireframe Text Classes</h3>
             <div class="space-y-2 text-sm font-mono">
-              <div class="flex justify-between">
-                <span class="theme-card-text">.theme-headline</span>
-                <span class="theme-headline">Primary headings</span>
+              <div class="flex justify-between items-center">
+                <code class="text-xs" style="background-color: var(--color-theme-quaternary); padding: 2px 6px; border-radius: 4px;">.wireframe-heading</code>
+                <span class="wireframe-heading text-sm">Hand-drawn headings</span>
               </div>
-              <div class="flex justify-between">
-                <span class="theme-card-text">.theme-sub-headline</span>
-                <span class="theme-sub-headline">Secondary headings</span>
+              <div class="flex justify-between items-center">
+                <code class="text-xs" style="background-color: var(--color-theme-quaternary); padding: 2px 6px; border-radius: 4px;">.wireframe-text</code>
+                <span class="wireframe-text text-sm">Hand-drawn body text</span>
               </div>
-              <div class="flex justify-between">
-                <span class="theme-card-text">.theme-paragraph</span>
-                <span class="theme-paragraph">Body text</span>
+              <div class="flex justify-between items-center">
+                <code class="text-xs" style="background-color: var(--color-theme-quaternary); padding: 2px 6px; border-radius: 4px;">.doodle</code>
+                <span class="theme-card-text text-sm">DoodleCSS styling</span>
               </div>
-              <div class="flex justify-between">
-                <span class="theme-card-text">.theme-card-text</span>
-                <span class="theme-card-text">Card content</span>
+              <div class="flex justify-between items-center">
+                <code class="text-xs" style="background-color: var(--color-theme-quaternary); padding: 2px 6px; border-radius: 4px;">.wireframe-box</code>
+                <span class="theme-card-text text-sm">Sketch containers</span>
               </div>
-              <div class="flex justify-between">
-                <span class="theme-card-text">.theme-link</span>
-                <span class="theme-link">Interactive links</span>
+            </div>
+          </div>
+          
+          <!-- Standard Theme Classes Reference -->
+          <div class="wireframe-box p-6 doodle">
+            <h3 class="text-lg wireframe-heading mb-4">Standard Theme Classes</h3>
+            <div class="space-y-2 text-sm font-mono">
+              <div class="flex justify-between items-center">
+                <code class="text-xs" style="background-color: var(--color-theme-quaternary); padding: 2px 6px; border-radius: 4px;">.theme-headline</code>
+                <span class="theme-headline text-sm">Primary headings</span>
               </div>
-              <div class="flex justify-between">
-                <span class="theme-card-text">.theme-highlight</span>
-                <span class="theme-highlight">Accent text</span>
+              <div class="flex justify-between items-center">
+                <code class="text-xs" style="background-color: var(--color-theme-quaternary); padding: 2px 6px; border-radius: 4px;">.theme-sub-headline</code>
+                <span class="theme-sub-headline text-sm">Secondary headings</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <code class="text-xs" style="background-color: var(--color-theme-quaternary); padding: 2px 6px; border-radius: 4px;">.theme-paragraph</code>
+                <span class="theme-paragraph text-sm">Body text</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <code class="text-xs" style="background-color: var(--color-theme-quaternary); padding: 2px 6px; border-radius: 4px;">.theme-card-text</code>
+                <span class="theme-card-text text-sm">Card content</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <code class="text-xs" style="background-color: var(--color-theme-quaternary); padding: 2px 6px; border-radius: 4px;">.theme-link</code>
+                <span class="theme-link text-sm">Interactive links</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <code class="text-xs" style="background-color: var(--color-theme-quaternary); padding: 2px 6px; border-radius: 4px;">.theme-highlight</code>
+                <span class="theme-highlight text-sm">Accent text</span>
               </div>
             </div>
           </div>
@@ -119,8 +190,8 @@ import Link from "@/components/ui/link.astro";
 
       <!-- Footer -->
       <div class="py-16 text-center border-t" style="border-color: var(--color-theme-stroke);">
-        <p class="theme-paragraph mb-4">
-          This typography system ensures consistent, accessible, and theme-aware text across all components.
+        <p class="wireframe-text mb-4">
+          This wireframe typography system ensures consistent hand-drawn aesthetics with monochrome theming across all components.
         </p>
         <Link href="/styleguide" style="outline" size="sm">
           Return to Main Styleguide

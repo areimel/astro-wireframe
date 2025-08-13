@@ -6,136 +6,169 @@
 <div class="typography-showcase space-y-16">
   <!-- Font Family Overview -->
   <section>
-    <h3 class="text-2xl font-bold theme-headline mb-6">Font Families</h3>
-    <div class="grid md:grid-cols-2 gap-8">
+    <h3 class="text-2xl wireframe-heading mb-6">Wireframe Font System</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Short Stack (Primary) -->
+      <div class="wireframe-box p-6 doodle">
+        <h4 class="text-lg wireframe-heading mb-3">
+          Short Stack
+        </h4>
+        <p class="wireframe-text mb-4">
+          Primary wireframe font with authentic hand-drawn character. Creates the sketchy, 
+          casual feel essential for wireframe aesthetics.
+        </p>
+        <div class="text-sm theme-card-text opacity-75">Primary wireframe font</div>
+      </div>
+
       <!-- Bricolage Grotesque -->
-      <div class="p-6 rounded-lg theme-card-bg">
+      <div class="wireframe-box p-6 doodle">
         <h4 class="text-lg font-semibold theme-headline mb-3" style="font-family: 'Bricolage Grotesque Variable', sans-serif;">
           Bricolage Grotesque Variable
         </h4>
         <p class="theme-paragraph mb-4" style="font-family: 'Bricolage Grotesque Variable', sans-serif;">
-          A modern, geometric sans-serif with distinctive character. Perfect for headlines, 
-          buttons, and display text that needs to make a statement.
+          Secondary font for clean, modern elements that need more formality within the wireframe design.
         </p>
-        <div class="text-sm theme-card-text opacity-75">Primary display font</div>
+        <div class="text-sm theme-card-text opacity-75">Secondary display font</div>
       </div>
 
       <!-- Inter Variable -->
-      <div class="p-6 rounded-lg theme-card-bg">
+      <div class="wireframe-box p-6 doodle">
         <h4 class="text-lg font-semibold theme-headline mb-3" style="font-family: 'Inter Variable', sans-serif;">
           Inter Variable
         </h4>
         <p class="theme-paragraph mb-4" style="font-family: 'Inter Variable', sans-serif;">
-          Designed for excellent readability at all sizes. Optimized for body text, 
-          UI elements, and long-form content with superior legibility.
+          Fallback font for body text and UI elements requiring high readability and accessibility.
         </p>
-        <div class="text-sm theme-card-text opacity-75">Primary body font</div>
+        <div class="text-sm theme-card-text opacity-75">Fallback body font</div>
       </div>
     </div>
   </section>
 
-  <!-- Heading Hierarchy -->
+  <!-- Wireframe Heading Hierarchy -->
   <section>
-    <h3 class="text-2xl font-bold theme-headline mb-6">Heading Hierarchy</h3>
+    <h3 class="text-2xl wireframe-heading mb-6">Wireframe Heading Hierarchy</h3>
     <div class="space-y-6">
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h1 class="text-6xl font-bold theme-headline mb-2">H1 Heading</h1>
-        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-6xl font-bold theme-headline</code>
-        <p class="text-sm theme-paragraph mt-2">Used for page titles and primary hero headlines</p>
+      <!-- H1 Wireframe -->
+      <div class="wireframe-box p-6 doodle">
+        <h1 class="text-6xl wireframe-heading mb-2">H1 Wireframe Heading</h1>
+        <code class="text-sm theme-card-text px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary);">text-6xl wireframe-heading</code>
+        <p class="text-sm wireframe-text mt-2">Hand-drawn page titles and primary hero headlines</p>
+      </div>
+      
+      <!-- H1 Standard -->
+      <div class="wireframe-box p-6 doodle">
+        <h1 class="text-6xl font-bold theme-headline mb-2">H1 Standard Heading</h1>
+        <code class="text-sm theme-card-text px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary);">text-6xl font-bold theme-headline</code>
+        <p class="text-sm theme-paragraph mt-2">Standard page titles with fallback fonts</p>
       </div>
 
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h2 class="text-5xl font-bold theme-headline mb-2">H2 Heading</h2>
-        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-5xl font-bold theme-headline</code>
-        <p class="text-sm theme-paragraph mt-2">Section headers and major content divisions</p>
+      <!-- H2-H6 Wireframe Examples -->
+      <div class="wireframe-box p-6 doodle">
+        <h2 class="text-5xl wireframe-heading mb-2">H2 Wireframe</h2>
+        <code class="text-sm theme-card-text px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary);">text-5xl wireframe-heading</code>
+        <p class="text-sm wireframe-text mt-2">Hand-drawn section headers</p>
       </div>
 
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h3 class="text-4xl font-bold theme-headline mb-2">H3 Heading</h3>
-        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-4xl font-bold theme-headline</code>
-        <p class="text-sm theme-paragraph mt-2">Subsection headers and feature titles</p>
+      <div class="wireframe-box p-6 doodle">
+        <h3 class="text-4xl wireframe-heading mb-2">H3 Wireframe</h3>
+        <code class="text-sm theme-card-text px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary);">text-4xl wireframe-heading</code>
+        <p class="text-sm wireframe-text mt-2">Sketchy subsection headers</p>
       </div>
 
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h4 class="text-3xl font-semibold theme-sub-headline mb-2">H4 Heading</h4>
-        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-3xl font-semibold theme-sub-headline</code>
-        <p class="text-sm theme-paragraph mt-2">Card titles and component headers</p>
+      <div class="wireframe-box p-6 doodle">
+        <h4 class="text-3xl wireframe-heading mb-2">H4 Wireframe</h4>
+        <code class="text-sm theme-card-text px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary);">text-3xl wireframe-heading</code>
+        <p class="text-sm wireframe-text mt-2">Hand-drawn card titles</p>
       </div>
 
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h5 class="text-2xl font-semibold theme-sub-headline mb-2">H5 Heading</h5>
-        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-2xl font-semibold theme-sub-headline</code>
-        <p class="text-sm theme-paragraph mt-2">Minor section headers and list titles</p>
+      <div class="wireframe-box p-6 doodle">
+        <h5 class="text-2xl wireframe-heading mb-2">H5 Wireframe</h5>
+        <code class="text-sm theme-card-text px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary);">text-2xl wireframe-heading</code>
+        <p class="text-sm wireframe-text mt-2">Minor sketched headers</p>
       </div>
 
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h6 class="text-xl font-semibold theme-sub-headline mb-2">H6 Heading</h6>
-        <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-xl font-semibold theme-sub-headline</code>
-        <p class="text-sm theme-paragraph mt-2">Small headers and emphasized text blocks</p>
+      <div class="wireframe-box p-6 doodle">
+        <h6 class="text-xl wireframe-heading mb-2">H6 Wireframe</h6>
+        <code class="text-sm theme-card-text px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary);">text-xl wireframe-heading</code>
+        <p class="text-sm wireframe-text mt-2">Small wireframe headers</p>
       </div>
     </div>
   </section>
 
-  <!-- Body Text Variations -->
+  <!-- Wireframe Text Variations -->
   <section>
-    <h3 class="text-2xl font-bold theme-headline mb-6">Body Text Variations</h3>
+    <h3 class="text-2xl wireframe-heading mb-6">Wireframe Text Variations</h3>
     <div class="grid md:grid-cols-2 gap-8">
       <!-- Paragraph Styles -->
       <div class="space-y-6">
-        <div class="p-6 rounded-lg theme-card-bg">
-          <h4 class="text-lg font-semibold theme-headline mb-4">Paragraph Text</h4>
-          <p class="text-lg theme-paragraph mb-3 leading-relaxed">
-            This is large body text (text-lg) with relaxed line height. Perfect for introductory 
-            paragraphs, hero descriptions, and content that needs extra emphasis while maintaining readability.
+        <div class="wireframe-box p-6 doodle">
+          <h4 class="text-lg wireframe-heading mb-4">Wireframe Large Text</h4>
+          <p class="text-lg wireframe-text mb-3 leading-relaxed">
+            This is large wireframe text with hand-drawn styling. Perfect for introductory 
+            sections and content that needs emphasis while maintaining the sketchy aesthetic.
           </p>
-          <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-lg theme-paragraph leading-relaxed</code>
+          <code class="text-sm theme-card-text px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary);">text-lg wireframe-text leading-relaxed</code>
         </div>
 
-        <div class="p-6 rounded-lg theme-card-bg">
-          <p class="text-base theme-paragraph mb-3 leading-normal">
-            This is standard body text (text-base) with normal line height. The workhorse of content, 
-            used for most paragraphs, descriptions, and general reading material throughout the application.
+        <div class="wireframe-box p-6 doodle">
+          <p class="text-base wireframe-text mb-3 leading-normal">
+            This is standard wireframe body text with hand-drawn character. Used for most content 
+            in the wireframe design system, maintaining readability with authentic sketchy styling.
           </p>
-          <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-base theme-paragraph leading-normal</code>
+          <code class="text-sm theme-card-text px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary);">text-base wireframe-text leading-normal</code>
         </div>
 
-        <div class="p-6 rounded-lg theme-card-bg">
-          <p class="text-sm theme-card-text mb-3">
-            This is small text (text-sm) using theme-card-text color. Ideal for captions, 
-            metadata, secondary information, and supplementary details that support the main content.
+        <div class="wireframe-box p-6 doodle">
+          <p class="text-sm wireframe-text mb-3">
+            This is small wireframe text maintaining the hand-drawn aesthetic. Ideal for captions, 
+            annotations, and secondary information within the wireframe design system.
           </p>
-          <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-sm theme-card-text</code>
+          <code class="text-sm theme-card-text px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary);">text-sm wireframe-text</code>
         </div>
 
-        <div class="p-6 rounded-lg theme-card-bg">
-          <p class="text-xs theme-card-text opacity-75 mb-3">
-            This is extra small text (text-xs) with reduced opacity. Used for fine print, 
-            legal text, timestamps, and other minimal supporting information.
+        <div class="wireframe-box p-6 doodle">
+          <p class="text-xs wireframe-text opacity-75 mb-3">
+            This is extra small wireframe text with reduced opacity. Used for fine details, 
+            timestamps, and minimal supporting information in the wireframe system.
           </p>
-          <code class="text-sm theme-card-text bg-gray-100 px-2 py-1 rounded">text-xs theme-card-text opacity-75</code>
+          <code class="text-sm theme-card-text px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary);">text-xs wireframe-text opacity-75</code>
         </div>
       </div>
 
-      <!-- Special Text Styles -->
+      <!-- Wireframe Special Styles -->
       <div class="space-y-6">
-        <div class="p-6 rounded-lg theme-card-bg">
-          <h4 class="text-lg font-semibold theme-headline mb-4">Special Text Styles</h4>
+        <div class="wireframe-box p-6 doodle">
+          <h4 class="text-lg wireframe-heading mb-4">Wireframe Special Styles</h4>
           
           <div class="space-y-3">
-            <p class="theme-link">This is link text using theme-link color</p>
-            <p class="theme-highlight font-medium">This is highlighted text with theme-highlight</p>
-            <p class="text-base theme-paragraph font-bold">This is bold paragraph text</p>
-            <p class="text-base theme-paragraph italic">This is italic paragraph text</p>
-            <p class="text-base theme-paragraph underline">This is underlined text</p>
-            <p class="text-base theme-paragraph line-through opacity-60">This is struck-through text</p>
+            <p class="theme-link wireframe-text">Wireframe link text with theme colors</p>
+            <p class="theme-highlight wireframe-text font-medium">Highlighted wireframe text</p>
+            <p class="text-base wireframe-text font-bold">Bold wireframe text</p>
+            <p class="text-base wireframe-text italic">Italic wireframe text</p>
+            <p class="text-base wireframe-text underline">Underlined wireframe text</p>
+            <p class="text-base wireframe-text line-through opacity-60">Struck-through wireframe text</p>
+          </div>
+        </div>
+        
+        <!-- Comparison with Standard Styles -->
+        <div class="wireframe-box p-6 doodle">
+          <h4 class="text-lg font-semibold theme-headline mb-4">Standard Special Styles</h4>
+          
+          <div class="space-y-3">
+            <p class="theme-link">Standard link text using theme-link color</p>
+            <p class="theme-highlight font-medium">Standard highlighted text with theme-highlight</p>
+            <p class="text-base theme-paragraph font-bold">Standard bold paragraph text</p>
+            <p class="text-base theme-paragraph italic">Standard italic paragraph text</p>
+            <p class="text-base theme-paragraph underline">Standard underlined text</p>
+            <p class="text-base theme-paragraph line-through opacity-60">Standard struck-through text</p>
           </div>
         </div>
 
-        <div class="p-6 rounded-lg theme-card-bg">
-          <h4 class="text-lg font-semibold theme-headline mb-4">Code & Monospace</h4>
+        <div class="wireframe-box p-6 doodle">
+          <h4 class="text-lg wireframe-heading mb-4">Code & Monospace</h4>
           <div class="space-y-3">
-            <p class="theme-paragraph">Inline code: <code class="bg-gray-100 px-2 py-1 rounded font-mono text-sm">const hello = 'world'</code></p>
-            <pre class="bg-gray-100 p-4 rounded font-mono text-sm overflow-x-auto theme-card-text"><code>{`// Code block example
+            <p class="wireframe-text">Inline code: <code class="px-2 py-1 rounded font-mono text-sm" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">const hello = 'world'</code></p>
+            <pre class="p-4 rounded font-mono text-sm overflow-x-auto theme-card-text" style="background-color: var(--color-theme-quaternary); border: 1px solid; border-color: var(--color-theme-stroke);"><code>{`// Code block example
 function greet(name) {
   return \`Hello, \${name}!\`;
 }`}</code></pre>
@@ -145,208 +178,208 @@ function greet(name) {
     </div>
   </section>
 
-  <!-- Font Weights & Styles -->
+  <!-- Wireframe Font Weights & Styles -->
   <section>
-    <h3 class="text-2xl font-bold theme-headline mb-6">Font Weights & Styles</h3>
+    <h3 class="text-2xl wireframe-heading mb-6">Wireframe Font Weights & Styles</h3>
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h4 class="font-semibold theme-headline mb-4">Font Weights</h4>
+      <div class="wireframe-box p-6 doodle">
+        <h4 class="wireframe-heading mb-4">Wireframe Font Weights</h4>
         <div class="space-y-2">
-          <p class="font-light theme-paragraph">Light (300)</p>
-          <p class="font-normal theme-paragraph">Normal (400)</p>
-          <p class="font-medium theme-paragraph">Medium (500)</p>
-          <p class="font-semibold theme-paragraph">Semi Bold (600)</p>
-          <p class="font-bold theme-paragraph">Bold (700)</p>
-          <p class="font-extrabold theme-paragraph">Extra Bold (800)</p>
+          <p class="font-light wireframe-text">Light (300) - Wireframe</p>
+          <p class="font-normal wireframe-text">Normal (400) - Wireframe</p>
+          <p class="font-medium wireframe-text">Medium (500) - Wireframe</p>
+          <p class="font-semibold wireframe-text">Semi Bold (600) - Wireframe</p>
+          <p class="font-bold wireframe-text">Bold (700) - Wireframe</p>
+        </div>
+        <p class="text-xs wireframe-text opacity-75 mt-3">Note: Short Stack font has limited weight variations</p>
+      </div>
+
+      <div class="wireframe-box p-6 doodle">
+        <h4 class="wireframe-heading mb-4">Wireframe Text Decorations</h4>
+        <div class="space-y-2">
+          <p class="underline wireframe-text">Underlined wireframe text</p>
+          <p class="overline wireframe-text">Overlined wireframe text</p>
+          <p class="line-through wireframe-text">Line-through wireframe text</p>
+          <p class="no-underline theme-link wireframe-text">Wireframe link without underline</p>
         </div>
       </div>
 
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h4 class="font-semibold theme-headline mb-4">Text Decorations</h4>
+      <div class="wireframe-box p-6 doodle">
+        <h4 class="wireframe-heading mb-4">Wireframe Text Transforms</h4>
         <div class="space-y-2">
-          <p class="underline theme-paragraph">Underlined text</p>
-          <p class="overline theme-paragraph">Overlined text</p>
-          <p class="line-through theme-paragraph">Line-through text</p>
-          <p class="no-underline theme-link">Link without underline</p>
-        </div>
-      </div>
-
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h4 class="font-semibold theme-headline mb-4">Text Transforms</h4>
-        <div class="space-y-2">
-          <p class="uppercase theme-paragraph">Uppercase text</p>
-          <p class="lowercase theme-paragraph">LOWERCASE TEXT</p>
-          <p class="capitalize theme-paragraph">capitalize each word</p>
-          <p class="normal-case theme-paragraph">Normal Case</p>
+          <p class="uppercase wireframe-text">UPPERCASE WIREFRAME TEXT</p>
+          <p class="lowercase wireframe-text">LOWERCASE WIREFRAME TEXT</p>
+          <p class="capitalize wireframe-text">capitalize each wireframe word</p>
+          <p class="normal-case wireframe-text">Normal Case Wireframe</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Line Heights & Letter Spacing -->
+  <!-- Wireframe Line Heights & Letter Spacing -->
   <section>
-    <h3 class="text-2xl font-bold theme-headline mb-6">Line Heights & Letter Spacing</h3>
+    <h3 class="text-2xl wireframe-heading mb-6">Wireframe Line Heights & Letter Spacing</h3>
     <div class="grid md:grid-cols-2 gap-8">
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h4 class="font-semibold theme-headline mb-4">Line Heights</h4>
+      <div class="wireframe-box p-6 doodle">
+        <h4 class="wireframe-heading mb-4">Wireframe Line Heights</h4>
         <div class="space-y-4">
           <div>
             <p class="text-sm theme-card-text mb-1">Tight (leading-tight)</p>
-            <p class="leading-tight theme-paragraph">
-              This paragraph has tight line height. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <p class="leading-tight wireframe-text">
+              This wireframe paragraph has tight line height. Hand-drawn text with compact spacing 
+              for dense wireframe layouts and annotations.
             </p>
           </div>
           <div>
             <p class="text-sm theme-card-text mb-1">Normal (leading-normal)</p>
-            <p class="leading-normal theme-paragraph">
-              This paragraph has normal line height. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <p class="leading-normal wireframe-text">
+              This wireframe paragraph has normal line height. Standard spacing for most wireframe 
+              content that maintains readability while preserving the sketchy aesthetic.
             </p>
           </div>
           <div>
             <p class="text-sm theme-card-text mb-1">Relaxed (leading-relaxed)</p>
-            <p class="leading-relaxed theme-paragraph">
-              This paragraph has relaxed line height. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <p class="leading-relaxed wireframe-text">
+              This wireframe paragraph has relaxed line height. Generous spacing for important 
+              wireframe descriptions that need extra emphasis and breathing room.
             </p>
           </div>
         </div>
       </div>
 
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h4 class="font-semibold theme-headline mb-4">Letter Spacing</h4>
+      <div class="wireframe-box p-6 doodle">
+        <h4 class="wireframe-heading mb-4">Wireframe Letter Spacing</h4>
         <div class="space-y-4">
           <div>
             <p class="text-sm theme-card-text mb-1">Tight (tracking-tight)</p>
-            <p class="tracking-tight theme-paragraph">This text has tight letter spacing for compact layouts.</p>
+            <p class="tracking-tight wireframe-text">Tight letter spacing for compact wireframe layouts.</p>
           </div>
           <div>
             <p class="text-sm theme-card-text mb-1">Normal (tracking-normal)</p>
-            <p class="tracking-normal theme-paragraph">This text has normal letter spacing for readability.</p>
+            <p class="tracking-normal wireframe-text">Normal letter spacing for wireframe readability.</p>
           </div>
           <div>
             <p class="text-sm theme-card-text mb-1">Wide (tracking-wide)</p>
-            <p class="tracking-wide theme-paragraph">This text has wide letter spacing for emphasis.</p>
+            <p class="tracking-wide wireframe-text">Wide letter spacing for wireframe emphasis.</p>
           </div>
           <div>
             <p class="text-sm theme-card-text mb-1">Wider (tracking-wider)</p>
-            <p class="tracking-wider theme-paragraph uppercase">Perfect for uppercase headings</p>
+            <p class="tracking-wider wireframe-text uppercase">PERFECT FOR WIREFRAME HEADINGS</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Theme Color Examples -->
+  <!-- Monochrome Theme Colors -->
   <section>
-    <h3 class="text-2xl font-bold theme-headline mb-6">Theme-Aware Text Colors</h3>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h4 class="theme-headline font-semibold mb-2">Headline</h4>
-        <p class="text-sm theme-card-text opacity-75">theme-headline</p>
-        <p class="text-xs theme-card-text mt-2">Primary headings and titles</p>
+    <h3 class="text-2xl wireframe-heading mb-6">Monochrome Theme-Aware Colors</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="wireframe-box p-6 doodle">
+        <h4 class="wireframe-heading font-semibold mb-2">Wireframe Headline</h4>
+        <p class="text-sm theme-card-text opacity-75">wireframe-heading</p>
+        <p class="text-xs theme-card-text mt-2">Hand-drawn headings with Short Stack</p>
       </div>
 
-      <div class="p-6 rounded-lg theme-card-bg">
+      <div class="wireframe-box p-6 doodle">
+        <p class="wireframe-text font-medium mb-2">Wireframe Text</p>
+        <p class="text-sm theme-card-text opacity-75">wireframe-text</p>
+        <p class="text-xs theme-card-text mt-2">Hand-drawn body text with sketchy feel</p>
+      </div>
+      
+      <div class="wireframe-box p-6 doodle">
+        <h4 class="theme-headline font-semibold mb-2">Standard Headline</h4>
+        <p class="text-sm theme-card-text opacity-75">theme-headline</p>
+        <p class="text-xs theme-card-text mt-2">Clean headings with fallback fonts</p>
+      </div>
+
+      <div class="wireframe-box p-6 doodle">
         <h4 class="theme-sub-headline font-semibold mb-2">Sub Headline</h4>
         <p class="text-sm theme-card-text opacity-75">theme-sub-headline</p>
         <p class="text-xs theme-card-text mt-2">Secondary headings and subtitles</p>
       </div>
 
-      <div class="p-6 rounded-lg theme-card-bg">
-        <p class="theme-paragraph font-medium mb-2">Paragraph Text</p>
+      <div class="wireframe-box p-6 doodle">
+        <p class="theme-paragraph font-medium mb-2">Standard Paragraph</p>
         <p class="text-sm theme-card-text opacity-75">theme-paragraph</p>
-        <p class="text-xs theme-card-text mt-2">Body content and descriptions</p>
+        <p class="text-xs theme-card-text mt-2">Clean body content and descriptions</p>
       </div>
 
-      <div class="p-6 rounded-lg theme-card-bg">
-        <p class="theme-card-text font-medium mb-2">Card Text</p>
-        <p class="text-sm theme-card-text opacity-75">theme-card-text</p>
-        <p class="text-xs theme-card-text mt-2">Text within cards and components</p>
-      </div>
-
-      <div class="p-6 rounded-lg theme-card-bg">
+      <div class="wireframe-box p-6 doodle">
         <p class="theme-link font-medium mb-2">Link Color</p>
         <p class="text-sm theme-card-text opacity-75">theme-link</p>
         <p class="text-xs theme-card-text mt-2">Interactive links and CTAs</p>
       </div>
-
-      <div class="p-6 rounded-lg theme-card-bg">
-        <p class="theme-highlight font-medium mb-2">Highlight Color</p>
-        <p class="text-sm theme-card-text opacity-75">theme-highlight</p>
-        <p class="text-xs theme-card-text mt-2">Emphasized text and accents</p>
-      </div>
     </div>
   </section>
 
-  <!-- Real-World Usage Examples -->
+  <!-- Wireframe Usage Examples -->
   <section>
-    <h3 class="text-2xl font-bold theme-headline mb-6">Real-World Usage Examples</h3>
+    <h3 class="text-2xl wireframe-heading mb-6">Wireframe Usage Examples</h3>
     <div class="space-y-8">
-      <!-- Blog Post Preview -->
-      <div class="p-8 rounded-lg theme-card-bg">
-        <h4 class="text-lg font-semibold theme-headline mb-6">Blog Post Preview Layout</h4>
+      <!-- Wireframe Blog Post Preview -->
+      <div class="wireframe-box p-8 doodle">
+        <h4 class="text-lg wireframe-heading mb-6">Wireframe Blog Post Layout</h4>
         <div class="space-y-4">
-          <h2 class="text-3xl font-bold theme-headline leading-tight">
-            The Future of Web Development: Trends to Watch in 2025
+          <h2 class="text-3xl wireframe-heading leading-tight">
+            Wireframe Design Principles: Best Practices for 2025
           </h2>
           <div class="flex items-center gap-4 text-sm theme-card-text">
-            <span>By Jane Developer</span>
+            <span>By Wireframe Designer</span>
             <span>•</span>
             <time>March 15, 2024</time>
             <span>•</span>
             <span>5 min read</span>
           </div>
-          <p class="text-lg theme-paragraph leading-relaxed">
-            Discover the emerging technologies and methodologies that will shape how we build 
-            web applications in the coming year. From AI integration to new frameworks.
+          <p class="text-lg wireframe-text leading-relaxed">
+            Explore the essential principles of effective wireframe design using hand-drawn 
+            aesthetics and monochrome palettes for authentic UX prototyping.
           </p>
-          <a href="#" class="theme-link hover:underline font-medium">Read full article →</a>
+          <a href="#" class="theme-link wireframe-text hover:underline font-medium">Read wireframe article →</a>
         </div>
       </div>
 
-      <!-- Product Card -->
-      <div class="p-8 rounded-lg theme-card-bg">
-        <h4 class="text-lg font-semibold theme-headline mb-6">Product Card Layout</h4>
+      <!-- Wireframe Product Card -->
+      <div class="wireframe-box p-8 doodle">
+        <h4 class="text-lg wireframe-heading mb-6">Wireframe Product Card Layout</h4>
         <div class="max-w-sm">
-          <div class="h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-            <span class="theme-card-text">Product Image</span>
+          <div class="h-48 rounded-lg mb-4 flex items-center justify-center wireframe-section doodle">
+            <span class="wireframe-text">Wireframe Product Image</span>
           </div>
-          <h3 class="text-xl font-bold theme-headline mb-2">Premium Web Template</h3>
-          <p class="theme-paragraph mb-4 leading-normal">
-            A comprehensive starter template with modern design patterns and optimized performance.
+          <h3 class="text-xl wireframe-heading mb-2">Wireframe Design Kit</h3>
+          <p class="wireframe-text mb-4 leading-normal">
+            A comprehensive wireframe template kit with hand-drawn components and monochrome styling.
           </p>
           <div class="flex items-center justify-between">
-            <span class="text-2xl font-bold theme-highlight">$49</span>
-            <button class="px-4 py-2 rounded theme-button-primary">Add to Cart</button>
+            <span class="text-2xl font-bold theme-highlight">$29</span>
+            <button class="px-4 py-2 rounded theme-button-primary doodle">Add to Cart</button>
           </div>
-          <p class="text-xs theme-card-text opacity-75 mt-2">Free updates included</p>
+          <p class="text-xs wireframe-text opacity-75 mt-2">DoodleCSS included</p>
         </div>
       </div>
 
-      <!-- Feature Section -->
-      <div class="p-8 rounded-lg theme-card-bg">
-        <h4 class="text-lg font-semibold theme-headline mb-6">Feature Section Layout</h4>
+      <!-- Wireframe Feature Section -->
+      <div class="wireframe-box p-8 doodle">
+        <h4 class="text-lg wireframe-heading mb-6">Wireframe Feature Section Layout</h4>
         <div class="text-center max-w-2xl mx-auto">
-          <h2 class="text-4xl font-bold theme-headline mb-4">
-            Built for Performance
+          <h2 class="text-4xl wireframe-heading mb-4">
+            Built for Wireframing
           </h2>
-          <p class="text-xl theme-sub-headline mb-8 leading-relaxed">
-            Every component is optimized for speed, accessibility, and user experience
+          <p class="text-xl wireframe-text mb-8 leading-relaxed">
+            Every component is optimized for authentic hand-drawn wireframe aesthetics
           </p>
           <div class="grid md:grid-cols-3 gap-6 text-left">
-            <div>
-              <h3 class="text-lg font-semibold theme-headline mb-2">Fast Loading</h3>
-              <p class="theme-paragraph text-sm">Optimized assets and lazy loading ensure quick page loads</p>
+            <div class="wireframe-section p-4 doodle">
+              <h3 class="text-lg wireframe-heading mb-2">Hand-Drawn Style</h3>
+              <p class="wireframe-text text-sm">Short Stack font creates authentic sketchy appearance</p>
             </div>
-            <div>
-              <h3 class="text-lg font-semibold theme-headline mb-2">Accessible</h3>
-              <p class="theme-paragraph text-sm">WCAG compliant with proper semantic markup</p>
+            <div class="wireframe-section p-4 doodle">
+              <h3 class="text-lg wireframe-heading mb-2">Monochrome</h3>
+              <p class="wireframe-text text-sm">8 grayscale palettes maintain wireframe consistency</p>
             </div>
-            <div>
-              <h3 class="text-lg font-semibold theme-headline mb-2">Responsive</h3>
-              <p class="theme-paragraph text-sm">Perfect display across all device sizes</p>
+            <div class="wireframe-section p-4 doodle">
+              <h3 class="text-lg wireframe-heading mb-2">DoodleCSS</h3>
+              <p class="wireframe-text text-sm">Enhanced borders and styling for sketch effects</p>
             </div>
           </div>
         </div>
@@ -354,31 +387,31 @@ function greet(name) {
     </div>
   </section>
 
-  <!-- Typography Best Practices -->
+  <!-- Wireframe Typography Best Practices -->
   <section>
-    <h3 class="text-2xl font-bold theme-headline mb-6">Typography Best Practices</h3>
+    <h3 class="text-2xl wireframe-heading mb-6">Wireframe Typography Best Practices</h3>
     <div class="grid md:grid-cols-2 gap-8">
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h4 class="text-lg font-semibold theme-headline mb-4">✅ Do</h4>
-        <ul class="space-y-3 theme-paragraph">
-          <li>• Use theme classes for consistent colors across themes</li>
-          <li>• Maintain proper heading hierarchy (H1 → H6)</li>
-          <li>• Apply appropriate line heights for readability</li>
-          <li>• Use font weights to create visual hierarchy</li>
-          <li>• Keep line lengths between 45-75 characters</li>
-          <li>• Ensure sufficient color contrast for accessibility</li>
+      <div class="wireframe-box p-6 doodle">
+        <h4 class="text-lg wireframe-heading mb-4">✅ Wireframe Do's</h4>
+        <ul class="space-y-3 wireframe-text">
+          <li>• Use wireframe classes for authentic hand-drawn feel</li>
+          <li>• Apply Short Stack font for primary wireframe elements</li>
+          <li>• Maintain monochrome color palette consistency</li>
+          <li>• Use DoodleCSS classes for enhanced borders</li>
+          <li>• Keep appropriate contrast for accessibility</li>
+          <li>• Mix wireframe and standard fonts thoughtfully</li>
         </ul>
       </div>
 
-      <div class="p-6 rounded-lg theme-card-bg">
-        <h4 class="text-lg font-semibold theme-headline mb-4">❌ Don't</h4>
-        <ul class="space-y-3 theme-paragraph">
-          <li>• Use hardcoded colors instead of theme classes</li>
-          <li>• Skip heading levels (H1 → H3)</li>
-          <li>• Use too many different font sizes on one page</li>
-          <li>• Make text too small for mobile devices</li>
-          <li>• Use excessive letter spacing on body text</li>
-          <li>• Rely solely on color to convey information</li>
+      <div class="wireframe-box p-6 doodle">
+        <h4 class="text-lg wireframe-heading mb-4">❌ Wireframe Don'ts</h4>
+        <ul class="space-y-3 wireframe-text">
+          <li>• Don't use bright colors in wireframe designs</li>
+          <li>• Don't mix too many font families inconsistently</li>
+          <li>• Don't ignore the hand-drawn aesthetic guidelines</li>
+          <li>• Don't make wireframe text too small to read</li>
+          <li>• Don't overuse decorative elements</li>
+          <li>• Don't break the monochrome color system</li>
         </ul>
       </div>
     </div>
@@ -388,6 +421,12 @@ function greet(name) {
 <style>
   .typography-showcase {
     font-family: var(--font-sans);
+  }
+  
+  /* Ensure wireframe elements use Short Stack font */
+  .typography-showcase .wireframe-heading,
+  .typography-showcase .wireframe-text {
+    font-family: 'Short Stack', var(--font-sans);
   }
 
   /* Ensure proper spacing for typography examples */

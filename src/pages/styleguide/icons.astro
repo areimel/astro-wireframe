@@ -11,17 +11,24 @@ import Link from "@/components/ui/link.astro";
     <Container>
       <!-- Header Section -->
       <div class="py-16 text-center">
-        <h1 class="text-5xl lg:text-6xl font-bold theme-headline mb-4">
-          Icon System
+        <h1 class="text-5xl lg:text-6xl wireframe-heading mb-4">
+          Wireframe Icon System
         </h1>
-        <p class="text-xl theme-paragraph max-w-2xl mx-auto mb-8">
-          Browse commonly used icons powered by the astro-icon system, including Box Icons, Unicons,
-          and Simple Icons. Click any icon to copy its name.
-        </p>
+        <div class="wireframe-section max-w-3xl mx-auto mb-8">
+          <p class="text-xl wireframe-text mb-6">
+            Browse wireframe-optimized icons designed for prototypes and mockups. All icons integrate 
+            seamlessly with the monochrome theme system and hand-drawn aesthetic. Click any icon to copy its name.
+          </p>
+          <div class="wireframe-box p-4 text-center">
+            <span class="wireframe-text text-sm">
+              ✨ Icons automatically adapt to all 8 monochrome themes with authentic wireframe styling
+            </span>
+          </div>
+        </div>
 
         <!-- Back Navigation -->
         <div class="flex justify-center">
-          <Link href="/styleguide" style="outline" size="md">
+          <Link href="/styleguide" style="outline" size="md" class="doodle">
             ← Back to Styleguide
           </Link>
         </div>
@@ -30,8 +37,8 @@ import Link from "@/components/ui/link.astro";
       <!-- Main Content -->
       <div class="mb-16">
         <ComponentGrid 
-          title="Icon Library" 
-          description="A curated set of project-ready icons, grouped by collection, with size and usage examples"
+          title="Wireframe Icon Library" 
+          description="Hand-selected icons perfect for wireframe mockups, prototypes, and design documentation with monochrome styling"
           columns={1}
         >
           <IconShowcase />
@@ -39,11 +46,20 @@ import Link from "@/components/ui/link.astro";
       </div>
 
       <!-- Footer -->
-      <div class="py-16 text-center border-t" style="border-color: var(--color-theme-stroke);">
-        <p class="theme-paragraph mb-4">
-          Icons inherit color and size via utility classes. Apply Tailwind width/height (e.g., <code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">w-6 h-6</code>) and theme text colors.
-        </p>
-        <Link href="/styleguide" style="outline" size="sm">
+      <div class="py-16 text-center wireframe-section">
+        <div class="wireframe-box p-6 max-w-2xl mx-auto mb-6">
+          <p class="wireframe-text text-lg mb-4">
+            Icons inherit monochrome colors and work seamlessly with wireframe components. Apply size classes like 
+            <code class="wireframe-text px-2 py-1">w-6 h-6</code> and use theme color variables for consistent styling.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4 text-sm wireframe-text opacity-75">
+            <span>📐 Scalable sizes</span>
+            <span>🎨 Monochrome themes</span>
+            <span>✏️ Wireframe ready</span>
+            <span>🔗 Easy copying</span>
+          </div>
+        </div>
+        <Link href="/styleguide" style="outline" size="sm" class="doodle">
           Return to Main Styleguide
         </Link>
       </div>

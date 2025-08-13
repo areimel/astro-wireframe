@@ -3,16 +3,28 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div class="mt-24">
-  <h2 class="text-center text-slate-500">Works with your technologies</h2>
+<div class="wireframe-section mt-24 p-6">
+  <h2 class="text-center wireframe-heading">Wireframe Any Technology</h2>
   <div class="flex gap-8 md:gap-20 items-center justify-center mt-10 flex-wrap">
 
-    <Icon class="size-8 md:size-12" name="simple-icons:react" />
-    <Icon class="size-8 md:size-12" name="simple-icons:svelte" />
-    <Icon class="size-8 md:size-12" name="simple-icons:astro" />
-    <Icon class="size-8 md:size-16" name="simple-icons:tailwindcss" />
-    <Icon class="size-8 md:size-16" name="simple-icons:alpinedotjs" />
-    <Icon class="size-8 md:size-12" name="simple-icons:vercel" />
+    <div class="wireframe-box doodle p-3 rounded">
+      <Icon class="size-8 md:size-12" name="simple-icons:react" style="color: var(--color-theme-button);" />
+    </div>
+    <div class="wireframe-box doodle p-3 rounded">
+      <Icon class="size-8 md:size-12" name="simple-icons:svelte" style="color: var(--color-theme-button);" />
+    </div>
+    <div class="wireframe-box doodle p-3 rounded">
+      <Icon class="size-8 md:size-12" name="simple-icons:astro" style="color: var(--color-theme-button);" />
+    </div>
+    <div class="wireframe-box doodle p-3 rounded">
+      <Icon class="size-8 md:size-16" name="simple-icons:tailwindcss" style="color: var(--color-theme-button);" />
+    </div>
+    <div class="wireframe-box doodle p-3 rounded">
+      <Icon class="size-8 md:size-16" name="simple-icons:alpinedotjs" style="color: var(--color-theme-button);" />
+    </div>
+    <div class="wireframe-box doodle p-3 rounded">
+      <Icon class="size-8 md:size-12" name="simple-icons:vercel" style="color: var(--color-theme-button);" />
+    </div>
 
   </div>
 </div>

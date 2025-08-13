@@ -6,7 +6,12 @@
       "Bash(mv:*)",
       "Bash(mkdir:*)",
       "Bash(curl:*)",
-      "Bash(pnpm dev:*)"
+      "Bash(pnpm dev:*)",
+      "WebFetch(domain:chr15m.github.io)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "Bash(pnpm add:*)",
+      "Bash(timeout 10 pnpm build:*)"
     ],
     "deny": []
   }

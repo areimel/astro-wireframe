@@ -20,22 +20,43 @@ function generateCodeSnippet(component: string, props: Record<string, any>, cont
 ---
 
 <div class="button-showcase space-y-16">
+  <!-- Wireframe Button Introduction -->
+  <ComponentGrid 
+    title="Wireframe Button Introduction" 
+    description="Hand-drawn buttons with DoodleCSS and Short Stack font for authentic sketch aesthetics"
+    columns={1}
+  >
+    <div class="showcase-item">
+      <div class="component-demo mb-4 space-y-4">
+        <Button style="primary" class="doodle">Standard Button</Button>
+        <Button style="primary">Wireframe Button with DoodleCSS</Button>
+      </div>
+      <div class="component-info">
+        <h4 class="wireframe-heading mb-2">DoodleCSS Integration</h4>
+        <p class="wireframe-text mb-3">Add the 'doodle' class to any button for hand-drawn borders and Short Stack font</p>
+        <code class="code-snippet">
+          &lt;Button class="doodle"&gt;Wireframe Button&lt;/Button&gt;
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
   <!-- Basic Button Styles -->
   <ComponentGrid 
-    title="Button Styles" 
-    description="All available button style variants with their default behaviors"
+    title="Wireframe Button Styles" 
+    description="All button style variants with wireframe aesthetic"
     columns={3}
   >
     <!-- Primary Button -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <Button style="primary">Primary Button</Button>
+        <Button style="primary" class="doodle">Primary Button</Button>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Primary</h4>
-        <p class="text-sm theme-paragraph mb-3">The main call-to-action button with theme colors</p>
+        <h4 class="wireframe-heading mb-2">Primary</h4>
+        <p class="wireframe-text mb-3">Main CTA button with hand-drawn styling</p>
         <code class="code-snippet">
-          {generateCodeSnippet('Button', { style: 'primary' }, 'Primary Button')}
+          {generateCodeSnippet('Button', { style: 'primary', class: 'doodle' }, 'Primary Button')}
         </code>
       </div>
     </div>
@@ -43,27 +64,27 @@ function generateCodeSnippet(component: string, props: Record<string, any>, cont
     <!-- Outline Button -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <Button style="outline">Outline Button</Button>
+        <Button style="outline" class="doodle">Outline Button</Button>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Outline</h4>
-        <p class="text-sm theme-paragraph mb-3">Secondary button with transparent background</p>
+        <h4 class="wireframe-heading mb-2">Outline</h4>
+        <p class="wireframe-text mb-3">Secondary button with sketchy borders</p>
         <code class="code-snippet">
-          {generateCodeSnippet('Button', { style: 'outline' }, 'Outline Button')}
+          {generateCodeSnippet('Button', { style: 'outline', class: 'doodle' }, 'Outline Button')}
         </code>
       </div>
     </div>
 
-    <!-- Note about inverted -->
-    <div class="showcase-item">
-      <div class="component-demo mb-4 opacity-50">
-        <Button style="primary" class="opacity-50 cursor-not-allowed">Inverted (N/A)</Button>
+    <!-- Wireframe Enhancement -->
+    <div class="showcase-item wireframe-box">
+      <div class="component-demo mb-4">
+        <Button style="primary" class="wireframe-text">Custom Wireframe</Button>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Inverted</h4>
-        <p class="text-sm theme-paragraph mb-3">Not available for Button component. Use Link component instead.</p>
-        <code class="code-snippet opacity-50">
-          // Not supported in Button
+        <h4 class="wireframe-heading mb-2">Custom Wireframe</h4>
+        <p class="wireframe-text mb-3">Use .wireframe-text for custom styling</p>
+        <code class="code-snippet">
+          {generateCodeSnippet('Button', { style: 'primary', class: 'wireframe-text' }, 'Custom Wireframe')}
         </code>
       </div>
     </div>
@@ -71,20 +92,20 @@ function generateCodeSnippet(component: string, props: Record<string, any>, cont
 
   <!-- Button Sizes -->
   <ComponentGrid 
-    title="Button Sizes" 
-    description="Different button sizes for various use cases"
+    title="Wireframe Button Sizes" 
+    description="Different sizes with hand-drawn aesthetic"
     columns={2}
   >
     <!-- Medium Size -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <Button size="md">Medium Button</Button>
+        <Button size="md" class="doodle">Medium Button</Button>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Medium (Default)</h4>
-        <p class="text-sm theme-paragraph mb-3">Standard button size for most interfaces</p>
+        <h4 class="wireframe-heading mb-2">Medium (Default)</h4>
+        <p class="wireframe-text mb-3">Standard wireframe button size</p>
         <code class="code-snippet">
-          {generateCodeSnippet('Button', { size: 'md' }, 'Medium Button')}
+          {generateCodeSnippet('Button', { size: 'md', class: 'doodle' }, 'Medium Button')}
         </code>
       </div>
     </div>
@@ -92,13 +113,13 @@ function generateCodeSnippet(component: string, props: Record<string, any>, cont
     <!-- Large Size -->
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <Button size="lg">Large Button</Button>
+        <Button size="lg" class="doodle">Large Button</Button>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Large</h4>
-        <p class="text-sm theme-paragraph mb-3">Larger button for hero sections and important actions</p>
+        <h4 class="wireframe-heading mb-2">Large</h4>
+        <p class="wireframe-text mb-3">Larger wireframe button for hero sections</p>
         <code class="code-snippet">
-          {generateCodeSnippet('Button', { size: 'lg' }, 'Large Button')}
+          {generateCodeSnippet('Button', { size: 'lg', class: 'doodle' }, 'Large Button')}
         </code>
       </div>
     </div>
@@ -106,32 +127,66 @@ function generateCodeSnippet(component: string, props: Record<string, any>, cont
 
   <!-- Block Buttons -->
   <ComponentGrid 
-    title="Block Buttons" 
-    description="Full-width buttons that span the container width"
+    title="Wireframe Block Buttons" 
+    description="Full-width hand-drawn buttons for wireframe layouts"
     columns={1}
   >
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <Button block>Block Button (Full Width)</Button>
+        <Button block class="doodle">Block Button (Full Width)</Button>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Block Button</h4>
-        <p class="text-sm theme-paragraph mb-3">Spans the full width of its container</p>
+        <h4 class="wireframe-heading mb-2">Wireframe Block Button</h4>
+        <p class="wireframe-text mb-3">Full-width button with sketchy styling</p>
         <code class="code-snippet">
-          {generateCodeSnippet('Button', { block: true }, 'Block Button (Full Width)')}
+          {generateCodeSnippet('Button', { block: true, class: 'doodle' }, 'Block Button (Full Width)')}
         </code>
       </div>
     </div>
 
     <div class="showcase-item">
       <div class="component-demo mb-4">
-        <Button style="outline" size="lg" block>Large Outline Block Button</Button>
+        <Button style="outline" size="lg" block class="doodle">Large Outline Block Button</Button>
       </div>
       <div class="component-info">
-        <h4 class="font-semibold theme-headline mb-2">Combined Variants</h4>
-        <p class="text-sm theme-paragraph mb-3">Block can be combined with any style and size</p>
+        <h4 class="wireframe-heading mb-2">Combined Variants</h4>
+        <p class="wireframe-text mb-3">All combinations work with wireframe styling</p>
         <code class="code-snippet">
-          {generateCodeSnippet('Button', { style: 'outline', size: 'lg', block: true }, 'Large Outline Block Button')}
+          {generateCodeSnippet('Button', { style: 'outline', size: 'lg', block: true, class: 'doodle' }, 'Large Outline Block Button')}
+        </code>
+      </div>
+    </div>
+  </ComponentGrid>
+
+  <!-- Wireframe Form Context -->
+  <ComponentGrid 
+    title="Wireframe Form Context" 
+    description="How buttons look in wireframe form layouts and interfaces"
+    columns={1}
+  >
+    <div class="showcase-item wireframe-section">
+      <div class="component-demo mb-4">
+        <div class="wireframe-box p-6 max-w-md mx-auto">
+          <h3 class="wireframe-heading mb-4">Contact Form</h3>
+          <div class="space-y-3 mb-4">
+            <input type="text" placeholder="Name" class="w-full p-2 border-2" style="border-color: var(--color-theme-stroke); background-color: var(--color-theme-card-bg);">
+            <input type="email" placeholder="Email" class="w-full p-2 border-2" style="border-color: var(--color-theme-stroke); background-color: var(--color-theme-card-bg);">
+            <textarea placeholder="Message" rows="3" class="w-full p-2 border-2 resize-none" style="border-color: var(--color-theme-stroke); background-color: var(--color-theme-card-bg);"></textarea>
+          </div>
+          <div class="flex gap-3">
+            <Button style="outline" class="doodle">Cancel</Button>
+            <Button style="primary" class="doodle">Send Message</Button>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <h4 class="wireframe-heading mb-2">Wireframe Forms</h4>
+        <p class="wireframe-text mb-3">Buttons integrate seamlessly with hand-drawn form elements</p>
+        <code class="code-snippet">
+          &lt;div class="wireframe-box"&gt;<br>
+          &nbsp;&nbsp;&lt;input class="doodle" /&gt;<br>
+          &nbsp;&nbsp;{generateCodeSnippet('Button', { style: 'primary', class: 'doodle' }, 'Send Message')}<br>
+          &lt;/div&gt;
         </code>
       </div>
     </div>
@@ -139,8 +194,8 @@ function generateCodeSnippet(component: string, props: Record<string, any>, cont
 
   <!-- Link Components as Buttons -->
   <ComponentGrid 
-    title="Link Components" 
-    description="Link components styled as buttons with additional style options"
+    title="Wireframe Link Components" 
+    description="Link components with hand-drawn styling for navigation"
     columns={2}
   >
     <!-- Primary Link -->

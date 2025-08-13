@@ -7,8 +7,8 @@ import links from "@/data/links.json";
 ---
 
 <main
-  class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
-  <div class="py-6 md:order-1 hidden md:block">
+  class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24 wireframe-section">
+  <div class="py-6 md:order-1 hidden md:block wireframe-box">
     <!-- <Picture
       src={heroImage}
       alt="Astronaut in the air"
@@ -19,12 +19,12 @@ import links from "@/data/links.json";
     /> -->
     <img src="/hero-1.svg" class="max-w-md" />
   </div>
-  <div>
+  <div class="wireframe-box">
     <h1
-      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter theme-headline">
+      class="wireframe-heading text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
       ARDA Website Template - Built With Astro
     </h1>
-    <p class="text-lg mt-4 max-w-xl theme-paragraph">
+    <p class="wireframe-text text-lg mt-4 max-w-xl">
       The Advanced Research & Development Agency is dedicated to bringing high-tech products to the average person.
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
@@ -32,7 +32,7 @@ import links from "@/data/links.json";
         href="#"
         href="https://web3templates.com/templates/astroship-starter-website-template-for-astro"
         target="_blank"
-        class="flex gap-1 items-center justify-center"
+        class="flex gap-1 items-center justify-center doodle"
         rel="noopener">
         <Icon class="w-5 h-5" name="bx:bxs-cloud-download" />
 
@@ -43,7 +43,7 @@ import links from "@/data/links.json";
         style="outline"
         rel="noopener"
         href={links.githubLink}
-        class="flex gap-1 items-center justify-center"
+        class="flex gap-1 items-center justify-center doodle"
         target="_blank">
         <Icon class="w-4 h-4" name="bx:bxl-github" />
         GitHub Repo

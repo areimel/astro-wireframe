@@ -14,7 +14,7 @@ interface BlogCardProps {
 const { href, image, category, title, author, publishDate, index } = Astro.props as BlogCardProps;
 ---
 
-<a href={href}>
+<a href={href} class="wireframe-box doodle block p-4 hover:opacity-80 transition-opacity">
 	<div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
 		<Picture
 			src={image.src}
@@ -27,21 +27,20 @@ const { href, image, category, title, author, publishDate, index } = Astro.props
 			class="w-full rounded-md object-cover object-center bg-white"
 		/>
 		<div>
-			<span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
+			<span class="wireframe-text text-sm font-medium uppercase tracking-wider" style="color: var(--color-theme-button);">
 				{category}
 			</span>
 
-			<h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 ">
+			<h2 class="wireframe-heading text-3xl font-semibold leading-snug tracking-tight mt-1">
 				{title}
 			</h2>
 
-			<div class="flex gap-2 mt-3">
-				<span class="text-gray-400">
+			<div class="wireframe-text flex gap-2 mt-3 text-sm">
+				<span>
 					{author}
 				</span>
-				<span class="text-gray-400">• </span>
+				<span>• </span>
 				<time
-					class="text-gray-400"
 					datetime={publishDate.toISOString()}>
 					{publishDate.toDateString()}
 				</time>

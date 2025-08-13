@@ -15,7 +15,7 @@ interface ProductCardProps {
 const { href, image, category, title, price, snippet, publishDate, index } = Astro.props as ProductCardProps;
 ---
 
-<a href={href}>
+<a href={href} class="wireframe-box doodle block p-4 hover:opacity-80 transition-opacity">
 	<div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
 		<Picture
 			src={image.src}
@@ -28,27 +28,27 @@ const { href, image, category, title, price, snippet, publishDate, index } = Ast
 			class="w-full rounded-md object-cover object-center bg-white"
 		/>
 		<div>
-			<span class="uppercase tracking-wider text-sm font-medium" style="color: var(--color-theme-button);">
+			<span class="wireframe-text uppercase tracking-wider text-sm font-medium" style="color: var(--color-theme-button);">
 				{category}
 			</span>
 
-			<h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 theme-headline">
+			<h2 class="wireframe-heading text-3xl font-semibold leading-snug tracking-tight mt-1">
 				{title}
 			</h2>
 
-			<div class="flex gap-2 mt-3 items-center">
-				<span class="text-2xl font-bold" style="color: var(--color-theme-button);">
+			<div class="flex gap-2 mt-3 items-center text-sm">
+				<span class="wireframe-text text-2xl font-bold" style="color: var(--color-theme-button);">
 					{price}
 				</span>
-				<span class="theme-paragraph">•</span>
+				<span class="wireframe-text">•</span>
 				<time
-					class="theme-paragraph"
+					class="wireframe-text"
 					datetime={publishDate.toISOString()}>
 					{publishDate.toDateString()}
 				</time>
 			</div>
 
-			<p class="theme-paragraph mt-2">
+			<p class="wireframe-text mt-2">
 				{snippet}
 			</p>
 		</div>

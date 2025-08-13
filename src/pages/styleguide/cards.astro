@@ -11,18 +11,25 @@ import Link from "@/components/ui/link.astro";
     <Container>
       <!-- Header Section -->
       <div class="py-16 text-center">
-        <h1 class="text-5xl lg:text-6xl font-bold theme-headline mb-4">
+        <h1 class="text-5xl lg:text-6xl wireframe-heading mb-4">
           Card Components
         </h1>
-        <p class="text-xl theme-paragraph max-w-2xl mx-auto mb-8">
-          Comprehensive collection of card components including basic cards, feature cards, 
-          pricing cards, image cards, and interactive variants. All cards integrate seamlessly 
-          with the dynamic color theming system.
-        </p>
+        <div class="wireframe-section max-w-3xl mx-auto mb-8">
+          <p class="text-xl wireframe-text mb-6">
+            Comprehensive collection of wireframe card components featuring hand-drawn borders, 
+            monochrome aesthetics, and authentic sketch-like styling. All cards integrate seamlessly 
+            with the 8 monochrome theme system.
+          </p>
+          <div class="wireframe-box p-4 text-center">
+            <span class="wireframe-text text-sm">
+              🎨 Try switching between the 8 monochrome themes to see wireframe cards adapt
+            </span>
+          </div>
+        </div>
         
         <!-- Back Navigation -->
         <div class="flex justify-center">
-          <Link href="/styleguide" style="outline" size="md">
+          <Link href="/styleguide" style="outline" size="md" class="doodle">
             ← Back to Styleguide
           </Link>
         </div>
@@ -31,8 +38,8 @@ import Link from "@/components/ui/link.astro";
       <!-- Main Content -->
       <div class="mb-16">
         <ComponentGrid 
-          title="Complete Card System" 
-          description="All available card components, layouts, and usage patterns organized by category and use case"
+          title="Wireframe Card System" 
+          description="Hand-drawn card components with DoodleCSS integration, monochrome aesthetics, and authentic sketch-like borders for prototyping and design"
           columns={1}
         >
           <CardShowcase />
@@ -40,16 +47,23 @@ import Link from "@/components/ui/link.astro";
       </div>
 
       <!-- Footer -->
-      <div class="py-16 text-center">
-        <div class="space-y-4">
-          <p class="theme-paragraph">
-            These card components automatically adapt to all 17 color themes and maintain 
-            proper accessibility standards. Try switching themes with the color palette 
-            selector to see them in different contexts.
-          </p>
+      <div class="py-16 text-center wireframe-section">
+        <div class="space-y-6">
+          <div class="wireframe-box p-6 max-w-2xl mx-auto">
+            <p class="wireframe-text text-lg mb-4">
+              These wireframe card components automatically adapt to all 8 monochrome themes and maintain 
+              authentic hand-drawn aesthetics perfect for prototyping, wireframing, and sketch-style designs.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 text-sm wireframe-text opacity-75">
+              <span>✏️ Hand-drawn borders</span>
+              <span>🎨 Monochrome themes</span>
+              <span>📱 Responsive design</span>
+              <span>♿ Accessible markup</span>
+            </div>
+          </div>
           <div class="flex justify-center">
-            <Link href="/styleguide" style="primary" size="md">
-              Explore More Components
+            <Link href="/styleguide" style="primary" size="md" class="doodle">
+              Explore More Wireframe Components
             </Link>
           </div>
         </div>

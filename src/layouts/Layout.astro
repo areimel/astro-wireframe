@@ -10,6 +10,7 @@ import GoogleTagManagerBody from "@/components/HeadComponents/GoogleTagManagerBo
 // Styles & Fonts
 import "@fontsource-variable/inter/index.css";
 import "@fontsource-variable/bricolage-grotesque";
+import "doodle.css/doodle.css";
 import "../styles/global.css";
 
 // Data
@@ -41,6 +42,9 @@ const makeTitle = title
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Short+Stack&display=swap" rel="stylesheet">
     <GoogleTagManagerHead />
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
@@ -59,7 +63,7 @@ const makeTitle = title
       }}
     />
   </head>
-  <body class="theme-bg" data-theme="palette-1">
+  <body class="doodle theme-bg" data-theme="palette-1">
     <LoadingScreen />
     <div class="page-content">
       <GoogleTagManagerBody />

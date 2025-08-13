@@ -11,12 +11,12 @@ import { Icon } from "astro-icon/components";
     <Container>
       <!-- Header Section -->
       <div class="py-16 text-center">
-        <h1 class="text-5xl lg:text-6xl font-bold theme-headline mb-4">
-          Color System
+        <h1 class="text-5xl lg:text-6xl wireframe-heading mb-4">
+          Monochrome Wireframe Colors
         </h1>
-        <p class="text-xl theme-paragraph max-w-2xl mx-auto mb-8">
-          Explore our comprehensive 17-palette color system with dynamic theme switching. 
-          Each palette contains 15 carefully crafted color variables for consistent theming.
+        <p class="text-xl wireframe-text max-w-2xl mx-auto mb-8">
+          Explore our 8 monochrome wireframe palettes designed for hand-drawn aesthetics. 
+          Each palette contains 15 carefully crafted grayscale variables for consistent theming.
         </p>
         
         <!-- Back to Styleguide Navigation -->
@@ -30,69 +30,113 @@ import { Icon } from "astro-icon/components";
       </div>
 
       <!-- Color System Overview -->
-      <div class="mb-16 p-8 rounded-lg theme-card-bg border" style="border-color: var(--color-theme-stroke);">
-        <h2 class="text-3xl font-bold theme-headline mb-6">Color System Overview</h2>
+      <div class="mb-16 p-8 wireframe-box doodle">
+        <h2 class="text-3xl wireframe-heading mb-6">Monochrome Wireframe System</h2>
         <div class="grid md:grid-cols-2 gap-8">
           <div>
             <h3 class="text-xl font-semibold theme-sub-headline mb-4">15 CSS Variables Per Theme</h3>
-            <ul class="space-y-2 theme-paragraph">
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-bg</code> - Main background</li>
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-card-bg</code> - Card backgrounds</li>
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-section-bg</code> - Section backgrounds</li>
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-headline</code> - Primary headings</li>
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-paragraph</code> - Body text</li>
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">--color-theme-button</code> - Primary buttons</li>
-              <li>...and 9 more color variables</li>
+            <ul class="space-y-2 wireframe-text">
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">--color-theme-bg</code> - Main background</li>
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">--color-theme-card-bg</code> - Card backgrounds</li>
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">--color-theme-section-bg</code> - Section backgrounds</li>
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">--color-theme-headline</code> - Primary headings</li>
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">--color-theme-paragraph</code> - Body text</li>
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">--color-theme-button</code> - Primary buttons</li>
+              <li class="wireframe-text">...and 9 more monochrome variables</li>
             </ul>
           </div>
           <div>
-            <h3 class="text-xl font-semibold theme-sub-headline mb-4">Theme Classes Available</h3>
-            <ul class="space-y-2 theme-paragraph">
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-headline</code> - For headings</li>
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-paragraph</code> - For body text</li>
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-button-primary</code> - Primary buttons</li>
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-button-outline</code> - Outline buttons</li>
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-card-bg</code> - Card backgrounds</li>
-              <li><code class="px-2 py-1 rounded bg-gray-100 dark:bg-gray-800">theme-link</code> - Links</li>
+            <h3 class="text-xl font-semibold theme-sub-headline mb-4">Wireframe Classes Available</h3>
+            <ul class="space-y-2 wireframe-text">
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">wireframe-heading</code> - Hand-drawn headings</li>
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">wireframe-text</code> - Hand-drawn body text</li>
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">wireframe-box</code> - Sketch-style containers</li>
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">doodle</code> - DoodleCSS styling</li>
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">theme-button-primary.doodle</code> - Wireframe buttons</li>
+              <li><code class="px-2 py-1 rounded" style="background-color: var(--color-theme-quaternary); color: var(--color-theme-card-text);">theme-link</code> - Links</li>
             </ul>
           </div>
         </div>
       </div>
 
+      <!-- Wireframe Aesthetic Showcase -->
+      <div class="mb-16 p-8 wireframe-section doodle">
+        <h2 class="text-3xl wireframe-heading mb-6">Wireframe Aesthetic Elements</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Hand-drawn Box Example -->
+          <div class="wireframe-box p-4 doodle">
+            <h4 class="wireframe-heading mb-2">Sketch Box</h4>
+            <p class="wireframe-text text-sm">This demonstrates the hand-drawn wireframe styling with DoodleCSS borders and Short Stack font.</p>
+          </div>
+          
+          <!-- Button Examples -->
+          <div class="wireframe-box p-4 doodle">
+            <h4 class="wireframe-heading mb-3">Wireframe Buttons</h4>
+            <div class="space-y-2">
+              <button class="theme-button-primary doodle px-4 py-2 rounded block w-full">Primary Button</button>
+              <button class="theme-button-outline doodle px-4 py-2 rounded block w-full">Outline Button</button>
+            </div>
+          </div>
+          
+          <!-- Form Elements -->
+          <div class="wireframe-box p-4 doodle">
+            <h4 class="wireframe-heading mb-3">Form Elements</h4>
+            <div class="space-y-2">
+              <input type="text" placeholder="Wireframe input" class="w-full px-3 py-2 border rounded" />
+              <select class="w-full px-3 py-2 border rounded">
+                <option>Select option</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Usage Guidelines -->
-      <div class="mb-16 p-8 rounded-lg theme-section-bg border" style="border-color: var(--color-theme-stroke);">
-        <h2 class="text-3xl font-bold theme-headline mb-6">Usage Guidelines</h2>
+      <div class="mb-16 p-8 wireframe-section doodle">
+        <h2 class="text-3xl wireframe-heading mb-6">Wireframe Usage Guidelines</h2>
         <div class="grid lg:grid-cols-2 gap-8">
-          <div class="p-6 rounded-lg theme-card-bg">
-            <h3 class="text-xl font-semibold mb-4" style="color: var(--color-theme-highlight);">✅ Do This</h3>
+          <div class="wireframe-box p-6 doodle">
+            <h3 class="text-xl font-semibold mb-4" style="color: var(--color-theme-highlight);">✅ Wireframe Best Practices</h3>
             <div class="space-y-4">
               <div>
-                <p class="theme-paragraph mb-2">Use theme classes for consistent styling:</p>
-                <code class="block p-3 rounded bg-gray-100 dark:bg-gray-800 text-sm theme-paragraph">
-                  &lt;h1 class="theme-headline"&gt;Title&lt;/h1&gt;
+                <p class="wireframe-text mb-2">Use wireframe classes for hand-drawn aesthetic:</p>
+                <code class="block p-3 rounded text-sm wireframe-text" style="background-color: var(--color-theme-quaternary);">
+                  &lt;h1 class="wireframe-heading"&gt;Title&lt;/h1&gt;
                 </code>
               </div>
               <div>
-                <p class="theme-paragraph mb-2">Use CSS variables for dynamic elements:</p>
-                <code class="block p-3 rounded bg-gray-100 dark:bg-gray-800 text-sm theme-paragraph">
-                  style="color: var(--color-theme-button);"
+                <p class="wireframe-text mb-2">Apply DoodleCSS for enhanced borders:</p>
+                <code class="block p-3 rounded text-sm wireframe-text" style="background-color: var(--color-theme-quaternary);">
+                  &lt;div class="wireframe-box doodle"&gt;Content&lt;/div&gt;
+                </code>
+              </div>
+              <div>
+                <p class="wireframe-text mb-2">Use Short Stack font for authentic look:</p>
+                <code class="block p-3 rounded text-sm wireframe-text" style="background-color: var(--color-theme-quaternary);">
+                  font-family: 'Short Stack', cursive
                 </code>
               </div>
             </div>
           </div>
-          <div class="p-6 rounded-lg theme-card-bg">
-            <h3 class="text-xl font-semibold mb-4" style="color: var(--color-theme-secondary);">❌ Avoid This</h3>
+          <div class="wireframe-box p-6 doodle">
+            <h3 class="text-xl font-semibold mb-4" style="color: var(--color-theme-secondary);">❌ Avoid These Patterns</h3>
             <div class="space-y-4">
               <div>
-                <p class="theme-paragraph mb-2">Don't use hard-coded colors:</p>
-                <code class="block p-3 rounded bg-gray-100 dark:bg-gray-800 text-sm theme-paragraph">
-                  &lt;h1 class="text-gray-800"&gt;Title&lt;/h1&gt;
+                <p class="wireframe-text mb-2">Don't use colorful elements:</p>
+                <code class="block p-3 rounded text-sm wireframe-text" style="background-color: var(--color-theme-quaternary);">
+                  &lt;div class="bg-blue-500"&gt;Avoid&lt;/div&gt;
                 </code>
               </div>
               <div>
-                <p class="theme-paragraph mb-2">Don't use fixed background colors:</p>
-                <code class="block p-3 rounded bg-gray-100 dark:bg-gray-800 text-sm theme-paragraph">
-                  &lt;div class="bg-white"&gt;Content&lt;/div&gt;
+                <p class="wireframe-text mb-2">Don't mix fonts inconsistently:</p>
+                <code class="block p-3 rounded text-sm wireframe-text" style="background-color: var(--color-theme-quaternary);">
+                  style="font-family: Arial"
+                </code>
+              </div>
+              <div>
+                <p class="wireframe-text mb-2">Don't ignore grayscale palette:</p>
+                <code class="block p-3 rounded text-sm wireframe-text" style="background-color: var(--color-theme-quaternary);">
+                  style="color: #ff0000"
                 </code>
               </div>
             </div>
@@ -103,8 +147,8 @@ import { Icon } from "astro-icon/components";
       <!-- Interactive Color Palettes -->
       <div id="color-palettes">
         <ComponentGrid 
-          title="Interactive Color Palettes" 
-          description="Click any color swatch to copy its hex value or CSS variable. The currently active theme is highlighted and shown first."
+          title="8 Monochrome Wireframe Palettes" 
+          description="Our refined palette collection features 8 carefully crafted monochrome themes. Click any color swatch to copy its hex value or CSS variable. Perfect for hand-drawn wireframe aesthetics."
           columns={1}
         >
           <ColorPaletteDisplay />
@@ -113,8 +157,8 @@ import { Icon } from "astro-icon/components";
 
       <!-- Footer -->
       <div class="py-16 text-center">
-        <p class="theme-paragraph mb-4">
-          Need to switch themes? Use the color palette selector in the bottom right corner of any page.
+        <p class="wireframe-text mb-4">
+          Switch between our 8 monochrome wireframe themes using the color palette selector. Each palette maintains the hand-drawn aesthetic while offering different contrast levels.
         </p>
         <a 
           href="/styleguide" 
