@@ -9,7 +9,7 @@ const WEB3FORMS_KEY = import.meta.env.WEB3FORMS_KEY ?? "";
   action="https://api.web3forms.com/submit"
   method="POST"
   id="newsletter-form"
-  class="space-y-3 needs-validation"
+  class="space-y-3 needs-validation doodle"
   novalidate>
   <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
   <input type="hidden" name="subject" value="Newsletter Subscription" />
@@ -22,8 +22,7 @@ const WEB3FORMS_KEY = import.meta.env.WEB3FORMS_KEY ?? "";
       name="email"
       placeholder="Enter your email"
       required
-      class="w-full px-3 py-2 text-sm border rounded-md focus:outline-none theme-card-bg theme-card-text"
-      style="border-color: var(--color-theme-stroke);"
+      class="w-full px-3 py-2 text-sm rounded-md focus:outline-none theme-card-bg theme-card-text"
     />
     <div class="empty-feedback text-xs mt-1" style="color: var(--color-theme-stroke);">
       Please provide your email address.
@@ -57,10 +56,7 @@ const WEB3FORMS_KEY = import.meta.env.WEB3FORMS_KEY ?? "";
     display: block;
   }
 
-  .is-invalid,
-  .was-validated :invalid {
-    border-color: var(--color-theme-stroke);
-  }
+  /* DoodleCSS handles form element borders automatically */
 </style>
 
 <script is:inline>

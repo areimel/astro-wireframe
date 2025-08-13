@@ -14,7 +14,7 @@ interface BlogCardProps {
 const { href, image, category, title, author, publishDate, index } = Astro.props as BlogCardProps;
 ---
 
-<a href={href} class="wireframe-box doodle block p-4 hover:opacity-80 transition-opacity">
+<a href={href} class="wireframe-box doodle-border block p-4 hover:opacity-80 transition-opacity">
 	<div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
 		<Picture
 			src={image.src}
