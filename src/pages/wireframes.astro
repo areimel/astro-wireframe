@@ -1,0 +1,257 @@
+---
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import Layout from "@/layouts/Layout.astro";
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+
+const wireframeLayouts = [
+  {
+    title: "Classic Hero-Centric",
+    description: "Traditional SaaS landing page with prominent hero, features grid, social proof, and pricing.",
+    path: "/wireframes/classic",
+    icon: "bx:bx-layout",
+    category: "Traditional",
+    useCase: "SaaS Products, Service Businesses, Established Brands",
+    components: ["Hero Banner", "Feature Grid", "Testimonials", "Pricing Table"]
+  },
+  {
+    title: "Split-Screen Layout", 
+    description: "Dual-panel design with alternating content/media splits for visual balance and engagement.",
+    path: "/wireframes/split-screen",
+    icon: "bx:bx-columns",
+    category: "Creative",
+    useCase: "Creative Agencies, Portfolios, Product Showcases",
+    components: ["Split Sections", "Alternating Content", "Visual Placeholders"]
+  },
+  {
+    title: "Grid-Based Modular",
+    description: "Flexible card-based system with modular grid arrangements for diverse content types.",
+    path: "/wireframes/modular",
+    icon: "bx:bx-grid-alt",
+    category: "Flexible",
+    useCase: "Marketplaces, Dashboards, Multi-Product Companies", 
+    components: ["Grid Showcase", "Modular Cards", "Category Filters"]
+  },
+  {
+    title: "Horizontal Product Showcase",
+    description: "Wide sections with product carousels, galleries, and comparison tables for e-commerce.",
+    path: "/wireframes/showcase",
+    icon: "bx:bx-carousel",
+    category: "E-commerce",
+    useCase: "E-commerce, Product Launches, Tech Companies",
+    components: ["Product Carousel", "Comparison Table", "Gallery Grid"]
+  },
+  {
+    title: "Card-Based Storytelling",
+    description: "Sequential narrative cards with timeline elements for story-driven brand experiences.",
+    path: "/wireframes/storytelling", 
+    icon: "bx:bx-book-reader",
+    category: "Narrative",
+    useCase: "Startups, Brand Stories, Educational Content",
+    components: ["Story Cards", "Timeline Section", "Process Steps"]
+  }
+];
+
+const categories = [...new Set(wireframeLayouts.map(layout => layout.category))];
+---
+
+<Layout title="Wireframe Landing Page Layouts">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Wireframe Landing Page Layouts</Fragment>
+      <Fragment slot="desc">
+        Explore 5 distinct wireframe-style landing page designs showcasing different layout approaches and use cases.
+      </Fragment>
+    </Sectionhead>
+
+    <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
+      <h2 class="font-bold text-3xl wireframe-heading">
+        Choose Your Landing Page Style
+      </h2>
+      <p class="text-lg leading-relaxed wireframe-text">
+        Each wireframe layout demonstrates a different approach to organizing content and guiding user interactions. 
+        From traditional hero-centric designs to innovative storytelling formats, find the perfect structure for your project.
+      </p>
+    </div>
+
+    <!-- Layout Categories -->
+    <div class="flex flex-wrap justify-center gap-4 mt-12">
+      {categories.map((category) => (
+        <div class="wireframe-box doodle-border px-4 py-2">
+          <span class="wireframe-text font-medium">{category}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Wireframe Layouts Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto max-w-6xl mt-16">
+      {wireframeLayouts.map((layout) => (
+        <div class="wireframe-box doodle-border p-6 hover:shadow-lg transition-shadow">
+          <div class="flex items-center mb-4">
+            <div class="p-2 rounded-full doodle mr-3" style="background-color: var(--color-theme-button);">
+              <Icon name={layout.icon} class="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold wireframe-heading">{layout.title}</h3>
+              <span class="text-sm wireframe-text" style="color: var(--color-theme-secondary);">
+                {layout.category}
+              </span>
+            </div>
+          </div>
+          
+          <p class="wireframe-text mb-4 leading-relaxed">
+            {layout.description}
+          </p>
+          
+          <div class="mb-4">
+            <h4 class="font-semibold wireframe-heading text-sm mb-2">Best for:</h4>
+            <p class="wireframe-text text-sm">{layout.useCase}</p>
+          </div>
+          
+          <div class="mb-6">
+            <h4 class="font-semibold wireframe-heading text-sm mb-2">Key Components:</h4>
+            <div class="flex flex-wrap gap-1">
+              {layout.components.map((component) => (
+                <span class="text-xs px-2 py-1 wireframe-text doodle-border rounded" 
+                      style="background-color: var(--color-theme-quaternary);">
+                  {component}
+                </span>
+              ))}
+            </div>
+          </div>
+          
+          <div class="flex gap-2">
+            <Link 
+              href={layout.path} 
+              class="flex-1 flex items-center justify-center gap-1 doodle"
+            >
+              <Icon name="bx:bx-show" class="w-4 h-4" />
+              View Layout
+            </Link>
+            <Link 
+              href={layout.path} 
+              style="outline" 
+              class="px-4 doodle"
+              target="_blank"
+            >
+              <Icon name="bx:bx-link-external" class="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Design System Integration -->
+    <div class="mx-auto max-w-4xl mt-16">
+      <h3 class="font-bold text-2xl wireframe-heading mb-6">Wireframe Design System</h3>
+      <div class="wireframe-box doodle-border p-6">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h4 class="font-semibold wireframe-heading mb-3 flex items-center">
+              <Icon name="bx:bx-palette" class="w-5 h-5 mr-2" style="color: var(--color-theme-button);" />
+              Theme Integration
+            </h4>
+            <p class="wireframe-text mb-4">
+              All wireframe layouts are built with our 17-palette color system. Use the ColorPaletteSelector 
+              to test different themes and see how each layout adapts.
+            </p>
+            <ul class="space-y-2 wireframe-text text-sm">
+              <li class="flex items-center">
+                <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+                Theme-aware components
+              </li>
+              <li class="flex items-center">
+                <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+                CSS custom properties
+              </li>
+              <li class="flex items-center">
+                <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+                Real-time color switching
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold wireframe-heading mb-3 flex items-center">
+              <Icon name="bx:bx-code" class="w-5 h-5 mr-2" style="color: var(--color-theme-secondary);" />
+              Wireframe Components
+            </h4>
+            <p class="wireframe-text mb-4">
+              Each layout includes reusable components designed specifically for wireframe aesthetics 
+              and rapid prototyping workflows.
+            </p>
+            <ul class="space-y-2 wireframe-text text-sm">
+              <li class="flex items-center">
+                <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+                Modular design system
+              </li>
+              <li class="flex items-center">
+                <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+                Hand-drawn aesthetic
+              </li>
+              <li class="flex items-center">
+                <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+                Mobile-first responsive
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Getting Started -->
+    <div class="mx-auto max-w-4xl mt-12">
+      <h3 class="font-bold text-2xl wireframe-heading mb-6">Get Started</h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="wireframe-box doodle-border p-4 mb-3">
+            <Icon name="bx:bx-search" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+          </div>
+          <h4 class="font-semibold wireframe-heading mb-2">1. Explore Layouts</h4>
+          <p class="wireframe-text text-sm">Browse the 5 different wireframe styles to find your ideal approach</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="wireframe-box doodle-border p-4 mb-3">
+            <Icon name="bx:bx-customize" class="w-8 h-8 mx-auto" style="color: var(--color-theme-secondary);" />
+          </div>
+          <h4 class="font-semibold wireframe-heading mb-2">2. Test Themes</h4>
+          <p class="wireframe-text text-sm">Use the color palette selector to test different visual themes</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="wireframe-box doodle-border p-4 mb-3">
+            <Icon name="bx:bx-rocket" class="w-8 h-8 mx-auto" style="color: var(--color-theme-tertiary);" />
+          </div>
+          <h4 class="font-semibold wireframe-heading mb-2">3. Build & Deploy</h4>
+          <p class="wireframe-text text-sm">Copy components and layouts to create your perfect landing page</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="wireframe-section mt-16">
+      <div class="wireframe-box doodle-border text-center p-8">
+        <h3 class="wireframe-heading text-2xl font-bold mb-4">
+          Ready to Build Your Landing Page?
+        </h3>
+        <p class="wireframe-text mb-6 max-w-2xl mx-auto">
+          Choose a wireframe layout that matches your project needs and start prototyping immediately. 
+          All layouts are responsive, theme-aware, and built with modern web standards.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <Link href="/styleguide" class="doodle">
+            <Icon name="bx:bx-palette" class="w-4 h-4" />
+            View Styleguide
+          </Link>
+          <Link href="/contact" style="outline" class="doodle">
+            <Icon name="bx:bx-envelope" class="w-4 h-4" />
+            Get Support
+          </Link>
+        </div>
+      </div>
+    </div>
+
+  </Container>
+</Layout>

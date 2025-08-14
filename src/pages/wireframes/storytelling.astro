@@ -1,0 +1,428 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import Link from "@/components/ui/link.astro";
+import Button from "@/components/ui/button.astro";
+import { Icon } from "astro-icon/components";
+import StoryCard from "@/components/wireframes/StoryCard.astro";
+import TimelineSection from "@/components/wireframes/TimelineSection.astro";
+import ProcessSteps from "@/components/wireframes/ProcessSteps.astro";
+
+// Story data
+const companyTimeline = [
+  {
+    year: "2020",
+    title: "The Spark of Innovation",
+    content: "Founded in a small garage with a big vision to revolutionize how teams collaborate and create together.",
+    icon: "💡",
+    milestone: true
+  },
+  {
+    year: "2021", 
+    title: "First Major Breakthrough",
+    content: "Developed our core technology that would become the foundation of our platform, serving 100+ early adopters.",
+    icon: "🚀"
+  },
+  {
+    year: "2022",
+    title: "Scaling New Heights", 
+    content: "Reached 10,000 active users and secured Series A funding to accelerate product development.",
+    icon: "📈",
+    milestone: true
+  },
+  {
+    year: "2023",
+    title: "Global Expansion",
+    content: "Opened offices in 3 countries and launched enterprise features for Fortune 500 companies.",
+    icon: "🌍"
+  },
+  {
+    year: "2024",
+    title: "AI-Powered Future",
+    content: "Integrated cutting-edge AI capabilities and reached 100,000 users across 50 countries worldwide.",
+    icon: "🤖",
+    milestone: true
+  }
+];
+
+const customerJourney = [
+  {
+    step: 1,
+    title: "Discovery",
+    content: "Customer discovers our solution through word-of-mouth, content marketing, or industry events. They're struggling with inefficient processes.",
+    icon: "🔍",
+    duration: "1-2 weeks"
+  },
+  {
+    step: 2,
+    title: "Evaluation", 
+    content: "They explore our platform, read case studies, and compare alternatives. Free trial begins with personalized onboarding.",
+    icon: "⚖️",
+    duration: "2-4 weeks"
+  },
+  {
+    step: 3,
+    title: "Implementation",
+    content: "Customer commits and begins full implementation with our success team. Custom setup and team training provided.",
+    icon: "⚙️",
+    duration: "4-6 weeks"
+  },
+  {
+    step: 4,
+    title: "Success & Growth",
+    content: "Customer achieves measurable results and becomes an advocate. They expand usage across teams and recommend to peers.",
+    icon: "🎯",
+    duration: "Ongoing"
+  }
+];
+---
+
+<Layout title="Card-Based Storytelling Layout - Wireframe Landing Page">
+  <!-- Hero Story Section -->
+  <section class="wireframe-section py-16 lg:py-24">
+    <Container>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Opening Narrative -->
+        <div class="wireframe-box doodle-border p-8">
+          <div class="wireframe-text text-sm mb-4" style="color: var(--color-theme-secondary);">
+            Our Story Begins
+          </div>
+          <h1 class="wireframe-heading text-4xl lg:text-6xl mb-6">
+            From Frustration to Innovation
+          </h1>
+          <p class="wireframe-text text-xl mb-6 leading-relaxed">
+            It started with a simple problem: why was collaborating on creative projects so complicated? 
+            Three friends in a coffee shop decided to build something better.
+          </p>
+          <p class="wireframe-text text-lg mb-8" style="color: var(--color-theme-paragraph);">
+            Today, over 100,000 teams worldwide use our platform to bring their ideas to life. 
+            This is the story of how we got here, and where we're going next.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <Link
+              href="#journey"
+              class="doodle flex items-center justify-center gap-2"
+              size="lg"
+              style="primary">
+              <Icon name="bx:bx-book-reader" class="w-5 h-5" />
+              Read Our Story
+            </Link>
+            <Link
+              href="#demo"
+              class="doodle flex items-center justify-center gap-2"
+              size="lg"
+              style="outline">
+              <Icon name="bx:bx-play-circle" class="w-5 h-5" />
+              See It In Action
+            </Link>
+          </div>
+        </div>
+
+        <!-- Hero Visual -->
+        <div class="wireframe-box doodle-border p-8 flex items-center justify-center min-h-[400px]">
+          <div class="text-center">
+            <div class="wireframe-text text-6xl mb-4">📖</div>
+            <Icon name="bx:bx-book-open" class="w-24 h-24 mx-auto mb-4" style="color: var(--color-theme-tertiary);" />
+            <p class="wireframe-text text-lg">Brand Story Visual</p>
+            <p class="wireframe-text text-sm mt-2" style="color: var(--color-theme-tertiary);">
+              Animated story sequence or founder video
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Team Story Cards Section -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          The Founders' Journey
+        </h2>
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          Meet the team behind the vision - three friends who turned a shared frustration into a global solution.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <StoryCard 
+          title="Sarah, The Visionary"
+          content="Former design agency owner who experienced firsthand the chaos of managing creative projects across multiple tools and platforms."
+          icon="🎨"
+        >
+          <div class="mt-4 pt-4 border-t-2" style="border-color: var(--color-theme-stroke);">
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-secondary);">
+              "I knew there had to be a better way to collaborate"
+            </p>
+          </div>
+        </StoryCard>
+
+        <StoryCard 
+          title="Mike, The Builder" 
+          content="Full-stack developer and serial entrepreneur with a passion for solving complex technical challenges through elegant solutions."
+          icon="🔧"
+          variant="highlight"
+        >
+          <div class="mt-4 pt-4 border-t-2" style="border-color: var(--color-theme-stroke);">
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-secondary);">
+              "Let's build something that actually works"
+            </p>
+          </div>
+        </StoryCard>
+
+        <StoryCard 
+          title="Alex, The Strategist"
+          content="Former startup advisor and growth expert who understood how to scale solutions and build sustainable businesses."
+          icon="📊"
+        >
+          <div class="mt-4 pt-4 border-t-2" style="border-color: var(--color-theme-stroke);">
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-secondary);">
+              "We need to think beyond just features"
+            </p>
+          </div>
+        </StoryCard>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Company Timeline Section -->
+  <TimelineSection 
+    title="Our Growth Story"
+    description="From garage startup to global platform - here's how we've evolved while staying true to our mission."
+    items={companyTimeline}
+  />
+
+  <!-- Customer Journey Process -->
+  <ProcessSteps
+    title="Every Customer's Success Story"
+    description="How we guide teams from their first discovery of our platform to becoming our biggest advocates."
+    steps={customerJourney}
+    layout="horizontal"
+  />
+
+  <!-- Impact Cards Section -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          The Impact We're Making
+        </h2>
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          Real stories from real teams who have transformed their workflows with our platform.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Impact Metric 1 -->
+        <div class="wireframe-box doodle-border p-8 text-center">
+          <div class="wireframe-text text-5xl mb-4">⏱️</div>
+          <div class="wireframe-heading text-4xl mb-2">75%</div>
+          <h3 class="wireframe-heading text-lg mb-3">Faster Project Completion</h3>
+          <p class="wireframe-text">
+            Teams report completing projects 75% faster with our streamlined collaboration tools.
+          </p>
+        </div>
+
+        <!-- Impact Metric 2 -->
+        <div class="wireframe-box doodle-border p-8 text-center">
+          <div class="wireframe-text text-5xl mb-4">💰</div>
+          <div class="wireframe-heading text-4xl mb-2">$2M+</div>
+          <h3 class="wireframe-heading text-lg mb-3">Cost Savings Generated</h3>
+          <p class="wireframe-text">
+            Our customers have collectively saved over $2M in operational efficiency gains.
+          </p>
+        </div>
+
+        <!-- Impact Metric 3 -->
+        <div class="wireframe-box doodle-border p-8 text-center">
+          <div class="wireframe-text text-5xl mb-4">😊</div>
+          <div class="wireframe-heading text-4xl mb-2">94%</div>
+          <h3 class="wireframe-heading text-lg mb-3">User Satisfaction</h3>
+          <p class="wireframe-text">
+            94% of users report being "very satisfied" with our platform in quarterly surveys.
+          </p>
+        </div>
+
+        <!-- Customer Success Story 1 -->
+        <StoryCard 
+          title="TechCorp's Transformation"
+          content="How a 500-person development team reduced project delays by 60% and increased team satisfaction scores across all departments."
+          size="sm"
+        >
+          <div class="flex items-center gap-3 mt-4 pt-4 border-t-2" style="border-color: var(--color-theme-stroke);">
+            <div class="wireframe-box doodle-border w-10 h-10 rounded-full flex items-center justify-center">
+              <Icon name="bx:bx-user" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+            </div>
+            <div>
+              <p class="wireframe-text text-sm font-semibold">Jennifer Walsh</p>
+              <p class="wireframe-text text-xs" style="color: var(--color-theme-secondary);">CTO, TechCorp</p>
+            </div>
+          </div>
+        </StoryCard>
+
+        <!-- Customer Success Story 2 -->
+        <StoryCard 
+          title="StartupXYZ's Scale Story"
+          content="A growing startup used our platform to maintain their agile culture while scaling from 20 to 200 employees in 18 months."
+          size="sm"
+        >
+          <div class="flex items-center gap-3 mt-4 pt-4 border-t-2" style="border-color: var(--color-theme-stroke);">
+            <div class="wireframe-box doodle-border w-10 h-10 rounded-full flex items-center justify-center">
+              <Icon name="bx:bx-user" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+            </div>
+            <div>
+              <p class="wireframe-text text-sm font-semibold">Marcus Chen</p>
+              <p class="wireframe-text text-xs" style="color: var(--color-theme-secondary);">Founder, StartupXYZ</p>
+            </div>
+          </div>
+        </StoryCard>
+
+        <!-- Customer Success Story 3 -->
+        <StoryCard 
+          title="Agency Revolution"
+          content="A creative agency eliminated client revision chaos and increased project profitability by 40% in their first quarter."
+          size="sm"
+        >
+          <div class="flex items-center gap-3 mt-4 pt-4 border-t-2" style="border-color: var(--color-theme-stroke);">
+            <div class="wireframe-box doodle-border w-10 h-10 rounded-full flex items-center justify-center">
+              <Icon name="bx:bx-user" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+            </div>
+            <div>
+              <p class="wireframe-text text-sm font-semibold">Lisa Rodriguez</p>
+              <p class="wireframe-text text-xs" style="color: var(--color-theme-secondary);">Creative Director, BrandFlow</p>
+            </div>
+          </div>
+        </StoryCard>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Milestone Timeline Section -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Key Milestones & Achievements
+        </h2>
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          The moments that defined our journey and shaped who we are today.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Milestone 1 -->
+        <div class="wireframe-box doodle-border p-6 text-center">
+          <div class="wireframe-text text-3xl mb-3">🏆</div>
+          <h3 class="wireframe-heading text-lg mb-2">"Best Collaboration Tool"</h3>
+          <p class="wireframe-text text-sm mb-2">TechCrunch Awards 2023</p>
+          <p class="wireframe-text text-xs" style="color: var(--color-theme-secondary);">
+            Recognized for innovation in team productivity
+          </p>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="wireframe-box doodle-border p-6 text-center">
+          <div class="wireframe-text text-3xl mb-3">💎</div>
+          <h3 class="wireframe-heading text-lg mb-2">Series B Funding</h3>
+          <p class="wireframe-text text-sm mb-2">$25M Raised</p>
+          <p class="wireframe-text text-xs" style="color: var(--color-theme-secondary);">
+            Led by top-tier VCs for global expansion
+          </p>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="wireframe-box doodle-border p-6 text-center">
+          <div class="wireframe-text text-3xl mb-3">🌟</div>
+          <h3 class="wireframe-heading text-lg mb-2">100K Users Milestone</h3>
+          <p class="wireframe-text text-sm mb-2">March 2024</p>
+          <p class="wireframe-text text-xs" style="color: var(--color-theme-secondary);">
+            Reached 6-figure user base in 50 countries
+          </p>
+        </div>
+
+        <!-- Milestone 4 -->
+        <div class="wireframe-box doodle-border p-6 text-center">
+          <div class="wireframe-text text-3xl mb-3">🚀</div>
+          <h3 class="wireframe-heading text-lg mb-2">AI Integration Launch</h3>
+          <p class="wireframe-text text-sm mb-2">Q4 2024</p>
+          <p class="wireframe-text text-xs" style="color: var(--color-theme-secondary);">
+            Revolutionary AI-powered collaboration features
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Join Our Story CTA Section -->
+  <section id="demo" class="wireframe-section py-16">
+    <Container>
+      <div class="wireframe-box doodle-border p-12 text-center max-w-4xl mx-auto">
+        <div class="wireframe-text text-4xl mb-6">✨</div>
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Your Success Story Starts Here
+        </h2>
+        <p class="wireframe-text text-xl mb-6 max-w-2xl mx-auto">
+          Ready to join the thousands of teams who have transformed their collaboration? 
+          Let's write the next chapter of your success story together.
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+          <div class="text-center">
+            <div class="wireframe-text text-2xl mb-2">⚡</div>
+            <p class="wireframe-text text-sm">Setup in under 5 minutes</p>
+          </div>
+          <div class="text-center">
+            <div class="wireframe-text text-2xl mb-2">🎯</div>
+            <p class="wireframe-text text-sm">See results in first week</p>
+          </div>
+          <div class="text-center">
+            <div class="wireframe-text text-2xl mb-2">🏆</div>
+            <p class="wireframe-text text-sm">Join 100K+ successful teams</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="primary">
+            <Icon name="bx:bx-rocket" class="w-5 h-5" />
+            Start Your Story
+          </Link>
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="outline">
+            <Icon name="bx:bx-video" class="w-5 h-5" />
+            Watch Success Stories
+          </Link>
+        </div>
+        
+        <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+          Free 14-day trial • No credit card required • Cancel anytime
+        </p>
+        
+        <div class="mt-8 pt-8 border-t-2" style="border-color: var(--color-theme-stroke);">
+          <p class="wireframe-text text-sm font-semibold mb-2">Ready to learn more?</p>
+          <div class="flex items-center justify-center gap-6">
+            <a href="#" class="wireframe-text text-sm hover:underline flex items-center gap-1">
+              <Icon name="bx:bx-calendar" class="w-4 h-4" />
+              Schedule Demo
+            </a>
+            <a href="#" class="wireframe-text text-sm hover:underline flex items-center gap-1">
+              <Icon name="bx:bx-download" class="w-4 h-4" />
+              Download Case Studies
+            </a>
+            <a href="#" class="wireframe-text text-sm hover:underline flex items-center gap-1">
+              <Icon name="bx:bx-chat" class="w-4 h-4" />
+              Talk to Sales
+            </a>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>

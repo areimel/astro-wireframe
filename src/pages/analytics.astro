@@ -1,114 +1,241 @@
 ---
 import Container from "@/components/container.astro";
-import Sectionhead from "@/components/sectionhead.astro";
 import Layout from "@/layouts/Layout.astro";
+import SplitSection from "@/components/wireframes/SplitSection.astro";
+import Link from "@/components/ui/link.astro";
+import Button from "@/components/ui/button.astro";
 import { Icon } from "astro-icon/components";
 ---
 
-<Layout title="Analytics">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">Analytics</Fragment>
-      <Fragment slot="desc">Data-driven insights to grow your business.</Fragment>
-    </Sectionhead>
-
-    <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
-      <h2 class="font-bold text-3xl theme-headline">
-        Understand your audience with powerful analytics.
-      </h2>
-      <p class="text-lg leading-relaxed theme-paragraph">
-        Get detailed insights into your website performance, user behavior, and conversion metrics. 
-        Make informed decisions with comprehensive analytics tools and real-time reporting.
+<Layout title="Split Screen Layout - Wireframe Landing Page">
+  <!-- Hero Split Section -->
+  <SplitSection contentSide="left" padding="py-16 lg:py-24">
+    <div slot="content">
+      <h1 class="wireframe-heading text-4xl lg:text-6xl mb-6">
+        Creative Design Studio
+      </h1>
+      <p class="wireframe-text text-xl mb-8 max-w-lg">
+        We bring your brand to life through exceptional design, creative strategy, and compelling visual storytelling that resonates with your audience.
       </p>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto max-w-6xl mt-16">
-      <div class="theme-card-bg p-6 rounded-lg shadow-sm doodle-border">
-        <div class="flex items-center mb-4">
-          <Icon name="bx:bx-line-chart" class="w-8 h-8 mr-3" style="color: var(--color-theme-button);" />
-          <h3 class="text-xl font-semibold theme-headline">Traffic Analytics</h3>
-        </div>
-        <p class="theme-card-text">
-          Monitor page views, unique visitors, bounce rates, and traffic sources to understand how users find and interact with your site.
-        </p>
-      </div>
-
-      <div class="theme-card-bg p-6 rounded-lg shadow-sm doodle-border">
-        <div class="flex items-center mb-4">
-          <Icon name="bx:bx-group" class="w-8 h-8 mr-3" style="color: var(--color-theme-secondary);" />
-          <h3 class="text-xl font-semibold theme-headline">User Behavior</h3>
-        </div>
-        <p class="theme-card-text">
-          Track user journeys, session duration, and interaction patterns to optimize user experience and conversion paths.
-        </p>
-      </div>
-
-      <div class="theme-card-bg p-6 rounded-lg shadow-sm doodle-border">
-        <div class="flex items-center mb-4">
-          <Icon name="bx:bx-target-lock" class="w-8 h-8 mr-3" style="color: var(--color-theme-tertiary);" />
-          <h3 class="text-xl font-semibold theme-headline">Conversion Tracking</h3>
-        </div>
-        <p class="theme-card-text">
-          Measure goal completions, form submissions, and sales to understand what drives your business success.
-        </p>
-      </div>
-
-      <div class="theme-card-bg p-6 rounded-lg shadow-sm doodle-border">
-        <div class="flex items-center mb-4">
-          <Icon name="bx:bx-tachometer" class="w-8 h-8 mr-3" style="color: var(--color-theme-highlight);" />
-          <h3 class="text-xl font-semibold theme-headline">Performance Metrics</h3>
-        </div>
-        <p class="theme-card-text">
-          Monitor page load times, Core Web Vitals, and technical performance to ensure optimal user experience.
-        </p>
-      </div>
-
-      <div class="theme-card-bg p-6 rounded-lg shadow-sm doodle-border">
-        <div class="flex items-center mb-4">
-          <Icon name="bx:bx-mobile" class="w-8 h-8 mr-3" style="color: var(--color-theme-secondary);" />
-          <h3 class="text-xl font-semibold theme-headline">Mobile Analytics</h3>
-        </div>
-        <p class="theme-card-text">
-          Understand mobile user behavior, device preferences, and mobile-specific conversion patterns.
-        </p>
-      </div>
-
-      <div class="theme-card-bg p-6 rounded-lg shadow-sm doodle-border">
-        <div class="flex items-center mb-4">
-          <Icon name="bx:bx-time" class="w-8 h-8 mr-3" style="color: var(--color-theme-button);" />
-          <h3 class="text-xl font-semibold theme-headline">Real-time Data</h3>
-        </div>
-        <p class="theme-card-text">
-          Access live data streams and real-time reporting to make immediate optimizations and respond to trends.
-        </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <Link
+          href="#portfolio"
+          class="doodle flex items-center justify-center gap-2"
+          size="lg"
+          style="primary">
+          <Icon name="bx:bx-palette" class="w-5 h-5" />
+          View Our Work
+        </Link>
+        <Link
+          href="#contact"
+          class="doodle flex items-center justify-center gap-2"
+          size="lg"
+          style="outline">
+          <Icon name="bx:bx-chat" class="w-5 h-5" />
+          Start Project
+        </Link>
       </div>
     </div>
+    
+    <div slot="visual" class="text-center">
+      <Icon name="bx:bx-image" class="w-24 h-24 mx-auto mb-4" style="color: var(--color-theme-button);" />
+      <p class="wireframe-text text-lg font-semibold">Creative Showcase</p>
+      <p class="wireframe-text text-sm mt-2" style="color: var(--color-theme-tertiary);">Hero visual featuring latest project or brand imagery</p>
+    </div>
+  </SplitSection>
 
-    <div class="mx-auto max-w-4xl mt-16">
-      <h3 class="font-bold text-2xl theme-headline mb-6">Key Features</h3>
-      <div class="space-y-4">
-        <div class="flex items-start space-x-3">
-          <Icon name="bx:bx-check-circle" class="w-6 h-6 mt-0.5" style="color: var(--color-theme-button);" />
-          <div>
-            <h4 class="font-semibold theme-headline">Custom Dashboards</h4>
-            <p class="theme-card-text">Create personalized dashboards with the metrics that matter most to your business.</p>
-          </div>
+  <!-- Feature Split 1: Brand Strategy -->
+  <SplitSection contentSide="right" background="alternate">
+    <div slot="content">
+      <div class="flex items-center mb-4">
+        <Icon name="bx:bx-brain" class="w-8 h-8 mr-3" style="color: var(--color-theme-secondary);" />
+        <h2 class="wireframe-heading text-3xl lg:text-4xl">Brand Strategy</h2>
+      </div>
+      <p class="wireframe-text text-xl mb-6">
+        We develop comprehensive brand strategies that define your unique voice, position, and visual identity in the market.
+      </p>
+      <ul class="space-y-3 mb-8">
+        <li class="flex items-center gap-3">
+          <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text">Brand positioning & messaging</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text">Visual identity systems</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text">Brand guidelines & standards</span>
+        </li>
+      </ul>
+      <Button class="doodle" style="outline">Learn More</Button>
+    </div>
+    
+    <div slot="visual" class="text-center">
+      <Icon name="bx:bx-target-lock" class="w-20 h-20 mx-auto mb-4" style="color: var(--color-theme-secondary);" />
+      <p class="wireframe-text text-lg font-semibold">Strategy Workshop</p>
+      <p class="wireframe-text text-sm mt-2" style="color: var(--color-theme-tertiary);">Process diagrams, brand boards, strategy documents</p>
+    </div>
+  </SplitSection>
+
+  <!-- Feature Split 2: Design & Creative -->
+  <SplitSection contentSide="left">
+    <div slot="content">
+      <div class="flex items-center mb-4">
+        <Icon name="bx:bx-brush" class="w-8 h-8 mr-3" style="color: var(--color-theme-tertiary);" />
+        <h2 class="wireframe-heading text-3xl lg:text-4xl">Design & Creative</h2>
+      </div>
+      <p class="wireframe-text text-xl mb-6">
+        From concept to execution, we craft beautiful and functional designs that captivate audiences and drive engagement.
+      </p>
+      <ul class="space-y-3 mb-8">
+        <li class="flex items-center gap-3">
+          <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text">Logo & identity design</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text">Website & digital experiences</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text">Print & marketing materials</span>
+        </li>
+      </ul>
+      <Button class="doodle" style="primary">View Portfolio</Button>
+    </div>
+    
+    <div slot="visual" class="text-center">
+      <Icon name="bx:bx-photo-album" class="w-20 h-20 mx-auto mb-4" style="color: var(--color-theme-tertiary);" />
+      <p class="wireframe-text text-lg font-semibold">Design Portfolio</p>
+      <p class="wireframe-text text-sm mt-2" style="color: var(--color-theme-tertiary);">Gallery of recent projects, case studies, design samples</p>
+    </div>
+  </SplitSection>
+
+  <!-- Feature Split 3: Digital Experience -->
+  <SplitSection contentSide="right" background="alternate">
+    <div slot="content">
+      <div class="flex items-center mb-4">
+        <Icon name="bx:bx-devices" class="w-8 h-8 mr-3" style="color: var(--color-theme-highlight);" />
+        <h2 class="wireframe-heading text-3xl lg:text-4xl">Digital Experience</h2>
+      </div>
+      <p class="wireframe-text text-xl mb-6">
+        We create seamless digital experiences across all platforms, ensuring your brand connects with users wherever they are.
+      </p>
+      <ul class="space-y-3 mb-8">
+        <li class="flex items-center gap-3">
+          <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text">Responsive web design</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text">Mobile app interfaces</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text">User experience optimization</span>
+        </li>
+      </ul>
+      <Button class="doodle" style="outline">See Process</Button>
+    </div>
+    
+    <div slot="visual" class="text-center">
+      <Icon name="bx:bx-mobile-alt" class="w-20 h-20 mx-auto mb-4" style="color: var(--color-theme-highlight);" />
+      <p class="wireframe-text text-lg font-semibold">Digital Showcase</p>
+      <p class="wireframe-text text-sm mt-2" style="color: var(--color-theme-tertiary);">Interactive demos, device mockups, user journey flows</p>
+    </div>
+  </SplitSection>
+
+  <!-- Testimonial Split Section -->
+  <SplitSection contentSide="left">
+    <div slot="content">
+      <blockquote class="wireframe-text text-2xl lg:text-3xl mb-6 leading-relaxed">
+        "Working with this team transformed our entire brand presence. The results exceeded our expectations and drove a 300% increase in engagement."
+      </blockquote>
+      <div class="flex items-center gap-4 mb-6">
+        <div class="wireframe-box doodle-border w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0">
+          <Icon name="bx:bx-user" class="w-8 h-8" style="color: var(--color-theme-tertiary);" />
         </div>
-        <div class="flex items-start space-x-3">
-          <Icon name="bx:bx-check-circle" class="w-6 h-6 mt-0.5" style="color: var(--color-theme-button);" />
-          <div>
-            <h4 class="font-semibold theme-headline">Automated Reports</h4>
-            <p class="theme-card-text">Schedule and receive automated reports via email with key insights and trends.</p>
-          </div>
+        <div>
+          <p class="wireframe-heading font-semibold text-lg">Jessica Martinez</p>
+          <p class="wireframe-text" style="color: var(--color-theme-tertiary);">Creative Director, Innovate Co.</p>
         </div>
-        <div class="flex items-start space-x-3">
-          <Icon name="bx:bx-check-circle" class="w-6 h-6 mt-0.5" style="color: var(--color-theme-button);" />
-          <div>
-            <h4 class="font-semibold theme-headline">Data Export</h4>
-            <p class="theme-card-text">Export data in multiple formats for further analysis and integration with other tools.</p>
-          </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="flex">
+          <Icon name="bx:bxs-star" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <Icon name="bx:bxs-star" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <Icon name="bx:bxs-star" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <Icon name="bx:bxs-star" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <Icon name="bx:bxs-star" class="w-5 h-5" style="color: var(--color-theme-button);" />
+        </div>
+        <span class="wireframe-text text-sm ml-2">5.0 / 5.0</span>
+      </div>
+    </div>
+    
+    <div slot="visual" class="text-center">
+      <div class="wireframe-box doodle-border w-32 h-32 rounded-full flex items-center justify-center mx-auto mb-4">
+        <Icon name="bx:bx-camera" class="w-12 h-12" style="color: var(--color-theme-tertiary);" />
+      </div>
+      <p class="wireframe-text text-lg font-semibold">Client Photo</p>
+      <p class="wireframe-text text-sm mt-2" style="color: var(--color-theme-tertiary);">Professional headshot or team photo</p>
+      <div class="mt-6 flex justify-center gap-2">
+        <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center">
+          <span class="wireframe-text text-xs">Logo</span>
+        </div>
+        <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center">
+          <span class="wireframe-text text-xs">Logo</span>
+        </div>
+        <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center">
+          <span class="wireframe-text text-xs">Logo</span>
         </div>
       </div>
     </div>
-  </Container>
+  </SplitSection>
+
+  <!-- Final CTA Split Section -->
+  <section class="wireframe-section py-16 lg:py-24" style="background-color: var(--color-theme-section-bg);">
+    <Container>
+      <div class="wireframe-box doodle-border p-12 text-center max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-5xl mb-6">
+          Ready to Elevate Your Brand?
+        </h2>
+        <p class="wireframe-text text-xl mb-8 max-w-2xl mx-auto">
+          Let's collaborate to create something extraordinary. Get in touch to discuss your project and discover how we can bring your vision to life.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <Link
+            href="#contact"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="primary">
+            <Icon name="bx:bx-rocket" class="w-5 h-5" />
+            Start Your Project
+          </Link>
+          <Link
+            href="#portfolio"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="outline">
+            <Icon name="bx:bx-photo-album" class="w-5 h-5" />
+            View Our Work
+          </Link>
+        </div>
+        <div class="grid grid-cols-3 gap-8 max-w-lg mx-auto">
+          <div class="text-center">
+            <p class="wireframe-heading text-2xl font-bold mb-1">150+</p>
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Projects Delivered</p>
+          </div>
+          <div class="text-center">
+            <p class="wireframe-heading text-2xl font-bold mb-1">98%</p>
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Client Satisfaction</p>
+          </div>
+          <div class="text-center">
+            <p class="wireframe-heading text-2xl font-bold mb-1">5+</p>
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Years Experience</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
 </Layout>

@@ -1,0 +1,73 @@
+---
+interface Props {
+  title: string;
+  content: string;
+  step?: number;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'highlight' | 'timeline';
+  icon?: string;
+}
+
+const { 
+  title, 
+  content, 
+  step,
+  size = 'md',
+  variant = 'default',
+  icon
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'p-6',
+  md: 'p-8', 
+  lg: 'p-10'
+};
+
+const variantClasses = {
+  default: '',
+  highlight: 'relative',
+  timeline: 'relative'
+};
+---
+
+<div class={`wireframe-box doodle-border ${sizeClasses[size]} ${variantClasses[variant]}`}>
+  {variant === 'highlight' && (
+    <div class="absolute -top-3 left-4">
+      <span class="wireframe-text px-3 py-1 rounded-full text-sm" 
+            style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+        Featured Story
+      </span>
+    </div>
+  )}
+  
+  {step && (
+    <div class="flex items-center gap-3 mb-4">
+      <div class="wireframe-box doodle-border w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" 
+           style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+        <span class="wireframe-text text-sm font-bold">{step}</span>
+      </div>
+      {variant === 'timeline' && step > 1 && (
+        <div class="absolute -left-4 top-0 w-1 h-full" 
+             style="background-color: var(--color-theme-stroke);"></div>
+      )}
+    </div>
+  )}
+
+  {icon && (
+    <div class="flex items-center justify-center mb-4">
+      <div class="wireframe-box doodle-border w-16 h-16 rounded-full flex items-center justify-center">
+        <span class="wireframe-text text-2xl">{icon}</span>
+      </div>
+    </div>
+  )}
+
+  <h3 class="wireframe-heading text-xl lg:text-2xl mb-4">
+    {title}
+  </h3>
+  
+  <p class="wireframe-text leading-relaxed">
+    {content}
+  </p>
+
+  <slot />
+</div>

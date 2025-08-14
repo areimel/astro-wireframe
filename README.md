@@ -26,13 +26,10 @@ A modern, feature-rich website template built by the **Advanced Research & Devel
 | **Modal System** | ✅ |
 | **Icon Library (3,000+ icons)** | ✅ |
 
-## 🎨 Advanced Color System
+## 🎨 Hand-Drawn Wireframe Theme
+- DoodleCSS: https://chr15m.github.io/DoodleCSS/
+- DoodleCSS Assets: https://chr15m.github.io/DoodleCSS/doodles.svg
 
-This template features a **17-palette dynamic theming system** with:
-- 17 unique color themes (light to dark modes)
-- 15 CSS custom properties per theme
-- Real-time theme switching via ColorPaletteSelector
-- Theme-aware components throughout
 
 ## 📖 Comprehensive Documentation
 

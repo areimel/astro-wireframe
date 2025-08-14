@@ -1,0 +1,113 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  steps: Array<{
+    step: number;
+    title: string;
+    content: string;
+    icon?: string;
+    duration?: string;
+  }>;
+  layout?: 'horizontal' | 'vertical';
+}
+
+const { title, description, steps, layout = 'horizontal' } = Astro.props;
+---
+
+<section class="wireframe-section py-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+        {title}
+      </h2>
+      {description && (
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          {description}
+        </p>
+      )}
+    </div>
+
+    {layout === 'horizontal' ? (
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {steps.map((step, index) => (
+          <div class="relative">
+            <!-- Connector Line (for non-last items) -->
+            {index < steps.length - 1 && (
+              <div class="hidden lg:block absolute top-8 left-full w-8 h-1" 
+                   style="background-color: var(--color-theme-stroke); z-index: 1;"></div>
+            )}
+            
+            <div class="wireframe-box doodle-border p-6 text-center relative z-10">
+              <!-- Step Number -->
+              <div class="wireframe-box doodle-border w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" 
+                   style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+                <span class="wireframe-text text-xl font-bold">{step.step}</span>
+              </div>
+              
+              {step.icon && (
+                <div class="wireframe-text text-3xl mb-4">{step.icon}</div>
+              )}
+              
+              <h3 class="wireframe-heading text-lg lg:text-xl mb-3">
+                {step.title}
+              </h3>
+              
+              <p class="wireframe-text mb-4">
+                {step.content}
+              </p>
+              
+              {step.duration && (
+                <div class="wireframe-text text-sm" style="color: var(--color-theme-secondary);">
+                  Duration: {step.duration}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <!-- Vertical Layout -->
+      <div class="max-w-2xl mx-auto">
+        <div class="relative">
+          <!-- Vertical Timeline Line -->
+          <div class="absolute left-8 top-0 w-1 h-full" 
+               style="background-color: var(--color-theme-stroke);"></div>
+          
+          <div class="space-y-8">
+            {steps.map((step) => (
+              <div class="relative flex items-start gap-6">
+                <!-- Step Number -->
+                <div class="wireframe-box doodle-border w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0 z-10" 
+                     style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+                  <span class="wireframe-text text-xl font-bold">{step.step}</span>
+                </div>
+                
+                <!-- Content -->
+                <div class="wireframe-box doodle-border p-6 flex-1">
+                  {step.icon && (
+                    <div class="wireframe-text text-2xl mb-3">{step.icon}</div>
+                  )}
+                  
+                  <h3 class="wireframe-heading text-lg lg:text-xl mb-3">
+                    {step.title}
+                  </h3>
+                  
+                  <p class="wireframe-text mb-4">
+                    {step.content}
+                  </p>
+                  
+                  {step.duration && (
+                    <div class="wireframe-text text-sm" style="color: var(--color-theme-secondary);">
+                      Duration: {step.duration}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</section>

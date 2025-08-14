@@ -1,0 +1,235 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Title for the comparison section */
+  title?: string;
+  /** Description for the comparison section */
+  description?: string;
+  /** Custom padding classes for the section */
+  padding?: string;
+  /** Custom classes for the section */
+  class?: string;
+  /** Background variant */
+  background?: "default" | "alternate";
+  /** Number of products to compare */
+  productCount?: number;
+}
+
+const { 
+  title = "Product Comparison",
+  description = "Compare features and specifications to find the perfect product for your needs.",
+  padding = "py-16", 
+  class: className = "",
+  background = "default",
+  productCount = 3
+} = Astro.props;
+
+const bgClass = background === "alternate" ? "wireframe-section-alt" : "wireframe-section";
+
+// Sample products for comparison
+const products = Array.from({ length: productCount }, (_, i) => ({
+  id: i + 1,
+  name: `Product ${i + 1}${i === 1 ? ' Pro' : i === 2 ? ' Enterprise' : ''}`,
+  price: i === 0 ? '$99' : i === 1 ? '$199' : '$299',
+  featured: i === 1, // Middle product is featured
+  badge: i === 1 ? 'Most Popular' : null
+}));
+
+// Comparison features
+const features = [
+  { name: "Storage Capacity", values: ["128GB", "256GB", "512GB"], category: "storage" },
+  { name: "RAM", values: ["8GB", "16GB", "32GB"], category: "performance" },
+  { name: "Processor Speed", values: ["2.4GHz", "3.2GHz", "3.8GHz"], category: "performance" },
+  { name: "Battery Life", values: ["8 hours", "12 hours", "16 hours"], category: "battery" },
+  { name: "Display Size", values: ['13"', '15"', '17"'], category: "display" },
+  { name: "Weight", values: ["3.2 lbs", "4.1 lbs", "5.0 lbs"], category: "physical" },
+  { name: "USB Ports", values: ["2x USB-C", "2x USB-C + 2x USB-A", "4x USB-C + 2x USB-A"], category: "connectivity" },
+  { name: "Wireless", values: ["Wi-Fi 6", "Wi-Fi 6E", "Wi-Fi 6E + 5G"], category: "connectivity" },
+  { name: "Warranty", values: ["1 Year", "2 Years", "3 Years"], category: "support" },
+  { name: "Support", values: ["Email", "Priority Email + Chat", "24/7 Phone + Dedicated Rep"], category: "support" },
+];
+
+// Feature availability (✓ = included, ✗ = not included, ~ = limited)
+const featureAvailability = [
+  { name: "Advanced Security", values: ["✗", "✓", "✓"] },
+  { name: "Cloud Backup", values: ["Limited", "Unlimited", "Unlimited + Priority"] },
+  { name: "Mobile App", values: ["✓", "✓", "✓"] },
+  { name: "API Access", values: ["✗", "✓", "✓"] },
+  { name: "Custom Integrations", values: ["✗", "Limited", "✓"] },
+  { name: "Priority Updates", values: ["✗", "✓", "✓"] },
+];
+---
+
+<section class={`${bgClass} ${padding} ${className}`}>
+  <div class="container mx-auto px-4">
+    {title && (
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          {title}
+        </h2>
+        {description && (
+          <p class="wireframe-text text-xl max-w-3xl mx-auto">
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+
+    <!-- Mobile Dropdown Selector -->
+    <div class="lg:hidden mb-8">
+      <label class="block wireframe-text text-sm font-medium mb-2">Compare Products:</label>
+      <div class="wireframe-box doodle-border rounded-lg">
+        <select class="w-full p-3 bg-transparent wireframe-text">
+          <option>Select products to compare...</option>
+          {products.map(product => (
+            <option value={product.id}>{product.name} - {product.price}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    <!-- Desktop Comparison Table -->
+    <div class="hidden lg:block">
+      <div class="wireframe-box doodle-border rounded-lg overflow-hidden">
+        <!-- Product Headers -->
+        <div class="grid grid-cols-4 gap-0 border-b" style="border-color: var(--color-theme-stroke);">
+          <div class="p-6 wireframe-text font-medium">Features</div>
+          {products.map((product) => (
+            <div class="p-6 text-center relative">
+              {product.badge && (
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span class="px-3 py-1 rounded-full text-xs font-medium"
+                        style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+                    {product.badge}
+                  </span>
+                </div>
+              )}
+              
+              <!-- Product Image Placeholder -->
+              <div class={`wireframe-box doodle-border mb-4 flex items-center justify-center h-32 mx-auto ${product.featured ? 'border-2' : ''}`}
+                   style={product.featured ? `border-color: var(--color-theme-button);` : ''}>
+                <div class="text-center">
+                  <Icon name="bx:bx-package" class="w-8 h-8 mx-auto mb-1" style="color: var(--color-theme-tertiary);" />
+                  <p class="wireframe-text text-xs">Product Image</p>
+                </div>
+              </div>
+
+              <h3 class="wireframe-heading text-lg mb-2">{product.name}</h3>
+              <p class="wireframe-heading text-2xl mb-4" style="color: var(--color-theme-button);">{product.price}</p>
+              
+              <button class={`w-full py-2 px-4 rounded-lg font-medium transition-opacity hover:opacity-80 ${product.featured ? 'text-white' : ''}`}
+                      style={product.featured 
+                        ? `background-color: var(--color-theme-button); color: var(--color-theme-button-text);`
+                        : `border: 1px solid var(--color-theme-stroke); color: var(--color-theme-button);`}>
+                {product.featured ? 'Get Started' : 'Learn More'}
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <!-- Specifications Section -->
+        <div class="p-4">
+          <h4 class="wireframe-heading text-lg mb-4 px-2" style="color: var(--color-theme-button);">Technical Specifications</h4>
+          
+          {features.map((feature, index) => (
+            <div class={`grid grid-cols-4 gap-0 py-3 px-2 ${index % 2 === 0 ? 'bg-opacity-50' : ''}`}
+                 style={index % 2 === 0 ? `background-color: var(--color-theme-quaternary);` : ''}>
+              <div class="wireframe-text font-medium">{feature.name}</div>
+              {feature.values.map((value) => (
+                <div class="text-center wireframe-text">{value}</div>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <!-- Feature Availability Section -->
+        <div class="p-4 border-t" style="border-color: var(--color-theme-stroke);">
+          <h4 class="wireframe-heading text-lg mb-4 px-2" style="color: var(--color-theme-button);">Feature Availability</h4>
+          
+          {featureAvailability.map((feature, index) => (
+            <div class={`grid grid-cols-4 gap-0 py-3 px-2 ${index % 2 === 0 ? 'bg-opacity-50' : ''}`}
+                 style={index % 2 === 0 ? `background-color: var(--color-theme-quaternary);` : ''}>
+              <div class="wireframe-text font-medium">{feature.name}</div>
+              {feature.values.map((value) => (
+                <div class="text-center">
+                  {value === "✓" ? (
+                    <Icon name="bx:bx-check" class="w-5 h-5 mx-auto" style="color: var(--color-theme-button);" />
+                  ) : value === "✗" ? (
+                    <Icon name="bx:bx-x" class="w-5 h-5 mx-auto" style="color: var(--color-theme-tertiary);" />
+                  ) : (
+                    <span class="wireframe-text text-sm">{value}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Cards -->
+    <div class="lg:hidden space-y-6">
+      {products.map((product) => (
+        <div class="wireframe-box doodle-border p-6 relative">
+          {product.badge && (
+            <div class="absolute -top-3 left-4">
+              <span class="px-3 py-1 rounded-full text-xs font-medium"
+                    style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+                {product.badge}
+              </span>
+            </div>
+          )}
+          
+          <div class="flex items-center gap-4 mb-6">
+            <div class="wireframe-box doodle-border w-16 h-16 flex items-center justify-center">
+              <Icon name="bx:bx-package" class="w-8 h-8" style="color: var(--color-theme-tertiary);" />
+            </div>
+            <div>
+              <h3 class="wireframe-heading text-xl">{product.name}</h3>
+              <p class="wireframe-heading text-2xl" style="color: var(--color-theme-button);">{product.price}</p>
+            </div>
+          </div>
+
+          <!-- Key Features for Mobile -->
+          <div class="space-y-3 mb-6">
+            <div class="flex justify-between">
+              <span class="wireframe-text">Storage:</span>
+              <span class="wireframe-text font-medium">{features[0].values[product.id - 1]}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="wireframe-text">RAM:</span>
+              <span class="wireframe-text font-medium">{features[1].values[product.id - 1]}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="wireframe-text">Processor:</span>
+              <span class="wireframe-text font-medium">{features[2].values[product.id - 1]}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="wireframe-text">Battery:</span>
+              <span class="wireframe-text font-medium">{features[3].values[product.id - 1]}</span>
+            </div>
+          </div>
+
+          <button class={`w-full py-3 px-4 rounded-lg font-medium transition-opacity hover:opacity-80 ${product.featured ? 'text-white' : ''}`}
+                  style={product.featured 
+                    ? `background-color: var(--color-theme-button); color: var(--color-theme-button-text);`
+                    : `border: 1px solid var(--color-theme-stroke); color: var(--color-theme-button);`}>
+            {product.featured ? 'Get Started' : 'Learn More'}
+          </button>
+        </div>
+      ))}
+    </div>
+
+    <!-- Help Text -->
+    <div class="text-center mt-8">
+      <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+        Need help choosing? Our product specialists are available to guide you through the selection process.
+      </p>
+      <button class="mt-2 wireframe-text font-medium hover:opacity-80 transition-opacity" 
+              style="color: var(--color-theme-button);">
+        Contact Product Expert →
+      </button>
+    </div>
+  </div>
+</section>

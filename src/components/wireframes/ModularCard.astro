@@ -1,0 +1,117 @@
+---
+export interface Props {
+  /** Card size variant */
+  size?: "sm" | "md" | "lg" | "xl";
+  /** Card height variant */
+  height?: "auto" | "sm" | "md" | "lg" | "xl" | "full";
+  /** Card content alignment */
+  align?: "left" | "center" | "right";
+  /** Card vertical alignment */
+  verticalAlign?: "top" | "center" | "bottom";
+  /** Custom classes */
+  class?: string;
+  /** Icon name for the card */
+  icon?: string;
+  /** Icon color */
+  iconColor?: string;
+  /** Card title */
+  title?: string;
+  /** Card subtitle/description */
+  description?: string;
+  /** Show border */
+  border?: boolean;
+  /** Card background variant */
+  background?: "default" | "subtle";
+}
+
+const { 
+  size = "md",
+  height = "auto",
+  align = "center",
+  verticalAlign = "top",
+  class: className = "",
+  icon,
+  iconColor,
+  title,
+  description,
+  border = true,
+  background = "default"
+} = Astro.props;
+
+// Size classes
+const sizeClasses = {
+  sm: "p-4",
+  md: "p-6", 
+  lg: "p-8",
+  xl: "p-12"
+};
+
+// Height classes
+const heightClasses = {
+  auto: "",
+  sm: "min-h-[200px]",
+  md: "min-h-[250px]",
+  lg: "min-h-[300px]",
+  xl: "min-h-[400px]",
+  full: "h-full"
+};
+
+// Alignment classes
+const alignClasses = {
+  left: "text-left",
+  center: "text-center", 
+  right: "text-right"
+};
+
+// Vertical alignment classes
+const verticalAlignClasses = {
+  top: "justify-start",
+  center: "justify-center",
+  bottom: "justify-end"
+};
+
+// Background classes
+const bgClasses = {
+  default: "wireframe-box",
+  subtle: "theme-quaternary-bg"
+};
+
+const borderClass = border ? "doodle-border" : "";
+const cardClasses = `
+  ${bgClasses[background]} 
+  ${borderClass} 
+  ${sizeClasses[size]} 
+  ${heightClasses[height]} 
+  ${alignClasses[align]} 
+  ${className}
+  flex flex-col ${verticalAlignClasses[verticalAlign]}
+`.trim();
+
+import { Icon } from "astro-icon/components";
+---
+
+<div class={cardClasses}>
+  {icon && (
+    <div class="mb-4">
+      <Icon 
+        name={icon} 
+        class="w-8 h-8 mx-auto" 
+        style={iconColor ? `color: ${iconColor};` : "color: var(--color-theme-button);"} 
+      />
+    </div>
+  )}
+  
+  {title && (
+    <h3 class="wireframe-heading text-xl mb-3">
+      {title}
+    </h3>
+  )}
+  
+  {description && (
+    <p class="wireframe-text flex-grow">
+      {description}
+    </p>
+  )}
+  
+  <slot />
+</div>

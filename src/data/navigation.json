@@ -5,9 +5,17 @@
         "title": "Features",
         "path": "#",
         "children": [
-          { "title": "Analytics", "path": "/analytics" },
-          { "title": "Accessibility", "path": "/accessibility" },
-          { "title": "SEO", "path": "/seo" },
+          { 
+            "title": "Wireframes", 
+            "path": "/wireframes",
+            "children": [
+              { "title": "Classic Hero Layout", "path": "/wireframes/classic" },
+              { "title": "Split-Screen Layout", "path": "/wireframes/split-screen" },
+              { "title": "Grid-Based Modular", "path": "/wireframes/modular" },
+              { "title": "Product Showcase", "path": "/wireframes/showcase" },
+              { "title": "Storytelling Layout", "path": "/wireframes/storytelling" }
+            ]
+          },
           { 
             "title": "Styleguide", 
             "path": "/styleguide",
@@ -83,7 +91,7 @@
           { "title": "Pricing", "path": "/pricing" },
           { "title": "Case Studies", "path": "/case-studies" },
           { "title": "Products", "path": "/products" },
-          { "title": "Changelog", "path": "#" }
+          { "title": "Wireframes", "path": "/wireframes" }
         ]
       },
       {
