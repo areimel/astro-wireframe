@@ -253,7 +253,7 @@
 /* Theme Link Styles */
 .theme-link-primary {
   background-color: var(--color-theme-button);
-  color: var(--color-theme-button-text);
+  color: var(--color-theme-bg);
   border: 2px solid transparent;
   transition: all 0.2s ease;
 }
