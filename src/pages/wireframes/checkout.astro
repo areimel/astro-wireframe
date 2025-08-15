@@ -1,0 +1,206 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import Link from "@/components/ui/link.astro";
+import Button from "@/components/ui/button.astro";
+import { Icon } from "astro-icon/components";
+import CheckoutProgress from "@/components/wireframes/CheckoutProgress.astro";
+import CartSummary from "@/components/wireframes/CartSummary.astro";
+import PaymentMethods from "@/components/wireframes/PaymentMethods.astro";
+import OrderSummary from "@/components/wireframes/OrderSummary.astro";
+import SecurityBadges from "@/components/wireframes/SecurityBadges.astro";
+---
+
+<Layout title="E-commerce Checkout - Wireframe Landing Page">
+  <!-- Header Section -->
+  <section class="wireframe-section py-8">
+    <Container>
+      <div class="flex items-center justify-between mb-8">
+        <Link
+          href="/wireframes"
+          class="doodle flex items-center gap-2"
+          size="sm"
+          style="outline">
+          <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
+          Back to Wireframes
+        </Link>
+        <div class="text-center">
+          <h1 class="wireframe-heading text-2xl lg:text-3xl">E-commerce Checkout</h1>
+          <p class="wireframe-text" style="color: var(--color-theme-tertiary);">Modern checkout flow wireframe</p>
+        </div>
+        <div></div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Checkout Progress Section -->
+  <section class="wireframe-section py-8">
+    <Container>
+      <CheckoutProgress />
+    </Container>
+  </section>
+
+  <!-- Main Checkout Content -->
+  <section class="wireframe-section py-8">
+    <Container>
+      <div class="grid lg:grid-cols-3 gap-12">
+        <!-- Left Column: Forms -->
+        <div class="lg:col-span-2 space-y-8">
+          <!-- Shipping Information -->
+          <div class="wireframe-box doodle-border p-6">
+            <h2 class="wireframe-heading text-xl mb-6 flex items-center gap-3">
+              <Icon name="bx:bx-map" class="w-6 h-6" style="color: var(--color-theme-button);" />
+              Shipping Information
+            </h2>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="wireframe-box doodle-border p-3">
+                <label class="wireframe-text text-sm mb-2 block">First Name</label>
+                <div class="h-10 border-2 rounded" style="border-color: var(--color-theme-stroke);"></div>
+              </div>
+              <div class="wireframe-box doodle-border p-3">
+                <label class="wireframe-text text-sm mb-2 block">Last Name</label>
+                <div class="h-10 border-2 rounded" style="border-color: var(--color-theme-stroke);"></div>
+              </div>
+              <div class="wireframe-box doodle-border p-3 md:col-span-2">
+                <label class="wireframe-text text-sm mb-2 block">Street Address</label>
+                <div class="h-10 border-2 rounded" style="border-color: var(--color-theme-stroke);"></div>
+              </div>
+              <div class="wireframe-box doodle-border p-3">
+                <label class="wireframe-text text-sm mb-2 block">City</label>
+                <div class="h-10 border-2 rounded" style="border-color: var(--color-theme-stroke);"></div>
+              </div>
+              <div class="wireframe-box doodle-border p-3">
+                <label class="wireframe-text text-sm mb-2 block">ZIP Code</label>
+                <div class="h-10 border-2 rounded" style="border-color: var(--color-theme-stroke);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shipping Options -->
+          <div class="wireframe-box doodle-border p-6">
+            <h2 class="wireframe-heading text-xl mb-6 flex items-center gap-3">
+              <Icon name="bx:bx-package" class="w-6 h-6" style="color: var(--color-theme-secondary);" />
+              Shipping Method
+            </h2>
+            <div class="space-y-3">
+              <div class="wireframe-box doodle-border p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-4 h-4 rounded-full border-2" style="border-color: var(--color-theme-button); background-color: var(--color-theme-button);"></div>
+                  <div>
+                    <p class="wireframe-text font-medium">Standard Shipping</p>
+                    <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">5-7 business days</p>
+                  </div>
+                </div>
+                <span class="wireframe-text font-medium">$5.99</span>
+              </div>
+              <div class="wireframe-box doodle-border p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-4 h-4 rounded-full border-2" style="border-color: var(--color-theme-stroke);"></div>
+                  <div>
+                    <p class="wireframe-text font-medium">Express Shipping</p>
+                    <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">2-3 business days</p>
+                  </div>
+                </div>
+                <span class="wireframe-text font-medium">$12.99</span>
+              </div>
+              <div class="wireframe-box doodle-border p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-4 h-4 rounded-full border-2" style="border-color: var(--color-theme-stroke);"></div>
+                  <div>
+                    <p class="wireframe-text font-medium">Overnight Delivery</p>
+                    <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Next business day</p>
+                  </div>
+                </div>
+                <span class="wireframe-text font-medium">$24.99</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Methods -->
+          <PaymentMethods />
+
+          <!-- Security Badges -->
+          <SecurityBadges />
+        </div>
+
+        <!-- Right Column: Order Summary -->
+        <div class="space-y-6">
+          <CartSummary />
+          <OrderSummary />
+          
+          <!-- Complete Order Button -->
+          <div class="wireframe-box doodle-border p-6">
+            <Button class="w-full doodle mb-4" size="lg" style="primary">
+              <Icon name="bx:bx-lock" class="w-5 h-5 mr-2" />
+              Complete Order
+            </Button>
+            <p class="wireframe-text text-xs text-center" style="color: var(--color-theme-tertiary);">
+              By placing this order, you agree to our Terms of Service and Privacy Policy
+            </p>
+          </div>
+
+          <!-- Help & Support -->
+          <div class="wireframe-box doodle-border p-4">
+            <h3 class="wireframe-heading text-sm mb-3">Need Help?</h3>
+            <div class="space-y-2">
+              <Link href="#" class="wireframe-text text-sm flex items-center gap-2" style="color: var(--color-theme-link);">
+                <Icon name="bx:bx-phone" class="w-4 h-4" />
+                Call Support: 1-800-HELP
+              </Link>
+              <Link href="#" class="wireframe-text text-sm flex items-center gap-2" style="color: var(--color-theme-link);">
+                <Icon name="bx:bx-chat" class="w-4 h-4" />
+                Live Chat Support
+              </Link>
+              <Link href="#" class="wireframe-text text-sm flex items-center gap-2" style="color: var(--color-theme-link);">
+                <Icon name="bx:bx-envelope" class="w-4 h-4" />
+                Email: help@store.com
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Trust Indicators -->
+  <section class="wireframe-section py-12">
+    <Container>
+      <div class="wireframe-box doodle-border p-8 text-center">
+        <h2 class="wireframe-heading text-2xl mb-6">Shop with Confidence</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="flex flex-col items-center">
+            <Icon name="bx:bx-shield-check" class="w-12 h-12 mb-3" style="color: var(--color-theme-button);" />
+            <h3 class="wireframe-heading text-lg mb-2">Secure Checkout</h3>
+            <p class="wireframe-text text-sm">256-bit SSL encryption protects your personal information</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <Icon name="bx:bx-refresh" class="w-12 h-12 mb-3" style="color: var(--color-theme-secondary);" />
+            <h3 class="wireframe-heading text-lg mb-2">Easy Returns</h3>
+            <p class="wireframe-text text-sm">30-day hassle-free return policy on all items</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <Icon name="bx:bx-support" class="w-12 h-12 mb-3" style="color: var(--color-theme-tertiary);" />
+            <h3 class="wireframe-heading text-lg mb-2">24/7 Support</h3>
+            <p class="wireframe-text text-sm">Customer service team ready to help anytime</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Footer Actions -->
+  <section class="wireframe-section py-8">
+    <Container>
+      <div class="text-center">
+        <Link
+          href="#"
+          class="doodle flex items-center justify-center gap-2 mx-auto"
+          size="sm"
+          style="outline">
+          <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
+          Continue Shopping
+        </Link>
+      </div>
+    </Container>
+  </section>
+</Layout>

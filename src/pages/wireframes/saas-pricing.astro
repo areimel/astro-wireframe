@@ -1,0 +1,302 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import Link from "@/components/ui/link.astro";
+import Button from "@/components/ui/button.astro";
+import { Icon } from "astro-icon/components";
+import PricingTable from "@/components/wireframes/PricingTable.astro";
+import BillingToggle from "@/components/wireframes/BillingToggle.astro";
+import FeatureComparison from "@/components/wireframes/FeatureComparison.astro";
+import PricingCalculator from "@/components/wireframes/PricingCalculator.astro";
+---
+
+<Layout title="SaaS Pricing - Wireframe Landing Page">
+  <!-- Header Section -->
+  <section class="wireframe-section py-8">
+    <Container>
+      <div class="flex items-center justify-between mb-8">
+        <Link
+          href="/wireframes"
+          class="doodle flex items-center gap-2"
+          size="sm"
+          style="outline">
+          <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
+          Back to Wireframes
+        </Link>
+        <div class="text-center">
+          <h1 class="wireframe-heading text-2xl lg:text-3xl">SaaS Pricing</h1>
+          <p class="wireframe-text" style="color: var(--color-theme-tertiary);">Comprehensive pricing strategy wireframe</p>
+        </div>
+        <div></div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Hero Section -->
+  <section class="wireframe-section py-16 lg:py-20">
+    <Container>
+      <div class="text-center max-w-4xl mx-auto">
+        <div class="wireframe-box doodle-border p-8 lg:p-12">
+          <h1 class="wireframe-heading text-4xl lg:text-6xl mb-6">
+            Simple, Transparent Pricing
+          </h1>
+          <p class="wireframe-text text-xl mb-8 max-w-3xl mx-auto">
+            Choose the perfect plan for your team. Start free, upgrade as you grow. All plans include our core features with transparent, usage-based pricing.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <Link
+              href="#plans"
+              class="doodle flex items-center justify-center gap-2"
+              size="lg"
+              style="primary">
+              <Icon name="bx:bx-rocket" class="w-5 h-5" />
+              View All Plans
+            </Link>
+            <Link
+              href="#calculator"
+              class="doodle flex items-center justify-center gap-2"
+              size="lg"
+              style="outline">
+              <Icon name="bx:bx-calculator" class="w-5 h-5" />
+              Pricing Calculator
+            </Link>
+          </div>
+          <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+            14-day free trial • No credit card required • Cancel anytime
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Billing Toggle Section -->
+  <section class="wireframe-section py-8">
+    <Container>
+      <div class="max-w-2xl mx-auto">
+        <BillingToggle />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Pricing Plans Section -->
+  <section id="plans" class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Choose Your Plan
+        </h2>
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          Start with our free tier and scale up as your business grows. All paid plans include priority support and advanced features.
+        </p>
+      </div>
+      
+      <PricingTable />
+    </Container>
+  </section>
+
+  <!-- Feature Comparison Section -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Compare All Features
+        </h2>
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          See exactly what's included in each plan to make the best choice for your team's needs.
+        </p>
+      </div>
+      
+      <FeatureComparison />
+    </Container>
+  </section>
+
+  <!-- Pricing Calculator Section -->
+  <section id="calculator" class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Pricing Calculator
+        </h2>
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          Estimate your monthly costs based on your team size and usage requirements.
+        </p>
+      </div>
+      
+      <PricingCalculator />
+    </Container>
+  </section>
+
+  <!-- Enterprise Section -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="wireframe-box doodle-border p-8 lg:p-12 text-center max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-6">
+          Need Something Custom?
+        </h2>
+        <p class="wireframe-text text-xl mb-8 max-w-2xl mx-auto">
+          For enterprise customers with specific requirements, we offer custom solutions with dedicated support, advanced security, and flexible billing.
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+          <div class="wireframe-box doodle-border p-6">
+            <Icon name="bx:bx-shield-check" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-button);" />
+            <h3 class="wireframe-heading text-xl mb-3">Enterprise Security</h3>
+            <p class="wireframe-text">SOC 2 compliance, SSO, advanced audit logs</p>
+          </div>
+          <div class="wireframe-box doodle-border p-6">
+            <Icon name="bx:bx-support" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-secondary);" />
+            <h3 class="wireframe-heading text-xl mb-3">Dedicated Support</h3>
+            <p class="wireframe-text">24/7 priority support with dedicated CSM</p>
+          </div>
+          <div class="wireframe-box doodle-border p-6">
+            <Icon name="bx:bx-cog" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-tertiary);" />
+            <h3 class="wireframe-heading text-xl mb-3">Custom Integration</h3>
+            <p class="wireframe-text">API access, custom workflows, data migration</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="primary">
+            <Icon name="bx:bx-phone" class="w-5 h-5" />
+            Contact Sales
+          </Link>
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="outline">
+            <Icon name="bx:bx-calendar" class="w-5 h-5" />
+            Schedule Demo
+          </Link>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Frequently Asked Questions
+        </h2>
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          Common questions about our pricing, billing, and plan features.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+        <div class="wireframe-box doodle-border p-6">
+          <h3 class="wireframe-heading text-lg mb-3">Can I change plans anytime?</h3>
+          <p class="wireframe-text">Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately and we'll prorate your billing accordingly.</p>
+        </div>
+        <div class="wireframe-box doodle-border p-6">
+          <h3 class="wireframe-heading text-lg mb-3">What happens to my data if I cancel?</h3>
+          <p class="wireframe-text">Your data remains accessible for 30 days after cancellation. You can export all your data or reactivate your account during this period.</p>
+        </div>
+        <div class="wireframe-box doodle-border p-6">
+          <h3 class="wireframe-heading text-lg mb-3">Do you offer discounts for nonprofits?</h3>
+          <p class="wireframe-text">Yes! We offer 50% discounts for qualified nonprofit organizations. Contact our sales team to verify your nonprofit status.</p>
+        </div>
+        <div class="wireframe-box doodle-border p-6">
+          <h3 class="wireframe-heading text-lg mb-3">Is there a setup fee?</h3>
+          <p class="wireframe-text">No setup fees for any plan. We believe in transparent pricing with no hidden costs or surprise charges.</p>
+        </div>
+        <div class="wireframe-box doodle-border p-6">
+          <h3 class="wireframe-heading text-lg mb-3">How does billing work?</h3>
+          <p class="wireframe-text">We bill monthly or annually based on your choice. Annual plans include a 20% discount and priority support.</p>
+        </div>
+        <div class="wireframe-box doodle-border p-6">
+          <h3 class="wireframe-heading text-lg mb-3">Can I get a refund?</h3>
+          <p class="wireframe-text">We offer a 30-day money-back guarantee for all paid plans. No questions asked if you're not completely satisfied.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Trust Indicators -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="wireframe-box doodle-border p-8 text-center">
+        <h2 class="wireframe-heading text-2xl mb-8">Trusted by 50,000+ Companies Worldwide</h2>
+        
+        <!-- Logo Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-8">
+          <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[60px]">
+            <span class="wireframe-text text-xs">TechCorp</span>
+          </div>
+          <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[60px]">
+            <span class="wireframe-text text-xs">StartupXYZ</span>
+          </div>
+          <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[60px]">
+            <span class="wireframe-text text-xs">Enterprise Co</span>
+          </div>
+          <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[60px]">
+            <span class="wireframe-text text-xs">Growth Inc</span>
+          </div>
+          <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[60px]">
+            <span class="wireframe-text text-xs">Scale LLC</span>
+          </div>
+          <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[60px]">
+            <span class="wireframe-text text-xs">Innovation Ltd</span>
+          </div>
+        </div>
+
+        <!-- Trust Stats -->
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="wireframe-heading text-3xl mb-2" style="color: var(--color-theme-button);">99.9%</h3>
+            <p class="wireframe-text">Uptime SLA</p>
+          </div>
+          <div>
+            <h3 class="wireframe-heading text-3xl mb-2" style="color: var(--color-theme-secondary);">4.8/5</h3>
+            <p class="wireframe-text">Customer Rating</p>
+          </div>
+          <div>
+            <h3 class="wireframe-heading text-3xl mb-2" style="color: var(--color-theme-tertiary);">24/7</h3>
+            <p class="wireframe-text">Expert Support</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="wireframe-box doodle-border p-12 text-center max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Ready to Get Started?
+        </h2>
+        <p class="wireframe-text text-xl mb-8 max-w-2xl mx-auto">
+          Join thousands of satisfied customers who have streamlined their workflows with our platform. Start your free trial today!
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="primary">
+            <Icon name="bx:bx-rocket" class="w-5 h-5" />
+            Start Free Trial
+          </Link>
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="outline">
+            <Icon name="bx:bx-phone" class="w-5 h-5" />
+            Talk to Sales
+          </Link>
+        </div>
+        <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+          No credit card required • 14-day free trial • Cancel anytime • Setup in under 5 minutes
+        </p>
+      </div>
+    </Container>
+  </section>
+</Layout>

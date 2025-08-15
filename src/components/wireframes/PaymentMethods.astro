@@ -1,0 +1,533 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Title for the payment section */
+  title?: string;
+  /** Available payment methods */
+  methods?: Array<{
+    id: string;
+    name: string;
+    icon: string;
+    description?: string;
+    popular?: boolean;
+  }>;
+  /** Default selected method */
+  defaultMethod?: string;
+  /** Show saved payment methods */
+  showSavedMethods?: boolean;
+  /** Show security badges */
+  showSecurityInfo?: boolean;
+  /** Custom classes */
+  class?: string;
+  /** Layout variant */
+  layout?: "cards" | "radio" | "tabs";
+}
+
+const { 
+  title = "Payment Method",
+  methods = [
+    {
+      id: "card",
+      name: "Credit/Debit Card",
+      icon: "bx:bx-credit-card",
+      description: "Visa, Mastercard, American Express",
+      popular: true
+    },
+    {
+      id: "paypal", 
+      name: "PayPal",
+      icon: "bx:bxl-paypal",
+      description: "Pay with your PayPal account"
+    },
+    {
+      id: "apple_pay",
+      name: "Apple Pay",
+      icon: "bx:bxl-apple",
+      description: "Touch ID or Face ID"
+    },
+    {
+      id: "google_pay",
+      name: "Google Pay", 
+      icon: "bx:bxl-google",
+      description: "Google Wallet"
+    },
+    {
+      id: "bank_transfer",
+      name: "Bank Transfer",
+      icon: "bx:bx-building-house",
+      description: "Direct bank transfer"
+    }
+  ],
+  defaultMethod = "card",
+  showSavedMethods = true,
+  showSecurityInfo = true,
+  class: className = "",
+  layout = "cards"
+} = Astro.props;
+
+// Sample saved payment methods
+const savedMethods = [
+  {
+    id: "saved_1",
+    type: "card",
+    last4: "4242",
+    brand: "Visa",
+    expiry: "12/25",
+    isDefault: true
+  },
+  {
+    id: "saved_2", 
+    type: "card",
+    last4: "8888",
+    brand: "Mastercard",
+    expiry: "08/26",
+    isDefault: false
+  }
+];
+
+// Security features
+const securityFeatures = [
+  {
+    icon: "bx:bx-shield-check",
+    text: "256-bit SSL encryption"
+  },
+  {
+    icon: "bx:bx-lock",
+    text: "PCI DSS compliant"
+  },
+  {
+    icon: "bx:bx-check-shield", 
+    text: "Your payment info is secure"
+  }
+];
+---
+
+<div class={`payment-methods ${className}`}>
+  {title && (
+    <h3 class="wireframe-heading text-xl mb-6">{title}</h3>
+  )}
+
+  <!-- Saved Payment Methods -->
+  {showSavedMethods && savedMethods.length > 0 && (
+    <div class="mb-8">
+      <h4 class="wireframe-text font-medium mb-4">Saved Payment Methods</h4>
+      <div class="space-y-3">
+        {savedMethods.map((saved) => (
+          <label class="wireframe-box doodle-border p-4 cursor-pointer block hover:opacity-80 transition-opacity">
+            <input 
+              type="radio" 
+              name="payment-method" 
+              value={saved.id}
+              class="payment-radio hidden"
+              checked={saved.isDefault}
+            />
+            
+            <div class="flex items-center gap-4">
+              <!-- Radio Button -->
+              <div class="radio-custom w-5 h-5 border-2 rounded-full flex-shrink-0 flex items-center justify-center"
+                   style="border-color: var(--color-theme-stroke);">
+                <div class="radio-dot w-3 h-3 rounded-full hidden"
+                     style="background-color: var(--color-theme-button);"></div>
+              </div>
+              
+              <!-- Card Icon -->
+              <div class="w-12 h-8 wireframe-box doodle-border flex items-center justify-center">
+                <Icon name="bx:bx-credit-card" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              </div>
+              
+              <!-- Card Details -->
+              <div class="flex-grow">
+                <div class="flex items-center gap-3">
+                  <span class="wireframe-text font-medium">{saved.brand}</span>
+                  <span class="wireframe-text">•••• •••• •••• {saved.last4}</span>
+                  {saved.isDefault && (
+                    <span class="px-2 py-1 text-xs rounded-full font-medium"
+                          style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+                      Default
+                    </span>
+                  )}
+                </div>
+                <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+                  Expires {saved.expiry}
+                </p>
+              </div>
+              
+              <!-- Edit/Delete Actions -->
+              <div class="flex gap-2">
+                <button class="p-2 rounded-lg hover:opacity-70 transition-opacity" 
+                        style="color: var(--color-theme-tertiary);">
+                  <Icon name="bx:bx-edit" class="w-4 h-4" />
+                </button>
+                <button class="p-2 rounded-lg hover:opacity-70 transition-opacity"
+                        style="color: var(--color-theme-tertiary);">
+                  <Icon name="bx:bx-trash" class="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </label>
+        ))}
+      </div>
+      
+      <div class="border-t mt-6 pt-6" style="border-color: var(--color-theme-stroke);">
+        <h4 class="wireframe-text font-medium mb-4">Add New Payment Method</h4>
+      </div>
+    </div>
+  )}
+
+  <!-- Payment Method Selection -->
+  {layout === "cards" ? (
+    <!-- Card Layout -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+      {methods.map((method) => (
+        <label class="wireframe-box doodle-border p-4 cursor-pointer block hover:opacity-80 transition-all relative">
+          <input 
+            type="radio" 
+            name="payment-method" 
+            value={method.id}
+            class="payment-radio hidden"
+            checked={method.id === defaultMethod}
+          />
+          
+          {method.popular && (
+            <div class="absolute -top-2 -right-2">
+              <span class="px-2 py-1 text-xs rounded-full font-medium"
+                    style="background-color: var(--color-theme-highlight); color: var(--color-theme-bg);">
+                Popular
+              </span>
+            </div>
+          )}
+          
+          <div class="text-center">
+            <!-- Payment Icon -->
+            <div class="w-12 h-12 mx-auto mb-3 wireframe-box doodle-border rounded-lg flex items-center justify-center">
+              <Icon name={method.icon} class="w-6 h-6" style="color: var(--color-theme-button);" />
+            </div>
+            
+            <!-- Method Info -->
+            <h4 class="wireframe-text font-medium mb-1">{method.name}</h4>
+            {method.description && (
+              <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+                {method.description}
+              </p>
+            )}
+          </div>
+        </label>
+      ))}
+    </div>
+  ) : layout === "radio" ? (
+    <!-- Radio List Layout -->
+    <div class="space-y-3 mb-6">
+      {methods.map((method) => (
+        <label class="wireframe-box doodle-border p-4 cursor-pointer block hover:opacity-80 transition-opacity">
+          <input 
+            type="radio" 
+            name="payment-method" 
+            value={method.id}
+            class="payment-radio hidden"
+            checked={method.id === defaultMethod}
+          />
+          
+          <div class="flex items-center gap-4">
+            <!-- Radio Button -->
+            <div class="radio-custom w-5 h-5 border-2 rounded-full flex-shrink-0 flex items-center justify-center"
+                 style="border-color: var(--color-theme-stroke);">
+              <div class="radio-dot w-3 h-3 rounded-full hidden"
+                   style="background-color: var(--color-theme-button);"></div>
+            </div>
+            
+            <!-- Payment Icon -->
+            <div class="w-10 h-10 wireframe-box doodle-border rounded-lg flex items-center justify-center">
+              <Icon name={method.icon} class="w-5 h-5" style="color: var(--color-theme-button);" />
+            </div>
+            
+            <!-- Method Info -->
+            <div class="flex-grow">
+              <div class="flex items-center gap-2">
+                <span class="wireframe-text font-medium">{method.name}</span>
+                {method.popular && (
+                  <span class="px-2 py-1 text-xs rounded-full font-medium"
+                        style="background-color: var(--color-theme-highlight); color: var(--color-theme-bg);">
+                    Popular
+                  </span>
+                )}
+              </div>
+              {method.description && (
+                <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+                  {method.description}
+                </p>
+              )}
+            </div>
+          </div>
+        </label>
+      ))}
+    </div>
+  ) : (
+    <!-- Tab Layout -->
+    <div class="payment-tabs mb-6">
+      <div class="flex flex-wrap gap-2 mb-6 wireframe-box doodle-border p-1 rounded-lg">
+        {methods.map((method) => (
+          <button 
+            class="flex-1 min-w-0 py-2 px-3 rounded-lg text-sm font-medium transition-all payment-tab"
+            data-method={method.id}
+            data-active={method.id === defaultMethod ? "true" : "false"}>
+            
+            <div class="flex items-center justify-center gap-2">
+              <Icon name={method.icon} class="w-4 h-4" />
+              <span class="hidden sm:inline truncate">{method.name}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Payment Form (appears when card is selected) -->
+  <div id="payment-form" class="payment-form mb-6" style="display: none;">
+    <div class="wireframe-box doodle-border p-6">
+      <h4 class="wireframe-text font-medium mb-4">Card Information</h4>
+      
+      <div class="space-y-4">
+        <!-- Card Number -->
+        <div>
+          <label class="block wireframe-text text-sm font-medium mb-2">Card Number</label>
+          <div class="wireframe-box doodle-border p-3 rounded-lg flex items-center gap-3">
+            <input 
+              type="text" 
+              placeholder="1234 5678 9012 3456"
+              class="flex-grow bg-transparent wireframe-text outline-none"
+            />
+            <div class="flex gap-1">
+              <Icon name="bx:bxl-visa" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+              <Icon name="bx:bxl-mastercard" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+            </div>
+          </div>
+        </div>
+        
+        <!-- Expiry and CVC -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block wireframe-text text-sm font-medium mb-2">Expiry Date</label>
+            <div class="wireframe-box doodle-border p-3 rounded-lg">
+              <input 
+                type="text" 
+                placeholder="MM/YY"
+                class="w-full bg-transparent wireframe-text outline-none"
+              />
+            </div>
+          </div>
+          
+          <div>
+            <label class="block wireframe-text text-sm font-medium mb-2">CVC</label>
+            <div class="wireframe-box doodle-border p-3 rounded-lg flex items-center gap-2">
+              <input 
+                type="text" 
+                placeholder="123"
+                class="flex-grow bg-transparent wireframe-text outline-none"
+              />
+              <Icon name="bx:bx-help-circle" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+            </div>
+          </div>
+        </div>
+        
+        <!-- Cardholder Name -->
+        <div>
+          <label class="block wireframe-text text-sm font-medium mb-2">Cardholder Name</label>
+          <div class="wireframe-box doodle-border p-3 rounded-lg">
+            <input 
+              type="text" 
+              placeholder="John Doe"
+              class="w-full bg-transparent wireframe-text outline-none"
+            />
+          </div>
+        </div>
+        
+        <!-- Save Card Option -->
+        <div class="flex items-center gap-3">
+          <input type="checkbox" id="save-card" class="hidden save-card-checkbox" />
+          <label for="save-card" class="flex items-center gap-3 cursor-pointer">
+            <div class="checkbox-custom w-5 h-5 border-2 rounded flex items-center justify-center"
+                 style="border-color: var(--color-theme-stroke);">
+              <Icon name="bx:bx-check" class="w-3 h-3 hidden checkbox-icon" style="color: var(--color-theme-button-text);" />
+            </div>
+            <span class="wireframe-text text-sm">Save this card for future purchases</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Security Information -->
+  {showSecurityInfo && (
+    <div class="wireframe-box doodle-border p-4 mb-6" style="background-color: var(--color-theme-quaternary);">
+      <div class="flex items-center gap-3 mb-3">
+        <Icon name="bx:bx-shield-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+        <span class="wireframe-text font-medium">Your payment is secure</span>
+      </div>
+      
+      <div class="grid sm:grid-cols-3 gap-4 text-sm">
+        {securityFeatures.map((feature) => (
+          <div class="flex items-center gap-2">
+            <Icon name={feature.icon} class="w-4 h-4" style="color: var(--color-theme-button);" />
+            <span class="wireframe-text">{feature.text}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
+
+<!-- Payment Methods JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const paymentRadios = document.querySelectorAll('.payment-radio');
+    const paymentForm = document.getElementById('payment-form');
+    const saveCardCheckbox = document.querySelector('.save-card-checkbox');
+    
+    // Handle payment method selection
+    paymentRadios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        // Update radio button styles
+        document.querySelectorAll('.radio-custom').forEach(custom => {
+          const dot = custom.querySelector('.radio-dot');
+          const input = custom.closest('label').querySelector('.payment-radio');
+          
+          if (input && input.checked) {
+            custom.style.borderColor = 'var(--color-theme-button)';
+            dot.classList.remove('hidden');
+          } else {
+            custom.style.borderColor = 'var(--color-theme-stroke)';
+            dot.classList.add('hidden');
+          }
+        });
+        
+        // Show/hide payment form for card payments
+        if (this.value === 'card' || this.value.startsWith('saved_')) {
+          paymentForm.style.display = 'block';
+        } else {
+          paymentForm.style.display = 'none';
+        }
+        
+        // Dispatch custom event
+        document.dispatchEvent(new CustomEvent('payment-method-changed', {
+          detail: { method: this.value }
+        }));
+      });
+      
+      // Initialize states
+      if (radio.checked) {
+        radio.dispatchEvent(new Event('change'));
+      }
+    });
+    
+    // Handle tab layout
+    const paymentTabs = document.querySelectorAll('.payment-tab');
+    paymentTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        const method = this.dataset.method;
+        
+        // Update tab states
+        paymentTabs.forEach(t => {
+          t.dataset.active = 'false';
+          t.style.backgroundColor = 'transparent';
+          t.style.color = 'var(--color-theme-paragraph)';
+        });
+        
+        this.dataset.active = 'true';
+        this.style.backgroundColor = 'var(--color-theme-button)';
+        this.style.color = 'var(--color-theme-button-text)';
+        
+        // Show/hide payment form
+        if (method === 'card') {
+          paymentForm.style.display = 'block';
+        } else {
+          paymentForm.style.display = 'none';
+        }
+        
+        // Dispatch custom event
+        document.dispatchEvent(new CustomEvent('payment-method-changed', {
+          detail: { method: method }
+        }));
+      });
+      
+      // Initialize tab states
+      if (tab.dataset.active === 'true') {
+        tab.style.backgroundColor = 'var(--color-theme-button)';
+        tab.style.color = 'var(--color-theme-button-text)';
+      }
+    });
+    
+    // Handle save card checkbox
+    if (saveCardCheckbox) {
+      saveCardCheckbox.addEventListener('change', function() {
+        const customCheckbox = this.closest('label').querySelector('.checkbox-custom');
+        const checkIcon = customCheckbox.querySelector('.checkbox-icon');
+        
+        if (this.checked) {
+          customCheckbox.style.backgroundColor = 'var(--color-theme-button)';
+          customCheckbox.style.borderColor = 'var(--color-theme-button)';
+          checkIcon.classList.remove('hidden');
+        } else {
+          customCheckbox.style.backgroundColor = 'transparent';
+          customCheckbox.style.borderColor = 'var(--color-theme-stroke)';
+          checkIcon.classList.add('hidden');
+        }
+      });
+    }
+    
+    // Initialize card form visibility
+    const cardRadio = document.querySelector('[value="card"]');
+    if (cardRadio && cardRadio.checked) {
+      paymentForm.style.display = 'block';
+    }
+  });
+</script>
+
+<style>
+  /* Payment Method Selection Styles */
+  .payment-radio:checked + .radio-custom {
+    border-color: var(--color-theme-button);
+  }
+  
+  .payment-radio:checked + .radio-custom .radio-dot {
+    display: block;
+  }
+  
+  /* Tab Styles */
+  .payment-tab {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .payment-tab:hover {
+    opacity: 0.8;
+  }
+  
+  .payment-tab[data-active="false"] {
+    background-color: transparent;
+    color: var(--color-theme-paragraph);
+  }
+  
+  /* Checkbox Styles */
+  .checkbox-custom {
+    transition: all 0.2s ease;
+  }
+  
+  .save-card-checkbox:checked + label .checkbox-custom {
+    background-color: var(--color-theme-button);
+    border-color: var(--color-theme-button);
+  }
+  
+  .save-card-checkbox:checked + label .checkbox-icon {
+    display: block;
+  }
+  
+  /* Form Input Styles */
+  input::placeholder {
+    color: var(--color-theme-tertiary);
+  }
+  
+  input:focus {
+    outline: none;
+  }
+</style>

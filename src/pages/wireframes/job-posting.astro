@@ -1,0 +1,284 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+import JobCard from "@/components/wireframes/JobCard.astro";
+import RequirementsList from "@/components/wireframes/RequirementsList.astro";
+import ApplicationFlow from "@/components/wireframes/ApplicationFlow.astro";
+import CompanyInfo from "@/components/wireframes/CompanyInfo.astro";
+---
+
+<Layout title="Job Posting - Wireframe Landing Page">
+  <!-- Header Section -->
+  <section class="wireframe-section py-8 lg:py-12">
+    <Container>
+      <div class="wireframe-box doodle-border p-6 mb-8">
+        <div class="flex items-center gap-4 mb-4">
+          <Link
+            href="/wireframes"
+            class="doodle flex items-center gap-2"
+            size="sm"
+            style="outline">
+            <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
+            Back to Wireframes
+          </Link>
+        </div>
+        <h1 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Job Posting Layout
+        </h1>
+        <p class="wireframe-text text-lg max-w-2xl">
+          A comprehensive job posting page design featuring job details, requirements, application flow, and company information in a clean, organized layout.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Main Job Content Section -->
+  <section class="wireframe-section py-8">
+    <Container>
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Main Content Column -->
+        <div class="lg:col-span-2 space-y-8">
+          <!-- Job Card -->
+          <JobCard 
+            title="Senior Frontend Developer"
+            company="TechInnovate Solutions"
+            location="San Francisco, CA"
+            type="Full-time"
+            salary="$120,000 - $150,000"
+            posted="3 days ago"
+            description="Join our dynamic team as a Senior Frontend Developer and help build cutting-edge web applications that serve millions of users worldwide. You'll work with the latest technologies and collaborate with talented designers and engineers."
+            tags={["React", "TypeScript", "JavaScript", "CSS", "Git"]}
+            featured={true}
+          />
+
+          <!-- Job Requirements -->
+          <RequirementsList 
+            title="Requirements & Qualifications"
+            requirements={[
+              "5+ years of experience in frontend development",
+              "Expert knowledge of React and TypeScript",
+              "Strong understanding of modern CSS and responsive design",
+              "Experience with state management (Redux, Context API)",
+              "Familiarity with testing frameworks (Jest, React Testing Library)",
+              "Knowledge of build tools (Webpack, Vite) and version control (Git)",
+              "Bachelor's degree in Computer Science or related field"
+            ]}
+            preferred={[
+              "Experience with Next.js or other React frameworks",
+              "Knowledge of backend technologies (Node.js, Python)",
+              "Experience with cloud platforms (AWS, Azure, GCP)",
+              "Understanding of UX/UI design principles",
+              "Previous startup or fast-paced environment experience"
+            ]}
+          />
+
+          <!-- Application Process -->
+          <ApplicationFlow 
+            steps={[
+              {
+                title: "Submit Application",
+                description: "Complete our online application form with your resume and cover letter",
+                icon: "bx:bx-file"
+              },
+              {
+                title: "Initial Screening",
+                description: "HR team reviews your application and conducts initial phone screening",
+                icon: "bx:bx-phone"
+              },
+              {
+                title: "Technical Interview",
+                description: "Technical assessment and coding challenge with our engineering team",
+                icon: "bx:bx-code-alt"
+              },
+              {
+                title: "Final Interview",
+                description: "Culture fit and team interview with hiring manager and potential colleagues",
+                icon: "bx:bx-user-check"
+              },
+              {
+                title: "Offer & Onboarding",
+                description: "Job offer negotiation and comprehensive onboarding process",
+                icon: "bx:bx-check-circle"
+              }
+            ]}
+          />
+        </div>
+
+        <!-- Sidebar Column -->
+        <div class="space-y-8">
+          <!-- Company Information -->
+          <CompanyInfo 
+            companyName="TechInnovate Solutions"
+            industry="Software Development"
+            size="150-300 employees"
+            founded="2018"
+            location="San Francisco, CA"
+            website="www.techinnovate.com"
+            description="We're a fast-growing tech company building innovative software solutions that transform how businesses operate. Our mission is to make complex technology simple and accessible for everyone."
+            benefits={[
+              "Competitive salary & equity",
+              "Health, dental & vision insurance",
+              "Flexible work arrangements",
+              "Professional development budget",
+              "Unlimited PTO policy",
+              "Modern office in downtown SF"
+            ]}
+            culture={[
+              "Innovation-driven environment",
+              "Collaborative team culture", 
+              "Work-life balance focus",
+              "Continuous learning opportunities"
+            ]}
+          />
+
+          <!-- Quick Apply Section -->
+          <div class="wireframe-box doodle-border p-6 sticky top-8">
+            <h3 class="wireframe-heading text-xl mb-4">Ready to Apply?</h3>
+            <p class="wireframe-text text-sm mb-6">
+              Join our team and help shape the future of technology. We're looking for passionate developers who love to create amazing user experiences.
+            </p>
+            <div class="space-y-3">
+              <Link
+                href="#"
+                class="doodle flex items-center justify-center gap-2 w-full"
+                size="lg"
+                style="primary">
+                <Icon name="bx:bx-send" class="w-5 h-5" />
+                Apply Now
+              </Link>
+              <Link
+                href="#"
+                class="doodle flex items-center justify-center gap-2 w-full"
+                size="md"
+                style="outline">
+                <Icon name="bx:bx-bookmark" class="w-4 h-4" />
+                Save Job
+              </Link>
+            </div>
+            <div class="mt-4 pt-4" style="border-top: 1px solid var(--color-theme-stroke);">
+              <p class="wireframe-text text-xs" style="color: var(--color-theme-tertiary);">
+                <Icon name="bx:bx-time" class="w-3 h-3 inline mr-1" />
+                Application deadline: March 15, 2024
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Similar Jobs Section -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-2xl lg:text-3xl mb-4">
+          Similar Opportunities
+        </h2>
+        <p class="wireframe-text text-lg">Other positions that might interest you</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Similar Job 1 -->
+        <div class="wireframe-box doodle-border p-6">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="wireframe-heading text-lg mb-1">Full Stack Developer</h3>
+              <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">DataFlow Inc.</p>
+            </div>
+            <span class="wireframe-text text-xs px-2 py-1 rounded" 
+                  style="background-color: var(--color-theme-quaternary);">Remote</span>
+          </div>
+          <p class="wireframe-text text-sm mb-4">
+            Build end-to-end applications using React, Node.js, and modern cloud technologies.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="wireframe-text text-sm font-semibold">$110,000 - $140,000</span>
+            <Link href="#" size="sm" style="outline" class="doodle">View</Link>
+          </div>
+        </div>
+
+        <!-- Similar Job 2 -->
+        <div class="wireframe-box doodle-border p-6">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="wireframe-heading text-lg mb-1">React Developer</h3>
+              <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">StartupXYZ</p>
+            </div>
+            <span class="wireframe-text text-xs px-2 py-1 rounded" 
+                  style="background-color: var(--color-theme-quaternary);">Hybrid</span>
+          </div>
+          <p class="wireframe-text text-sm mb-4">
+            Join a fast-growing startup and help build revolutionary fintech products.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="wireframe-text text-sm font-semibold">$100,000 - $130,000</span>
+            <Link href="#" size="sm" style="outline" class="doodle">View</Link>
+          </div>
+        </div>
+
+        <!-- Similar Job 3 -->
+        <div class="wireframe-box doodle-border p-6">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="wireframe-heading text-lg mb-1">UI/UX Developer</h3>
+              <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">DesignLab Studio</p>
+            </div>
+            <span class="wireframe-text text-xs px-2 py-1 rounded" 
+                  style="background-color: var(--color-theme-quaternary);">On-site</span>
+          </div>
+          <p class="wireframe-text text-sm mb-4">
+            Bridge the gap between design and development with your frontend expertise.
+          </p>
+          <div class="flex items-center justify-between">
+            <span class="wireframe-text text-sm font-semibold">$95,000 - $125,000</span>
+            <Link href="#" size="sm" style="outline" class="doodle">View</Link>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Company CTA Section -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="wireframe-box doodle-border p-12 text-center max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-2xl lg:text-3xl mb-4">
+          Join the TechInnovate Team
+        </h2>
+        <p class="wireframe-text text-lg mb-8 max-w-2xl mx-auto">
+          Be part of a company that's shaping the future of technology. We offer competitive compensation, amazing benefits, and the opportunity to work on projects that matter.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="primary">
+            <Icon name="bx:bx-send" class="w-5 h-5" />
+            Apply to This Position
+          </Link>
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="outline">
+            <Icon name="bx:bx-building" class="w-5 h-5" />
+            View All Jobs
+          </Link>
+        </div>
+        <div class="flex items-center justify-center gap-6 text-sm" style="color: var(--color-theme-tertiary);">
+          <div class="flex items-center gap-2">
+            <Icon name="bx:bx-check" class="w-4 h-4" />
+            <span class="wireframe-text">Equal Opportunity Employer</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <Icon name="bx:bx-shield" class="w-4 h-4" />
+            <span class="wireframe-text">Background Check Required</span>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>

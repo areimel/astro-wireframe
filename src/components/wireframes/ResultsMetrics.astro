@@ -1,0 +1,305 @@
+---
+export interface Props {
+  /** Section title */
+  title: string;
+  /** Section description */
+  description?: string;
+  /** Metrics data */
+  metrics: Array<{
+    label: string;
+    before: string | number;
+    after: string | number;
+    unit?: string;
+    change?: string;
+    changeType?: "increase" | "decrease" | "neutral";
+    icon?: string;
+    category?: string;
+  }>;
+  /** Display layout */
+  layout?: "grid" | "cards" | "comparison";
+  /** Show percentage changes */
+  showChange?: boolean;
+  /** Highlight significant changes */
+  highlightSignificant?: boolean;
+  /** Custom classes */
+  class?: string;
+}
+
+const { 
+  title,
+  description,
+  metrics,
+  layout = "grid",
+  showChange = true,
+  highlightSignificant = true,
+  class: className = ""
+} = Astro.props;
+
+import { Icon } from "astro-icon/components";
+
+// Calculate improvement percentage if not provided
+const calculateChange = (before: string | number, after: string | number): { change: string, type: "increase" | "decrease" | "neutral" } => {
+  const beforeNum = typeof before === 'string' ? parseFloat(before.replace(/[^\d.-]/g, '')) : before;
+  const afterNum = typeof after === 'string' ? parseFloat(after.replace(/[^\d.-]/g, '')) : after;
+  
+  if (isNaN(beforeNum) || isNaN(afterNum)) return { change: "N/A", type: "neutral" };
+  
+  const changePercent = ((afterNum - beforeNum) / beforeNum) * 100;
+  const changeType = changePercent > 0 ? "increase" : changePercent < 0 ? "decrease" : "neutral";
+  
+  return {
+    change: `${changePercent > 0 ? '+' : ''}${changePercent.toFixed(1)}%`,
+    type: changeType
+  };
+};
+
+// Group metrics by category if available
+const groupedMetrics = metrics.reduce((acc, metric) => {
+  const category = metric.category || 'General';
+  if (!acc[category]) acc[category] = [];
+  acc[category].push(metric);
+  return acc;
+}, {} as Record<string, typeof metrics>);
+---
+
+<section class={`wireframe-section py-16 ${className}`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+        {title}
+      </h2>
+      {description && (
+        <p class="wireframe-text text-xl max-w-3xl mx-auto">
+          {description}
+        </p>
+      )}
+    </div>
+
+    {layout === "comparison" ? (
+      <!-- Comparison Layout -->
+      <div class="wireframe-box doodle-border p-8">
+        <!-- Headers -->
+        <div class="grid grid-cols-4 gap-4 mb-8">
+          <div class="wireframe-heading text-lg font-bold">Metric</div>
+          <div class="text-center">
+            <div class="wireframe-heading text-lg font-bold mb-2">Before</div>
+            <div class="flex items-center justify-center gap-2">
+              <Icon name="bx:bx-x" class="w-5 h-5" style="color: var(--color-theme-secondary);" />
+              <span class="wireframe-text text-sm">Original</span>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="wireframe-heading text-lg font-bold mb-2">After</div>
+            <div class="flex items-center justify-center gap-2">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text text-sm">Improved</span>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="wireframe-heading text-lg font-bold">Change</div>
+          </div>
+        </div>
+
+        <!-- Metrics Rows -->
+        <div class="space-y-4">
+          {metrics.map((metric) => {
+            const calculatedChange = metric.change ? 
+              { change: metric.change, type: metric.changeType || "neutral" } : 
+              calculateChange(metric.before, metric.after);
+            
+            return (
+              <div class="grid grid-cols-4 gap-4 items-center py-4" 
+                   style="border-bottom: 1px solid var(--color-theme-stroke);">
+                <!-- Metric Label -->
+                <div class="flex items-center gap-3">
+                  {metric.icon && (
+                    <Icon name={metric.icon} class="w-5 h-5" style="color: var(--color-theme-button);" />
+                  )}
+                  <span class="wireframe-text font-semibold">{metric.label}</span>
+                </div>
+                
+                <!-- Before Value -->
+                <div class="text-center">
+                  <div class="wireframe-text text-xl font-bold">
+                    {metric.before}{metric.unit || ''}
+                  </div>
+                </div>
+                
+                <!-- After Value -->
+                <div class="text-center">
+                  <div class="wireframe-text text-xl font-bold" style="color: var(--color-theme-button);">
+                    {metric.after}{metric.unit || ''}
+                  </div>
+                </div>
+                
+                <!-- Change -->
+                <div class="text-center">
+                  {showChange && (
+                    <div class={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-bold ${
+                      calculatedChange.type === 'increase' ? 'bg-green-100 text-green-800' :
+                      calculatedChange.type === 'decrease' ? 'bg-red-100 text-red-800' :
+                      'bg-gray-100 text-gray-800'
+                    }`}>
+                      {calculatedChange.type === 'increase' && <Icon name="bx:bx-trending-up" class="w-4 h-4" />}
+                      {calculatedChange.type === 'decrease' && <Icon name="bx:bx-trending-down" class="w-4 h-4" />}
+                      {calculatedChange.change}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ) : layout === "cards" ? (
+      <!-- Cards Layout -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {metrics.map((metric) => {
+          const calculatedChange = metric.change ? 
+            { change: metric.change, type: metric.changeType || "neutral" } : 
+            calculateChange(metric.before, metric.after);
+          
+          return (
+            <div class="wireframe-box doodle-border p-6">
+              <!-- Metric Header -->
+              <div class="flex items-center gap-3 mb-6">
+                {metric.icon && (
+                  <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center">
+                    <Icon name={metric.icon} class="w-6 h-6" style="color: var(--color-theme-button);" />
+                  </div>
+                )}
+                <h3 class="wireframe-heading text-lg font-semibold">
+                  {metric.label}
+                </h3>
+              </div>
+              
+              <!-- Before/After Values -->
+              <div class="grid grid-cols-2 gap-4 mb-4">
+                <div class="text-center">
+                  <div class="wireframe-text text-sm font-bold mb-1" style="color: var(--color-theme-secondary);">
+                    Before
+                  </div>
+                  <div class="wireframe-text text-2xl font-bold">
+                    {metric.before}{metric.unit || ''}
+                  </div>
+                </div>
+                <div class="text-center">
+                  <div class="wireframe-text text-sm font-bold mb-1" style="color: var(--color-theme-button);">
+                    After
+                  </div>
+                  <div class="wireframe-text text-2xl font-bold" style="color: var(--color-theme-button);">
+                    {metric.after}{metric.unit || ''}
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Change Indicator -->
+              {showChange && (
+                <div class="text-center">
+                  <div class={`inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm font-bold ${
+                    calculatedChange.type === 'increase' ? 'bg-green-100 text-green-800' :
+                    calculatedChange.type === 'decrease' ? 'bg-red-100 text-red-800' :
+                    'bg-gray-100 text-gray-800'
+                  }`}>
+                    {calculatedChange.type === 'increase' && <Icon name="bx:bx-trending-up" class="w-4 h-4" />}
+                    {calculatedChange.type === 'decrease' && <Icon name="bx:bx-trending-down" class="w-4 h-4" />}
+                    {calculatedChange.change} Change
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    ) : (
+      <!-- Grid Layout (default) -->
+      <div>
+        {Object.entries(groupedMetrics).map(([category, categoryMetrics]) => (
+          <div class="mb-12">
+            {Object.keys(groupedMetrics).length > 1 && (
+              <h3 class="wireframe-heading text-2xl mb-6">{category}</h3>
+            )}
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {categoryMetrics.map((metric) => {
+                const calculatedChange = metric.change ? 
+                  { change: metric.change, type: metric.changeType || "neutral" } : 
+                  calculateChange(metric.before, metric.after);
+                
+                return (
+                  <div class={`wireframe-box doodle-border p-6 text-center ${
+                    highlightSignificant && Math.abs(parseFloat(calculatedChange.change)) > 20 ? 'border-4' : ''
+                  }`} style={
+                    highlightSignificant && Math.abs(parseFloat(calculatedChange.change)) > 20 ? 
+                    `border-color: var(--color-theme-button);` : ''
+                  }>
+                    
+                    {/* Icon */}
+                    {metric.icon && (
+                      <div class="mb-4">
+                        <Icon name={metric.icon} class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+                      </div>
+                    )}
+                    
+                    {/* Label */}
+                    <h4 class="wireframe-heading text-lg mb-4">
+                      {metric.label}
+                    </h4>
+                    
+                    {/* Values */}
+                    <div class="space-y-2 mb-4">
+                      <div class="text-sm">
+                        <span class="wireframe-text opacity-75">From: </span>
+                        <span class="wireframe-text font-bold">{metric.before}{metric.unit || ''}</span>
+                      </div>
+                      <div class="text-sm">
+                        <span class="wireframe-text opacity-75">To: </span>
+                        <span class="wireframe-text font-bold" style="color: var(--color-theme-button);">
+                          {metric.after}{metric.unit || ''}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    {/* Change */}
+                    {showChange && (
+                      <div class={`text-xl font-bold ${
+                        calculatedChange.type === 'increase' ? 'text-green-600' :
+                        calculatedChange.type === 'decrease' ? 'text-red-600' :
+                        'text-gray-600'
+                      }`}>
+                        {calculatedChange.change}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    <!-- Summary -->
+    <div class="text-center mt-12">
+      <div class="wireframe-box doodle-border p-8 theme-quaternary-bg">
+        <h3 class="wireframe-heading text-xl lg:text-2xl mb-4">
+          Overall Impact
+        </h3>
+        <p class="wireframe-text text-lg mb-6 max-w-2xl mx-auto">
+          The project delivered measurable improvements across all key performance indicators, demonstrating the effectiveness of the implemented solutions.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <div class="flex items-center gap-2 px-4 py-2 rounded-full theme-button-primary text-sm">
+            <Icon name="bx:bx-trending-up" class="w-4 h-4" />
+            Significant Growth
+          </div>
+          <div class="flex items-center gap-2 px-4 py-2 rounded-full theme-button-outline text-sm">
+            <Icon name="bx:bx-target-lock" class="w-4 h-4" />
+            Goals Achieved
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

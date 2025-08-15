@@ -1,0 +1,416 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+import CaseStudyHero from "@/components/wireframes/CaseStudyHero.astro";
+import ResultsMetrics from "@/components/wireframes/ResultsMetrics.astro";
+import ProjectTimeline from "@/components/wireframes/ProjectTimeline.astro";
+import ProcessSteps from "@/components/wireframes/ProcessSteps.astro";
+---
+
+<Layout title="Classic Case Study - Wireframe Landing Page">
+  <!-- Back Navigation -->
+  <section class="wireframe-section py-8">
+    <Container>
+      <Link
+        href="/wireframes"
+        class="doodle flex items-center gap-2 w-fit"
+        style="outline">
+        <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
+        Back to Wireframes
+      </Link>
+    </Container>
+  </section>
+
+  <!-- Case Study Hero -->
+  <CaseStudyHero
+    title="E-Commerce Platform Redesign"
+    subtitle="How we increased conversion rates by 40% through strategic UX improvements"
+    client="TechCommerce Inc."
+    industry="E-Commerce"
+    duration="3 months"
+    team="4 designers, 2 developers"
+    role="Lead UX Designer"
+    scope="Complete platform redesign"
+  />
+
+  <!-- Project Overview -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Project Overview
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <!-- Challenge -->
+          <div class="wireframe-box doodle-border p-6">
+            <div class="flex items-center mb-4">
+              <Icon name="bx:bx-target-lock" class="w-6 h-6 mr-3" style="color: var(--color-theme-button);" />
+              <h3 class="wireframe-heading text-xl">The Challenge</h3>
+            </div>
+            <p class="wireframe-text mb-4">
+              TechCommerce was experiencing declining conversion rates and increasing cart abandonment. 
+              Users struggled with complex navigation and a confusing checkout process.
+            </p>
+            <ul class="space-y-2 wireframe-text">
+              <li class="flex items-start">
+                <Icon name="bx:bx-x" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-secondary);" />
+                <span>65% cart abandonment rate</span>
+              </li>
+              <li class="flex items-start">
+                <Icon name="bx:bx-x" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-secondary);" />
+                <span>Complex 7-step checkout process</span>
+              </li>
+              <li class="flex items-start">
+                <Icon name="bx:bx-x" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-secondary);" />
+                <span>Poor mobile experience (22% conversion)</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Solution -->
+          <div class="wireframe-box doodle-border p-6">
+            <div class="flex items-center mb-4">
+              <Icon name="bx:bx-bulb" class="w-6 h-6 mr-3" style="color: var(--color-theme-tertiary);" />
+              <h3 class="wireframe-heading text-xl">Our Solution</h3>
+            </div>
+            <p class="wireframe-text mb-4">
+              We redesigned the entire user experience with focus on streamlined navigation, 
+              simplified checkout, and mobile-first design principles.
+            </p>
+            <ul class="space-y-2 wireframe-text">
+              <li class="flex items-start">
+                <Icon name="bx:bx-check" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-button);" />
+                <span>Streamlined 3-step checkout</span>
+              </li>
+              <li class="flex items-start">
+                <Icon name="bx:bx-check" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-button);" />
+                <span>Intuitive product discovery</span>
+              </li>
+              <li class="flex items-start">
+                <Icon name="bx:bx-check" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-button);" />
+                <span>Mobile-optimized interface</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Design Process -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Our Design Process
+        </h2>
+        
+        <ProcessSteps
+          steps={[
+            {
+              title: "Research & Discovery",
+              description: "Conducted user interviews, analyzed analytics, and performed competitive analysis to understand pain points.",
+              duration: "2 weeks",
+              icon: "bx:bx-search"
+            },
+            {
+              title: "Information Architecture",
+              description: "Restructured site navigation and content hierarchy based on user mental models and task flows.",
+              duration: "1 week", 
+              icon: "bx:bx-sitemap"
+            },
+            {
+              title: "Wireframing & Prototyping",
+              description: "Created low-fidelity wireframes and interactive prototypes to test core user journeys.",
+              duration: "3 weeks",
+              icon: "bx:bx-pencil"
+            },
+            {
+              title: "Visual Design",
+              description: "Developed high-fidelity mockups with updated branding, typography, and visual hierarchy.",
+              duration: "3 weeks",
+              icon: "bx:bx-palette"
+            },
+            {
+              title: "User Testing",
+              description: "Conducted usability testing with 15 participants to validate design decisions and identify improvements.",
+              duration: "2 weeks",
+              icon: "bx:bx-user"
+            },
+            {
+              title: "Development & Launch",
+              description: "Collaborated with development team for implementation and conducted post-launch monitoring.",
+              duration: "3 weeks",
+              icon: "bx:bx-rocket"
+            }
+          ]}
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Project Timeline -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Project Timeline
+        </h2>
+        
+        <!-- ProjectTimeline
+          milestones={[
+            {
+              phase: "Discovery Phase",
+              date: "Week 1-2",
+              description: "User research, stakeholder interviews, competitive analysis",
+              status: "completed"
+            },
+            {
+              phase: "Strategy & Planning",
+              date: "Week 3",
+              description: "Information architecture, user journey mapping, feature prioritization",
+              status: "completed"
+            },
+            {
+              phase: "Design & Prototyping",
+              date: "Week 4-9",
+              description: "Wireframes, visual design, interactive prototypes",
+              status: "completed"
+            },
+            {
+              phase: "Testing & Iteration",
+              date: "Week 10-11",
+              description: "Usability testing, design refinements, stakeholder reviews",
+              status: "completed"
+            },
+            {
+              phase: "Development Support",
+              date: "Week 12-14",
+              description: "Design handoff, development collaboration, QA testing",
+              status: "completed"
+            }
+          ]}
+        -->
+      </div>
+    </Container>
+  </section>
+
+  <!-- Key Findings & Insights -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Key Findings & Insights
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- User Research Insights -->
+          <div class="wireframe-box doodle-border p-6">
+            <div class="flex items-center mb-4">
+              <Icon name="bx:bx-brain" class="w-6 h-6 mr-3" style="color: var(--color-theme-button);" />
+              <h3 class="wireframe-heading text-xl">User Research Insights</h3>
+            </div>
+            <ul class="space-y-3 wireframe-text">
+              <li class="flex items-start">
+                <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-tertiary);" />
+                <span>Users abandoned checkout due to unexpected costs appearing late in the process</span>
+              </li>
+              <li class="flex items-start">
+                <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-tertiary);" />
+                <span>Mobile users struggled with small tap targets and poor form design</span>
+              </li>
+              <li class="flex items-start">
+                <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-tertiary);" />
+                <span>Product search and filtering didn't match user mental models</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Design Decisions -->
+          <div class="wireframe-box doodle-border p-6">
+            <div class="flex items-center mb-4">
+              <Icon name="bx:bx-cog" class="w-6 h-6 mr-3" style="color: var(--color-theme-secondary);" />
+              <h3 class="wireframe-heading text-xl">Key Design Decisions</h3>
+            </div>
+            <ul class="space-y-3 wireframe-text">
+              <li class="flex items-start">
+                <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-tertiary);" />
+                <span>Implemented transparent pricing with upfront cost calculations</span>
+              </li>
+              <li class="flex items-start">
+                <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-tertiary);" />
+                <span>Redesigned mobile interface with 44px minimum tap targets</span>
+              </li>
+              <li class="flex items-start">
+                <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-tertiary);" />
+                <span>Created category-based navigation with visual product groupings</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Results & Impact -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Results & Impact
+        </h2>
+        
+        <ResultsMetrics
+          metrics={[
+            {
+              value: "40%",
+              label: "Increase in Conversion Rate",
+              description: "From 2.3% to 3.2% overall conversion rate",
+              icon: "bx:bx-trending-up"
+            },
+            {
+              value: "45%",
+              label: "Reduction in Cart Abandonment",
+              description: "Cart abandonment dropped from 65% to 35%",
+              icon: "bx:bx-cart"
+            },
+            {
+              value: "60%",
+              label: "Faster Checkout Completion",
+              description: "Average checkout time reduced from 8 to 3 minutes",
+              icon: "bx:bx-time"
+            },
+            {
+              value: "85%",
+              label: "Improved Mobile Experience",
+              description: "Mobile conversion rate increased from 22% to 38%",
+              icon: "bx:bx-mobile"
+            }
+          ]}
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Lessons Learned -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Lessons Learned
+        </h2>
+        
+        <div class="wireframe-box doodle-border p-8">
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- What Worked -->
+            <div>
+              <h3 class="wireframe-heading text-xl mb-4 flex items-center">
+                <Icon name="bx:bx-check-circle" class="w-6 h-6 mr-3" style="color: var(--color-theme-button);" />
+                What Worked Well
+              </h3>
+              <ul class="space-y-3 wireframe-text">
+                <li>Early and continuous user testing throughout the design process</li>
+                <li>Close collaboration between design and development teams</li>
+                <li>Focusing on mobile-first design principles from the start</li>
+                <li>Transparent communication with stakeholders about trade-offs</li>
+              </ul>
+            </div>
+
+            <!-- Challenges -->
+            <div>
+              <h3 class="wireframe-heading text-xl mb-4 flex items-center">
+                <Icon name="bx:bx-error-circle" class="w-6 h-6 mr-3" style="color: var(--color-theme-secondary);" />
+                Key Challenges
+              </h3>
+              <ul class="space-y-3 wireframe-text">
+                <li>Balancing business requirements with user needs and technical constraints</li>
+                <li>Managing stakeholder expectations around timeline and scope</li>
+                <li>Ensuring design consistency across multiple product categories</li>
+                <li>Technical limitations of legacy system integration</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Next Steps -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Next Steps & Future Iterations
+        </h2>
+        
+        <div class="wireframe-box doodle-border p-8 text-center">
+          <p class="wireframe-text text-lg mb-6">
+            Following the successful launch, we're planning additional improvements based on ongoing user feedback and analytics insights.
+          </p>
+          
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="wireframe-box doodle-border p-4 mb-3">
+                <Icon name="bx:bx-search-alt-2" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+              </div>
+              <h4 class="wireframe-heading font-semibold mb-2">Enhanced Search</h4>
+              <p class="wireframe-text text-sm">Implementing AI-powered product recommendations and advanced filtering</p>
+            </div>
+            
+            <div class="text-center">
+              <div class="wireframe-box doodle-border p-4 mb-3">
+                <Icon name="bx:bx-user-circle" class="w-8 h-8 mx-auto" style="color: var(--color-theme-secondary);" />
+              </div>
+              <h4 class="wireframe-heading font-semibold mb-2">Personalization</h4>
+              <p class="wireframe-text text-sm">Creating personalized shopping experiences based on user behavior</p>
+            </div>
+            
+            <div class="text-center">
+              <div class="wireframe-box doodle-border p-4 mb-3">
+                <Icon name="bx:bx-chart" class="w-8 h-8 mx-auto" style="color: var(--color-theme-tertiary);" />
+              </div>
+              <h4 class="wireframe-heading font-semibold mb-2">Analytics</h4>
+              <p class="wireframe-text text-sm">Advanced analytics dashboard for better business insights</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="wireframe-box doodle-border p-12 text-center max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Ready to Transform Your Platform?
+        </h2>
+        <p class="wireframe-text text-xl mb-8 max-w-2xl mx-auto">
+          This case study demonstrates our approach to user-centered design and measurable business impact. 
+          Let's discuss how we can help improve your user experience.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="primary">
+            <Icon name="bx:bx-envelope" class="w-5 h-5" />
+            Start Your Project
+          </Link>
+          <Link
+            href="/wireframes"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="outline">
+            <Icon name="bx:bx-collection" class="w-5 h-5" />
+            View More Wireframes
+          </Link>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>

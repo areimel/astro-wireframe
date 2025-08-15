@@ -1,0 +1,589 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+import CaseStudyHero from "@/components/wireframes/CaseStudyHero.astro";
+import ResultsMetrics from "@/components/wireframes/ResultsMetrics.astro";
+import BeforeAfterComparison from "@/components/wireframes/BeforeAfterComparison.astro";
+import ProjectTimeline from "@/components/wireframes/ProjectTimeline.astro";
+---
+
+<Layout title="Visual Case Study - Wireframe Landing Page">
+  <!-- Back Navigation -->
+  <section class="wireframe-section py-8">
+    <Container>
+      <Link
+        href="/wireframes"
+        class="doodle flex items-center gap-2 w-fit"
+        style="outline">
+        <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
+        Back to Wireframes
+      </Link>
+    </Container>
+  </section>
+
+  <!-- Case Study Hero -->
+  <CaseStudyHero
+    title="Mobile Banking App Redesign"
+    subtitle="Transforming digital banking through visual design and user experience innovation"
+    client="FinTech Solutions"
+    industry="Financial Services"
+    duration="4 months"
+    team="3 designers, 2 developers, 1 researcher"
+    role="Senior Product Designer"
+    scope="Complete mobile app redesign"
+  />
+
+  <!-- Visual Impact Overview -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-6xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Visual Impact Overview
+        </h2>
+        
+        <!-- Main Before/After Comparison -->
+        <BeforeAfterComparison
+          beforeTitle="Original Design"
+          afterTitle="Redesigned Experience"
+          beforeDescription="Cluttered interface with poor visual hierarchy and outdated styling"
+          afterDescription="Clean, modern interface with clear information architecture and intuitive navigation"
+          beforeFeatures={[
+            "Complex navigation with 7 main sections",
+            "Inconsistent visual styling",
+            "Poor contrast and readability",
+            "Overwhelming dashboard layout"
+          ]}
+          afterFeatures={[
+            "Streamlined 4-section navigation",
+            "Cohesive design system",
+            "WCAG AA accessibility compliance",
+            "Focused dashboard with key actions"
+          ]}
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Design Challenge Visualization -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          The Design Challenge
+        </h2>
+        
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Challenge Description -->
+          <div>
+            <div class="wireframe-box doodle-border p-6 mb-6">
+              <h3 class="wireframe-heading text-xl mb-4 flex items-center">
+                <Icon name="bx:bx-error" class="w-6 h-6 mr-3" style="color: var(--color-theme-secondary);" />
+                User Pain Points
+              </h3>
+              <ul class="space-y-3 wireframe-text">
+                <li class="flex items-start">
+                  <Icon name="bx:bx-x" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-secondary);" />
+                  <span>Users couldn't find key banking features quickly</span>
+                </li>
+                <li class="flex items-start">
+                  <Icon name="bx:bx-x" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-secondary);" />
+                  <span>Visual design felt outdated and untrustworthy</span>
+                </li>
+                <li class="flex items-start">
+                  <Icon name="bx:bx-x" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-secondary);" />
+                  <span>Complex workflows for simple transactions</span>
+                </li>
+                <li class="flex items-start">
+                  <Icon name="bx:bx-x" class="w-4 h-4 mr-2 mt-1" style="color: var(--color-theme-secondary);" />
+                  <span>Poor accessibility and contrast issues</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="wireframe-box doodle-border p-6">
+              <h3 class="wireframe-heading text-xl mb-4 flex items-center">
+                <Icon name="bx:bx-chart" class="w-6 h-6 mr-3" style="color: var(--color-theme-button);" />
+                Business Impact
+              </h3>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="text-center">
+                  <div class="text-2xl font-bold wireframe-heading" style="color: var(--color-theme-secondary);">2.1★</div>
+                  <div class="wireframe-text text-sm">App Store Rating</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-2xl font-bold wireframe-heading" style="color: var(--color-theme-secondary);">45%</div>
+                  <div class="wireframe-text text-sm">Task Completion Rate</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-2xl font-bold wireframe-heading" style="color: var(--color-theme-secondary);">12min</div>
+                  <div class="wireframe-text text-sm">Avg. Transaction Time</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-2xl font-bold wireframe-heading" style="color: var(--color-theme-secondary);">67%</div>
+                  <div class="wireframe-text text-sm">Support Tickets</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Mockup -->
+          <div class="wireframe-box doodle-border p-8 text-center min-h-[400px] flex items-center justify-center">
+            <div>
+              <Icon name="bx:bx-mobile" class="w-32 h-32 mx-auto mb-6" style="color: var(--color-theme-tertiary);" />
+              <h3 class="wireframe-heading text-xl mb-2">Original Mobile App</h3>
+              <p class="wireframe-text">Complex interface with poor usability</p>
+              <div class="grid grid-cols-2 gap-2 mt-4">
+                <div class="wireframe-box doodle-border p-2">
+                  <span class="wireframe-text text-xs">Menu</span>
+                </div>
+                <div class="wireframe-box doodle-border p-2">
+                  <span class="wireframe-text text-xs">Search</span>
+                </div>
+                <div class="wireframe-box doodle-border p-2">
+                  <span class="wireframe-text text-xs">Balance</span>
+                </div>
+                <div class="wireframe-box doodle-border p-2">
+                  <span class="wireframe-text text-xs">Transfer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Design Process Visualization -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-6xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Visual Design Process
+        </h2>
+        
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <!-- Research Phase -->
+          <div class="text-center">
+            <div class="wireframe-box doodle-border p-6 mb-4">
+              <Icon name="bx:bx-search" class="w-16 h-16 mx-auto mb-4" style="color: var(--color-theme-button);" />
+              <h3 class="wireframe-heading text-lg mb-2">Research & Analysis</h3>
+              <p class="wireframe-text text-sm">User interviews, competitive analysis, accessibility audit</p>
+            </div>
+            <div class="space-y-2">
+              <div class="wireframe-box doodle-border p-2">
+                <span class="wireframe-text text-xs">User Journey Maps</span>
+              </div>
+              <div class="wireframe-box doodle-border p-2">
+                <span class="wireframe-text text-xs">Persona Development</span>
+              </div>
+              <div class="wireframe-box doodle-border p-2">
+                <span class="wireframe-text text-xs">Heuristic Evaluation</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Design Phase -->
+          <div class="text-center">
+            <div class="wireframe-box doodle-border p-6 mb-4">
+              <Icon name="bx:bx-pencil" class="w-16 h-16 mx-auto mb-4" style="color: var(--color-theme-secondary);" />
+              <h3 class="wireframe-heading text-lg mb-2">Design & Prototyping</h3>
+              <p class="wireframe-text text-sm">Information architecture, wireframes, visual design</p>
+            </div>
+            <div class="space-y-2">
+              <div class="wireframe-box doodle-border p-2">
+                <span class="wireframe-text text-xs">Wireframe Library</span>
+              </div>
+              <div class="wireframe-box doodle-border p-2">
+                <span class="wireframe-text text-xs">Design System</span>
+              </div>
+              <div class="wireframe-box doodle-border p-2">
+                <span class="wireframe-text text-xs">Interactive Prototypes</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testing Phase -->
+          <div class="text-center">
+            <div class="wireframe-box doodle-border p-6 mb-4">
+              <Icon name="bx:bx-test-tube" class="w-16 h-16 mx-auto mb-4" style="color: var(--color-theme-tertiary);" />
+              <h3 class="wireframe-heading text-lg mb-2">Testing & Validation</h3>
+              <p class="wireframe-text text-sm">Usability testing, A/B testing, accessibility validation</p>
+            </div>
+            <div class="space-y-2">
+              <div class="wireframe-box doodle-border p-2">
+                <span class="wireframe-text text-xs">User Testing Sessions</span>
+              </div>
+              <div class="wireframe-box doodle-border p-2">
+                <span class="wireframe-text text-xs">A/B Test Results</span>
+              </div>
+              <div class="wireframe-box doodle-border p-2">
+                <span class="wireframe-text text-xs">Accessibility Compliance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Key Screen Comparisons -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-6xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Key Screen Transformations
+        </h2>
+        
+        <div class="space-y-12">
+          <!-- Dashboard Comparison -->
+          <BeforeAfterComparison
+            beforeTitle="Original Dashboard"
+            afterTitle="Redesigned Dashboard"
+            beforeDescription="Cluttered layout with poor information hierarchy"
+            afterDescription="Clean, card-based layout with prominent account overview"
+            beforeFeatures={[
+              "Information overload with 15+ data points",
+              "Poor visual hierarchy",
+              "Inconsistent spacing and typography",
+              "Hidden quick actions"
+            ]}
+            afterFeatures={[
+              "Focused view with 6 key metrics",
+              "Clear visual hierarchy with cards",
+              "Consistent 8px grid system",
+              "Prominent quick action buttons"
+            ]}
+          />
+
+          <!-- Transfer Flow Comparison -->
+          <BeforeAfterComparison
+            beforeTitle="Original Transfer Flow"
+            afterTitle="Streamlined Transfer"
+            beforeDescription="5-step process with confusing navigation"
+            afterDescription="3-step process with clear progress indication"
+            beforeFeatures={[
+              "5-step wizard with unclear progress",
+              "Hidden confirmation details",
+              "Complex form validation",
+              "No transfer history context"
+            ]}
+            afterFeatures={[
+              "3-step process with visual progress",
+              "Upfront cost and fee transparency",
+              "Inline validation with helpful tips",
+              "Recent transfers for quick selection"
+            ]}
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Design System Showcase -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-6xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Design System Foundation
+        </h2>
+        
+        <div class="grid lg:grid-cols-2 gap-12">
+          <!-- Color Palette -->
+          <div class="wireframe-box doodle-border p-6">
+            <h3 class="wireframe-heading text-xl mb-4 flex items-center">
+              <Icon name="bx:bx-palette" class="w-6 h-6 mr-3" style="color: var(--color-theme-button);" />
+              Color System
+            </h3>
+            <div class="grid grid-cols-4 gap-3 mb-4">
+              <div class="aspect-square wireframe-box doodle-border flex items-center justify-center" style="background-color: var(--color-theme-button);">
+                <span class="wireframe-text text-xs text-white">Primary</span>
+              </div>
+              <div class="aspect-square wireframe-box doodle-border flex items-center justify-center" style="background-color: var(--color-theme-secondary);">
+                <span class="wireframe-text text-xs text-white">Secondary</span>
+              </div>
+              <div class="aspect-square wireframe-box doodle-border flex items-center justify-center" style="background-color: var(--color-theme-tertiary);">
+                <span class="wireframe-text text-xs text-white">Success</span>
+              </div>
+              <div class="aspect-square wireframe-box doodle-border flex items-center justify-center" style="background-color: var(--color-theme-highlight);">
+                <span class="wireframe-text text-xs text-white">Warning</span>
+              </div>
+            </div>
+            <p class="wireframe-text text-sm">Accessible color palette meeting WCAG AA contrast standards</p>
+          </div>
+
+          <!-- Typography -->
+          <div class="wireframe-box doodle-border p-6">
+            <h3 class="wireframe-heading text-xl mb-4 flex items-center">
+              <Icon name="bx:bx-font" class="w-6 h-6 mr-3" style="color: var(--color-theme-secondary);" />
+              Typography Scale
+            </h3>
+            <div class="space-y-3">
+              <div class="wireframe-text text-2xl font-bold">Heading 1</div>
+              <div class="wireframe-text text-xl font-semibold">Heading 2</div>
+              <div class="wireframe-text text-lg font-medium">Heading 3</div>
+              <div class="wireframe-text">Body Text</div>
+              <div class="wireframe-text text-sm">Small Text</div>
+            </div>
+            <p class="wireframe-text text-sm mt-4">Consistent typography hierarchy with 1.5x line height for readability</p>
+          </div>
+
+          <!-- Component Library -->
+          <div class="wireframe-box doodle-border p-6">
+            <h3 class="wireframe-heading text-xl mb-4 flex items-center">
+              <Icon name="bx:bx-cube" class="w-6 h-6 mr-3" style="color: var(--color-theme-tertiary);" />
+              Component Library
+            </h3>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="wireframe-box doodle-border p-2 text-center">
+                <Icon name="bx:bx-square" class="w-8 h-8 mx-auto mb-1" style="color: var(--color-theme-button);" />
+                <span class="wireframe-text text-xs">Buttons</span>
+              </div>
+              <div class="wireframe-box doodle-border p-2 text-center">
+                <Icon name="bx:bx-text" class="w-8 h-8 mx-auto mb-1" style="color: var(--color-theme-button);" />
+                <span class="wireframe-text text-xs">Inputs</span>
+              </div>
+              <div class="wireframe-box doodle-border p-2 text-center">
+                <Icon name="bx:bx-credit-card" class="w-8 h-8 mx-auto mb-1" style="color: var(--color-theme-button);" />
+                <span class="wireframe-text text-xs">Cards</span>
+              </div>
+              <div class="wireframe-box doodle-border p-2 text-center">
+                <Icon name="bx:bx-menu" class="w-8 h-8 mx-auto mb-1" style="color: var(--color-theme-button);" />
+                <span class="wireframe-text text-xs">Navigation</span>
+              </div>
+            </div>
+            <p class="wireframe-text text-sm mt-4">Reusable components with consistent spacing and interaction patterns</p>
+          </div>
+
+          <!-- Iconography -->
+          <div class="wireframe-box doodle-border p-6">
+            <h3 class="wireframe-heading text-xl mb-4 flex items-center">
+              <Icon name="bx:bx-shapes" class="w-6 h-6 mr-3" style="color: var(--color-theme-highlight);" />
+              Icon System
+            </h3>
+            <div class="grid grid-cols-6 gap-3 mb-4">
+              <div class="text-center">
+                <Icon name="bx:bx-home" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+              </div>
+              <div class="text-center">
+                <Icon name="bx:bx-credit-card" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+              </div>
+              <div class="text-center">
+                <Icon name="bx:bx-transfer" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+              </div>
+              <div class="text-center">
+                <Icon name="bx:bx-chart" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+              </div>
+              <div class="text-center">
+                <Icon name="bx:bx-user" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+              </div>
+              <div class="text-center">
+                <Icon name="bx:bx-cog" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+              </div>
+            </div>
+            <p class="wireframe-text text-sm">Consistent icon style with 24px grid and financial services focus</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Project Timeline -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Design Timeline
+        </h2>
+        
+        <!-- ProjectTimeline
+          milestones={[
+            {
+              phase: "Research & Discovery",
+              date: "Month 1",
+              description: "User research, competitive analysis, stakeholder interviews, accessibility audit",
+              status: "completed"
+            },
+            {
+              phase: "Information Architecture",
+              date: "Month 2",
+              description: "User journey mapping, feature prioritization, navigation restructure",
+              status: "completed"
+            },
+            {
+              phase: "Visual Design",
+              date: "Month 3",
+              description: "Design system creation, high-fidelity mockups, interactive prototypes",
+              status: "completed"
+            },
+            {
+              phase: "Testing & Refinement",
+              date: "Month 4",
+              description: "Usability testing, design iterations, accessibility validation, handoff",
+              status: "completed"
+            }
+          ]}
+        -->
+      </div>
+    </Container>
+  </section>
+
+  <!-- Results & Impact -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Visual Impact Results
+        </h2>
+        
+        <ResultsMetrics
+          metrics={[
+            {
+              value: "4.6★",
+              label: "App Store Rating",
+              description: "Improved from 2.1★ with over 1,000 new reviews",
+              icon: "bx:bx-star"
+            },
+            {
+              value: "78%",
+              label: "Task Completion Rate",
+              description: "Increased from 45% with streamlined workflows",
+              icon: "bx:bx-check-circle"
+            },
+            {
+              value: "3min",
+              label: "Average Transaction Time",
+              description: "Reduced from 12 minutes with simplified flow",
+              icon: "bx:bx-time"
+            },
+            {
+              value: "89%",
+              label: "User Satisfaction",
+              description: "Measured through post-launch surveys and feedback",
+              icon: "bx:bx-happy"
+            }
+          ]}
+        />
+      </div>
+    </Container>
+  </section>
+
+  <!-- Visual Portfolio -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="max-w-6xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-8 text-center">
+          Design Portfolio Highlights
+        </h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Screen Mockup 1 -->
+          <div class="wireframe-box doodle-border p-6 text-center">
+            <div class="wireframe-box doodle-border mb-4 p-8 min-h-[200px] flex items-center justify-center">
+              <div>
+                <Icon name="bx:bx-mobile" class="w-16 h-16 mx-auto mb-2" style="color: var(--color-theme-button);" />
+                <p class="wireframe-text text-sm">Dashboard Redesign</p>
+              </div>
+            </div>
+            <h3 class="wireframe-heading font-semibold mb-2">Main Dashboard</h3>
+            <p class="wireframe-text text-sm">Clean, card-based layout with improved information hierarchy</p>
+          </div>
+
+          <!-- Screen Mockup 2 -->
+          <div class="wireframe-box doodle-border p-6 text-center">
+            <div class="wireframe-box doodle-border mb-4 p-8 min-h-[200px] flex items-center justify-center">
+              <div>
+                <Icon name="bx:bx-transfer" class="w-16 h-16 mx-auto mb-2" style="color: var(--color-theme-secondary);" />
+                <p class="wireframe-text text-sm">Transfer Flow</p>
+              </div>
+            </div>
+            <h3 class="wireframe-heading font-semibold mb-2">Money Transfer</h3>
+            <p class="wireframe-text text-sm">Streamlined 3-step process with clear progress indication</p>
+          </div>
+
+          <!-- Screen Mockup 3 -->
+          <div class="wireframe-box doodle-border p-6 text-center">
+            <div class="wireframe-box doodle-border mb-4 p-8 min-h-[200px] flex items-center justify-center">
+              <div>
+                <Icon name="bx:bx-chart" class="w-16 h-16 mx-auto mb-2" style="color: var(--color-theme-tertiary);" />
+                <p class="wireframe-text text-sm">Analytics View</p>
+              </div>
+            </div>
+            <h3 class="wireframe-heading font-semibold mb-2">Spending Analytics</h3>
+            <p class="wireframe-text text-sm">Visual spending insights with interactive charts and filters</p>
+          </div>
+
+          <!-- Screen Mockup 4 -->
+          <div class="wireframe-box doodle-border p-6 text-center">
+            <div class="wireframe-box doodle-border mb-4 p-8 min-h-[200px] flex items-center justify-center">
+              <div>
+                <Icon name="bx:bx-credit-card" class="w-16 h-16 mx-auto mb-2" style="color: var(--color-theme-highlight);" />
+                <p class="wireframe-text text-sm">Card Management</p>
+              </div>
+            </div>
+            <h3 class="wireframe-heading font-semibold mb-2">Card Controls</h3>
+            <p class="wireframe-text text-sm">Easy card management with security controls and spending limits</p>
+          </div>
+
+          <!-- Screen Mockup 5 -->
+          <div class="wireframe-box doodle-border p-6 text-center">
+            <div class="wireframe-box doodle-border mb-4 p-8 min-h-[200px] flex items-center justify-center">
+              <div>
+                <Icon name="bx:bx-user" class="w-16 h-16 mx-auto mb-2" style="color: var(--color-theme-button);" />
+                <p class="wireframe-text text-sm">Profile Settings</p>
+              </div>
+            </div>
+            <h3 class="wireframe-heading font-semibold mb-2">User Profile</h3>
+            <p class="wireframe-text text-sm">Intuitive settings with security options and personalization</p>
+          </div>
+
+          <!-- Screen Mockup 6 -->
+          <div class="wireframe-box doodle-border p-6 text-center">
+            <div class="wireframe-box doodle-border mb-4 p-8 min-h-[200px] flex items-center justify-center">
+              <div>
+                <Icon name="bx:bx-support" class="w-16 h-16 mx-auto mb-2" style="color: var(--color-theme-secondary);" />
+                <p class="wireframe-text text-sm">Help Center</p>
+              </div>
+            </div>
+            <h3 class="wireframe-heading font-semibold mb-2">Support Hub</h3>
+            <p class="wireframe-text text-sm">Comprehensive help system with chat support and FAQs</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="wireframe-box doodle-border p-12 text-center max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Inspired by Our Visual Design Approach?
+        </h2>
+        <p class="wireframe-text text-xl mb-8 max-w-2xl mx-auto">
+          This case study showcases our comprehensive approach to visual design and user experience transformation. 
+          See how we can elevate your digital products through strategic design.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="primary">
+            <Icon name="bx:bx-palette" class="w-5 h-5" />
+            Discuss Your Project
+          </Link>
+          <Link
+            href="/wireframes"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="outline">
+            <Icon name="bx:bx-grid-alt" class="w-5 h-5" />
+            Explore More Layouts
+          </Link>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>

@@ -1,0 +1,159 @@
+---
+export interface Props {
+  /** Section title */
+  title: string;
+  /** Section description */
+  description?: string;
+  /** Requirements categories */
+  categories: Array<{
+    title: string;
+    icon?: string;
+    requirements: Array<{
+      text: string;
+      required: boolean;
+      level?: "entry" | "mid" | "senior" | "expert";
+    }>;
+  }>;
+  /** Display layout */
+  layout?: "grid" | "list";
+  /** Show requirement levels */
+  showLevels?: boolean;
+  /** Custom classes */
+  class?: string;
+}
+
+const { 
+  title,
+  description,
+  categories,
+  layout = "grid",
+  showLevels = false,
+  class: className = ""
+} = Astro.props;
+
+import { Icon } from "astro-icon/components";
+
+// Level colors and labels
+const levelConfig = {
+  entry: { color: "var(--color-theme-tertiary)", label: "Entry" },
+  mid: { color: "var(--color-theme-secondary)", label: "Mid" },
+  senior: { color: "var(--color-theme-button)", label: "Senior" },
+  expert: { color: "var(--color-theme-highlight)", label: "Expert" }
+};
+---
+
+<section class={`wireframe-section py-12 ${className}`}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+        {title}
+      </h2>
+      {description && (
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          {description}
+        </p>
+      )}
+    </div>
+
+    <!-- Requirements Grid/List -->
+    <div class={layout === "grid" ? "grid md:grid-cols-2 gap-8" : "space-y-8"}>
+      {categories.map((category) => (
+        <div class="wireframe-box doodle-border p-6">
+          <!-- Category Header -->
+          <div class="flex items-center gap-3 mb-6">
+            {category.icon && (
+              <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center">
+                <Icon name={category.icon} class="w-6 h-6" style="color: var(--color-theme-button);" />
+              </div>
+            )}
+            <h3 class="wireframe-heading text-xl lg:text-2xl">
+              {category.title}
+            </h3>
+          </div>
+
+          <!-- Requirements List -->
+          <div class="space-y-3">
+            {category.requirements.map((req) => (
+              <div class="flex items-start gap-3">
+                <!-- Required/Optional Icon -->
+                <div class="flex-shrink-0 mt-0.5">
+                  {req.required ? (
+                    <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+                  ) : (
+                    <Icon name="bx:bx-circle" class="w-5 h-5" style="color: var(--color-theme-secondary);" />
+                  )}
+                </div>
+                
+                <!-- Requirement Text -->
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class={`wireframe-text ${req.required ? 'font-semibold' : ''}`}>
+                      {req.text}
+                    </span>
+                    
+                    {/* Level Badge */}
+                    {showLevels && req.level && (
+                      <span class="text-xs px-2 py-1 rounded-full font-bold" 
+                            style={`background-color: ${levelConfig[req.level].color}; color: var(--color-theme-button-text);`}>
+                        {levelConfig[req.level].label}
+                      </span>
+                    )}
+                  </div>
+                  
+                  {/* Required/Optional Label */}
+                  <div class="wireframe-text text-xs" 
+                       style={`color: ${req.required ? 'var(--color-theme-button)' : 'var(--color-theme-secondary)'};`}>
+                    {req.required ? 'Required' : 'Preferred'}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Category Summary -->
+          <div class="mt-6 pt-4" style="border-top: 1px solid var(--color-theme-stroke);">
+            <div class="flex justify-between text-sm">
+              <span class="wireframe-text">
+                Required: {category.requirements.filter(req => req.required).length}
+              </span>
+              <span class="wireframe-text">
+                Preferred: {category.requirements.filter(req => !req.required).length}
+              </span>
+              <span class="wireframe-text">
+                Total: {category.requirements.length}
+              </span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Legend -->
+    {showLevels && (
+      <div class="mt-12 p-6 wireframe-box doodle-border">
+        <h4 class="wireframe-heading text-lg mb-4">Experience Levels</h4>
+        <div class="flex flex-wrap gap-4">
+          {Object.entries(levelConfig).map(([level, config]) => (
+            <div class="flex items-center gap-2">
+              <div class="w-4 h-4 rounded-full" style={`background-color: ${config.color};`}></div>
+              <span class="wireframe-text text-sm">{config.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Key -->
+    <div class="mt-8 flex items-center justify-center gap-8 text-sm">
+      <div class="flex items-center gap-2">
+        <Icon name="bx:bx-check-circle" class="w-5 h-5" style="color: var(--color-theme-button);" />
+        <span class="wireframe-text">Required</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <Icon name="bx:bx-circle" class="w-5 h-5" style="color: var(--color-theme-secondary);" />
+        <span class="wireframe-text">Preferred</span>
+      </div>
+    </div>
+  </div>
+</section>

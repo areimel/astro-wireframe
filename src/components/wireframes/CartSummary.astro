@@ -1,0 +1,306 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Show item images */
+  showImages?: boolean;
+  /** Show quantity controls */
+  showQuantityControls?: boolean;
+  /** Show remove buttons */
+  showRemoveButtons?: boolean;
+  /** Show price breakdown */
+  showPriceBreakdown?: boolean;
+  /** Show promo code section */
+  showPromoCode?: boolean;
+  /** Show shipping options */
+  showShippingOptions?: boolean;
+  /** Cart layout variant */
+  variant?: "compact" | "detailed" | "checkout";
+  /** Custom classes */
+  class?: string;
+  /** Number of items to display */
+  itemCount?: number;
+}
+
+const { 
+  showImages = true,
+  showQuantityControls = true,
+  showRemoveButtons = true,
+  showPriceBreakdown = true,
+  showPromoCode = true,
+  showShippingOptions = true,
+  variant = "detailed",
+  class: className = "",
+  itemCount = 3
+} = Astro.props;
+
+// Generate cart items
+const cartItems = Array.from({ length: itemCount }, (_, i) => ({
+  id: i + 1,
+  name: `Product ${i + 1}`,
+  brand: ["TechCorp", "InnovateCo", "QualityBrand"][i % 3],
+  price: [89.99, 129.99, 199.99][i % 3],
+  originalPrice: [99.99, 159.99, 249.99][i % 3],
+  quantity: [1, 2, 1][i % 3],
+  variant: ["Blue, Size M", "Black, 16GB", "Silver"][i % 3],
+  inStock: i !== 1, // Second item out of stock
+  estimatedDelivery: ["2-3 days", "5-7 days", "1-2 days"][i % 3]
+}));
+
+const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+const savings = cartItems.reduce((sum, item) => sum + ((item.originalPrice - item.price) * item.quantity), 0);
+const shipping = 15.99;
+const tax = subtotal * 0.08;
+const total = subtotal + shipping + tax;
+
+const isCompact = variant === "compact";
+const isCheckout = variant === "checkout";
+---
+
+<div class={`wireframe-box doodle-border p-6 ${className}`}>
+  <!-- Cart Header -->
+  <div class="flex items-center justify-between mb-6">
+    <h3 class="wireframe-heading text-xl">
+      {isCheckout ? "Order Summary" : "Shopping Cart"}
+    </h3>
+    <div class="flex items-center gap-2">
+      <span class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+        {cartItems.length} items
+      </span>
+      {!isCheckout && (
+        <button class="wireframe-text text-sm hover:opacity-70 transition-opacity"
+                style="color: var(--color-theme-button);">
+          Edit all
+        </button>
+      )}
+    </div>
+  </div>
+
+  <!-- Cart Items -->
+  <div class="space-y-4 mb-6">
+    {cartItems.map((item) => (
+      <div class={`flex ${isCompact ? 'gap-3' : 'gap-4'} p-4 wireframe-box doodle-border ${!item.inStock ? 'opacity-60' : ''}`}>
+        {/* Product Image */}
+        {showImages && (
+          <div class={`${isCompact ? 'w-16 h-16' : 'w-20 h-20'} wireframe-box doodle-border flex-shrink-0`}>
+            <div class="w-full h-full flex items-center justify-center bg-opacity-20" 
+                 style="background-color: var(--color-theme-quaternary);">
+              <Icon name="bx:bx-image" class="w-6 h-6" style="color: var(--color-theme-tertiary);" />
+            </div>
+          </div>
+        )}
+
+        {/* Product Details */}
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between">
+            <div class="flex-1">
+              <h4 class="wireframe-heading text-base mb-1 truncate">{item.name}</h4>
+              <p class="wireframe-text text-sm mb-1" style="color: var(--color-theme-tertiary);">
+                {item.brand}
+              </p>
+              {!isCompact && (
+                <p class="wireframe-text text-sm mb-2" style="color: var(--color-theme-tertiary);">
+                  {item.variant}
+                </p>
+              )}
+              
+              {/* Stock Status */}
+              <div class="flex items-center gap-2 mb-2">
+                <Icon 
+                  name={item.inStock ? "bx:bx-check-circle" : "bx:bx-error-circle"} 
+                  class="w-4 h-4" 
+                  style={`color: ${item.inStock ? 'var(--color-theme-button)' : 'var(--color-theme-tertiary)'};`}
+                />
+                <span class="wireframe-text text-sm">
+                  {item.inStock ? `In stock • ${item.estimatedDelivery}` : "Out of stock"}
+                </span>
+              </div>
+            </div>
+
+            {/* Price & Controls */}
+            <div class="flex flex-col items-end gap-2">
+              <div class="text-right">
+                <p class="wireframe-heading text-lg" style="color: var(--color-theme-button);">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </p>
+                {item.originalPrice > item.price && (
+                  <p class="wireframe-text text-sm line-through" style="color: var(--color-theme-tertiary);">
+                    ${(item.originalPrice * item.quantity).toFixed(2)}
+                  </p>
+                )}
+              </div>
+
+              {/* Quantity Controls */}
+              {showQuantityControls && !isCheckout && (
+                <div class="flex items-center gap-1 wireframe-box doodle-border">
+                  <button class="p-1 hover:opacity-70 transition-opacity">
+                    <Icon name="bx:bx-minus" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+                  </button>
+                  <span class="px-3 py-1 wireframe-text text-sm min-w-[2rem] text-center">
+                    {item.quantity}
+                  </span>
+                  <button class="p-1 hover:opacity-70 transition-opacity">
+                    <Icon name="bx:bx-plus" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+                  </button>
+                </div>
+              )}
+
+              {isCheckout && (
+                <span class="wireframe-text text-sm">Qty: {item.quantity}</span>
+              )}
+            </div>
+          </div>
+
+          {/* Item Actions */}
+          {!isCheckout && (
+            <div class="flex items-center gap-4 mt-3">
+              <button class="flex items-center gap-1 wireframe-text text-sm hover:opacity-70 transition-opacity"
+                      style="color: var(--color-theme-button);">
+                <Icon name="bx:bx-heart" class="w-4 h-4" />
+                Save for later
+              </button>
+              
+              {showRemoveButtons && (
+                <button class="flex items-center gap-1 wireframe-text text-sm hover:opacity-70 transition-opacity"
+                        style="color: var(--color-theme-tertiary);">
+                  <Icon name="bx:bx-trash" class="w-4 h-4" />
+                  Remove
+                </button>
+              )}
+              
+              <button class="flex items-center gap-1 wireframe-text text-sm hover:opacity-70 transition-opacity"
+                      style="color: var(--color-theme-tertiary);">
+                <Icon name="bx:bx-git-compare" class="w-4 h-4" />
+                Compare
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* Promo Code Section */}
+  {showPromoCode && !isCheckout && (
+    <div class="mb-6 p-4 wireframe-box doodle-border">
+      <div class="flex gap-3">
+        <input 
+          type="text" 
+          placeholder="Enter promo code"
+          class="flex-1 p-3 wireframe-box doodle-border wireframe-text"
+          style="background-color: var(--color-theme-bg);"
+        />
+        <button class="px-6 py-3 rounded-lg transition-opacity hover:opacity-90"
+                style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+          Apply
+        </button>
+      </div>
+      <p class="wireframe-text text-sm mt-2" style="color: var(--color-theme-tertiary);">
+        Have a gift card? <button class="underline hover:opacity-70" style="color: var(--color-theme-button);">Apply here</button>
+      </p>
+    </div>
+  )}
+
+  {/* Shipping Options */}
+  {showShippingOptions && !isCheckout && (
+    <div class="mb-6 p-4 wireframe-box doodle-border">
+      <h4 class="wireframe-heading text-base mb-3">Shipping Options</h4>
+      <div class="space-y-2">
+        <label class="flex items-center gap-3 cursor-pointer">
+          <input type="radio" name="shipping" checked class="accent-current" style="accent-color: var(--color-theme-button);" />
+          <div class="flex-1 flex justify-between">
+            <span class="wireframe-text">Standard Shipping (5-7 days)</span>
+            <span class="wireframe-text">$15.99</span>
+          </div>
+        </label>
+        <label class="flex items-center gap-3 cursor-pointer">
+          <input type="radio" name="shipping" class="accent-current" style="accent-color: var(--color-theme-button);" />
+          <div class="flex-1 flex justify-between">
+            <span class="wireframe-text">Express Shipping (2-3 days)</span>
+            <span class="wireframe-text">$24.99</span>
+          </div>
+        </label>
+        <label class="flex items-center gap-3 cursor-pointer">
+          <input type="radio" name="shipping" class="accent-current" style="accent-color: var(--color-theme-button);" />
+          <div class="flex-1 flex justify-between">
+            <span class="wireframe-text">Overnight Shipping</span>
+            <span class="wireframe-text">$39.99</span>
+          </div>
+        </label>
+      </div>
+    </div>
+  )}
+
+  {/* Price Breakdown */}
+  {showPriceBreakdown && (
+    <div class="space-y-3 pt-6" style="border-top: 1px solid var(--color-theme-stroke);">
+      <div class="flex justify-between">
+        <span class="wireframe-text">Subtotal ({cartItems.length} items)</span>
+        <span class="wireframe-text">${subtotal.toFixed(2)}</span>
+      </div>
+      
+      {savings > 0 && (
+        <div class="flex justify-between">
+          <span class="wireframe-text">Savings</span>
+          <span class="wireframe-text" style="color: var(--color-theme-button);">
+            -${savings.toFixed(2)}
+          </span>
+        </div>
+      )}
+      
+      <div class="flex justify-between">
+        <span class="wireframe-text">Shipping</span>
+        <span class="wireframe-text">${shipping.toFixed(2)}</span>
+      </div>
+      
+      <div class="flex justify-between">
+        <span class="wireframe-text">Tax</span>
+        <span class="wireframe-text">${tax.toFixed(2)}</span>
+      </div>
+      
+      <div class="flex justify-between pt-3" style="border-top: 1px solid var(--color-theme-stroke);">
+        <span class="wireframe-heading text-lg">Total</span>
+        <span class="wireframe-heading text-lg" style="color: var(--color-theme-button);">
+          ${total.toFixed(2)}
+        </span>
+      </div>
+    </div>
+  )}
+
+  {/* Action Buttons */}
+  <div class="mt-6 space-y-3">
+    {!isCheckout ? (
+      <>
+        <button class="w-full py-3 px-6 rounded-lg transition-opacity hover:opacity-90"
+                style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+          <span class="font-medium">Proceed to Checkout</span>
+        </button>
+        <button class="w-full py-3 px-6 rounded-lg wireframe-box doodle-border hover:opacity-80 transition-opacity">
+          <span class="wireframe-text">Continue Shopping</span>
+        </button>
+      </>
+    ) : (
+      <div class="flex gap-3">
+        <button class="flex-1 py-3 px-6 rounded-lg wireframe-box doodle-border hover:opacity-80 transition-opacity">
+          <span class="wireframe-text">Edit Cart</span>
+        </button>
+        <button class="flex-1 py-3 px-6 rounded-lg transition-opacity hover:opacity-90"
+                style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+          <span class="font-medium">Place Order</span>
+        </button>
+      </div>
+    )}
+  </div>
+
+  {/* Trust Badges */}
+  <div class="mt-6 pt-6 flex justify-center gap-4" style="border-top: 1px solid var(--color-theme-stroke);">
+    <div class="flex items-center gap-2">
+      <Icon name="bx:bx-shield-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+      <span class="wireframe-text text-sm">Secure checkout</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <Icon name="bx:bx-undo" class="w-5 h-5" style="color: var(--color-theme-button);" />
+      <span class="wireframe-text text-sm">30-day returns</span>
+    </div>
+  </div>
+</div>

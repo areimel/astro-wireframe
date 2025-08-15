@@ -1,0 +1,143 @@
+---
+export interface Props {
+  /** Project title */
+  title: string;
+  /** Project subtitle/tagline */
+  subtitle?: string;
+  /** Client name */
+  client: string;
+  /** Project timeline/duration */
+  timeline: string;
+  /** Project category/type */
+  category?: string;
+  /** Role or team on the project */
+  role?: string;
+  /** Project status */
+  status?: "Completed" | "In Progress" | "On Hold";
+  /** Hero image or background */
+  image?: {
+    src: string;
+    alt: string;
+  };
+  /** Custom classes */
+  class?: string;
+}
+
+const { 
+  title,
+  subtitle,
+  client,
+  timeline,
+  category,
+  role,
+  status = "Completed",
+  image,
+  class: className = ""
+} = Astro.props;
+
+import { Icon } from "astro-icon/components";
+---
+
+<section class={`wireframe-section py-16 lg:py-20 ${className}`}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Hero Content -->
+    <div class="grid lg:grid-cols-3 gap-12 items-start">
+      <!-- Main Content -->
+      <div class="lg:col-span-2">
+        {category && (
+          <div class="wireframe-text text-sm font-bold mb-4" style="color: var(--color-theme-secondary);">
+            {category}
+          </div>
+        )}
+        
+        <h1 class="wireframe-heading text-4xl lg:text-5xl xl:text-6xl mb-6">
+          {title}
+        </h1>
+        
+        {subtitle && (
+          <p class="wireframe-text text-xl lg:text-2xl mb-8 max-w-3xl">
+            {subtitle}
+          </p>
+        )}
+        
+        <!-- Project Meta -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <!-- Client -->
+          <div class="wireframe-box doodle-border p-4 text-center">
+            <Icon name="bx:bx-buildings" class="w-6 h-6 mx-auto mb-2" style="color: var(--color-theme-button);" />
+            <div class="wireframe-text text-sm font-bold mb-1" style="color: var(--color-theme-secondary);">
+              Client
+            </div>
+            <div class="wireframe-heading text-base">
+              {client}
+            </div>
+          </div>
+          
+          <!-- Timeline -->
+          <div class="wireframe-box doodle-border p-4 text-center">
+            <Icon name="bx:bx-calendar" class="w-6 h-6 mx-auto mb-2" style="color: var(--color-theme-button);" />
+            <div class="wireframe-text text-sm font-bold mb-1" style="color: var(--color-theme-secondary);">
+              Timeline
+            </div>
+            <div class="wireframe-heading text-base">
+              {timeline}
+            </div>
+          </div>
+          
+          <!-- Role -->
+          {role && (
+            <div class="wireframe-box doodle-border p-4 text-center">
+              <Icon name="bx:bx-user" class="w-6 h-6 mx-auto mb-2" style="color: var(--color-theme-button);" />
+              <div class="wireframe-text text-sm font-bold mb-1" style="color: var(--color-theme-secondary);">
+                Role
+              </div>
+              <div class="wireframe-heading text-base">
+                {role}
+              </div>
+            </div>
+          )}
+          
+          <!-- Status -->
+          <div class="wireframe-box doodle-border p-4 text-center">
+            <Icon name="bx:bx-check-circle" class="w-6 h-6 mx-auto mb-2" style="color: var(--color-theme-button);" />
+            <div class="wireframe-text text-sm font-bold mb-1" style="color: var(--color-theme-secondary);">
+              Status
+            </div>
+            <div class="wireframe-heading text-base">
+              {status}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Hero Image/Visual -->
+      <div class="lg:col-span-1">
+        {image ? (
+          <div class="wireframe-box doodle-border aspect-[4/3] bg-cover bg-center" 
+               style={`background-image: url('${image.src}');`}>
+            <div class="w-full h-full flex items-center justify-center theme-section-bg bg-opacity-90">
+              <div class="text-center p-6">
+                <Icon name="bx:bx-image" class="w-12 h-12 mx-auto mb-3" style="color: var(--color-theme-button);" />
+                <div class="wireframe-text text-sm">
+                  Project Visual
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div class="wireframe-box doodle-border aspect-[4/3] theme-quaternary-bg flex items-center justify-center">
+            <div class="text-center p-6">
+              <Icon name="bx:bx-image" class="w-12 h-12 mx-auto mb-3" style="color: var(--color-theme-button);" />
+              <div class="wireframe-heading text-lg mb-2">
+                Project Hero Image
+              </div>
+              <div class="wireframe-text text-sm">
+                Main project visual goes here
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

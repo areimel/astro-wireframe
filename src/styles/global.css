@@ -401,6 +401,10 @@
   --doodle-border-width: 2px;
 }
 
+.doodle a.theme-link-primary{
+  color: var(--color-theme-bg);
+}
+
 .doodle .border,
 .doodle-border {
   border-color: var(--color-theme-stroke) !important;

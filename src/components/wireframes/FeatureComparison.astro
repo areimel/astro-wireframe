@@ -1,0 +1,393 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Title for the comparison section */
+  title?: string;
+  /** Description for the comparison section */
+  description?: string;
+  /** Custom padding classes for the section */
+  padding?: string;
+  /** Custom classes for the section */
+  class?: string;
+  /** Background variant */
+  background?: "default" | "alternate";
+  /** Show all features by default or collapsed */
+  expandedByDefault?: boolean;
+  /** Number of plans to compare */
+  planCount?: number;
+}
+
+const { 
+  title = "Feature Comparison",
+  description = "Compare all features across our plans to find the perfect fit for your needs.",
+  padding = "py-16", 
+  class: className = "",
+  background = "default",
+  expandedByDefault = false,
+  planCount = 3
+} = Astro.props;
+
+const bgClass = background === "alternate" ? "wireframe-section-alt" : "wireframe-section";
+
+// Plan configurations
+const plans = [
+  {
+    name: "Starter",
+    price: "$9",
+    period: "/month",
+    popular: false
+  },
+  {
+    name: "Professional", 
+    price: "$29",
+    period: "/month",
+    popular: true
+  },
+  {
+    name: "Enterprise",
+    price: "$99", 
+    period: "/month",
+    popular: false
+  }
+].slice(0, planCount);
+
+// Feature categories
+const featureCategories = [
+  {
+    category: "Core Features",
+    icon: "bx:bx-cog",
+    features: [
+      {
+        name: "Projects",
+        tooltip: "Number of active projects you can manage",
+        values: ["3 projects", "Unlimited", "Unlimited"]
+      },
+      {
+        name: "Storage",
+        tooltip: "Total file storage capacity",
+        values: ["5GB", "100GB", "Unlimited"]
+      },
+      {
+        name: "Team Members",
+        tooltip: "Number of team members you can invite",
+        values: ["1 user", "10 users", "Unlimited"]
+      },
+      {
+        name: "File Uploads",
+        tooltip: "Maximum file size for uploads",
+        values: ["10MB", "100MB", "1GB"]
+      }
+    ]
+  },
+  {
+    category: "Collaboration",
+    icon: "bx:bx-group",
+    features: [
+      {
+        name: "Comments & Reviews",
+        tooltip: "Collaborative commenting on projects",
+        values: ["✓", "✓", "✓"]
+      },
+      {
+        name: "Real-time Editing",
+        tooltip: "Simultaneous editing by multiple users",
+        values: ["✗", "✓", "✓"]
+      },
+      {
+        name: "Version History",
+        tooltip: "Track changes and restore previous versions",
+        values: ["7 days", "30 days", "Unlimited"]
+      },
+      {
+        name: "Team Permissions",
+        tooltip: "Control access levels for team members",
+        values: ["Basic", "Advanced", "Enterprise"]
+      }
+    ]
+  },
+  {
+    category: "Advanced Features",
+    icon: "bx:bx-rocket",
+    features: [
+      {
+        name: "API Access",
+        tooltip: "Programmatic access to your data",
+        values: ["✗", "REST API", "REST + GraphQL"]
+      },
+      {
+        name: "Custom Integrations",
+        tooltip: "Connect with third-party tools",
+        values: ["✗", "5 integrations", "Unlimited"]
+      },
+      {
+        name: "Analytics Dashboard",
+        tooltip: "Detailed usage and performance analytics",
+        values: ["Basic", "Advanced", "Enterprise"]
+      },
+      {
+        name: "White Label",
+        tooltip: "Remove branding and customize interface",
+        values: ["✗", "✗", "✓"]
+      }
+    ]
+  },
+  {
+    category: "Support & Security",
+    icon: "bx:bx-shield-check",
+    features: [
+      {
+        name: "Support Channel",
+        tooltip: "Available support options",
+        values: ["Email", "Email + Chat", "24/7 Phone"]
+      },
+      {
+        name: "Response Time",
+        tooltip: "Typical support response time",
+        values: ["48 hours", "12 hours", "2 hours"]
+      },
+      {
+        name: "SSL Certificate",
+        tooltip: "Secure data transmission",
+        values: ["✓", "✓", "✓"]
+      },
+      {
+        name: "Data Backup",
+        tooltip: "Automated backup frequency",
+        values: ["Weekly", "Daily", "Real-time"]
+      },
+      {
+        name: "SLA Guarantee",
+        tooltip: "Service level agreement uptime guarantee", 
+        values: ["99%", "99.5%", "99.9%"]
+      }
+    ]
+  }
+];
+---
+
+<section class={`${bgClass} ${padding} ${className}`}>
+  <div class="container mx-auto px-4">
+    {title && (
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          {title}
+        </h2>
+        {description && (
+          <p class="wireframe-text text-xl max-w-3xl mx-auto">
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+
+    <!-- Mobile View: Plan Selector -->
+    <div class="lg:hidden mb-8">
+      <label class="block wireframe-text text-sm font-medium mb-2">Compare Plans:</label>
+      <div class="wireframe-box doodle-border rounded-lg">
+        <select class="w-full p-3 bg-transparent wireframe-text" id="mobile-plan-selector">
+          <option value="all">All Plans</option>
+          {plans.map((plan, index) => (
+            <option value={index}>{plan.name} - {plan.price}{plan.period}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    <!-- Desktop Comparison Table -->
+    <div class="wireframe-box doodle-border rounded-lg overflow-hidden">
+      
+      <!-- Plan Headers -->
+      <div class={`grid grid-cols-1 lg:grid-cols-${planCount + 1} gap-0`}>
+        <!-- Feature Column Header -->
+        <div class="p-6 border-b lg:border-b-0 lg:border-r" style="border-color: var(--color-theme-stroke);">
+          <h3 class="wireframe-heading text-lg font-medium">Features</h3>
+        </div>
+        
+        <!-- Plan Headers -->
+        {plans.map((plan, index) => (
+          <div class={`p-6 text-center relative ${index < plans.length - 1 ? 'border-b lg:border-b-0 lg:border-r' : 'border-b lg:border-b-0'}`} 
+               style="border-color: var(--color-theme-stroke);">
+            {plan.popular && (
+              <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span class="px-3 py-1 rounded-full text-xs font-medium"
+                      style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+                  Most Popular
+                </span>
+              </div>
+            )}
+            
+            <h3 class="wireframe-heading text-xl mb-2">{plan.name}</h3>
+            <div class="flex items-baseline justify-center gap-1">
+              <span class="wireframe-heading text-3xl" style="color: var(--color-theme-button);">{plan.price}</span>
+              <span class="wireframe-text">{plan.period}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Feature Categories -->
+      {featureCategories.map((category, categoryIndex) => (
+        <div class={`feature-category ${expandedByDefault ? 'expanded' : 'collapsed'}`} data-category={categoryIndex}>
+          
+          <!-- Category Header -->
+          <div class={`grid grid-cols-1 lg:grid-cols-${planCount + 1} gap-0 border-t cursor-pointer category-header`} 
+               style="border-color: var(--color-theme-stroke);">
+            <div class="p-4 flex items-center gap-3 lg:col-span-full">
+              <Icon name={category.icon} class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <h4 class="wireframe-heading text-lg font-medium">{category.category}</h4>
+              <Icon name="bx:bx-chevron-down" class="w-5 h-5 ml-auto transition-transform category-chevron" 
+                    style="color: var(--color-theme-tertiary);" />
+            </div>
+          </div>
+
+          <!-- Category Features -->
+          <div class="category-content" style="display: none;">
+            {category.features.map((feature) => (
+              <div class={`grid grid-cols-1 lg:grid-cols-${planCount + 1} gap-0 border-t`} 
+                   style="border-color: var(--color-theme-stroke);">
+                
+                <!-- Feature Name -->
+                <div class="p-4 lg:border-r" style="border-color: var(--color-theme-stroke);">
+                  <div class="flex items-center gap-2">
+                    <span class="wireframe-text font-medium">{feature.name}</span>
+                    {feature.tooltip && (
+                      <div class="group relative">
+                        <Icon name="bx:bx-info-circle" class="w-4 h-4 cursor-help" 
+                              style="color: var(--color-theme-tertiary);" />
+                        <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 rounded-lg text-xs wireframe-text opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 w-48"
+                             style="background-color: var(--color-theme-bg); border: 1px solid var(--color-theme-stroke);">
+                          {feature.tooltip}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <!-- Feature Values -->
+                {feature.values.map((value, valueIndex) => (
+                  <div class={`p-4 text-center ${valueIndex < feature.values.length - 1 ? 'lg:border-r' : ''}`}
+                       style="border-color: var(--color-theme-stroke);">
+                    {value === "✓" ? (
+                      <Icon name="bx:bx-check" class="w-5 h-5 mx-auto" style="color: var(--color-theme-button);" />
+                    ) : value === "✗" ? (
+                      <Icon name="bx:bx-x" class="w-5 h-5 mx-auto" style="color: var(--color-theme-tertiary);" />
+                    ) : (
+                      <span class="wireframe-text text-sm">{value}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Expand All Toggle -->
+    <div class="text-center mt-6">
+      <button id="expand-all-toggle" class="wireframe-text font-medium hover:opacity-80 transition-opacity" 
+              style="color: var(--color-theme-button);">
+        <Icon name="bx:bx-expand-alt" class="w-4 h-4 inline mr-2" />
+        <span class="toggle-text">{expandedByDefault ? 'Collapse All Categories' : 'Expand All Categories'}</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive JavaScript -->
+<script define:vars={{ expandedByDefault }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    const categories = document.querySelectorAll('.feature-category');
+    const expandToggle = document.getElementById('expand-all-toggle');
+    let allExpanded = expandedByDefault;
+
+    // Initialize categories
+    categories.forEach(category => {
+      const content = category.querySelector('.category-content');
+      const chevron = category.querySelector('.category-chevron');
+      
+      if (expandedByDefault) {
+        content.style.display = 'block';
+        chevron.style.transform = 'rotate(180deg)';
+        category.classList.add('expanded');
+      }
+    });
+
+    // Category toggle handlers
+    categories.forEach(category => {
+      const header = category.querySelector('.category-header');
+      const content = category.querySelector('.category-content');
+      const chevron = category.querySelector('.category-chevron');
+
+      header.addEventListener('click', function() {
+        const isExpanded = category.classList.contains('expanded');
+        
+        if (isExpanded) {
+          content.style.display = 'none';
+          chevron.style.transform = 'rotate(0deg)';
+          category.classList.remove('expanded');
+        } else {
+          content.style.display = 'block';
+          chevron.style.transform = 'rotate(180deg)';
+          category.classList.add('expanded');
+        }
+        
+        // Update expand all toggle state
+        const expandedCount = document.querySelectorAll('.feature-category.expanded').length;
+        allExpanded = expandedCount === categories.length;
+        updateExpandToggle();
+      });
+    });
+
+    // Expand all toggle handler
+    expandToggle.addEventListener('click', function() {
+      allExpanded = !allExpanded;
+      
+      categories.forEach(category => {
+        const content = category.querySelector('.category-content');
+        const chevron = category.querySelector('.category-chevron');
+        
+        if (allExpanded) {
+          content.style.display = 'block';
+          chevron.style.transform = 'rotate(180deg)';
+          category.classList.add('expanded');
+        } else {
+          content.style.display = 'none';
+          chevron.style.transform = 'rotate(0deg)';
+          category.classList.remove('expanded');
+        }
+      });
+      
+      updateExpandToggle();
+    });
+
+    function updateExpandToggle() {
+      const toggleText = expandToggle.querySelector('.toggle-text');
+      const toggleIcon = expandToggle.querySelector('[name*="expand"]');
+      
+      if (allExpanded) {
+        toggleText.textContent = 'Collapse All Categories';
+        toggleIcon.setAttribute('name', 'bx:bx-collapse-alt');
+      } else {
+        toggleText.textContent = 'Expand All Categories';
+        toggleIcon.setAttribute('name', 'bx:bx-expand-alt');
+      }
+    }
+  });
+</script>
+
+<style>
+  .category-header {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .category-header:hover {
+    background-color: var(--color-theme-quaternary);
+  }
+  
+  .category-chevron {
+    transition: transform 0.2s ease;
+  }
+</style>

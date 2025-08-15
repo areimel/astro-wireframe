@@ -1,0 +1,251 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Widget title */
+  title: string;
+  /** Chart type */
+  type?: "line" | "bar" | "pie" | "donut" | "area" | "scatter";
+  /** Widget size */
+  size?: "sm" | "md" | "lg" | "xl";
+  /** Custom classes */
+  class?: string;
+  /** Chart data period */
+  period?: string;
+  /** Show controls */
+  showControls?: boolean;
+  /** Chart color scheme */
+  colorScheme?: "primary" | "multi" | "gradient";
+  /** Loading state */
+  loading?: boolean;
+}
+
+const { 
+  title,
+  type = "line",
+  size = "md",
+  class: className = "",
+  period = "Last 30 days",
+  showControls = true,
+  colorScheme = "primary",
+  loading = false
+} = Astro.props;
+
+// Size classes
+const sizeClasses = {
+  sm: "h-48",
+  md: "h-64",
+  lg: "h-80",
+  xl: "h-96"
+};
+
+// Widget classes
+const widgetClasses = `
+  wireframe-box doodle-border p-6 ${className}
+`.trim();
+
+// Chart type icons
+const chartIcons = {
+  line: "bx:bx-line-chart",
+  bar: "bx:bx-bar-chart",
+  pie: "bx:bx-pie-chart",
+  donut: "bx:bx-donut-chart", 
+  area: "bx:bx-area",
+  scatter: "bx:bx-scatter-chart"
+};
+
+// Generate mock chart data based on type
+const generateChartElements = (chartType: string, scheme: string) => {
+  const colors = scheme === "primary" 
+    ? ["var(--color-theme-button)"]
+    : scheme === "multi" 
+      ? ["var(--color-theme-button)", "var(--color-theme-secondary)", "var(--color-theme-tertiary)"]
+      : ["var(--color-theme-button)", "var(--color-theme-secondary)"];
+
+  switch (chartType) {
+    case "line":
+    case "area":
+      return Array.from({ length: 20 }, (_, i) => ({
+        x: i * 5,
+        y: Math.random() * 60 + 20,
+        color: colors[0]
+      }));
+    case "bar":
+      return Array.from({ length: 8 }, (_, i) => ({
+        height: Math.random() * 70 + 10,
+        color: colors[i % colors.length]
+      }));
+    case "pie":
+    case "donut":
+      return [
+        { percentage: 40, color: colors[0] },
+        { percentage: 30, color: colors[1] || colors[0] },
+        { percentage: 20, color: colors[2] || colors[0] },
+        { percentage: 10, color: "var(--color-theme-quaternary)" }
+      ];
+    default:
+      return [];
+  }
+};
+
+const chartData = generateChartElements(type, colorScheme);
+---
+
+<div class={widgetClasses}>
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h3 class="wireframe-heading text-lg lg:text-xl mb-1">
+        {title}
+      </h3>
+      <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+        {period}
+      </p>
+    </div>
+    
+    {showControls && (
+      <div class="flex items-center gap-2">
+        <!-- Chart Type Selector -->
+        <button class="p-2 rounded-lg hover:opacity-80 transition-opacity" 
+                style="color: var(--color-theme-tertiary);">
+          <Icon name={chartIcons[type]} class="w-4 h-4" />
+        </button>
+        
+        <!-- Options Menu -->
+        <button class="p-2 rounded-lg hover:opacity-80 transition-opacity"
+                style="color: var(--color-theme-tertiary);">
+          <Icon name="bx:bx-dots-horizontal-rounded" class="w-4 h-4" />
+        </button>
+      </div>
+    )}
+  </div>
+
+  <!-- Chart Area -->
+  <div class={`relative ${sizeClasses[size]} wireframe-box doodle-border flex items-end justify-center p-4`}
+       style="background-color: var(--color-theme-quaternary);">
+    
+    {loading ? (
+      <!-- Loading State -->
+      <div class="flex items-center justify-center h-full">
+        <div class="animate-pulse flex flex-col items-center gap-2">
+          <Icon name="bx:bx-loader-alt" class="w-6 h-6 animate-spin" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+            Loading chart data...
+          </span>
+        </div>
+      </div>
+    ) : (
+      <!-- Chart Visualization -->
+      <div class="w-full h-full flex items-end justify-center">
+        {type === "line" || type === "area" ? (
+          <!-- Line/Area Chart -->
+          <div class="relative w-full h-full">
+            <svg class="w-full h-full" viewBox="0 0 200 100">
+              <!-- Grid Lines -->
+              <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--color-theme-stroke)" stroke-width="0.5" opacity="0.3"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+              
+              <!-- Chart Line -->
+              <polyline
+                fill={type === "area" ? "var(--color-theme-button)" : "none"}
+                stroke="var(--color-theme-button)"
+                stroke-width="3"
+                fill-opacity={type === "area" ? "0.2" : "0"}
+                points={chartData.map((point, i) => `${i * 10},${100 - point.y}`).join(' ')}
+              />
+              
+              <!-- Data Points -->
+              {chartData.map((point, i) => (
+                <circle 
+                  cx={i * 10} 
+                  cy={100 - point.y} 
+                  r="3" 
+                  fill="var(--color-theme-button)"
+                />
+              ))}
+            </svg>
+          </div>
+        ) : type === "bar" ? (
+          <!-- Bar Chart -->
+          <div class="flex items-end justify-center gap-2 h-full w-full px-4">
+            {chartData.map((bar, i) => (
+              <div 
+                class="flex-1 rounded-t-sm transition-all hover:opacity-80"
+                style={`
+                  background-color: ${bar.color};
+                  height: ${bar.height}%;
+                  min-height: 4px;
+                  opacity: 0.8;
+                `}
+              />
+            ))}
+          </div>
+        ) : (type === "pie" || type === "donut") ? (
+          <!-- Pie/Donut Chart -->
+          <div class="relative w-32 h-32">
+            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+              {chartData.map((slice, i) => {
+                const prevPercentage = chartData.slice(0, i).reduce((sum, s) => sum + s.percentage, 0);
+                const circumference = 2 * Math.PI * 30;
+                const strokeDasharray = `${(slice.percentage / 100) * circumference} ${circumference}`;
+                const strokeDashoffset = -((prevPercentage / 100) * circumference);
+                
+                return (
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="30"
+                    fill="none"
+                    stroke={slice.color}
+                    stroke-width={type === "donut" ? "12" : "60"}
+                    stroke-dasharray={strokeDasharray}
+                    stroke-dashoffset={strokeDashoffset}
+                    opacity="0.8"
+                  />
+                );
+              })}
+            </svg>
+            
+            {type === "donut" && (
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="wireframe-text text-xs font-medium">Total</span>
+              </div>
+            )}
+          </div>
+        ) : (
+          <!-- Default Chart Placeholder -->
+          <div class="text-center">
+            <Icon name={chartIcons[type]} class="w-12 h-12 mx-auto mb-2" style="color: var(--color-theme-button);" />
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+              {type.charAt(0).toUpperCase() + type.slice(1)} Chart
+            </p>
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+
+  <!-- Chart Legend/Summary -->
+  {(type === "pie" || type === "donut") && !loading && (
+    <div class="mt-4 grid grid-cols-2 gap-2">
+      {chartData.map((item, i) => (
+        <div class="flex items-center gap-2">
+          <div 
+            class="w-3 h-3 rounded-sm"
+            style={`background-color: ${item.color};`}
+          />
+          <span class="wireframe-text text-xs" style="color: var(--color-theme-card-text);">
+            {item.percentage}% Series {i + 1}
+          </span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <!-- Additional Content Slot -->
+  <slot />
+</div>

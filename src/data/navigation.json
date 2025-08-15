@@ -13,7 +13,14 @@
               { "title": "Split-Screen Layout", "path": "/wireframes/split-screen" },
               { "title": "Grid-Based Modular", "path": "/wireframes/modular" },
               { "title": "Product Showcase", "path": "/wireframes/showcase" },
-              { "title": "Storytelling Layout", "path": "/wireframes/storytelling" }
+              { "title": "Storytelling Layout", "path": "/wireframes/storytelling" },
+              { "title": "Job Posting", "path": "/wireframes/job-posting" },
+              { "title": "Classic Case Study", "path": "/wireframes/case-study-classic" },
+              { "title": "Visual Case Study", "path": "/wireframes/case-study-visual" },
+              { "title": "E-commerce Checkout", "path": "/wireframes/checkout" },
+              { "title": "SaaS Pricing", "path": "/wireframes/saas-pricing" },
+              { "title": "Product Listing", "path": "/wireframes/product-listing" },
+              { "title": "Dashboard", "path": "/wireframes/dashboard" }
             ]
           },
           { 
