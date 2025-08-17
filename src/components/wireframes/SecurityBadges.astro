@@ -40,7 +40,7 @@ const {
     {
       id: "ssl",
       name: "SSL Secured",
-      icon: "bx:bx-shield-check",
+      icon: "bx:bx-check-shield",
       description: "256-bit encryption protects your data",
       color: "var(--color-theme-button)"
     },
@@ -328,7 +328,7 @@ const starData = reviews ? generateStars(reviews.rating) : null;
   <div class="mt-8 text-center">
     <div class="wireframe-box doodle-border p-4" style="background-color: var(--color-theme-quaternary);">
       <div class="flex items-center justify-center gap-3 mb-2">
-        <Icon name="bx:bx-shield-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+        <Icon name="bx:bx-check-shield" class="w-5 h-5" style="color: var(--color-theme-button);" />
         <span class="wireframe-text font-medium">Your information is protected</span>
       </div>
       <p class={`wireframe-text ${config.description}`} style="color: var(--color-theme-tertiary);">

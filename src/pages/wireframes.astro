@@ -4,119 +4,10 @@ import Sectionhead from "@/components/sectionhead.astro";
 import Layout from "@/layouts/Layout.astro";
 import Link from "@/components/ui/link.astro";
 import { Icon } from "astro-icon/components";
+import WireFrameSearch from "@/components/WireFrameSearch.astro";
+import wireframeLayoutsData from "@/data/wireframe-layouts.json";
 
-const wireframeLayouts = [
-  {
-    title: "Classic Hero-Centric",
-    description: "Traditional SaaS landing page with prominent hero, features grid, social proof, and pricing.",
-    path: "/wireframes/classic",
-    icon: "bx:bx-layout",
-    category: "Traditional",
-    useCase: "SaaS Products, Service Businesses, Established Brands",
-    components: ["Hero Banner", "Feature Grid", "Testimonials", "Pricing Table"]
-  },
-  {
-    title: "Split-Screen Layout", 
-    description: "Dual-panel design with alternating content/media splits for visual balance and engagement.",
-    path: "/wireframes/split-screen",
-    icon: "bx:bx-columns",
-    category: "Creative",
-    useCase: "Creative Agencies, Portfolios, Product Showcases",
-    components: ["Split Sections", "Alternating Content", "Visual Placeholders"]
-  },
-  {
-    title: "Grid-Based Modular",
-    description: "Flexible card-based system with modular grid arrangements for diverse content types.",
-    path: "/wireframes/modular",
-    icon: "bx:bx-grid-alt",
-    category: "Flexible",
-    useCase: "Marketplaces, Dashboards, Multi-Product Companies", 
-    components: ["Grid Showcase", "Modular Cards", "Category Filters"]
-  },
-  {
-    title: "Horizontal Product Showcase",
-    description: "Wide sections with product carousels, galleries, and comparison tables for e-commerce.",
-    path: "/wireframes/showcase",
-    icon: "bx:bx-carousel",
-    category: "E-commerce",
-    useCase: "E-commerce, Product Launches, Tech Companies",
-    components: ["Product Carousel", "Comparison Table", "Gallery Grid"]
-  },
-  {
-    title: "Card-Based Storytelling",
-    description: "Sequential narrative cards with timeline elements for story-driven brand experiences.",
-    path: "/wireframes/storytelling", 
-    icon: "bx:bx-book-reader",
-    category: "Narrative",
-    useCase: "Startups, Brand Stories, Educational Content",
-    components: ["Story Cards", "Timeline Section", "Process Steps"]
-  },
-  {
-    title: "Job Posting",
-    description: "Professional job listing with clear information hierarchy and application flow.",
-    path: "/wireframes/job-posting",
-    icon: "bx:bx-briefcase",
-    category: "Professional",
-    useCase: "Job Boards, HR Platforms, Recruiting Agencies",
-    components: ["Job Card", "Requirements List", "Application Flow", "Company Info"]
-  },
-  {
-    title: "Classic Case Study",
-    description: "Traditional problem-solution-results case study format for detailed project showcase.",
-    path: "/wireframes/case-study-classic",
-    icon: "bx:bx-file-blank",
-    category: "Professional",
-    useCase: "UX/UI Designers, Agencies, Consultants",
-    components: ["Case Study Hero", "Results Metrics", "Project Timeline", "Process Steps"]
-  },
-  {
-    title: "Visual Case Study",
-    description: "Image-heavy case study with visual comparisons and design process showcase.",
-    path: "/wireframes/case-study-visual",
-    icon: "bx:bx-image",
-    category: "Creative",
-    useCase: "Design Teams, Creative Agencies, Portfolio Showcases",
-    components: ["Visual Hero", "Before/After Comparison", "Gallery Grid", "Timeline"]
-  },
-  {
-    title: "E-commerce Checkout",
-    description: "Multi-step checkout process with form validation and trust indicators.",
-    path: "/wireframes/checkout",
-    icon: "bx:bx-credit-card",
-    category: "E-commerce",
-    useCase: "Online Stores, E-commerce Platforms, Shopping Apps",
-    components: ["Checkout Progress", "Cart Summary", "Payment Methods", "Security Badges"]
-  },
-  {
-    title: "SaaS Pricing",
-    description: "Clean pricing comparison with interactive features and billing toggles.",
-    path: "/wireframes/saas-pricing",
-    icon: "bx:bx-dollar",
-    category: "Business",
-    useCase: "SaaS Companies, Subscription Services, Product Managers",
-    components: ["Pricing Table", "Feature Comparison", "Billing Toggle", "Calculator"]
-  },
-  {
-    title: "Product Listing",
-    description: "E-commerce product browse with advanced filtering and search capabilities.",
-    path: "/wireframes/product-listing",
-    icon: "bx:bx-grid",
-    category: "E-commerce",
-    useCase: "Online Retailers, Marketplaces, Catalog Sites",
-    components: ["Product Grid", "Filter Sidebar", "Search Bar", "Sort Controls"]
-  },
-  {
-    title: "Dashboard",
-    description: "Analytics dashboard with charts, metrics, and data tables for business intelligence.",
-    path: "/wireframes/dashboard",
-    icon: "bx:bx-bar-chart",
-    category: "Business",
-    useCase: "Analytics Platforms, Admin Panels, Business Intelligence",
-    components: ["Metric Cards", "Chart Widgets", "Data Table", "Activity Feed"]
-  }
-];
-
-const categories = [...new Set(wireframeLayouts.map(layout => layout.category))];
+const wireframeLayouts = wireframeLayoutsData.layouts;
 ---
 
 <Layout title="Wireframe Landing Page Layouts">
@@ -124,7 +15,7 @@ const categories = [...new Set(wireframeLayouts.map(layout => layout.category))]
     <Sectionhead>
       <Fragment slot="title">Wireframe Landing Page Layouts</Fragment>
       <Fragment slot="desc">
-        Explore 12 distinct wireframe-style landing page designs showcasing different layout approaches and use cases, from traditional SaaS layouts to modern e-commerce and dashboard patterns.
+        Explore {wireframeLayouts.length} distinct wireframe-style landing page designs showcasing different layout approaches and use cases. Use the search and filter tools to find the perfect layout for your project.
       </Fragment>
     </Sectionhead>
 
@@ -138,19 +29,22 @@ const categories = [...new Set(wireframeLayouts.map(layout => layout.category))]
       </p>
     </div>
 
-    <!-- Layout Categories -->
-    <div class="flex flex-wrap justify-center gap-4 mt-12">
-      {categories.map((category) => (
-        <div class="wireframe-box doodle-border px-4 py-2">
-          <span class="wireframe-text font-medium">{category}</span>
-        </div>
-      ))}
-    </div>
+    <!-- Main Content Layout -->
+    <div class="mt-16 md:flex md:gap-8">
+      <!-- Search & Filter Sidebar (Desktop) -->
+      <aside class="md:w-80 flex-shrink-0">
+        <WireFrameSearch layouts={wireframeLayouts} />
+      </aside>
 
-    <!-- Wireframe Layouts Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto max-w-6xl mt-16">
-      {wireframeLayouts.map((layout) => (
-        <div class="wireframe-box doodle-border p-6 hover:shadow-lg transition-shadow">
+      <!-- Wireframe Layouts Grid -->
+      <main class="flex-1 mt-8 md:mt-0">
+        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+          {wireframeLayouts.map((layout) => (
+            <div 
+              class="wireframe-box doodle-border p-6 hover:shadow-lg transition-shadow"
+              data-layout-path={layout.path}
+              data-layout-category={layout.category}
+            >
           <div class="flex items-center mb-4">
             <div class="p-2 rounded-full doodle mr-3" style="background-color: var(--color-theme-button);">
               <Icon name={layout.icon} class="w-6 h-6 text-white" />
@@ -201,8 +95,10 @@ const categories = [...new Set(wireframeLayouts.map(layout => layout.category))]
               <Icon name="bx:bx-link-external" class="w-4 h-4" />
             </Link>
           </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </main>
     </div>
 
     <!-- Design System Integration -->

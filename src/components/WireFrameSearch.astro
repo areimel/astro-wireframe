@@ -1,0 +1,412 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Wireframe layouts data */
+  layouts: Array<{
+    title: string;
+    description: string;
+    path: string;
+    icon: string;
+    category: string;
+    useCase: string;
+    components: string[];
+  }>;
+  /** Custom classes */
+  class?: string;
+}
+
+const { layouts, class: className = "" } = Astro.props;
+
+// Extract unique categories from layouts
+const categories = [...new Set(layouts.map(layout => layout.category))];
+---
+
+<!-- Mobile Toggle Button (visible on mobile only) -->
+<div class="wireframe-search-mobile fixed bottom-4 right-4 z-50 md:hidden">
+  <button 
+    id="mobile-search-toggle"
+    class="wireframe-box doodle-border p-4 shadow-lg hover:shadow-xl transition-all"
+    style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);"
+    title="Search & Filter"
+  >
+    <Icon name="bx:bx-search" class="w-6 h-6" />
+  </button>
+</div>
+
+<!-- Mobile Search Panel (slides up from bottom) -->
+<div 
+  id="mobile-search-panel"
+  class="wireframe-search-panel fixed inset-x-0 bottom-0 z-40 md:hidden transform translate-y-full transition-transform duration-300 ease-in-out"
+  style="background-color: var(--color-theme-card-bg);"
+>
+  <div class="wireframe-box border-t-2 rounded-t-2xl p-6 max-h-[80vh] overflow-y-auto" style="border-color: var(--color-theme-stroke);">
+    <!-- Mobile Header -->
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="wireframe-heading text-xl">Search & Filter</h3>
+      <button 
+        id="mobile-search-close"
+        class="p-2 hover:opacity-70 transition-opacity"
+      >
+        <Icon name="bx:bx-x" class="w-6 h-6" style="color: var(--color-theme-tertiary);" />
+      </button>
+    </div>
+
+    <!-- Mobile Search & Filters Content -->
+    <div class="space-y-6">
+      <!-- Search Input -->
+      <div>
+        <label class="wireframe-heading text-sm mb-2 block">Search Layouts</label>
+        <div class="relative">
+          <input 
+            type="text"
+            id="mobile-search-input"
+            placeholder="Search wireframes..."
+            class="w-full p-3 pl-10 wireframe-box doodle-border wireframe-text"
+            style="background-color: var(--color-theme-bg);"
+          />
+          <Icon name="bx:bx-search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style="color: var(--color-theme-tertiary);" />
+          <button 
+            id="mobile-clear-search"
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 hover:opacity-70 transition-opacity hidden"
+          >
+            <Icon name="bx:bx-x" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filters -->
+      <div>
+        <label class="wireframe-heading text-sm mb-3 block">Categories</label>
+        <div class="flex flex-wrap gap-2">
+          <button 
+            class="category-filter px-3 py-2 text-sm rounded-lg wireframe-box doodle-border hover:opacity-80 transition-all active"
+            data-category="all"
+            style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);"
+          >
+            All Categories
+          </button>
+          {categories.map((category) => (
+            <button 
+              class="category-filter px-3 py-2 text-sm rounded-lg wireframe-box doodle-border hover:opacity-80 transition-all"
+              data-category={category}
+            >
+              <span class="wireframe-text">{category}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Results Counter -->
+      <div class="pt-4 border-t" style="border-color: var(--color-theme-stroke);">
+        <p id="mobile-results-counter" class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+          Showing {layouts.length} layouts
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Desktop Sidebar (visible on desktop only) -->
+<div class={`wireframe-search-sidebar hidden md:block sticky top-8 ${className}`}>
+  <div class="wireframe-box doodle-border p-6 w-80">
+    <!-- Desktop Header -->
+    <div class="flex items-center gap-3 mb-6">
+      <Icon name="bx:bx-search" class="w-6 h-6" style="color: var(--color-theme-button);" />
+      <h3 class="wireframe-heading text-xl">Search & Filter</h3>
+    </div>
+
+    <div class="space-y-6">
+      <!-- Search Input -->
+      <div>
+        <label class="wireframe-heading text-sm mb-2 block">Search Layouts</label>
+        <div class="relative">
+          <input 
+            type="text"
+            id="desktop-search-input"
+            placeholder="Search wireframes..."
+            class="w-full p-3 pl-10 wireframe-box doodle-border wireframe-text"
+            style="background-color: var(--color-theme-bg);"
+          />
+          <Icon name="bx:bx-search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style="color: var(--color-theme-tertiary);" />
+          <button 
+            id="desktop-clear-search"
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 hover:opacity-70 transition-opacity hidden"
+          >
+            <Icon name="bx:bx-x" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filters -->
+      <div>
+        <label class="wireframe-heading text-sm mb-3 block">Categories</label>
+        <div class="space-y-2">
+          <button 
+            class="category-filter w-full text-left px-3 py-2 text-sm rounded-lg wireframe-box doodle-border hover:opacity-80 transition-all active"
+            data-category="all"
+            style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);"
+          >
+            All Categories ({layouts.length})
+          </button>
+          {categories.map((category) => {
+            const count = layouts.filter(layout => layout.category === category).length;
+            return (
+              <button 
+                class="category-filter w-full text-left px-3 py-2 text-sm rounded-lg wireframe-box doodle-border hover:opacity-80 transition-all"
+                data-category={category}
+              >
+                <span class="wireframe-text">{category} ({count})</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Clear Filters -->
+      <div class="pt-4 border-t" style="border-color: var(--color-theme-stroke);">
+        <button 
+          id="clear-filters"
+          class="w-full px-4 py-2 text-sm rounded-lg transition-opacity hover:opacity-80"
+          style="background-color: var(--color-theme-quaternary); color: var(--color-theme-paragraph);"
+        >
+          Clear All Filters
+        </button>
+      </div>
+
+      <!-- Results Counter -->
+      <div>
+        <p id="desktop-results-counter" class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+          Showing {layouts.length} layouts
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Search & Filter JavaScript -->
+<script>
+  interface WireframeLayout {
+    title: string;
+    description: string;
+    path: string;
+    icon: string;
+    category: string;
+    useCase: string;
+    components: string[];
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get layouts data from the page
+    const layoutsData = JSON.parse(document.getElementById('wireframe-layouts-data')?.textContent || '[]');
+    
+    let currentSearchTerm = '';
+    let currentCategory = 'all';
+
+    // Mobile panel controls
+    const mobileToggle = document.getElementById('mobile-search-toggle');
+    const mobilePanel = document.getElementById('mobile-search-panel');
+    const mobileClose = document.getElementById('mobile-search-close');
+
+    // Search inputs
+    const mobileSearchInput = document.getElementById('mobile-search-input') as HTMLInputElement;
+    const desktopSearchInput = document.getElementById('desktop-search-input') as HTMLInputElement;
+
+    // Clear search buttons
+    const mobileClearSearch = document.getElementById('mobile-clear-search');
+    const desktopClearSearch = document.getElementById('desktop-clear-search');
+
+    // Results counters
+    const mobileResultsCounter = document.getElementById('mobile-results-counter');
+    const desktopResultsCounter = document.getElementById('desktop-results-counter');
+
+    // Category filter buttons
+    const categoryFilters = document.querySelectorAll('.category-filter');
+
+    // Clear filters button
+    const clearFiltersButton = document.getElementById('clear-filters');
+
+    // Mobile panel toggle
+    mobileToggle?.addEventListener('click', () => {
+      mobilePanel?.classList.remove('translate-y-full');
+      document.body.style.overflow = 'hidden';
+    });
+
+    mobileClose?.addEventListener('click', closeMobilePanel);
+
+    function closeMobilePanel() {
+      mobilePanel?.classList.add('translate-y-full');
+      document.body.style.overflow = '';
+    }
+
+    // Sync search inputs
+    function syncSearchInputs(value: string) {
+      if (mobileSearchInput) mobileSearchInput.value = value;
+      if (desktopSearchInput) desktopSearchInput.value = value;
+      
+      // Show/hide clear buttons
+      const showClear = value.length > 0;
+      mobileClearSearch?.classList.toggle('hidden', !showClear);
+      desktopClearSearch?.classList.toggle('hidden', !showClear);
+    }
+
+    // Clear search
+    function clearSearch() {
+      currentSearchTerm = '';
+      syncSearchInputs('');
+      filterLayouts();
+    }
+
+    // Search input handlers
+    mobileSearchInput?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLInputElement).value;
+      currentSearchTerm = value;
+      syncSearchInputs(value);
+      filterLayouts();
+    });
+
+    desktopSearchInput?.addEventListener('input', (e) => {
+      const value = (e.target as HTMLInputElement).value;
+      currentSearchTerm = value;
+      syncSearchInputs(value);
+      filterLayouts();
+    });
+
+    // Clear search button handlers
+    mobileClearSearch?.addEventListener('click', clearSearch);
+    desktopClearSearch?.addEventListener('click', clearSearch);
+
+    // Category filter handlers
+    categoryFilters.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.getAttribute('data-category');
+        if (category) {
+          currentCategory = category;
+          
+          // Update active states
+          categoryFilters.forEach(btn => {
+            btn.classList.remove('active');
+            btn.style.backgroundColor = '';
+            btn.style.color = '';
+          });
+          
+          button.classList.add('active');
+          button.style.backgroundColor = 'var(--color-theme-button)';
+          button.style.color = 'var(--color-theme-button-text)';
+          
+          filterLayouts();
+          closeMobilePanel();
+        }
+      });
+    });
+
+    // Clear filters handler
+    clearFiltersButton?.addEventListener('click', () => {
+      currentSearchTerm = '';
+      currentCategory = 'all';
+      syncSearchInputs('');
+      
+      // Reset category filters
+      categoryFilters.forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.backgroundColor = '';
+        btn.style.color = '';
+      });
+      
+      // Set "All Categories" as active
+      const allCategoryButton = document.querySelector('[data-category="all"]');
+      if (allCategoryButton) {
+        allCategoryButton.classList.add('active');
+        (allCategoryButton as HTMLElement).style.backgroundColor = 'var(--color-theme-button)';
+        (allCategoryButton as HTMLElement).style.color = 'var(--color-theme-button-text)';
+      }
+      
+      filterLayouts();
+    });
+
+    // Simple fuzzy search function
+    function fuzzySearch(searchTerm: string, layouts: WireframeLayout[]): WireframeLayout[] {
+      if (!searchTerm.trim()) return layouts;
+      
+      const term = searchTerm.toLowerCase();
+      
+      return layouts.filter(layout => {
+        // Search in title, description, useCase, and components
+        const searchText = [
+          layout.title,
+          layout.description,
+          layout.useCase,
+          ...layout.components
+        ].join(' ').toLowerCase();
+        
+        // Simple substring matching for now - could be enhanced with scoring
+        return searchText.includes(term);
+      });
+    }
+
+    // Filter layouts function
+    function filterLayouts() {
+      let filteredLayouts = layoutsData;
+      
+      // Apply category filter
+      if (currentCategory && currentCategory !== 'all') {
+        filteredLayouts = filteredLayouts.filter((layout: WireframeLayout) => 
+          layout.category === currentCategory
+        );
+      }
+      
+      // Apply search filter
+      if (currentSearchTerm) {
+        filteredLayouts = fuzzySearch(currentSearchTerm, filteredLayouts);
+      }
+      
+      // Update results counter
+      updateResultsCounter(filteredLayouts.length);
+      
+      // Hide/show layout cards
+      updateLayoutDisplay(filteredLayouts);
+    }
+
+    // Update results counter
+    function updateResultsCounter(count: number) {
+      const text = `Showing ${count} layout${count !== 1 ? 's' : ''}`;
+      if (mobileResultsCounter) mobileResultsCounter.textContent = text;
+      if (desktopResultsCounter) desktopResultsCounter.textContent = text;
+    }
+
+    // Update layout display
+    function updateLayoutDisplay(filteredLayouts: WireframeLayout[]) {
+      const layoutCards = document.querySelectorAll('[data-layout-path]');
+      
+      layoutCards.forEach(card => {
+        const path = card.getAttribute('data-layout-path');
+        const isVisible = filteredLayouts.some(layout => layout.path === path);
+        
+        if (isVisible) {
+          (card as HTMLElement).style.display = '';
+          card.classList.remove('hidden');
+        } else {
+          (card as HTMLElement).style.display = 'none';
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Close mobile panel on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobilePanel();
+      }
+    });
+
+    // Close mobile panel on backdrop click
+    mobilePanel?.addEventListener('click', (e) => {
+      if (e.target === mobilePanel) {
+        closeMobilePanel();
+      }
+    });
+  });
+</script>
+
+<!-- Hidden data element for JavaScript -->
+<script id="wireframe-layouts-data" type="application/json" set:html={JSON.stringify(layouts)}></script>
