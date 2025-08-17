@@ -35,6 +35,7 @@ This is an Astroship template - a SAAS/startup website template built with Astro
 - **TypeScript** - Type safety with Astro's base tsconfig
 - **Content Collections** - Structured content management for blog posts and team members
 - **MDX** - Markdown with JSX support for blog content
+- **Astro Icon** - Icon system with Box Icons (bx), Unicons (uil), and Simple Icons libraries
 
 ### Project Structure
 - `src/pages/` - File-based routing (`.astro`, `.md` files)
@@ -238,19 +239,39 @@ Visit `/styleguide` for comprehensive design system documentation including:
 
 ### Icon System Guidelines
 
-**Prefer bx (Box Icons) for consistency:**
-- Use `bx:bx-*` for regular icons
-- Use `bx:bxs-*` for solid variants  
-- Use `bx:bxl-*` for brand/logo icons
-- Always apply theme colors via CSS custom properties
+## ⚠️ CRITICAL: Icon Validation Rules
+
+**MANDATORY: Always check the approved icons list before using ANY icon:**
+
+1. **Before using any icon, check `/project_docs/approved-icons.md`**
+2. **ONLY use icons from the approved whitelist**
+3. **NEVER use icons not on the approved list** - they may not exist and will cause build failures
+
+**FORBIDDEN ICONS that will break the build:**
+- ❌ `bx:bx-shield-check` (does not exist - use `bx:bx-check-shield` instead)
+- ❌ Any icon not listed in `/project_docs/approved-icons.md`
+
+**Icon Library Priority Order:**
+1. **bx:** icons (Box Icons - primary library, most comprehensive)
+2. **uil:** icons (Unicons - secondary, for specific use cases)
+3. **simple-icons:** (brand logos only)
 
 **CRITICAL: Icon Component Usage Rules**
+- ✅ ALWAYS check `/project_docs/approved-icons.md` before using any icon
 - ✅ ALWAYS use static Icon components: `<Icon name="bx:bx-star" class="w-6 h-6" />`
 - ❌ NEVER use Icon components inside `.map()` calls: `{items.map(item => <Icon name={item.icon} />)}`
 - ❌ NEVER render Icons via function calls or dynamic rendering
 - ✅ Convert any dynamic icon rendering to static individual Icon components
 - ✅ Always put `name` attribute first, then `class` attribute: `<Icon name="..." class="..." />`
 - ❌ Wrong attribute order will cause build failures: `<Icon class="..." name="..." />`
+- ✅ Always apply theme colors via CSS custom properties: `style="color: var(--color-theme-button);"`
+
+**Adding New Icons:**
+1. Search Box Icons library first at [boxicons.com](https://boxicons.com)
+2. Verify the exact icon name exists
+3. Test the icon in a component
+4. Add to `/project_docs/approved-icons.md` whitelist
+5. Document the use case
 
 ### Component Development
 
