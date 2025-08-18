@@ -1,0 +1,310 @@
+---
+export interface Props {
+  /** Company name */
+  company: string;
+  /** Company logo */
+  logo?: {
+    src: string;
+    alt: string;
+  };
+  /** Company description */
+  description: string;
+  /** Company details */
+  details: {
+    industry?: string;
+    size?: string;
+    founded?: string;
+    location?: string;
+    website?: string;
+    employees?: string;
+    funding?: string;
+    type?: string;
+  };
+  /** Company stats/metrics */
+  stats?: Array<{
+    label: string;
+    value: string;
+    icon?: string;
+  }>;
+  /** Company benefits/perks */
+  benefits?: string[];
+  /** Company culture highlights */
+  culture?: string[];
+  /** Contact information */
+  contact?: {
+    email?: string;
+    phone?: string;
+    address?: string;
+  };
+  /** Social media links */
+  social?: {
+    linkedin?: string;
+    twitter?: string;
+    facebook?: string;
+    instagram?: string;
+  };
+  /** Display as sidebar or full section */
+  layout?: "sidebar" | "full";
+  /** Custom classes */
+  class?: string;
+}
+
+const { 
+  company,
+  logo,
+  description,
+  details,
+  stats = [],
+  benefits = [],
+  culture = [],
+  contact,
+  social,
+  layout = "sidebar",
+  class: className = ""
+} = Astro.props;
+
+import { Icon } from "astro-icon/components";
+---
+
+<div class={`wireframe-box doodle-border ${layout === 'full' ? 'p-8' : 'p-6'} ${className}`}>
+  <!-- Company Header -->
+  <div class="text-center mb-6">
+    <!-- Company Logo -->
+    {logo ? (
+      <div class="wireframe-box doodle-border w-20 h-20 mx-auto mb-4 bg-cover bg-center rounded-lg" 
+           style={`background-image: url('${logo.src}');`}>
+        <div class="w-full h-full flex items-center justify-center theme-section-bg bg-opacity-90 rounded-lg">
+          <Icon name="bx:bx-buildings" class="w-8 h-8" style="color: var(--color-theme-button);" />
+        </div>
+      </div>
+    ) : (
+      <div class="wireframe-box doodle-border w-20 h-20 mx-auto mb-4 theme-quaternary-bg flex items-center justify-center rounded-lg">
+        <Icon name="bx:bx-buildings" class="w-8 h-8" style="color: var(--color-theme-button);" />
+      </div>
+    )}
+    
+    <!-- Company Name -->
+    <h2 class="wireframe-heading text-2xl lg:text-3xl mb-3">
+      {company}
+    </h2>
+    
+    <!-- Company Description -->
+    <p class="wireframe-text text-sm">
+      {description}
+    </p>
+  </div>
+
+  <!-- Company Details -->
+  <div class="mb-6">
+    <h3 class="wireframe-heading text-lg mb-4">Company Details</h3>
+    <div class="space-y-3">
+      {details.industry && (
+        <div class="flex items-center gap-3">
+          <Icon name="bx:bx-briefcase-alt" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+          <div>
+            <span class="wireframe-text text-sm font-bold">Industry: </span>
+            <span class="wireframe-text text-sm">{details.industry}</span>
+          </div>
+        </div>
+      )}
+      
+      {details.size && (
+        <div class="flex items-center gap-3">
+          <Icon name="bx:bx-group" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+          <div>
+            <span class="wireframe-text text-sm font-bold">Size: </span>
+            <span class="wireframe-text text-sm">{details.size}</span>
+          </div>
+        </div>
+      )}
+      
+      {details.founded && (
+        <div class="flex items-center gap-3">
+          <Icon name="bx:bx-calendar" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+          <div>
+            <span class="wireframe-text text-sm font-bold">Founded: </span>
+            <span class="wireframe-text text-sm">{details.founded}</span>
+          </div>
+        </div>
+      )}
+      
+      {details.location && (
+        <div class="flex items-center gap-3">
+          <Icon name="bx:bx-map" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+          <div>
+            <span class="wireframe-text text-sm font-bold">Location: </span>
+            <span class="wireframe-text text-sm">{details.location}</span>
+          </div>
+        </div>
+      )}
+      
+      {details.website && (
+        <div class="flex items-center gap-3">
+          <Icon name="bx:bx-globe" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+          <div>
+            <span class="wireframe-text text-sm font-bold">Website: </span>
+            <a href={details.website} class="theme-link text-sm" target="_blank" rel="noopener">
+              {details.website.replace(/^https?:\/\//, '')}
+            </a>
+          </div>
+        </div>
+      )}
+      
+      {details.type && (
+        <div class="flex items-center gap-3">
+          <Icon name="bx:bx-building" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+          <div>
+            <span class="wireframe-text text-sm font-bold">Type: </span>
+            <span class="wireframe-text text-sm">{details.type}</span>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Company Stats -->
+  {stats.length > 0 && (
+    <div class="mb-6">
+      <h3 class="wireframe-heading text-lg mb-4">Quick Stats</h3>
+      <div class="grid grid-cols-2 gap-3">
+        {stats.map((stat) => (
+          <div class="wireframe-box doodle-border p-3 text-center">
+            {stat.icon && (
+              <Icon name={stat.icon} class="w-5 h-5 mx-auto mb-2" style="color: var(--color-theme-button);" />
+            )}
+            <div class="wireframe-text text-lg font-bold" style="color: var(--color-theme-button);">
+              {stat.value}
+            </div>
+            <div class="wireframe-text text-xs">
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- Benefits -->
+  {benefits.length > 0 && (
+    <div class="mb-6">
+      <h3 class="wireframe-heading text-lg mb-4">Benefits & Perks</h3>
+      <div class="space-y-2">
+        {benefits.slice(0, 5).map((benefit) => (
+          <div class="flex items-start gap-2">
+            <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+            <span class="wireframe-text text-sm">{benefit}</span>
+          </div>
+        ))}
+        {benefits.length > 5 && (
+          <div class="wireframe-text text-sm opacity-75">
+            +{benefits.length - 5} more benefits
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+
+  <!-- Culture -->
+  {culture.length > 0 && (
+    <div class="mb-6">
+      <h3 class="wireframe-heading text-lg mb-4">Culture & Values</h3>
+      <div class="space-y-2">
+        {culture.slice(0, 4).map((item) => (
+          <div class="flex items-start gap-2">
+            <Icon name="bx:bx-heart" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+            <span class="wireframe-text text-sm">{item}</span>
+          </div>
+        ))}
+        {culture.length > 4 && (
+          <div class="wireframe-text text-sm opacity-75">
+            +{culture.length - 4} more values
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+
+  <!-- Contact Information -->
+  {contact && (
+    <div class="mb-6">
+      <h3 class="wireframe-heading text-lg mb-4">Contact Info</h3>
+      <div class="space-y-2">
+        {contact.email && (
+          <div class="flex items-center gap-2">
+            <Icon name="bx:bx-envelope" class="w-4 h-4" style="color: var(--color-theme-secondary);" />
+            <a href={`mailto:${contact.email}`} class="theme-link text-sm">
+              {contact.email}
+            </a>
+          </div>
+        )}
+        
+        {contact.phone && (
+          <div class="flex items-center gap-2">
+            <Icon name="bx:bx-phone" class="w-4 h-4" style="color: var(--color-theme-secondary);" />
+            <a href={`tel:${contact.phone}`} class="theme-link text-sm">
+              {contact.phone}
+            </a>
+          </div>
+        )}
+        
+        {contact.address && (
+          <div class="flex items-start gap-2">
+            <Icon name="bx:bx-map-pin" class="w-4 h-4 mt-0.5" style="color: var(--color-theme-secondary);" />
+            <span class="wireframe-text text-sm">{contact.address}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+
+  <!-- Social Media -->
+  {social && Object.keys(social).length > 0 && (
+    <div class="mb-6">
+      <h3 class="wireframe-heading text-lg mb-4">Follow Us</h3>
+      <div class="flex gap-3">
+        {social.linkedin && (
+          <a href={social.linkedin} class="wireframe-box doodle-border w-10 h-10 flex items-center justify-center rounded-lg hover:scale-105 transition-transform" 
+             target="_blank" rel="noopener">
+            <Icon name="bx:bxl-linkedin" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          </a>
+        )}
+        
+        {social.twitter && (
+          <a href={social.twitter} class="wireframe-box doodle-border w-10 h-10 flex items-center justify-center rounded-lg hover:scale-105 transition-transform" 
+             target="_blank" rel="noopener">
+            <Icon name="bx:bxl-twitter" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          </a>
+        )}
+        
+        {social.facebook && (
+          <a href={social.facebook} class="wireframe-box doodle-border w-10 h-10 flex items-center justify-center rounded-lg hover:scale-105 transition-transform" 
+             target="_blank" rel="noopener">
+            <Icon name="bx:bxl-facebook" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          </a>
+        )}
+        
+        {social.instagram && (
+          <a href={social.instagram} class="wireframe-box doodle-border w-10 h-10 flex items-center justify-center rounded-lg hover:scale-105 transition-transform" 
+             target="_blank" rel="noopener">
+            <Icon name="bx:bxl-instagram" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          </a>
+        )}
+      </div>
+    </div>
+  )}
+
+  <!-- Action Buttons -->
+  <div class="space-y-3">
+    <button class="theme-button-primary w-full py-3 rounded-lg">
+      View All Jobs
+    </button>
+    <button class="theme-button-outline w-full py-3 rounded-lg">
+      Follow Company
+    </button>
+    {layout === 'full' && (
+      <button class="theme-button-outline w-full py-3 rounded-lg">
+        Visit Website
+      </button>
+    )}
+  </div>
+</div>

@@ -1,0 +1,74 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  items: Array<{
+    year?: string;
+    title: string;
+    content: string;
+    icon?: string;
+    milestone?: boolean;
+  }>;
+}
+
+const { title, description, items } = Astro.props;
+---
+
+<section class="wireframe-section py-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+        {title}
+      </h2>
+      {description && (
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          {description}
+        </p>
+      )}
+    </div>
+
+    <div class="relative">
+      <!-- Timeline Line -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full" 
+           style="background-color: var(--color-theme-stroke);"></div>
+
+      <div class="space-y-12">
+        {items.map((item, index) => (
+          <div class={`relative flex items-center ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+            <!-- Timeline Node -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full border-4" 
+                 style={`background-color: var(--color-theme-card-bg); border-color: ${item.milestone ? 'var(--color-theme-button)' : 'var(--color-theme-stroke)'};`}></div>
+            
+            <!-- Content Card -->
+            <div class={`w-full md:w-5/12 ${index % 2 === 0 ? 'pr-8 md:pr-16' : 'pl-8 md:pl-16'}`}>
+              <div class="wireframe-box doodle-border p-6">
+                {item.year && (
+                  <div class="wireframe-text text-sm font-bold mb-2" style="color: var(--color-theme-secondary);">
+                    {item.year}
+                  </div>
+                )}
+                
+                <div class="flex items-start gap-3">
+                  {item.icon && (
+                    <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span class="wireframe-text text-lg">{item.icon}</span>
+                    </div>
+                  )}
+                  
+                  <div class="flex-1">
+                    <h3 class="wireframe-heading text-lg lg:text-xl mb-3">
+                      {item.title}
+                    </h3>
+                    <p class="wireframe-text">
+                      {item.content}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

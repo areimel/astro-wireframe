@@ -1,0 +1,279 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Sidebar title/brand */
+  title?: string;
+  /** Navigation menu items */
+  menuItems?: Array<{
+    label: string;
+    icon: string;
+    href?: string;
+    active?: boolean;
+    badge?: string;
+    children?: Array<{
+      label: string;
+      href?: string;
+      active?: boolean;
+    }>;
+  }>;
+  /** Filter sections */
+  filterSections?: Array<{
+    title: string;
+    items: Array<{
+      label: string;
+      count?: number;
+      active?: boolean;
+    }>;
+  }>;
+  /** Show user profile section */
+  showProfile?: boolean;
+  /** Collapsible on mobile */
+  collapsible?: boolean;
+  /** Custom classes */
+  class?: string;
+  /** Sidebar width variant */
+  width?: "sm" | "md" | "lg";
+}
+
+const { 
+  title = "Dashboard",
+  menuItems = [],
+  filterSections = [],
+  showProfile = true,
+  collapsible = true,
+  class: className = "",
+  width = "md"
+} = Astro.props;
+
+// Default menu items if none provided
+const defaultMenuItems = [
+  { 
+    label: "Overview", 
+    icon: "bx:bx-home", 
+    href: "#", 
+    active: true 
+  },
+  { 
+    label: "Analytics", 
+    icon: "bx:bx-bar-chart-alt-2", 
+    href: "#",
+    badge: "New"
+  },
+  { 
+    label: "Reports", 
+    icon: "bx:bx-file", 
+    href: "#",
+    children: [
+      { label: "Sales Reports", href: "#" },
+      { label: "User Reports", href: "#", active: true },
+      { label: "Performance", href: "#" }
+    ]
+  },
+  { 
+    label: "Users", 
+    icon: "bx:bx-user", 
+    href: "#"
+  },
+  { 
+    label: "Settings", 
+    icon: "bx:bx-cog", 
+    href: "#"
+  },
+  { 
+    label: "Support", 
+    icon: "bx:bx-support", 
+    href: "#",
+    badge: "3"
+  }
+];
+
+// Default filter sections if none provided
+const defaultFilterSections = [
+  {
+    title: "Date Range",
+    items: [
+      { label: "Today", count: 45, active: true },
+      { label: "This Week", count: 312 },
+      { label: "This Month", count: 1205 },
+      { label: "This Year", count: 15678 }
+    ]
+  },
+  {
+    title: "Status",
+    items: [
+      { label: "Active", count: 89, active: true },
+      { label: "Pending", count: 23 },
+      { label: "Completed", count: 156 },
+      { label: "Cancelled", count: 12 }
+    ]
+  },
+  {
+    title: "Categories",
+    items: [
+      { label: "Projects", count: 45 },
+      { label: "Tasks", count: 78 },
+      { label: "Events", count: 23 },
+      { label: "Notes", count: 34 }
+    ]
+  }
+];
+
+const sidebarMenuItems = menuItems.length > 0 ? menuItems : defaultMenuItems;
+const sidebarFilters = filterSections.length > 0 ? filterSections : defaultFilterSections;
+
+// Width classes
+const widthClasses = {
+  sm: "w-56",
+  md: "w-64", 
+  lg: "w-72"
+};
+
+const sidebarClasses = `
+  wireframe-box doodle-border ${widthClasses[width]} ${className}
+  flex flex-col h-full min-h-screen
+`.trim();
+---
+
+<aside class={sidebarClasses}>
+  <!-- Sidebar Header -->
+  <div class="p-6 border-b" style="border-color: var(--color-theme-stroke);">
+    <div class="flex items-center gap-3">
+      <div class="wireframe-box doodle-border w-10 h-10 flex items-center justify-center">
+        <Icon name="bx:bx-bar-chart-square" class="w-6 h-6" style="color: var(--color-theme-button);" />
+      </div>
+      <div>
+        <h2 class="wireframe-heading text-lg font-medium">
+          {title}
+        </h2>
+        <p class="wireframe-text text-xs" style="color: var(--color-theme-tertiary);">
+          Admin Panel
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="flex-1 p-4">
+    <div class="space-y-1">
+      {sidebarMenuItems.map((item) => (
+        <div>
+          <!-- Main Menu Item -->
+          <a 
+            href={item.href || '#'}
+            class={`
+              flex items-center gap-3 px-3 py-2 rounded-lg transition-all hover:opacity-80
+              wireframe-text text-sm
+              ${item.active ? 'wireframe-box doodle-border' : ''}
+            `}
+            style={item.active ? 'background-color: var(--color-theme-button); color: var(--color-theme-button-text);' : ''}
+          >
+            <Icon name={item.icon} class="w-5 h-5 flex-shrink-0" />
+            <span class="flex-1">{item.label}</span>
+            
+            {item.badge && (
+              <span 
+                class="px-2 py-0.5 rounded-full text-xs font-medium wireframe-box doodle-border"
+                style="background-color: var(--color-theme-secondary); color: var(--color-theme-button-text);"
+              >
+                {item.badge}
+              </span>
+            )}
+            
+            {item.children && (
+              <Icon name="bx:bx-chevron-down" class="w-4 h-4 flex-shrink-0" />
+            )}
+          </a>
+
+          <!-- Submenu Items -->
+          {item.children && (
+            <div class="ml-8 mt-1 space-y-1">
+              {item.children.map((child) => (
+                <a 
+                  href={child.href || '#'}
+                  class={`
+                    block px-3 py-2 rounded-lg transition-all hover:opacity-80
+                    wireframe-text text-sm
+                    ${child.active ? 'wireframe-box doodle-border' : ''}
+                  `}
+                  style={child.active ? 'background-color: var(--color-theme-quaternary); color: var(--color-theme-button);' : ''}
+                >
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </nav>
+
+  <!-- Filters Section -->
+  <div class="p-4 border-t" style="border-color: var(--color-theme-stroke);">
+    <h3 class="wireframe-heading text-sm font-medium mb-4" style="color: var(--color-theme-button);">
+      Filters
+    </h3>
+    
+    <div class="space-y-4">
+      {sidebarFilters.map((section) => (
+        <div>
+          <h4 class="wireframe-text text-xs font-medium mb-2" style="color: var(--color-theme-tertiary);">
+            {section.title}
+          </h4>
+          <div class="space-y-1">
+            {section.items.map((filter) => (
+              <label class="flex items-center gap-2 cursor-pointer group">
+                <input 
+                  type="checkbox" 
+                  checked={filter.active}
+                  class="rounded border" 
+                  style="border-color: var(--color-theme-stroke);"
+                />
+                <span class={`wireframe-text text-sm flex-1 group-hover:opacity-80 transition-opacity ${filter.active ? 'font-medium' : ''}`}>
+                  {filter.label}
+                </span>
+                {filter.count !== undefined && (
+                  <span class="wireframe-text text-xs px-2 py-0.5 rounded-full wireframe-box doodle-border">
+                    {filter.count}
+                  </span>
+                )}
+              </label>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Clear Filters -->
+    <button class="mt-4 w-full py-2 px-3 rounded-lg wireframe-text text-sm transition-opacity hover:opacity-80 wireframe-box doodle-border">
+      Clear All Filters
+    </button>
+  </div>
+
+  <!-- User Profile Section -->
+  {showProfile && (
+    <div class="p-4 border-t" style="border-color: var(--color-theme-stroke);">
+      <div class="flex items-center gap-3">
+        <!-- Avatar Placeholder -->
+        <div class="wireframe-box doodle-border w-10 h-10 rounded-full flex items-center justify-center">
+          <Icon name="bx:bx-user" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+        </div>
+        
+        <div class="flex-1">
+          <p class="wireframe-text text-sm font-medium">John Doe</p>
+          <p class="wireframe-text text-xs" style="color: var(--color-theme-tertiary);">
+            Administrator
+          </p>
+        </div>
+        
+        <!-- Profile Menu -->
+        <button class="p-1 rounded-lg hover:opacity-80 transition-opacity">
+          <Icon name="bx:bx-dots-horizontal-rounded" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+        </button>
+      </div>
+    </div>
+  )}
+
+  <!-- Additional Content Slot -->
+  <slot />
+</aside>

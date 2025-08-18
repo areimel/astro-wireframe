@@ -11,7 +11,13 @@
       "WebFetch(domain:github.com)",
       "WebSearch",
       "Bash(pnpm add:*)",
-      "Bash(timeout 10 pnpm build:*)"
+      "Bash(timeout 10 pnpm build:*)",
+      "Bash(rm:*)",
+      "Bash(pnpm astro build:*)",
+      "Bash(grep:*)",
+      "Bash(timeout:*)",
+      "Bash(pnpm astro:*)",
+      "Bash(rg:*)"
     ],
     "deny": []
   }

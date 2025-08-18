@@ -35,6 +35,7 @@ This is an Astroship template - a SAAS/startup website template built with Astro
 - **TypeScript** - Type safety with Astro's base tsconfig
 - **Content Collections** - Structured content management for blog posts and team members
 - **MDX** - Markdown with JSX support for blog content
+- **Astro Icon** - Icon system with Box Icons (bx), Unicons (uil), and Simple Icons libraries
 
 ### Project Structure
 - `src/pages/` - File-based routing (`.astro`, `.md` files)
@@ -79,10 +80,10 @@ Four collections are configured:
 
 ## Design System & Color Palette
 
-This project implements a sophisticated **17-palette color system** with dynamic theme switching:
+This project implements a sophisticated **multi-palette color system** with dynamic theme switching:
 
 ### Color Palette System
-- **17 unique color themes** ranging from light to dark modes
+- **Multiple unique color themes** ranging from light to dark modes
 - **15 CSS custom properties** per theme for consistent styling:
   - `--color-theme-bg` - Main background
   - `--color-theme-card-bg` - Card backgrounds  
@@ -124,7 +125,7 @@ Use these predefined classes for consistent theming:
 
 ### Color Palette Data
 - Located in `/src/data/color-palettes.json`
-- Contains all 17 palettes with complete color definitions
+- Contains all available palettes with complete color definitions
 - Used by the ColorPaletteSelector component for dynamic switching
 
 ### Interactive Color Selector
@@ -161,7 +162,7 @@ Visit `/styleguide` for comprehensive design system documentation including:
 **CRITICAL: Before building any new components, ALWAYS review the relevant styleguide pages to maintain consistency:**
 
 - **📋 Main Styleguide Hub**: `/styleguide` - Overview and navigation to all sections
-- **🎨 Colors**: `/styleguide/colors` - 17-palette theme system, CSS variables, and theme classes
+- **🎨 Colors**: `/styleguide/colors` - Multi-palette theme system, CSS variables, and theme classes
 - **📝 Typography**: `/styleguide/typography` - Font hierarchy, text styles, and theme text classes
 - **🔘 Buttons**: `/styleguide/buttons` - Button variants, sizes, styles, and interactive states
 - **📄 Cards**: `/styleguide/cards` - Card patterns, layouts, pricing cards, and image cards
@@ -185,7 +186,7 @@ Visit `/styleguide` for comprehensive design system documentation including:
 **3. Theme System Integration**
 - NEVER use hard-coded colors - always use theme classes or CSS custom properties
 - Test components with different color palettes using the ColorPaletteSelector
-- Ensure components work across all 17 available themes
+- Ensure components work across all available themes
 
 **4. Component Quality Checklist**
 - ✅ Uses theme classes instead of hard-coded colors
@@ -193,7 +194,7 @@ Visit `/styleguide` for comprehensive design system documentation including:
 - ✅ Uses approved icon libraries and patterns
 - ✅ Responsive design that matches existing components
 - ✅ Consistent typography hierarchy
-- ✅ Tested across multiple color themes
+- ✅ Tested across all available color themes
 
 ### Working with the Color System
 
@@ -238,19 +239,39 @@ Visit `/styleguide` for comprehensive design system documentation including:
 
 ### Icon System Guidelines
 
-**Prefer bx (Box Icons) for consistency:**
-- Use `bx:bx-*` for regular icons
-- Use `bx:bxs-*` for solid variants  
-- Use `bx:bxl-*` for brand/logo icons
-- Always apply theme colors via CSS custom properties
+## ⚠️ CRITICAL: Icon Validation Rules
+
+**MANDATORY: Always check the approved icons list before using ANY icon:**
+
+1. **Before using any icon, check `/project_docs/approved-icons.md`**
+2. **ONLY use icons from the approved whitelist**
+3. **NEVER use icons not on the approved list** - they may not exist and will cause build failures
+
+**FORBIDDEN ICONS that will break the build:**
+- ❌ `bx:bx-shield-check` (does not exist - use `bx:bx-check-shield` instead)
+- ❌ Any icon not listed in `/project_docs/approved-icons.md`
+
+**Icon Library Priority Order:**
+1. **bx:** icons (Box Icons - primary library, most comprehensive)
+2. **uil:** icons (Unicons - secondary, for specific use cases)
+3. **simple-icons:** (brand logos only)
 
 **CRITICAL: Icon Component Usage Rules**
+- ✅ ALWAYS check `/project_docs/approved-icons.md` before using any icon
 - ✅ ALWAYS use static Icon components: `<Icon name="bx:bx-star" class="w-6 h-6" />`
 - ❌ NEVER use Icon components inside `.map()` calls: `{items.map(item => <Icon name={item.icon} />)}`
 - ❌ NEVER render Icons via function calls or dynamic rendering
 - ✅ Convert any dynamic icon rendering to static individual Icon components
 - ✅ Always put `name` attribute first, then `class` attribute: `<Icon name="..." class="..." />`
 - ❌ Wrong attribute order will cause build failures: `<Icon class="..." name="..." />`
+- ✅ Always apply theme colors via CSS custom properties: `style="color: var(--color-theme-button);"`
+
+**Adding New Icons:**
+1. Search Box Icons library first at [boxicons.com](https://boxicons.com)
+2. Verify the exact icon name exists
+3. Test the icon in a component
+4. Add to `/project_docs/approved-icons.md` whitelist
+5. Document the use case
 
 ### Component Development
 
@@ -494,6 +515,230 @@ import YourModal from "@/components/PopupComponents/YourModal.astro";
 7. **Auto-closing** - For action modals, close automatically after successful operations
 
 The modal system integrates seamlessly with the existing theme system and provides a solid foundation for any modal implementations throughout the project.
+
+## Wireframe Landing Pages System
+
+This project features a comprehensive **wireframe-style landing page showcase** with 5 distinct layout approaches:
+
+### Available Wireframe Layouts
+
+**Access via**: `/wireframes` (hub page) or **Features** → **Wireframes** dropdown
+
+1. **Classic Hero-Centric** (`/wireframes/classic`)
+   - Traditional SaaS landing with hero, features grid, testimonials, pricing
+   - **Use for**: SaaS products, service businesses, established brands
+
+2. **Split-Screen Layout** (`/wireframes/split-screen`)
+   - Dual-panel design with alternating left/right content
+   - **Use for**: Creative agencies, portfolios, product showcases
+
+3. **Grid-Based Modular** (`/wireframes/modular`)
+   - Flexible card system with customizable grid arrangements
+   - **Use for**: Marketplaces, dashboards, multi-product companies
+
+4. **Horizontal Product Showcase** (`/wireframes/showcase`)
+   - Wide sections with carousels, galleries, comparison tables
+   - **Use for**: E-commerce, product launches, tech companies
+
+5. **Card-Based Storytelling** (`/wireframes/storytelling`)
+   - Sequential narrative with timeline elements
+   - **Use for**: Startups, brand stories, educational content
+
+### Wireframe Components Library
+
+**Located in** `/src/components/wireframes/`:
+
+```
+├── SplitSection.astro           # 50/50 split layouts with alternating content
+├── GridShowcase.astro           # Flexible grid systems with responsive breakpoints  
+├── ModularCard.astro            # Uniform cards with size/height variants
+├── ProductCarousel.astro        # Horizontal product showcases with navigation
+├── ComparisonTable.astro        # Feature comparison tables with highlighting
+├── GalleryGrid.astro           # Image galleries with multiple layout options
+├── StoryCard.astro             # Narrative cards with story progression
+├── TimelineSection.astro       # Timeline visualization with milestones
+└── ProcessSteps.astro          # Step-by-step process visualization
+```
+
+## Building New Wireframe Pages Workflow
+
+Use this standardized workflow when researching and building new wireframe landing page layouts:
+
+### Phase 1: Research & Planning (30-45 minutes)
+
+**1. Market Research**
+```
+Use WebSearch tool to research:
+- "landing page wireframe trends [current year]"
+- "[industry/niche] landing page examples wireframes" 
+- "landing page layout types [specific pattern]"
+- "wireframe design patterns UX"
+```
+
+**2. Layout Analysis**
+- Identify 3-5 distinct layout patterns from research
+- Analyze successful examples for each pattern
+- Document key characteristics and use cases
+- Note required components and interactive elements
+
+**3. Planning Document Creation**
+```
+Use Task tool with general-purpose agent:
+- Create comprehensive research document
+- Define layout structure and components needed
+- Identify reusable vs. new components required
+- Plan implementation priority and dependencies
+```
+
+### Phase 2: Component Architecture (20-30 minutes)
+
+**4. Component Audit**
+- Review existing wireframe components in `/src/components/wireframes/`
+- Identify which components can be reused vs. need creation
+- Plan new component interfaces and props structure
+
+**5. Component Design**
+```astro
+// New component template pattern:
+---
+export interface Props {
+  size?: "sm" | "md" | "lg";
+  variant?: "default" | "highlight";
+  class?: string;
+}
+
+const { size = "md", variant = "default", class: className } = Astro.props;
+---
+
+<div class={`wireframe-box doodle-border ${className || ""}`}>
+  <!-- Component content with theme integration -->
+</div>
+```
+
+### Phase 3: Implementation (45-60 minutes)
+
+**6. Create New Wireframe Page**
+```
+File location: /src/pages/wireframes/[layout-name].astro
+
+Required elements:
+- SEO title: "[Layout Name] - Wireframe Landing Page"
+- Use existing wireframe classes: wireframe-section, wireframe-box, wireframe-heading, wireframe-text
+- Apply doodle-border for hand-drawn aesthetic
+- Include theme system integration via CSS custom properties
+```
+
+**7. Component Development**
+```
+For each new component needed:
+1. Create in /src/components/wireframes/
+2. Follow existing naming conventions
+3. Include TypeScript interface for props
+4. Use theme classes and CSS custom properties
+5. Test responsive behavior across breakpoints
+6. Verify icon usage (bx: icons only)
+```
+
+### Phase 4: Integration & Testing (20-30 minutes)
+
+**8. Navigation Integration**
+```json
+// Update /src/data/navigation.json
+{
+  "title": "Wireframes",
+  "path": "/wireframes",
+  "children": [
+    { "title": "New Layout Name", "path": "/wireframes/new-layout" }
+  ]
+}
+```
+
+**9. Hub Page Update**
+```astro
+// Add to /src/pages/wireframes.astro
+const wireframeLayouts = [
+  {
+    title: "New Layout Name",
+    description: "Description of the layout approach",
+    path: "/wireframes/new-layout",
+    icon: "bx:bx-icon-name",
+    category: "Category",
+    useCase: "When to use this layout",
+    components: ["Component1", "Component2"]
+  }
+]
+```
+
+### Phase 5: Quality Assurance (15-20 minutes)
+
+**10. Build Testing**
+```bash
+pnpm build  # Verify no build errors
+```
+
+**11. Theme Integration Testing**
+- Test page with all available color palettes using ColorPaletteSelector
+- Verify all elements respond to theme changes
+- Check responsive behavior on mobile/tablet/desktop
+
+**12. Component Validation**
+- Ensure all icons use valid bx: icon names
+- Verify theme classes are used instead of hard-coded colors
+- Test component reusability with different props
+
+### Best Practices for Wireframe Pages
+
+**Content Strategy:**
+- Use placeholder content that demonstrates layout structure
+- Include realistic text lengths and content hierarchy
+- Showcase the layout's strengths through content organization
+
+**Visual Design:**
+- Maintain hand-drawn, sketchy aesthetic with doodle-border
+- Use wireframe typography ('Short Stack' font) consistently
+- Balance content density - not too sparse, not too cluttered
+
+**Technical Implementation:**
+- Always use existing theme classes: `theme-headline`, `theme-paragraph`, etc.
+- Apply CSS custom properties for dynamic elements: `style="color: var(--color-theme-button);"`
+- Follow mobile-first responsive design principles
+- Ensure accessibility with proper heading hierarchy and semantic HTML
+
+**Component Reusability:**
+- Design components with flexible props for different use cases
+- Include size, variant, and styling options
+- Document component usage patterns and examples
+
+### Example New Layout Implementation
+
+```astro
+---
+// /src/pages/wireframes/magazine.astro
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import MagazineHeader from "@/components/wireframes/MagazineHeader.astro";
+import ArticleGrid from "@/components/wireframes/ArticleGrid.astro";
+---
+
+<Layout title="Magazine Layout - Wireframe Landing Page">
+  <Container>
+    <MagazineHeader 
+      title="Magazine-Style Layout"
+      subtitle="Editorial content with sophisticated grid system"
+    />
+    
+    <ArticleGrid 
+      columns="3"
+      featuredCount="2"
+      class="mt-16"
+    />
+    
+    <!-- Additional sections... -->
+  </Container>
+</Layout>
+```
+
+This workflow ensures consistent, high-quality wireframe pages that integrate seamlessly with the existing design system and component architecture.
 
 ## Color System Instructions for Claude Code
 

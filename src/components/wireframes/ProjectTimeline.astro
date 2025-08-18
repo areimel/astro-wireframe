@@ -1,0 +1,178 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Section title */
+  title?: string;
+  /** Section description */
+  description?: string;
+  /** Timeline phases */
+  phases?: Array<{
+    phase: string;
+    title: string;
+    duration: string;
+    description: string;
+    deliverables?: string[];
+    status?: "completed" | "in-progress" | "upcoming";
+    icon?: string;
+    color?: string;
+  }>;
+  /** Legacy milestones prop for compatibility */
+  milestones?: Array<{
+    phase: string;
+    title?: string;
+    date?: string;
+    duration?: string;
+    description: string;
+    deliverables?: string[];
+    status?: "completed" | "in-progress" | "upcoming";
+    icon?: string;
+    color?: string;
+  }>;
+  /** Timeline layout */
+  layout?: "horizontal" | "vertical" | "curved";
+  /** Show phase details */
+  showDetails?: boolean;
+  /** Show deliverables */
+  showDeliverables?: boolean;
+  /** Custom classes */
+  class?: string;
+}
+
+const { 
+  title = "Project Timeline",
+  description,
+  phases: propPhases,
+  milestones,
+  layout = "vertical",
+  showDetails = true,
+  showDeliverables = true,
+  class: className = ""
+} = Astro.props;
+
+// Handle both phases and milestones props for backward compatibility
+const phases = propPhases || (milestones?.map(m => ({
+  phase: m.phase,
+  title: m.title || m.phase,
+  duration: m.duration || m.date || "",
+  description: m.description,
+  deliverables: m.deliverables,
+  status: m.status,
+  icon: m.icon,
+  color: m.color
+}))) || [];
+
+// Status colors
+const statusConfig = {
+  completed: { color: "var(--color-theme-button)", icon: "bx:bx-check-circle" },
+  "in-progress": { color: "var(--color-theme-highlight)", icon: "bx:bx-time-five" },
+  upcoming: { color: "var(--color-theme-secondary)", icon: "bx:bx-circle" }
+};
+---
+
+<section class={"wireframe-section py-16 " + className}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+        {title}
+      </h2>
+      {description && (
+        <p class="wireframe-text text-xl max-w-3xl mx-auto">
+          {description}
+        </p>
+      )}
+    </div>
+
+    <!-- Vertical Timeline -->
+    <div class="relative max-w-4xl mx-auto">
+      {phases.map((phase, index) => (
+        <div class="flex items-start gap-6 mb-12 last:mb-0">
+          <!-- Phase Number -->
+          <div class="flex-shrink-0">
+            <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center font-bold"
+                 style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+              {phase.phase}
+            </div>
+            {index < phases.length - 1 && (
+              <div class="w-0.5 h-16 bg-current mt-4 ml-6 opacity-25"></div>
+            )}
+          </div>
+
+          <!-- Phase Content -->
+          <div class="flex-grow">
+            <div class="wireframe-box doodle-border p-6">
+              <!-- Phase Header -->
+              <div class="flex items-center gap-3 mb-4">
+                {phase.icon && (
+                  <Icon name={phase.icon} class="w-6 h-6" style="color: var(--color-theme-button);" />
+                )}
+                <h3 class="wireframe-heading text-xl">
+                  {phase.title}
+                </h3>
+              </div>
+
+              <!-- Duration & Status -->
+              <div class="flex items-center gap-4 mb-4">
+                <span class="wireframe-text text-sm font-bold" style="color: var(--color-theme-secondary);">
+                  {phase.duration}
+                </span>
+                <div class="flex items-center gap-1">
+                  <Icon name={statusConfig[phase.status || 'upcoming'].icon} class="w-4 h-4" 
+                        style={"color: " + statusConfig[phase.status || 'upcoming'].color} />
+                  <span class="wireframe-text text-sm capitalize">
+                    {(phase.status || 'upcoming').replace('-', ' ')}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Description -->
+              {showDetails && (
+                <p class="wireframe-text mb-4">
+                  {phase.description}
+                </p>
+              )}
+              
+              <!-- Deliverables -->
+              {showDeliverables && phase.deliverables && (
+                <div>
+                  <h4 class="wireframe-heading text-sm mb-2">Key Deliverables:</h4>
+                  <ul class="space-y-1">
+                    {phase.deliverables.slice(0, 4).map((deliverable) => (
+                      <li class="flex items-start gap-2">
+                        <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+                        <span class="wireframe-text text-sm">{deliverable}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Timeline Summary -->
+    <div class="flex justify-center gap-8 mt-16">
+      <div class="text-center">
+        <div class="wireframe-text text-2xl font-bold mb-2" style="color: var(--color-theme-button);">
+          {phases.filter(p => p.status === 'completed').length}
+        </div>
+        <div class="wireframe-text">Completed Phases</div>
+      </div>
+      <div class="text-center">
+        <div class="wireframe-text text-2xl font-bold mb-2" style="color: var(--color-theme-highlight);">
+          {phases.filter(p => p.status === 'in-progress').length}
+        </div>
+        <div class="wireframe-text">In Progress</div>
+      </div>
+      <div class="text-center">
+        <div class="wireframe-text text-2xl font-bold mb-2" style="color: var(--color-theme-secondary);">
+          {phases.filter(p => p.status === 'upcoming' || !p.status).length}
+        </div>
+        <div class="wireframe-text">Upcoming</div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,143 @@
+---
+export interface Props {
+  /** Default selected billing period */
+  defaultPeriod?: "monthly" | "yearly";
+  /** Show savings percentage on yearly */
+  showSavings?: boolean;
+  /** Savings percentage for yearly billing */
+  savingsPercent?: number;
+  /** Custom classes */
+  class?: string;
+  /** Size variant */
+  size?: "sm" | "md" | "lg";
+  /** Show labels */
+  showLabels?: boolean;
+}
+
+const { 
+  defaultPeriod = "monthly",
+  showSavings = true,
+  savingsPercent = 20,
+  class: className = "",
+  size = "md",
+  showLabels = true
+} = Astro.props;
+
+// Size classes
+const sizeClasses = {
+  sm: {
+    container: "text-sm",
+    button: "px-3 py-2 text-sm",
+    badge: "text-xs px-2 py-1"
+  },
+  md: {
+    container: "text-base",
+    button: "px-4 py-2",
+    badge: "text-xs px-2 py-1"
+  },
+  lg: {
+    container: "text-lg",
+    button: "px-6 py-3 text-lg",
+    badge: "text-sm px-3 py-1"
+  }
+};
+
+const sizeClass = sizeClasses[size];
+---
+
+<div class={`flex items-center justify-center gap-4 ${sizeClass.container} ${className}`}>
+  {showLabels && (
+    <label class="wireframe-text font-medium">Billing:</label>
+  )}
+  
+  <!-- Toggle Container -->
+  <div class="wireframe-box doodle-border rounded-full p-1 flex items-center gap-2 relative">
+    
+    <!-- Monthly Button -->
+    <button 
+      class={`relative z-10 rounded-full font-medium transition-all duration-200 ${sizeClass.button}`}
+      data-billing-toggle="monthly"
+      data-active={defaultPeriod === "monthly" ? "true" : "false"}
+      style={defaultPeriod === "monthly" 
+        ? `background-color: var(--color-theme-button); color: var(--color-theme-button-text);`
+        : `color: var(--color-theme-paragraph);`}>
+      Monthly
+    </button>
+    
+    <!-- Yearly Button -->
+    <button 
+      class={`relative z-10 rounded-full font-medium transition-all duration-200 flex items-center gap-2 ${sizeClass.button}`}
+      data-billing-toggle="yearly"
+      data-active={defaultPeriod === "yearly" ? "true" : "false"}
+      style={defaultPeriod === "yearly" 
+        ? `background-color: var(--color-theme-button); color: var(--color-theme-button-text);`
+        : `color: var(--color-theme-paragraph);`}>
+      <span>Yearly</span>
+      {showSavings && (
+        <span class={`rounded-full font-medium ${sizeClass.badge}`}
+              style="background-color: var(--color-theme-highlight); color: var(--color-theme-bg);">
+          Save {savingsPercent}%
+        </span>
+      )}
+    </button>
+  </div>
+
+  {showLabels && (
+    <div class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+      Billed {defaultPeriod}
+    </div>
+  )}
+</div>
+
+<!-- Interactive JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleButtons = document.querySelectorAll('[data-billing-toggle]');
+    
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const period = this.dataset.billingToggle;
+        const container = this.closest('[class*="wireframe-box"]');
+        const allButtons = container.querySelectorAll('[data-billing-toggle]');
+        
+        // Update button states
+        allButtons.forEach(btn => {
+          btn.dataset.active = 'false';
+          btn.style.backgroundColor = 'transparent';
+          btn.style.color = 'var(--color-theme-paragraph)';
+        });
+        
+        // Activate clicked button
+        this.dataset.active = 'true';
+        this.style.backgroundColor = 'var(--color-theme-button)';
+        this.style.color = 'var(--color-theme-button-text)';
+        
+        // Dispatch custom event for other components to listen
+        document.dispatchEvent(new CustomEvent('billing-period-changed', {
+          detail: { period: period }
+        }));
+        
+        // Update label if it exists
+        const label = container.parentElement.querySelector('[style*="color: var(--color-theme-tertiary)"]');
+        if (label) {
+          label.textContent = `Billed ${period}`;
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  [data-billing-toggle] {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  [data-billing-toggle]:hover {
+    opacity: 0.8;
+  }
+  
+  [data-billing-toggle][data-active="false"]:hover {
+    background-color: var(--color-theme-quaternary) !important;
+  }
+</style>

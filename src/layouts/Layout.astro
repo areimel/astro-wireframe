@@ -72,12 +72,18 @@ const makeTitle = title
       <Footer />
       <ColorPaletteSelector />
     </div>
+    
+    <!-- Global Styles -->
     <style is:global>
       /* Improve Page speed */
       /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
       img {
         content-visibility: auto;
       }
+      a, button, input, textarea, select{
+        cursor: pointer;
+      }
     </style>
+
   </body>
 </html>

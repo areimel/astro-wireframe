@@ -1,0 +1,391 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import GridShowcase from "@/components/wireframes/GridShowcase.astro";
+import ModularCard from "@/components/wireframes/ModularCard.astro";
+import Link from "@/components/ui/link.astro";
+import Button from "@/components/ui/button.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout title="Grid-Based Modular Layout - Wireframe Landing Page">
+  <!-- Hero Section -->
+  <section class="wireframe-section py-16 lg:py-24">
+    <Container>
+      <div class="text-center max-w-4xl mx-auto">
+        <div class="wireframe-box doodle-border p-8 lg:p-12">
+          <h1 class="wireframe-heading text-4xl lg:text-6xl mb-6">
+            Your Everything Platform
+          </h1>
+          <p class="wireframe-text text-xl mb-8 max-w-3xl mx-auto">
+            Discover thousands of products, services, and opportunities all organized in beautiful, modular layouts designed for maximum discoverability.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="#categories"
+              class="doodle flex items-center justify-center gap-2"
+              size="lg"
+              style="primary">
+              <Icon name="bx:bx-grid-alt" class="w-5 h-5" />
+              Browse Categories
+            </Link>
+            <Link
+              href="#featured"
+              class="doodle flex items-center justify-center gap-2"
+              size="lg"
+              style="outline">
+              <Icon name="bx:bx-star" class="w-5 h-5" />
+              Featured Items
+            </Link>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Category Grid -->
+  <GridShowcase
+    id="categories"
+    title="Explore by Category"
+    description="Find exactly what you're looking for with our organized category system"
+    columns={{ sm: 2, md: 3, lg: 4 }}
+    gap="gap-6"
+  >
+    <ModularCard
+      icon="bx:bx-shopping-bag"
+      iconColor="var(--color-theme-button)"
+      title="Products"
+      description="Physical and digital products from verified sellers worldwide"
+      height="md"
+    />
+    <ModularCard
+      icon="bx:bx-wrench"
+      iconColor="var(--color-theme-secondary)"
+      title="Services"
+      description="Professional services from freelancers and agencies"
+      height="md"
+    />
+    <ModularCard
+      icon="bx:bx-book"
+      iconColor="var(--color-theme-tertiary)"
+      title="Learning"
+      description="Courses, tutorials, and educational content"
+      height="md"
+    />
+    <ModularCard
+      icon="bx:bx-briefcase"
+      iconColor="var(--color-theme-highlight)"
+      title="Business"
+      description="B2B solutions, tools, and enterprise services"
+      height="md"
+    />
+    <ModularCard
+      icon="bx:bx-home"
+      iconColor="var(--color-theme-button)"
+      title="Real Estate"
+      description="Properties for rent, sale, and investment opportunities"
+      height="md"
+    />
+    <ModularCard
+      icon="bx:bx-car"
+      iconColor="var(--color-theme-secondary)"
+      title="Automotive"
+      description="Vehicles, parts, and automotive services"
+      height="md"
+    />
+  </GridShowcase>
+
+  <!-- Feature Grid -->
+  <GridShowcase
+    id="featured"
+    title="Featured Modules"
+    description="Our flexible grid system adapts to showcase any type of content beautifully"
+    columns={{ sm: 1, md: 2, lg: 3 }}
+    gap="gap-8"
+    background="alternate"
+  >
+    <!-- Large Featured Item -->
+    <ModularCard
+      title="Premium Workspace Solutions"
+      description="Complete office setups designed for modern remote teams. Everything you need to create productive work environments."
+      height="lg"
+      class="md:col-span-2 lg:col-span-1"
+    >
+      <div class="mt-6 flex items-center justify-center min-h-[100px] bg-opacity-10" style="background-color: var(--color-theme-tertiary);">
+        <Icon name="bx:bx-desktop" class="w-16 h-16" style="color: var(--color-theme-tertiary);" />
+      </div>
+      <div class="mt-4 flex justify-between items-center">
+        <span class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Starting at</span>
+        <span class="wireframe-heading text-2xl">$299</span>
+      </div>
+    </ModularCard>
+
+    <!-- Medium Items -->
+    <ModularCard
+      icon="bx:bxs-star"
+      iconColor="var(--color-theme-button)"
+      title="Top Rated Service"
+      description="Join 50,000+ satisfied customers who trust our premium consulting services."
+      height="md"
+    >
+      <div class="mt-4 flex items-center gap-2">
+        <div class="flex gap-1">
+          <Icon name="bx:bxs-star" class="w-4 h-4" style="color: var(--color-theme-button);" />
+          <Icon name="bx:bxs-star" class="w-4 h-4" style="color: var(--color-theme-button);" />
+          <Icon name="bx:bxs-star" class="w-4 h-4" style="color: var(--color-theme-button);" />
+          <Icon name="bx:bxs-star" class="w-4 h-4" style="color: var(--color-theme-button);" />
+          <Icon name="bx:bxs-star" class="w-4 h-4" style="color: var(--color-theme-button);" />
+        </div>
+        <span class="wireframe-text text-sm">4.9/5 (1,240 reviews)</span>
+      </div>
+    </ModularCard>
+
+    <ModularCard
+      icon="bx:bx-time"
+      iconColor="var(--color-theme-secondary)"
+      title="Limited Time Offer"
+      description="Flash sale on selected digital products. Save up to 60% this week only."
+      height="md"
+    >
+      <div class="mt-4 p-3 rounded-lg" style="background-color: var(--color-theme-quaternary);">
+        <div class="text-center">
+          <span class="wireframe-text text-sm">Ends in</span>
+          <div class="wireframe-heading text-lg">2d 14h 32m</div>
+        </div>
+      </div>
+    </ModularCard>
+
+    <!-- Small Quick Items -->
+    <ModularCard
+      icon="bx:bxs-bolt"
+      iconColor="var(--color-theme-highlight)"
+      title="Quick Setup"
+      description="Get started in under 5 minutes with our streamlined onboarding process."
+      height="sm"
+    />
+
+    <ModularCard
+      icon="bx:bx-shield"
+      iconColor="var(--color-theme-button)"
+      title="Verified Quality"
+      description="All listings go through our 12-point quality verification system."
+      height="sm"
+    />
+
+    <ModularCard
+      icon="bx:bx-support"
+      iconColor="var(--color-theme-secondary)"
+      title="24/7 Support"
+      description="Round-the-clock assistance from our expert support team."
+      height="sm"
+    />
+  </GridShowcase>
+
+  <!-- Product/Service Grid -->
+  <GridShowcase
+    title="Popular Products & Services"
+    description="Trending items across all categories, updated daily based on user engagement"
+    columns={{ sm: 1, md: 2, lg: 4 }}
+    gap="gap-6"
+  >
+    <ModularCard
+      title="Website Design Package"
+      description="Complete website design with 5 pages, mobile optimization, and 6 months support."
+      height="lg"
+    >
+      <div class="mt-4 mb-4 flex items-center justify-center min-h-[120px] bg-opacity-10" style="background-color: var(--color-theme-button);">
+        <Icon name="bx:bx-laptop" class="w-12 h-12" style="color: var(--color-theme-button);" />
+      </div>
+      <div class="flex justify-between items-center">
+        <span class="wireframe-heading text-xl">$899</span>
+        <Button size="sm" style="outline" class="doodle">View Details</Button>
+      </div>
+    </ModularCard>
+
+    <ModularCard
+      title="SEO Optimization"
+      description="Full website SEO audit and 3-month optimization campaign for better rankings."
+      height="lg"
+    >
+      <div class="mt-4 mb-4 flex items-center justify-center min-h-[120px] bg-opacity-10" style="background-color: var(--color-theme-secondary);">
+        <Icon name="bx:bx-trending-up" class="w-12 h-12" style="color: var(--color-theme-secondary);" />
+      </div>
+      <div class="flex justify-between items-center">
+        <span class="wireframe-heading text-xl">$599</span>
+        <Button size="sm" style="outline" class="doodle">View Details</Button>
+      </div>
+    </ModularCard>
+
+    <ModularCard
+      title="Mobile App Development"
+      description="Native iOS and Android app development with backend integration."
+      height="lg"
+    >
+      <div class="mt-4 mb-4 flex items-center justify-center min-h-[120px] bg-opacity-10" style="background-color: var(--color-theme-tertiary);">
+        <Icon name="bx:bx-mobile" class="w-12 h-12" style="color: var(--color-theme-tertiary);" />
+      </div>
+      <div class="flex justify-between items-center">
+        <span class="wireframe-heading text-xl">$2,499</span>
+        <Button size="sm" style="outline" class="doodle">View Details</Button>
+      </div>
+    </ModularCard>
+
+    <ModularCard
+      title="Content Creation"
+      description="Professional copywriting and content strategy for your brand's growth."
+      height="lg"
+    >
+      <div class="mt-4 mb-4 flex items-center justify-center min-h-[120px] bg-opacity-10" style="background-color: var(--color-theme-highlight);">
+        <Icon name="bx:bx-edit" class="w-12 h-12" style="color: var(--color-theme-highlight);" />
+      </div>
+      <div class="flex justify-between items-center">
+        <span class="wireframe-heading text-xl">$299</span>
+        <Button size="sm" style="outline" class="doodle">View Details</Button>
+      </div>
+    </ModularCard>
+  </GridShowcase>
+
+  <!-- Testimonial Grid -->
+  <GridShowcase
+    title="What Our Users Say"
+    description="Real feedback from thousands of satisfied customers using our platform"
+    columns={{ sm: 1, md: 2, lg: 2 }}
+    gap="gap-8"
+    background="alternate"
+  >
+    <ModularCard height="md" align="left">
+      <blockquote class="wireframe-text text-lg mb-6 italic">
+        "The modular layout makes it incredibly easy to find exactly what I need. I've discovered services I never would have found otherwise."
+      </blockquote>
+      <div class="flex items-center gap-4">
+        <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center">
+          <Icon name="bx:bx-user" class="w-6 h-6" style="color: var(--color-theme-tertiary);" />
+        </div>
+        <div>
+          <p class="wireframe-heading font-semibold">Sarah Martinez</p>
+          <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Small Business Owner</p>
+        </div>
+      </div>
+    </ModularCard>
+
+    <ModularCard height="md" align="left">
+      <blockquote class="wireframe-text text-lg mb-6 italic">
+        "As a service provider, the grid system helps showcase my work beautifully. My bookings increased by 200% after joining."
+      </blockquote>
+      <div class="flex items-center gap-4">
+        <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center">
+          <Icon name="bx:bx-user" class="w-6 h-6" style="color: var(--color-theme-tertiary);" />
+        </div>
+        <div>
+          <p class="wireframe-heading font-semibold">Michael Chen</p>
+          <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Freelance Designer</p>
+        </div>
+      </div>
+    </ModularCard>
+
+    <ModularCard height="md" align="left">
+      <blockquote class="wireframe-text text-lg mb-6 italic">
+        "The category organization is perfect. I can browse by type or search specifically - both work great for different shopping modes."
+      </blockquote>
+      <div class="flex items-center gap-4">
+        <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center">
+          <Icon name="bx:bx-user" class="w-6 h-6" style="color: var(--color-theme-tertiary);" />
+        </div>
+        <div>
+          <p class="wireframe-heading font-semibold">Emma Thompson</p>
+          <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Marketing Manager</p>
+        </div>
+      </div>
+    </ModularCard>
+
+    <ModularCard height="md" align="left">
+      <blockquote class="wireframe-text text-lg mb-6 italic">
+        "The flexible grid adapts perfectly to different content types. Whether I'm browsing products or services, everything feels organized."
+      </blockquote>
+      <div class="flex items-center gap-4">
+        <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center">
+          <Icon name="bx:bx-user" class="w-6 h-6" style="color: var(--color-theme-tertiary);" />
+        </div>
+        <div>
+          <p class="wireframe-heading font-semibold">David Rodriguez</p>
+          <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Startup Founder</p>
+        </div>
+      </div>
+    </ModularCard>
+  </GridShowcase>
+
+  <!-- Stats Grid -->
+  <GridShowcase
+    title="Platform Statistics"
+    description="Growing community of buyers, sellers, and service providers"
+    columns={{ sm: 2, md: 4, lg: 4 }}
+    gap="gap-6"
+  >
+    <ModularCard height="md" align="center">
+      <div class="mb-4">
+        <Icon name="bx:bx-group" class="w-12 h-12 mx-auto" style="color: var(--color-theme-button);" />
+      </div>
+      <div class="wireframe-heading text-3xl mb-2">250K+</div>
+      <p class="wireframe-text">Active Users</p>
+    </ModularCard>
+
+    <ModularCard height="md" align="center">
+      <div class="mb-4">
+        <Icon name="bx:bx-package" class="w-12 h-12 mx-auto" style="color: var(--color-theme-secondary);" />
+      </div>
+      <div class="wireframe-heading text-3xl mb-2">50K+</div>
+      <p class="wireframe-text">Products & Services</p>
+    </ModularCard>
+
+    <ModularCard height="md" align="center">
+      <div class="mb-4">
+        <Icon name="bx:bx-dollar" class="w-12 h-12 mx-auto" style="color: var(--color-theme-tertiary);" />
+      </div>
+      <div class="wireframe-heading text-3xl mb-2">$10M+</div>
+      <p class="wireframe-text">Total Transactions</p>
+    </ModularCard>
+
+    <ModularCard height="md" align="center">
+      <div class="mb-4">
+        <Icon name="bx:bx-world" class="w-12 h-12 mx-auto" style="color: var(--color-theme-highlight);" />
+      </div>
+      <div class="wireframe-heading text-3xl mb-2">150+</div>
+      <p class="wireframe-text">Countries Served</p>
+    </ModularCard>
+  </GridShowcase>
+
+  <!-- Final CTA -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="wireframe-box doodle-border p-12 text-center max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Join the Modular Marketplace
+        </h2>
+        <p class="wireframe-text text-xl mb-8 max-w-3xl mx-auto">
+          Whether you're looking to buy, sell, or discover new opportunities, our grid-based platform makes it easy to find exactly what you need. Join thousands of satisfied users today.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="primary">
+            <Icon name="bx:bx-user-plus" class="w-5 h-5" />
+            Create Account
+          </Link>
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="outline">
+            <Icon name="bx:bx-search" class="w-5 h-5" />
+            Browse Without Signing Up
+          </Link>
+        </div>
+        <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+          Free to join • No listing fees for first 30 days • Premium features available
+        </p>
+      </div>
+    </Container>
+  </section>
+</Layout>

@@ -1,0 +1,319 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import Link from "@/components/ui/link.astro";
+import Button from "@/components/ui/button.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout title="Classic Hero Layout - Wireframe Landing Page">
+  <!-- Hero Section -->
+  <section class="wireframe-section py-16 lg:py-24">
+    <Container>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Hero Content -->
+        <div class="wireframe-box doodle-border p-8">
+          <h1 class="wireframe-heading text-4xl lg:text-6xl mb-6">
+            Your Compelling Headline Here
+          </h1>
+          <p class="wireframe-text text-xl mb-8 max-w-lg">
+            A persuasive subheading that explains the value proposition and gets visitors excited about your product or service.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <Link
+              href="#pricing"
+              class="doodle flex items-center justify-center gap-2"
+              size="lg"
+              style="primary">
+              <Icon name="bx:bx-rocket" class="w-5 h-5" />
+              Get Started Free
+            </Link>
+            <Link
+              href="#features"
+              class="doodle flex items-center justify-center gap-2"
+              size="lg"
+              style="outline">
+              <Icon name="bx:bx-play-circle" class="w-5 h-5" />
+              Watch Demo
+            </Link>
+          </div>
+        </div>
+
+        <!-- Hero Image Placeholder -->
+        <div class="wireframe-box doodle-border p-8 flex items-center justify-center min-h-[400px]">
+          <div class="text-center">
+            <Icon name="bx:bx-image" class="w-24 h-24 mx-auto mb-4" style="color: var(--color-theme-tertiary);" />
+            <p class="wireframe-text text-lg">Hero Image / Video</p>
+            <p class="wireframe-text text-sm theme-tertiary mt-2">Product screenshot or demo video</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Features Grid Section -->
+  <section id="features" class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Why Choose Our Solution
+        </h2>
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          Discover the key features that make us the best choice for your needs.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="wireframe-box doodle-border p-6 text-center">
+          <Icon name="bx:bx-shield" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-button);" />
+          <h3 class="wireframe-heading text-xl mb-3">Secure & Reliable</h3>
+          <p class="wireframe-text">Enterprise-grade security with 99.9% uptime guarantee for peace of mind.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="wireframe-box doodle-border p-6 text-center">
+          <Icon name="bx:bxs-bolt" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-secondary);" />
+          <h3 class="wireframe-heading text-xl mb-3">Lightning Fast</h3>
+          <p class="wireframe-text">Optimized performance ensures your workflows run at maximum speed.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="wireframe-box doodle-border p-6 text-center">
+          <Icon name="bx:bx-user" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-tertiary);" />
+          <h3 class="wireframe-heading text-xl mb-3">User Friendly</h3>
+          <p class="wireframe-text">Intuitive interface designed for users of all technical skill levels.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="wireframe-box doodle-border p-6 text-center">
+          <Icon name="bx:bx-cog" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-highlight);" />
+          <h3 class="wireframe-heading text-xl mb-3">Fully Customizable</h3>
+          <p class="wireframe-text">Adapt the platform to fit your unique business requirements perfectly.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="wireframe-box doodle-border p-6 text-center">
+          <Icon name="bx:bx-support" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-button);" />
+          <h3 class="wireframe-heading text-xl mb-3">24/7 Support</h3>
+          <p class="wireframe-text">Our expert team is always available to help you succeed with our platform.</p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="wireframe-box doodle-border p-6 text-center">
+          <Icon name="bx:bx-trending-up" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-secondary);" />
+          <h3 class="wireframe-heading text-xl mb-3">Scale with Growth</h3>
+          <p class="wireframe-text">Built to grow with your business from startup to enterprise scale.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Social Proof Section -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-2xl lg:text-3xl mb-4">
+          Trusted by 10,000+ Companies
+        </h2>
+        <p class="wireframe-text text-lg">Join the companies that trust us to power their success</p>
+      </div>
+
+      <!-- Logo Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
+        <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[80px]">
+          <span class="wireframe-text text-sm">Company Logo</span>
+        </div>
+        <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[80px]">
+          <span class="wireframe-text text-sm">Company Logo</span>
+        </div>
+        <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[80px]">
+          <span class="wireframe-text text-sm">Company Logo</span>
+        </div>
+        <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[80px]">
+          <span class="wireframe-text text-sm">Company Logo</span>
+        </div>
+        <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[80px]">
+          <span class="wireframe-text text-sm">Company Logo</span>
+        </div>
+        <div class="wireframe-box doodle-border p-4 flex items-center justify-center min-h-[80px]">
+          <span class="wireframe-text text-sm">Company Logo</span>
+        </div>
+      </div>
+
+      <!-- Testimonial -->
+      <div class="wireframe-box doodle-border p-8 max-w-4xl mx-auto text-center">
+        <blockquote class="wireframe-text text-xl mb-6">
+          "This platform has completely transformed how we operate. The results speak for themselves - 3x faster workflows and 50% cost reduction."
+        </blockquote>
+        <div class="flex items-center justify-center gap-4">
+          <div class="wireframe-box doodle-border w-16 h-16 rounded-full flex items-center justify-center">
+            <Icon name="bx:bx-user" class="w-8 h-8" style="color: var(--color-theme-tertiary);" />
+          </div>
+          <div class="text-left">
+            <p class="wireframe-heading font-semibold">Sarah Johnson</p>
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">CEO, TechCorp Solutions</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Simple, Transparent Pricing
+        </h2>
+        <p class="wireframe-text text-xl max-w-2xl mx-auto">
+          Choose the perfect plan for your needs. Upgrade or downgrade at any time.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Starter Plan -->
+        <div class="wireframe-box doodle-border p-8">
+          <div class="text-center mb-6">
+            <h3 class="wireframe-heading text-2xl mb-2">Starter</h3>
+            <p class="wireframe-text mb-4">Perfect for small teams</p>
+            <div class="mb-4">
+              <span class="wireframe-heading text-4xl">$29</span>
+              <span class="wireframe-text">/month</span>
+            </div>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">Up to 5 team members</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">10GB storage</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">Basic support</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">Core features</span>
+            </li>
+          </ul>
+          <Button class="w-full doodle" style="outline">Get Started</Button>
+        </div>
+
+        <!-- Professional Plan (Featured) -->
+        <div class="wireframe-box doodle-border p-8 relative">
+          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+            <span class="wireframe-text px-4 py-1 rounded-full text-sm" 
+                  style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+              Most Popular
+            </span>
+          </div>
+          <div class="text-center mb-6">
+            <h3 class="wireframe-heading text-2xl mb-2">Professional</h3>
+            <p class="wireframe-text mb-4">Best for growing businesses</p>
+            <div class="mb-4">
+              <span class="wireframe-heading text-4xl">$79</span>
+              <span class="wireframe-text">/month</span>
+            </div>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">Up to 25 team members</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">100GB storage</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">Priority support</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">Advanced features</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">API access</span>
+            </li>
+          </ul>
+          <Button class="w-full doodle" style="primary">Start Free Trial</Button>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="wireframe-box doodle-border p-8">
+          <div class="text-center mb-6">
+            <h3 class="wireframe-heading text-2xl mb-2">Enterprise</h3>
+            <p class="wireframe-text mb-4">For large organizations</p>
+            <div class="mb-4">
+              <span class="wireframe-heading text-4xl">$199</span>
+              <span class="wireframe-text">/month</span>
+            </div>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">Unlimited team members</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">1TB storage</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">24/7 dedicated support</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">All features included</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <Icon name="bx:bx-check" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text">Custom integrations</span>
+            </li>
+          </ul>
+          <Button class="w-full doodle" style="outline">Contact Sales</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="wireframe-box doodle-border p-12 text-center max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Ready to Transform Your Business?
+        </h2>
+        <p class="wireframe-text text-xl mb-8 max-w-2xl mx-auto">
+          Join thousands of satisfied customers who have revolutionized their workflows with our platform. Start your free trial today!
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="primary">
+            <Icon name="bx:bx-rocket" class="w-5 h-5" />
+            Start Free Trial
+          </Link>
+          <Link
+            href="#"
+            class="doodle flex items-center justify-center gap-2"
+            size="lg"
+            style="outline">
+            <Icon name="bx:bx-phone" class="w-5 h-5" />
+            Schedule Demo
+          </Link>
+        </div>
+        <p class="wireframe-text text-sm mt-6" style="color: var(--color-theme-tertiary);">
+          No credit card required • 14-day free trial • Cancel anytime
+        </p>
+      </div>
+    </Container>
+  </section>
+</Layout>

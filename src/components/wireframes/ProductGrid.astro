@@ -1,0 +1,188 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Number of columns on different breakpoints */
+  columns?: {
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+  };
+  /** Number of products to display */
+  productCount?: number;
+  /** Show product images */
+  showImages?: boolean;
+  /** Show product prices */
+  showPrices?: boolean;
+  /** Show product ratings */
+  showRatings?: boolean;
+  /** Show product badges */
+  showBadges?: boolean;
+  /** Grid spacing */
+  gap?: string;
+  /** Custom classes */
+  class?: string;
+  /** Background variant */
+  background?: "default" | "alternate";
+}
+
+const { 
+  columns = { sm: 1, md: 2, lg: 3, xl: 4 },
+  productCount = 12,
+  showImages = true,
+  showPrices = true,
+  showRatings = true,
+  showBadges = true,
+  gap = "gap-6",
+  class: className = "",
+  background = "default"
+} = Astro.props;
+
+const bgClass = background === "alternate" ? "wireframe-section-alt" : "";
+
+// Build responsive grid classes
+const gridClasses = [
+  columns.sm && `grid-cols-${columns.sm}`,
+  columns.md && `md:grid-cols-${columns.md}`,
+  columns.lg && `lg:grid-cols-${columns.lg}`,
+  columns.xl && `xl:grid-cols-${columns.xl}`
+].filter(Boolean).join(" ");
+
+// Generate product data
+const products = Array.from({ length: productCount }, (_, i) => ({
+  id: i + 1,
+  name: `Product ${i + 1}`,
+  brand: ["TechCorp", "InnovateCo", "QualityBrand", "PremiumGoods"][Math.floor(Math.random() * 4)],
+  price: Math.floor(Math.random() * 200 + 50),
+  originalPrice: Math.floor(Math.random() * 50 + 250),
+  rating: (Math.random() * 1.5 + 3.5).toFixed(1),
+  reviewCount: Math.floor(Math.random() * 500 + 10),
+  category: ["Electronics", "Software", "Hardware", "Accessories"][Math.floor(Math.random() * 4)],
+  badge: Math.random() > 0.7 ? ["Sale", "New", "Popular", "Limited"][Math.floor(Math.random() * 4)] : null,
+  discount: Math.random() > 0.6 ? Math.floor(Math.random() * 30 + 10) : null
+}));
+---
+
+<div class={`${bgClass} ${className}`}>
+  <div class={`grid ${gridClasses} ${gap}`}>
+    {products.map((product) => (
+      <div class="wireframe-box doodle-border p-6 hover:opacity-95 transition-opacity cursor-pointer">
+        <!-- Product Image -->
+        {showImages && (
+          <div class="wireframe-box doodle-border mb-4 relative overflow-hidden">
+            <div class="aspect-square flex items-center justify-center bg-opacity-20" 
+                 style="background-color: var(--color-theme-quaternary);">
+              <div class="text-center">
+                <Icon name="bx:bx-image" class="w-12 h-12 mx-auto mb-2" style="color: var(--color-theme-tertiary);" />
+                <p class="wireframe-text text-sm">Product Photo</p>
+              </div>
+            </div>
+            
+            <!-- Badges -->
+            {showBadges && product.badge && (
+              <div class="absolute top-2 left-2">
+                <span class="px-2 py-1 text-xs rounded-full wireframe-text font-medium"
+                      style={`background-color: var(--color-theme-secondary); color: var(--color-theme-button-text);`}>
+                  {product.badge}
+                </span>
+              </div>
+            )}
+            
+            {showBadges && product.discount && (
+              <div class="absolute top-2 right-2">
+                <span class="px-2 py-1 text-xs rounded-full wireframe-text font-medium"
+                      style={`background-color: var(--color-theme-button); color: var(--color-theme-button-text);`}>
+                  -{product.discount}%
+                </span>
+              </div>
+            )}
+            
+            <!-- Quick Actions Overlay -->
+            <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+              <button class="wireframe-box doodle-border p-2 bg-white hover:scale-105 transition-transform">
+                <Icon name="bx:bx-heart" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              </button>
+              <button class="wireframe-box doodle-border p-2 bg-white hover:scale-105 transition-transform">
+                <Icon name="bx:bx-show" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              </button>
+              <button class="wireframe-box doodle-border p-2 bg-white hover:scale-105 transition-transform">
+                <Icon name="bx:bx-shopping-bag" class="w-5 h-5" style="color: var(--color-theme-button);" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        <!-- Product Info -->
+        <div class="space-y-3">
+          <!-- Brand & Category -->
+          <div>
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+              {product.brand} • {product.category}
+            </p>
+          </div>
+
+          <!-- Product Name -->
+          <h3 class="wireframe-heading text-lg leading-tight line-clamp-2">
+            {product.name}
+          </h3>
+
+          <!-- Rating -->
+          {showRatings && (
+            <div class="flex items-center gap-2">
+              <div class="flex items-center">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Icon 
+                    name={i < Math.floor(Number(product.rating)) ? "bx:bxs-star" : "bx:bx-star"} 
+                    class="w-4 h-4" 
+                    style={`color: ${i < Math.floor(Number(product.rating)) ? 'var(--color-theme-secondary)' : 'var(--color-theme-tertiary)'};`}
+                  />
+                ))}
+              </div>
+              <span class="wireframe-text text-sm">
+                {product.rating} ({product.reviewCount})
+              </span>
+            </div>
+          )}
+
+          <!-- Price -->
+          {showPrices && (
+            <div class="flex items-center gap-2">
+              <span class="wireframe-heading text-xl" style="color: var(--color-theme-button);">
+                ${product.price}
+              </span>
+              {product.discount && (
+                <span class="wireframe-text text-sm line-through" style="color: var(--color-theme-tertiary);">
+                  ${product.originalPrice}
+                </span>
+              )}
+            </div>
+          )}
+
+          <!-- Product Features -->
+          <ul class="space-y-1">
+            <li class="flex items-center gap-2">
+              <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text text-sm">Free shipping</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+              <span class="wireframe-text text-sm">30-day returns</span>
+            </li>
+          </ul>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-2 pt-2">
+            <button class="flex-1 py-2 px-4 rounded-lg transition-all hover:opacity-90 hover:scale-[0.98]" 
+                    style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+              <span class="text-sm font-medium">Add to Cart</span>
+            </button>
+            <button class="wireframe-box doodle-border p-2 hover:opacity-80 transition-opacity">
+              <Icon name="bx:bx-heart" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+            </button>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

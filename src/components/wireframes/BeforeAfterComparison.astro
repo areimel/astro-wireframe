@@ -1,0 +1,249 @@
+---
+export interface Props {
+  /** Section title */
+  title: string;
+  /** Section description */
+  description?: string;
+  /** Comparison items */
+  comparisons: Array<{
+    title: string;
+    before: {
+      title: string;
+      content: string;
+      image?: {
+        src: string;
+        alt: string;
+      };
+      metrics?: Array<{
+        label: string;
+        value: string;
+        negative?: boolean;
+      }>;
+    };
+    after: {
+      title: string;
+      content: string;
+      image?: {
+        src: string;
+        alt: string;
+      };
+      metrics?: Array<{
+        label: string;
+        value: string;
+        positive?: boolean;
+      }>;
+    };
+  }>;
+  /** Display layout */
+  layout?: "side-by-side" | "stacked";
+  /** Show metrics comparison */
+  showMetrics?: boolean;
+  /** Custom classes */
+  class?: string;
+}
+
+const { 
+  title,
+  description,
+  comparisons,
+  layout = "side-by-side",
+  showMetrics = true,
+  class: className = ""
+} = Astro.props;
+
+import { Icon } from "astro-icon/components";
+---
+
+<section class={`wireframe-section py-16 ${className}`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+        {title}
+      </h2>
+      {description && (
+        <p class="wireframe-text text-xl max-w-3xl mx-auto">
+          {description}
+        </p>
+      )}
+    </div>
+
+    <!-- Comparisons -->
+    <div class="space-y-16">
+      {comparisons.map((comparison, index) => (
+        <div class="wireframe-box doodle-border p-8">
+          <!-- Comparison Title -->
+          <h3 class="wireframe-heading text-2xl lg:text-3xl text-center mb-8">
+            {comparison.title}
+          </h3>
+
+          <!-- Comparison Content -->
+          <div class={`grid gap-8 ${layout === "side-by-side" ? "lg:grid-cols-2" : ""}`}>
+            <!-- Before Section -->
+            <div class="relative">
+              <!-- Before Header -->
+              <div class="flex items-center gap-3 mb-6">
+                <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center" 
+                     style="background-color: var(--color-theme-secondary);">
+                  <Icon name="bx:bx-x" class="w-6 h-6 text-white" />
+                </div>
+                <h4 class="wireframe-heading text-xl lg:text-2xl">
+                  {comparison.before.title}
+                </h4>
+              </div>
+
+              <!-- Before Image -->
+              {comparison.before.image ? (
+                <div class="wireframe-box doodle-border aspect-[16/10] mb-6 bg-cover bg-center" 
+                     style={`background-image: url('${comparison.before.image.src}');`}>
+                  <div class="w-full h-full flex items-center justify-center theme-section-bg bg-opacity-90">
+                    <div class="text-center p-6">
+                      <Icon name="bx:bx-image" class="w-12 h-12 mx-auto mb-3" style="color: var(--color-theme-secondary);" />
+                      <div class="wireframe-text text-sm">
+                        Before State
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div class="wireframe-box doodle-border aspect-[16/10] mb-6 theme-quaternary-bg flex items-center justify-center">
+                  <div class="text-center p-6">
+                    <Icon name="bx:bx-image" class="w-12 h-12 mx-auto mb-3" style="color: var(--color-theme-secondary);" />
+                    <div class="wireframe-heading text-lg mb-2">
+                      Before State
+                    </div>
+                    <div class="wireframe-text text-sm">
+                      Image/mockup placeholder
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <!-- Before Content -->
+              <p class="wireframe-text mb-6">
+                {comparison.before.content}
+              </p>
+
+              <!-- Before Metrics -->
+              {showMetrics && comparison.before.metrics && comparison.before.metrics.length > 0 && (
+                <div class="grid grid-cols-2 gap-4">
+                  {comparison.before.metrics.map((metric) => (
+                    <div class="wireframe-box doodle-border p-4 text-center">
+                      <div class={`wireframe-text text-2xl font-bold mb-2 ${
+                        metric.negative ? 'text-red-600' : ''
+                      }`}>
+                        {metric.value}
+                      </div>
+                      <div class="wireframe-text text-sm">
+                        {metric.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <!-- Arrow/Divider -->
+            <div class="flex items-center justify-center">
+              {layout === "side-by-side" ? (
+                <div class="hidden lg:flex items-center justify-center">
+                  <Icon name="bx:bx-right-arrow-alt" class="w-8 h-8" style="color: var(--color-theme-button);" />
+                </div>
+              ) : (
+                <div class="flex items-center justify-center py-4">
+                  <Icon name="bx:bx-down-arrow-alt" class="w-8 h-8" style="color: var(--color-theme-button);" />
+                </div>
+              )}
+            </div>
+
+            <!-- After Section -->
+            <div class="relative">
+              <!-- After Header -->
+              <div class="flex items-center gap-3 mb-6">
+                <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center theme-button-primary">
+                  <Icon name="bx:bx-check" class="w-6 h-6 text-white" />
+                </div>
+                <h4 class="wireframe-heading text-xl lg:text-2xl">
+                  {comparison.after.title}
+                </h4>
+              </div>
+
+              <!-- After Image -->
+              {comparison.after.image ? (
+                <div class="wireframe-box doodle-border aspect-[16/10] mb-6 bg-cover bg-center" 
+                     style={`background-image: url('${comparison.after.image.src}');`}>
+                  <div class="w-full h-full flex items-center justify-center theme-section-bg bg-opacity-90">
+                    <div class="text-center p-6">
+                      <Icon name="bx:bx-image" class="w-12 h-12 mx-auto mb-3" style="color: var(--color-theme-button);" />
+                      <div class="wireframe-text text-sm">
+                        After State
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div class="wireframe-box doodle-border aspect-[16/10] mb-6 theme-quaternary-bg flex items-center justify-center">
+                  <div class="text-center p-6">
+                    <Icon name="bx:bx-image" class="w-12 h-12 mx-auto mb-3" style="color: var(--color-theme-button);" />
+                    <div class="wireframe-heading text-lg mb-2">
+                      After State
+                    </div>
+                    <div class="wireframe-text text-sm">
+                      Improved image/mockup placeholder
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <!-- After Content -->
+              <p class="wireframe-text mb-6">
+                {comparison.after.content}
+              </p>
+
+              <!-- After Metrics -->
+              {showMetrics && comparison.after.metrics && comparison.after.metrics.length > 0 && (
+                <div class="grid grid-cols-2 gap-4">
+                  {comparison.after.metrics.map((metric) => (
+                    <div class="wireframe-box doodle-border p-4 text-center">
+                      <div class={`wireframe-text text-2xl font-bold mb-2 ${
+                        metric.positive ? 'text-green-600' : ''
+                      }`}>
+                        {metric.value}
+                      </div>
+                      <div class="wireframe-text text-sm">
+                        {metric.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Summary -->
+    <div class="text-center mt-12">
+      <div class="wireframe-box doodle-border p-8 theme-quaternary-bg">
+        <h3 class="wireframe-heading text-xl lg:text-2xl mb-4">
+          Key Improvements
+        </h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <Icon name="bx:bx-trending-up" class="w-8 h-8 mx-auto mb-3" style="color: var(--color-theme-button);" />
+            <div class="wireframe-text font-bold">Enhanced Performance</div>
+          </div>
+          <div class="text-center">
+            <Icon name="bx:bx-happy" class="w-8 h-8 mx-auto mb-3" style="color: var(--color-theme-button);" />
+            <div class="wireframe-text font-bold">Improved User Experience</div>
+          </div>
+          <div class="text-center">
+            <Icon name="bx:bx-bar-chart-alt-2" class="w-8 h-8 mx-auto mb-3" style="color: var(--color-theme-button);" />
+            <div class="wireframe-text font-bold">Better Results</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

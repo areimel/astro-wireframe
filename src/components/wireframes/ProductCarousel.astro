@@ -1,0 +1,171 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Title for the carousel section */
+  title?: string;
+  /** Description for the carousel section */
+  description?: string;
+  /** Number of products to display */
+  productCount?: number;
+  /** Show price on products */
+  showPrice?: boolean;
+  /** Show rating on products */
+  showRating?: boolean;
+  /** Custom padding classes for the section */
+  padding?: string;
+  /** Custom classes for the section */
+  class?: string;
+  /** Background variant */
+  background?: "default" | "alternate";
+}
+
+const { 
+  title = "Featured Products",
+  description = "Discover our best-selling products with innovative features and competitive pricing.",
+  productCount = 6,
+  showPrice = true,
+  showRating = true,
+  padding = "py-16", 
+  class: className = "",
+  background = "default"
+} = Astro.props;
+
+const bgClass = background === "alternate" ? "wireframe-section-alt" : "wireframe-section";
+
+// Generate product data
+const products = Array.from({ length: productCount }, (_, i) => ({
+  id: i + 1,
+  name: `Product ${i + 1}`,
+  price: `$${(Math.random() * 200 + 50).toFixed(0)}`,
+  rating: Math.floor(Math.random() * 2) + 4, // 4-5 stars
+  category: ["Electronics", "Software", "Hardware", "Accessories"][Math.floor(Math.random() * 4)]
+}));
+---
+
+<section class={`${bgClass} ${padding} ${className}`}>
+  <div class="container mx-auto px-4">
+    {title && (
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          {title}
+        </h2>
+        {description && (
+          <p class="wireframe-text text-xl max-w-3xl mx-auto">
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+
+    <!-- Carousel Navigation -->
+    <div class="flex items-center justify-between mb-6">
+      <p class="wireframe-text">
+        Showing {productCount} products
+      </p>
+      <div class="flex gap-2">
+        <button class="wireframe-box doodle-border p-2 hover:opacity-80 transition-opacity">
+          <Icon name="bx:bx-chevron-left" class="w-5 h-5" style="color: var(--color-theme-button);" />
+        </button>
+        <button class="wireframe-box doodle-border p-2 hover:opacity-80 transition-opacity">
+          <Icon name="bx:bx-chevron-right" class="w-5 h-5" style="color: var(--color-theme-button);" />
+        </button>
+      </div>
+    </div>
+
+    <!-- Horizontal Scrolling Product Grid -->
+    <div class="overflow-x-auto pb-4">
+      <div class="flex gap-6 min-w-max">
+        {products.map((product) => (
+          <div class="wireframe-box doodle-border p-6 flex-none w-80">
+            <!-- Product Image Placeholder -->
+            <div class="wireframe-box doodle-border mb-4 flex items-center justify-center h-48">
+              <div class="text-center">
+                <Icon name="bx:bx-image" class="w-16 h-16 mx-auto mb-2" style="color: var(--color-theme-tertiary);" />
+                <p class="wireframe-text text-sm">Product Image</p>
+                <p class="wireframe-text text-xs" style="color: var(--color-theme-tertiary);">High-res photo</p>
+              </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="space-y-3">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h3 class="wireframe-heading text-lg mb-1">{product.name}</h3>
+                  <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+                    {product.category}
+                  </p>
+                </div>
+                {showPrice && (
+                  <span class="wireframe-heading text-xl" style="color: var(--color-theme-button);">
+                    {product.price}
+                  </span>
+                )}
+              </div>
+
+              {showRating && (
+                <div class="flex items-center gap-2">
+                  <div class="flex items-center">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <Icon 
+                        name={i < product.rating ? "bx:bxs-star" : "bx:bx-star"} 
+                        class="w-4 h-4" 
+                        style={`color: ${i < product.rating ? 'var(--color-theme-secondary)' : 'var(--color-theme-tertiary)'};`}
+                      />
+                    ))}
+                  </div>
+                  <span class="wireframe-text text-sm">({product.rating}.0)</span>
+                </div>
+              )}
+
+              <!-- Product Features -->
+              <ul class="space-y-1 text-sm">
+                <li class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text">Premium quality</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text">Free shipping</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text">1-year warranty</span>
+                </li>
+              </ul>
+
+              <!-- Action Buttons -->
+              <div class="flex gap-2 pt-2">
+                <button class="flex-1 py-2 px-4 rounded-lg transition-opacity hover:opacity-80" 
+                        style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+                  <span class="text-sm font-medium">Add to Cart</span>
+                </button>
+                <button class="wireframe-box doodle-border p-2 hover:opacity-80 transition-opacity">
+                  <Icon name="bx:bx-heart" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Carousel Indicators -->
+    <div class="flex justify-center gap-2 mt-6">
+      {Array.from({ length: Math.ceil(productCount / 3) }, (_, i) => (
+        <button class={`w-3 h-3 rounded-full transition-opacity ${i === 0 ? 'opacity-100' : 'opacity-40'}`}
+                style="background-color: var(--color-theme-button);">
+        </button>
+      ))}
+    </div>
+
+    <!-- View All Products Link -->
+    <div class="text-center mt-8">
+      <button class="wireframe-box doodle-border py-3 px-8 rounded-lg hover:opacity-80 transition-opacity">
+        <span class="wireframe-text font-medium" style="color: var(--color-theme-button);">
+          View All Products →
+        </span>
+      </button>
+    </div>
+  </div>
+</section>

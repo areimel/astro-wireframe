@@ -8,7 +8,7 @@ const menuitems = navigationData.header.menuitems;
 
 <div class="hidden lg:flex w-full items-center justify-between">
   <!-- Logo -->
-  <a href="/" class="text-lg max-w-[150px]">
+  <a href="/" class="text-lg max-w-[200px]">
     <Logo fillColor="var(--color-theme-stroke)" />
   </a>
   
@@ -30,7 +30,7 @@ const menuitems = navigationData.header.menuitems;
               <li>
                 <a
                   href={item.path}
-                  class="flex px-3 py-2 items-center wireframe-text hover:wireframe-heading transition-colors">
+                  class="flex px-3 py-2 items-center wireframe-text hover:underline transition-colors">
                   <span>{item.title}</span>
                   {('badge' in item) && (item as any).badge && (
                     <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white rounded-full theme-badge">
@@ -46,3 +46,9 @@ const menuitems = navigationData.header.menuitems;
     </ul>
   </nav>
 </div>
+
+<style>
+  li{
+    list-style: none !important;
+  }
+</style>

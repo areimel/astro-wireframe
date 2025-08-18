@@ -207,6 +207,32 @@
         "quaternaryText": "#444444",
         "invertedText": "#f0f0f0"
       }
+    },
+    {
+      "id": "palette-9",
+      "name": "Engineering Blueprint",
+      "description": "White-on-blue engineering blueprint aesthetic",
+      "colors": {
+        "bg": "#1e3d72",
+        "cardBg": "#2a4a85",
+        "sectionBg": "#1a3565",
+        "headline": "#ffffff",
+        "subHeadline": "#e8f2ff",
+        "paragraph": "#d1e3ff",
+        "cardText": "#d1e3ff",
+        "button": "#ffffff",
+        "buttonText": "#1e3d72",
+        "link": "#a8d1ff",
+        "stroke": "#7fb8ff",
+        "highlight": "#ffffff",
+        "secondary": "#8cc4ff",
+        "tertiary": "#5fa3ff",
+        "quaternary": "#345a99",
+        "sectionText": "#ffffff",
+        "cardTextAlt": "#d1e3ff",
+        "quaternaryText": "#e8f2ff",
+        "invertedText": "#1e3d72"
+      }
     }
   ]
 }

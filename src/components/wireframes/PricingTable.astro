@@ -1,0 +1,246 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Title for the pricing section */
+  title?: string;
+  /** Description for the pricing section */
+  description?: string;
+  /** Custom padding classes for the section */
+  padding?: string;
+  /** Custom classes for the section */
+  class?: string;
+  /** Background variant */
+  background?: "default" | "alternate";
+  /** Show annual savings badge */
+  showSavings?: boolean;
+  /** Currency symbol */
+  currency?: string;
+  /** Billing period (monthly/yearly) */
+  billingPeriod?: "monthly" | "yearly";
+}
+
+const { 
+  title = "Choose Your Plan",
+  description = "Select the perfect plan for your business needs. Upgrade or downgrade at any time.",
+  padding = "py-16", 
+  class: className = "",
+  background = "default",
+  showSavings = true,
+  currency = "$",
+  billingPeriod = "monthly"
+} = Astro.props;
+
+const bgClass = background === "alternate" ? "wireframe-section-alt" : "wireframe-section";
+
+// Pricing tiers
+const pricingTiers = [
+  {
+    name: "Starter",
+    description: "Perfect for individuals and small projects",
+    price: billingPeriod === "monthly" ? 9 : 90,
+    originalPrice: billingPeriod === "yearly" ? 108 : null,
+    period: billingPeriod === "monthly" ? "/month" : "/year",
+    popular: false,
+    cta: "Start Free Trial",
+    features: [
+      "Up to 3 projects",
+      "5GB storage",
+      "Email support",
+      "Basic analytics",
+      "SSL certificate",
+      "Mobile responsive"
+    ],
+    limitations: [
+      "No custom domain",
+      "Limited integrations"
+    ]
+  },
+  {
+    name: "Professional",
+    description: "Ideal for growing businesses and teams",
+    price: billingPeriod === "monthly" ? 29 : 290,
+    originalPrice: billingPeriod === "yearly" ? 348 : null,
+    period: billingPeriod === "monthly" ? "/month" : "/year",
+    popular: true,
+    cta: "Get Started",
+    features: [
+      "Unlimited projects",
+      "100GB storage",
+      "Priority support",
+      "Advanced analytics",
+      "Custom domain",
+      "Team collaboration",
+      "API access",
+      "Custom integrations",
+      "Advanced security"
+    ],
+    limitations: []
+  },
+  {
+    name: "Enterprise",
+    description: "For large organizations with custom needs",
+    price: billingPeriod === "monthly" ? 99 : 990,
+    originalPrice: billingPeriod === "yearly" ? 1188 : null,
+    period: billingPeriod === "monthly" ? "/month" : "/year",
+    popular: false,
+    cta: "Contact Sales",
+    features: [
+      "Everything in Professional",
+      "Unlimited storage",
+      "24/7 phone support",
+      "Dedicated account manager",
+      "SLA guarantee",
+      "Advanced permissions",
+      "Single sign-on (SSO)",
+      "Custom integrations",
+      "White-label options",
+      "Compliance tools"
+    ],
+    limitations: []
+  }
+];
+---
+
+<section class={`${bgClass} ${padding} ${className}`}>
+  <div class="container mx-auto px-4">
+    {title && (
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          {title}
+        </h2>
+        {description && (
+          <p class="wireframe-text text-xl max-w-3xl mx-auto">
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+
+    <!-- Pricing Cards -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      {pricingTiers.map((tier) => (
+        <div class={`wireframe-box doodle-border p-8 relative text-center ${tier.popular ? 'border-2' : ''}`}
+             style={tier.popular ? `border-color: var(--color-theme-button);` : ''}>
+          
+          {/* Popular Badge */}
+          {tier.popular && (
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <span class="px-4 py-2 rounded-full text-sm font-medium"
+                    style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+                Most Popular
+              </span>
+            </div>
+          )}
+
+          {/* Plan Header */}
+          <div class="mb-8">
+            <h3 class="wireframe-heading text-2xl mb-2">{tier.name}</h3>
+            <p class="wireframe-text text-sm mb-6">{tier.description}</p>
+            
+            {/* Pricing */}
+            <div class="mb-4">
+              <div class="flex items-baseline justify-center gap-1">
+                <span class="wireframe-text text-lg">{currency}</span>
+                <span class="wireframe-heading text-5xl" style="color: var(--color-theme-button);">
+                  {tier.price}
+                </span>
+                <span class="wireframe-text text-lg">{tier.period}</span>
+              </div>
+              
+              {/* Show original price for yearly billing */}
+              {tier.originalPrice && showSavings && (
+                <div class="mt-2">
+                  <span class="wireframe-text text-sm line-through" style="color: var(--color-theme-tertiary);">
+                    {currency}{tier.originalPrice}/year
+                  </span>
+                  <span class="ml-2 px-2 py-1 text-xs rounded-full"
+                        style="background-color: var(--color-theme-highlight); color: var(--color-theme-bg);">
+                    Save {currency}{tier.originalPrice - tier.price}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <button class={`w-full py-3 px-6 rounded-lg font-medium mb-8 transition-opacity hover:opacity-80 ${tier.popular ? '' : 'border'}`}
+                  style={tier.popular 
+                    ? `background-color: var(--color-theme-button); color: var(--color-theme-button-text);`
+                    : `border-color: var(--color-theme-stroke); color: var(--color-theme-button);`}>
+            {tier.cta}
+          </button>
+
+          {/* Features List */}
+          <div class="text-left">
+            <h4 class="wireframe-text font-medium mb-4">What's included:</h4>
+            <ul class="space-y-3 mb-6">
+              {tier.features.map((feature) => (
+                <li class="flex items-center gap-3">
+                  <Icon name="bx:bx-check" class="w-5 h-5 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Limitations */}
+            {tier.limitations.length > 0 && (
+              <div class="pt-4 border-t" style="border-color: var(--color-theme-stroke);">
+                <h4 class="wireframe-text font-medium mb-3 text-sm">Limitations:</h4>
+                <ul class="space-y-2">
+                  {tier.limitations.map((limitation) => (
+                    <li class="flex items-center gap-3">
+                      <Icon name="bx:bx-x" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-tertiary);" />
+                      <span class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">{limitation}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Additional Info */}
+    <div class="text-center mt-12">
+      <p class="wireframe-text mb-4">
+        All plans include 14-day free trial • No setup fees • Cancel anytime
+      </p>
+      <div class="flex justify-center items-center gap-6 flex-wrap">
+        <div class="flex items-center gap-2">
+          <Icon name="bx:bx-check-shield" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text text-sm">SSL Secured</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon name="bx:bx-support" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text text-sm">24/7 Support</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Icon name="bx:bx-money-withdraw" class="w-5 h-5" style="color: var(--color-theme-button);" />
+          <span class="wireframe-text text-sm">30-day Money Back</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Enterprise Contact */}
+    <div class="text-center mt-16">
+      <div class="wireframe-box doodle-border p-8 max-w-2xl mx-auto">
+        <h3 class="wireframe-heading text-xl mb-4">Need a Custom Solution?</h3>
+        <p class="wireframe-text mb-6">
+          Contact our sales team for volume discounts, custom integrations, and enterprise features.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button class="px-6 py-3 rounded-lg font-medium transition-opacity hover:opacity-80"
+                  style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+            Schedule Demo
+          </button>
+          <button class="px-6 py-3 rounded-lg font-medium border transition-opacity hover:opacity-80"
+                  style="border-color: var(--color-theme-stroke); color: var(--color-theme-button);">
+            Contact Sales
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

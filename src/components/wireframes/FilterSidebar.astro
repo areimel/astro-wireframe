@@ -1,0 +1,323 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Show category filters */
+  showCategories?: boolean;
+  /** Show price range filter */
+  showPriceRange?: boolean;
+  /** Show brand filters */
+  showBrands?: boolean;
+  /** Show rating filter */
+  showRating?: boolean;
+  /** Show color filters */
+  showColors?: boolean;
+  /** Show size filters */
+  showSizes?: boolean;
+  /** Show availability filter */
+  showAvailability?: boolean;
+  /** Custom classes */
+  class?: string;
+  /** Collapsible sections */
+  collapsible?: boolean;
+}
+
+const { 
+  showCategories = true,
+  showPriceRange = true,
+  showBrands = true,
+  showRating = true,
+  showColors = true,
+  showSizes = true,
+  showAvailability = true,
+  class: className = "",
+  collapsible = true
+} = Astro.props;
+
+// Sample data
+const categories = [
+  { name: "Electronics", count: 245, active: true },
+  { name: "Software", count: 189, active: false },
+  { name: "Hardware", count: 156, active: false },
+  { name: "Accessories", count: 98, active: false },
+  { name: "Components", count: 67, active: false }
+];
+
+const brands = [
+  { name: "TechCorp", count: 89, active: true },
+  { name: "InnovateCo", count: 76, active: false },
+  { name: "QualityBrand", count: 45, active: true },
+  { name: "PremiumGoods", count: 34, active: false },
+  { name: "BudgetTech", count: 23, active: false }
+];
+
+const colors = [
+  { name: "Black", hex: "#000000", active: true },
+  { name: "White", hex: "#FFFFFF", active: false },
+  { name: "Blue", hex: "#3B82F6", active: false },
+  { name: "Red", hex: "#EF4444", active: true },
+  { name: "Green", hex: "#10B981", active: false },
+  { name: "Gray", hex: "#6B7280", active: false }
+];
+
+const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+---
+
+<div class={`wireframe-box doodle-border p-6 ${className}`}>
+  <!-- Filter Header -->
+  <div class="flex items-center justify-between mb-6">
+    <h3 class="wireframe-heading text-xl">Filters</h3>
+    <button class="wireframe-text text-sm hover:opacity-70 transition-opacity"
+            style="color: var(--color-theme-button);">
+      Clear All
+    </button>
+  </div>
+
+  <!-- Applied Filters -->
+  <div class="mb-6">
+    <div class="flex flex-wrap gap-2">
+      <span class="px-3 py-1 text-sm rounded-full wireframe-box doodle-border flex items-center gap-2">
+        <span class="wireframe-text">Electronics</span>
+        <Icon name="bx:bx-x" class="w-4 h-4 cursor-pointer hover:opacity-70" style="color: var(--color-theme-tertiary);" />
+      </span>
+      <span class="px-3 py-1 text-sm rounded-full wireframe-box doodle-border flex items-center gap-2">
+        <span class="wireframe-text">TechCorp</span>
+        <Icon name="bx:bx-x" class="w-4 h-4 cursor-pointer hover:opacity-70" style="color: var(--color-theme-tertiary);" />
+      </span>
+      <span class="px-3 py-1 text-sm rounded-full wireframe-box doodle-border flex items-center gap-2">
+        <span class="wireframe-text">$50-$200</span>
+        <Icon name="bx:bx-x" class="w-4 h-4 cursor-pointer hover:opacity-70" style="color: var(--color-theme-tertiary);" />
+      </span>
+    </div>
+  </div>
+
+  <div class="space-y-6">
+    <!-- Categories Filter -->
+    {showCategories && (
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="wireframe-heading text-base">Categories</h4>
+          {collapsible && (
+            <Icon name="bx:bx-chevron-down" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+          )}
+        </div>
+        <div class="space-y-2">
+          {categories.map((category) => (
+            <label class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+              <input 
+                type="checkbox" 
+                checked={category.active}
+                class="w-4 h-4 rounded accent-current"
+                style="accent-color: var(--color-theme-button);"
+              />
+              <span class="wireframe-text flex-1">{category.name}</span>
+              <span class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+                ({category.count})
+              </span>
+            </label>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Price Range Filter -->
+    {showPriceRange && (
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="wireframe-heading text-base">Price Range</h4>
+          {collapsible && (
+            <Icon name="bx:bx-chevron-down" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+          )}
+        </div>
+        <div class="space-y-3">
+          <!-- Price Inputs -->
+          <div class="flex gap-3">
+            <div class="flex-1">
+              <label class="wireframe-text text-sm mb-1 block">Min</label>
+              <input 
+                type="number" 
+                placeholder="$0"
+                class="w-full p-2 wireframe-box doodle-border wireframe-text text-sm"
+                style="background-color: var(--color-theme-bg);"
+              />
+            </div>
+            <div class="flex-1">
+              <label class="wireframe-text text-sm mb-1 block">Max</label>
+              <input 
+                type="number" 
+                placeholder="$500"
+                class="w-full p-2 wireframe-box doodle-border wireframe-text text-sm"
+                style="background-color: var(--color-theme-bg);"
+              />
+            </div>
+          </div>
+          
+          <!-- Price Range Slider Placeholder -->
+          <div class="relative">
+            <div class="w-full h-2 rounded-full" style="background-color: var(--color-theme-quaternary);">
+              <div class="absolute inset-y-0 left-1/4 right-1/3 rounded-full" 
+                   style="background-color: var(--color-theme-button);">
+              </div>
+            </div>
+            <div class="flex justify-between text-xs mt-1">
+              <span class="wireframe-text" style="color: var(--color-theme-tertiary);">$0</span>
+              <span class="wireframe-text" style="color: var(--color-theme-tertiary);">$500+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
+    <!-- Brands Filter -->
+    {showBrands && (
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="wireframe-heading text-base">Brands</h4>
+          {collapsible && (
+            <Icon name="bx:bx-chevron-down" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+          )}
+        </div>
+        <div class="space-y-2">
+          {brands.map((brand) => (
+            <label class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+              <input 
+                type="checkbox" 
+                checked={brand.active}
+                class="w-4 h-4 rounded accent-current"
+                style="accent-color: var(--color-theme-button);"
+              />
+              <span class="wireframe-text flex-1">{brand.name}</span>
+              <span class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+                ({brand.count})
+              </span>
+            </label>
+          ))}
+          <button class="wireframe-text text-sm hover:opacity-70 transition-opacity"
+                  style="color: var(--color-theme-button);">
+            Show more brands
+          </button>
+        </div>
+      </div>
+    )}
+
+    <!-- Rating Filter -->
+    {showRating && (
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="wireframe-heading text-base">Customer Rating</h4>
+          {collapsible && (
+            <Icon name="bx:bx-chevron-down" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+          )}
+        </div>
+        <div class="space-y-2">
+          {[5, 4, 3, 2, 1].map((rating) => (
+            <label class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+              <input 
+                type="checkbox" 
+                class="w-4 h-4 rounded accent-current"
+                style="accent-color: var(--color-theme-button);"
+              />
+              <div class="flex items-center gap-1">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Icon 
+                    name={i < rating ? "bx:bxs-star" : "bx:bx-star"} 
+                    class="w-4 h-4" 
+                    style={`color: ${i < rating ? 'var(--color-theme-secondary)' : 'var(--color-theme-tertiary)'};`}
+                  />
+                ))}
+                <span class="wireframe-text text-sm ml-1">& up</span>
+              </div>
+            </label>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Colors Filter -->
+    {showColors && (
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="wireframe-heading text-base">Colors</h4>
+          {collapsible && (
+            <Icon name="bx:bx-chevron-down" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+          )}
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {colors.map((color) => (
+            <button class={`w-8 h-8 rounded-full border-2 hover:scale-110 transition-transform ${color.active ? 'ring-2 ring-offset-2' : ''}`}
+                    style={`background-color: ${color.hex}; border-color: var(--color-theme-stroke); ring-color: var(--color-theme-button);`}
+                    title={color.name}>
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Sizes Filter -->
+    {showSizes && (
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="wireframe-heading text-base">Sizes</h4>
+          {collapsible && (
+            <Icon name="bx:bx-chevron-down" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+          )}
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {sizes.map((size, index) => (
+            <button class={`px-3 py-2 text-sm rounded-lg wireframe-box doodle-border hover:opacity-80 transition-all ${index === 2 ? 'ring-2' : ''}`}
+                    style={index === 2 ? `ring-color: var(--color-theme-button); background-color: var(--color-theme-button); color: var(--color-theme-button-text);` : ''}>
+              <span class={index === 2 ? '' : 'wireframe-text'}>{size}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Availability Filter -->
+    {showAvailability && (
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="wireframe-heading text-base">Availability</h4>
+          {collapsible && (
+            <Icon name="bx:bx-chevron-down" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+          )}
+        </div>
+        <div class="space-y-2">
+          <label class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+            <input 
+              type="checkbox" 
+              checked
+              class="w-4 h-4 rounded accent-current"
+              style="accent-color: var(--color-theme-button);"
+            />
+            <span class="wireframe-text">In Stock (1,234)</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+            <input 
+              type="checkbox" 
+              class="w-4 h-4 rounded accent-current"
+              style="accent-color: var(--color-theme-button);"
+            />
+            <span class="wireframe-text">On Sale (89)</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity">
+            <input 
+              type="checkbox" 
+              class="w-4 h-4 rounded accent-current"
+              style="accent-color: var(--color-theme-button);"
+            />
+            <span class="wireframe-text">Free Shipping (567)</span>
+          </label>
+        </div>
+      </div>
+    )}
+  </div>
+
+  <!-- Apply Filters Button -->
+  <div class="mt-8 pt-6" style="border-top: 1px solid var(--color-theme-stroke);">
+    <button class="w-full py-3 px-4 rounded-lg transition-all hover:opacity-90"
+            style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+      <span class="font-medium">Apply Filters</span>
+    </button>
+  </div>
+</div>

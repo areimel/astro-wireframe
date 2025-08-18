@@ -1,0 +1,61 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<!-- Design System Integration -->
+<div class="mx-auto max-w-screen-2xl mt-16">
+  <h3 class="font-bold text-2xl wireframe-heading mb-6">Wireframe Design System</h3>
+  <div class="wireframe-box doodle-border p-6">
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <h4 class="font-semibold wireframe-heading mb-3 flex items-center">
+          <Icon name="bx:bx-palette" class="w-5 h-5 mr-2" style="color: var(--color-theme-button);" />
+          Theme Integration
+        </h4>
+        <p class="wireframe-text mb-4">
+          All wireframe layouts are built with our multi-palette color system. Use the ColorPaletteSelector 
+          to test different themes and see how each layout adapts.
+        </p>
+        <ul class="space-y-2 wireframe-text text-sm">
+          <li class="flex items-center">
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+            Theme-aware components
+          </li>
+          <li class="flex items-center">
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+            CSS custom properties
+          </li>
+          <li class="flex items-center">
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+            Real-time color switching
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="font-semibold wireframe-heading mb-3 flex items-center">
+          <Icon name="bx:bx-code" class="w-5 h-5 mr-2" style="color: var(--color-theme-secondary);" />
+          Wireframe Components
+        </h4>
+        <p class="wireframe-text mb-4">
+          Each layout includes reusable components designed specifically for wireframe aesthetics 
+          and rapid prototyping workflows.
+        </p>
+        <ul class="space-y-2 wireframe-text text-sm">
+          <li class="flex items-center">
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+            Modular design system
+          </li>
+          <li class="flex items-center">
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+            Hand-drawn aesthetic
+          </li>
+          <li class="flex items-center">
+            <Icon name="bx:bx-check" class="w-4 h-4 mr-2" style="color: var(--color-theme-button);" />
+            Mobile-first responsive
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

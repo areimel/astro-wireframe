@@ -1,0 +1,67 @@
+---
+export interface Props {
+  /** Title for the grid section */
+  title?: string;
+  /** Description for the grid section */
+  description?: string;
+  /** Grid layout: number of columns on different breakpoints */
+  columns: {
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+  };
+  /** Spacing between grid items */
+  gap?: string;
+  /** Custom padding classes for the section */
+  padding?: string;
+  /** Custom classes for the section */
+  class?: string;
+  /** Background variant */
+  background?: "default" | "alternate";
+  /** Maximum width container */
+  maxWidth?: string;
+}
+
+const { 
+  title,
+  description,
+  columns,
+  gap = "gap-6",
+  padding = "py-16", 
+  class: className = "",
+  background = "default",
+  maxWidth = "max-w-7xl"
+} = Astro.props;
+
+const bgClass = background === "alternate" ? "wireframe-section-alt" : "wireframe-section";
+
+// Build responsive grid classes
+const gridClasses = [
+  columns.sm && `grid-cols-${columns.sm}`,
+  columns.md && `md:grid-cols-${columns.md}`,
+  columns.lg && `lg:grid-cols-${columns.lg}`,
+  columns.xl && `xl:grid-cols-${columns.xl}`
+].filter(Boolean).join(" ");
+---
+
+<section class={`${bgClass} ${padding} ${className}`}>
+  <div class="container mx-auto px-4">
+    {title && (
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          {title}
+        </h2>
+        {description && (
+          <p class="wireframe-text text-xl max-w-3xl mx-auto">
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+    
+    <div class={`grid ${gridClasses} ${gap} ${maxWidth} mx-auto`}>
+      <slot />
+    </div>
+  </div>
+</section>

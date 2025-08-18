@@ -1,0 +1,290 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Table title */
+  title?: string;
+  /** Table columns definition */
+  columns?: Array<{
+    key: string;
+    label: string;
+    sortable?: boolean;
+    align?: "left" | "center" | "right";
+    width?: string;
+  }>;
+  /** Sample data rows */
+  rows?: Array<Record<string, any>>;
+  /** Enable sorting */
+  sortable?: boolean;
+  /** Enable pagination */
+  pagination?: boolean;
+  /** Items per page */
+  itemsPerPage?: number;
+  /** Show search */
+  showSearch?: boolean;
+  /** Show actions column */
+  showActions?: boolean;
+  /** Custom classes */
+  class?: string;
+  /** Table size */
+  size?: "sm" | "md" | "lg";
+  /** Striped rows */
+  striped?: boolean;
+}
+
+const { 
+  title = "Data Table",
+  columns = [],
+  rows = [],
+  sortable = true,
+  pagination = true,
+  itemsPerPage = 10,
+  showSearch = true,
+  showActions = true,
+  class: className = "",
+  size = "md",
+  striped = true
+} = Astro.props;
+
+// Default columns if none provided
+const defaultColumns = [
+  { key: "id", label: "ID", sortable: true, align: "left", width: "80px" },
+  { key: "name", label: "Name", sortable: true, align: "left" },
+  { key: "status", label: "Status", sortable: true, align: "center", width: "120px" },
+  { key: "date", label: "Date", sortable: true, align: "right", width: "140px" },
+  { key: "value", label: "Value", sortable: true, align: "right", width: "100px" }
+];
+
+// Default sample data if none provided
+const defaultRows = [
+  { id: "001", name: "Project Alpha", status: "Active", date: "2024-01-15", value: "$12,500" },
+  { id: "002", name: "Beta Initiative", status: "Pending", date: "2024-01-14", value: "$8,750" },
+  { id: "003", name: "Gamma Release", status: "Completed", date: "2024-01-13", value: "$15,200" },
+  { id: "004", name: "Delta Framework", status: "Active", date: "2024-01-12", value: "$22,100" },
+  { id: "005", name: "Epsilon Platform", status: "On Hold", date: "2024-01-11", value: "$5,400" },
+  { id: "006", name: "Zeta Analytics", status: "Active", date: "2024-01-10", value: "$18,900" },
+  { id: "007", name: "Eta Dashboard", status: "Completed", date: "2024-01-09", value: "$9,650" },
+  { id: "008", name: "Theta Integration", status: "Pending", date: "2024-01-08", value: "$13,800" }
+];
+
+const tableColumns = columns.length > 0 ? columns : defaultColumns;
+const tableRows = rows.length > 0 ? rows : defaultRows;
+
+// Size classes
+const sizeClasses = {
+  sm: "text-sm",
+  md: "text-base",
+  lg: "text-lg"
+};
+
+// Cell padding classes
+const paddingClasses = {
+  sm: "px-3 py-2",
+  md: "px-4 py-3", 
+  lg: "px-6 py-4"
+};
+
+// Status color mapping
+const getStatusColor = (status: string) => {
+  const statusMap: Record<string, string> = {
+    'Active': '#10b981',
+    'Completed': '#3b82f6', 
+    'Pending': '#f59e0b',
+    'On Hold': '#ef4444',
+    'Cancelled': '#6b7280'
+  };
+  return statusMap[status] || 'var(--color-theme-tertiary)';
+};
+
+const getStatusIcon = (status: string) => {
+  const iconMap: Record<string, string> = {
+    'Active': 'bx:bx-check-circle',
+    'Completed': 'bx:bx-check-double',
+    'Pending': 'bx:bx-time',
+    'On Hold': 'bx:bx-pause',
+    'Cancelled': 'bx:bx-x-circle'
+  };
+  return iconMap[status] || 'bx:bx-circle';
+};
+---
+
+<div class={`wireframe-box doodle-border ${className}`}>
+  <!-- Table Header -->
+  <div class="p-6 border-b" style="border-color: var(--color-theme-stroke);">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <h3 class="wireframe-heading text-xl lg:text-2xl mb-1">
+          {title}
+        </h3>
+        <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+          {tableRows.length} total items
+        </p>
+      </div>
+      
+      <div class="flex items-center gap-3">
+        {showSearch && (
+          <div class="relative">
+            <Icon 
+              name="bx:bx-search" 
+              class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4" 
+              style="color: var(--color-theme-tertiary);"
+            />
+            <input
+              type="text"
+              placeholder="Search..."
+              class="wireframe-box doodle-border pl-10 pr-4 py-2 text-sm bg-transparent wireframe-text"
+              style="min-width: 200px;"
+            />
+          </div>
+        )}
+        
+        <!-- Filter Button -->
+        <button class="p-2 rounded-lg hover:opacity-80 transition-opacity wireframe-box doodle-border">
+          <Icon name="bx:bx-filter" class="w-4 h-4" style="color: var(--color-theme-button);" />
+        </button>
+        
+        <!-- Export Button -->
+        <button class="p-2 rounded-lg hover:opacity-80 transition-opacity wireframe-box doodle-border">
+          <Icon name="bx:bx-download" class="w-4 h-4" style="color: var(--color-theme-button);" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Container -->
+  <div class="overflow-x-auto">
+    <table class={`w-full ${sizeClasses[size]}`}>
+      <!-- Table Header -->
+      <thead style="background-color: var(--color-theme-quaternary);">
+        <tr>
+          {tableColumns.map((column) => (
+            <th 
+              class={`${paddingClasses[size]} text-${column.align || 'left'} wireframe-text font-medium`}
+              style={column.width ? `width: ${column.width};` : ''}
+            >
+              <div class="flex items-center gap-2 justify-${column.align || 'start'}">
+                <span>{column.label}</span>
+                {sortable && column.sortable && (
+                  <button class="hover:opacity-80 transition-opacity">
+                    <Icon name="bx:bx-sort" class="w-3 h-3" style="color: var(--color-theme-tertiary);" />
+                  </button>
+                )}
+              </div>
+            </th>
+          ))}
+          {showActions && (
+            <th class={`${paddingClasses[size]} text-center wireframe-text font-medium`}>
+              Actions
+            </th>
+          )}
+        </tr>
+      </thead>
+
+      <!-- Table Body -->
+      <tbody>
+        {tableRows.map((row, index) => (
+          <tr 
+            class={`
+              hover:opacity-80 transition-opacity border-b
+              ${striped && index % 2 === 0 ? 'bg-opacity-30' : ''}
+            `}
+            style={`
+              border-color: var(--color-theme-stroke);
+              ${striped && index % 2 === 0 ? 'background-color: var(--color-theme-quaternary);' : ''}
+            `}
+          >
+            {tableColumns.map((column) => (
+              <td class={`${paddingClasses[size]} text-${column.align || 'left'} wireframe-text`}>
+                {column.key === 'status' ? (
+                  <!-- Status Cell with Icon -->
+                  <div class="flex items-center justify-center gap-2">
+                    <Icon 
+                      name={getStatusIcon(row[column.key])} 
+                      class="w-4 h-4" 
+                      style={`color: ${getStatusColor(row[column.key])};`}
+                    />
+                    <span 
+                      class="px-2 py-1 rounded-full text-xs font-medium wireframe-box doodle-border"
+                      style={`color: ${getStatusColor(row[column.key])};`}
+                    >
+                      {row[column.key]}
+                    </span>
+                  </div>
+                ) : column.key === 'value' ? (
+                  <!-- Value Cell with Emphasis -->
+                  <span class="font-medium" style="color: var(--color-theme-button);">
+                    {row[column.key]}
+                  </span>
+                ) : (
+                  <!-- Regular Cell -->
+                  <span>{row[column.key]}</span>
+                )}
+              </td>
+            ))}
+            
+            {showActions && (
+              <td class={`${paddingClasses[size]} text-center`}>
+                <div class="flex items-center justify-center gap-1">
+                  <button class="p-1 rounded hover:opacity-80 transition-opacity">
+                    <Icon name="bx:bx-edit" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  </button>
+                  <button class="p-1 rounded hover:opacity-80 transition-opacity">
+                    <Icon name="bx:bx-show" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+                  </button>
+                  <button class="p-1 rounded hover:opacity-80 transition-opacity">
+                    <Icon name="bx:bx-trash" class="w-4 h-4" style="color: #ef4444;" />
+                  </button>
+                </div>
+              </td>
+            )}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  {pagination && (
+    <div class="p-4 border-t flex items-center justify-between" style="border-color: var(--color-theme-stroke);">
+      <div class="flex items-center gap-2">
+        <span class="wireframe-text text-sm">Showing</span>
+        <select class="wireframe-box doodle-border px-2 py-1 text-sm bg-transparent wireframe-text">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </select>
+        <span class="wireframe-text text-sm">of {tableRows.length} items</span>
+      </div>
+      
+      <div class="flex items-center gap-1">
+        <button class="p-2 rounded-lg hover:opacity-80 transition-opacity wireframe-box doodle-border">
+          <Icon name="bx:bx-chevron-left" class="w-4 h-4" />
+        </button>
+        
+        <div class="flex items-center gap-1">
+          {[1, 2, 3].map((page) => (
+            <button 
+              class={`px-3 py-1 rounded-lg wireframe-text text-sm hover:opacity-80 transition-opacity
+                ${page === 1 ? 'wireframe-box doodle-border' : ''}`}
+              style={page === 1 ? 'background-color: var(--color-theme-button); color: var(--color-theme-button-text);' : ''}
+            >
+              {page}
+            </button>
+          ))}
+          <span class="px-2 wireframe-text">...</span>
+          <button class="px-3 py-1 rounded-lg wireframe-text text-sm hover:opacity-80 transition-opacity">
+            8
+          </button>
+        </div>
+        
+        <button class="p-2 rounded-lg hover:opacity-80 transition-opacity wireframe-box doodle-border">
+          <Icon name="bx:bx-chevron-right" class="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  )}
+
+  <!-- Additional Content Slot -->
+  <slot />
+</div>

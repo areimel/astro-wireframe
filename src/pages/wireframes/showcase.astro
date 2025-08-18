@@ -1,0 +1,473 @@
+---
+import Container from "@/components/container.astro";
+import Layout from "@/layouts/Layout.astro";
+import Link from "@/components/ui/link.astro";
+import Button from "@/components/ui/button.astro";
+import { Icon } from "astro-icon/components";
+import ProductCarousel from "@/components/wireframes/ProductCarousel.astro";
+import ComparisonTable from "@/components/wireframes/ComparisonTable.astro";
+import GalleryGrid from "@/components/wireframes/GalleryGrid.astro";
+---
+
+<Layout title="Horizontal Product Showcase - Wireframe Landing Page">
+  <!-- Hero Section - Wide with Product Focus -->
+  <section class="wireframe-section py-24 lg:py-32">
+    <Container>
+      <div class="text-center mb-16">
+        <h1 class="wireframe-heading text-5xl lg:text-7xl mb-6 max-w-5xl mx-auto">
+          Revolutionary Product Launch
+        </h1>
+        <p class="wireframe-text text-2xl mb-8 max-w-3xl mx-auto">
+          Experience the future of innovation with our groundbreaking product line designed to transform your workflow.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="#products"
+            class="doodle flex items-center justify-center gap-2"
+            size="xl"
+            style="primary">
+            <Icon name="bx:bx-package" class="w-6 h-6" />
+            Explore Products
+          </Link>
+          <Link
+            href="#gallery"
+            class="doodle flex items-center justify-center gap-2"
+            size="xl"
+            style="outline">
+            <Icon name="bx:bx-play-circle" class="w-6 h-6" />
+            Watch Launch Video
+          </Link>
+        </div>
+      </div>
+
+      <!-- Hero Product Showcase -->
+      <div class="wireframe-box doodle-border rounded-2xl p-12 mb-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Main Product Image -->
+          <div class="wireframe-box doodle-border flex items-center justify-center min-h-[500px] rounded-xl">
+            <div class="text-center">
+              <Icon name="bx:bx-package" class="w-32 h-32 mx-auto mb-6" style="color: var(--color-theme-button);" />
+              <h3 class="wireframe-heading text-3xl mb-4">Hero Product Image</h3>
+              <p class="wireframe-text text-lg" style="color: var(--color-theme-tertiary);">
+                360° interactive product view with zoom capabilities
+              </p>
+            </div>
+          </div>
+
+          <!-- Product Highlights -->
+          <div class="space-y-8">
+            <div>
+              <h2 class="wireframe-heading text-4xl mb-4" style="color: var(--color-theme-button);">
+                Product X Pro
+              </h2>
+              <p class="wireframe-text text-xl mb-6">
+                The ultimate solution combining cutting-edge technology with intuitive design for professionals who demand excellence.
+              </p>
+            </div>
+
+            <!-- Key Features -->
+            <div class="grid gap-4">
+              <div class="flex items-center gap-4">
+                <div class="wireframe-box doodle-border w-12 h-12 flex items-center justify-center rounded-lg">
+                  <Icon name="bx:bxs-bolt" class="w-6 h-6" style="color: var(--color-theme-secondary);" />
+                </div>
+                <div>
+                  <h4 class="wireframe-heading text-lg">Lightning Performance</h4>
+                  <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">5x faster than previous generation</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center gap-4">
+                <div class="wireframe-box doodle-border w-12 h-12 flex items-center justify-center rounded-lg">
+                  <Icon name="bx:bx-shield" class="w-6 h-6" style="color: var(--color-theme-tertiary);" />
+                </div>
+                <div>
+                  <h4 class="wireframe-heading text-lg">Enterprise Security</h4>
+                  <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Military-grade encryption built-in</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-4">
+                <div class="wireframe-box doodle-border w-12 h-12 flex items-center justify-center rounded-lg">
+                  <Icon name="bx:bx-infinite" class="w-6 h-6" style="color: var(--color-theme-highlight);" />
+                </div>
+                <div>
+                  <h4 class="wireframe-heading text-lg">Unlimited Scale</h4>
+                  <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Grows with your business needs</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pricing & CTA -->
+            <div class="pt-4">
+              <div class="flex items-baseline gap-4 mb-6">
+                <span class="wireframe-heading text-5xl" style="color: var(--color-theme-button);">$299</span>
+                <span class="wireframe-text text-lg line-through" style="color: var(--color-theme-tertiary);">$399</span>
+                <span class="px-3 py-1 rounded-full text-sm font-medium" 
+                      style="background-color: var(--color-theme-secondary); color: white;">25% OFF</span>
+              </div>
+              <Button class="w-full sm:w-auto doodle" size="xl" style="primary">
+                Pre-Order Now - Ships March 2024
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Indicators -->
+      <div class="grid md:grid-cols-4 gap-6 text-center">
+        <div class="flex items-center justify-center gap-3">
+          <Icon name="bx:bx-check-shield" class="w-8 h-8" style="color: var(--color-theme-button);" />
+          <div>
+            <p class="wireframe-heading text-lg">30-Day Returns</p>
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">No questions asked</p>
+          </div>
+        </div>
+        <div class="flex items-center justify-center gap-3">
+          <Icon name="bx:bx-package" class="w-8 h-8" style="color: var(--color-theme-button);" />
+          <div>
+            <p class="wireframe-heading text-lg">Free Shipping</p>
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">On orders over $200</p>
+          </div>
+        </div>
+        <div class="flex items-center justify-center gap-3">
+          <Icon name="bx:bx-support" class="w-8 h-8" style="color: var(--color-theme-button);" />
+          <div>
+            <p class="wireframe-heading text-lg">Expert Support</p>
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">24/7 technical help</p>
+          </div>
+        </div>
+        <div class="flex items-center justify-center gap-3">
+          <Icon name="bx:bx-certification" class="w-8 h-8" style="color: var(--color-theme-button);" />
+          <div>
+            <p class="wireframe-heading text-lg">2-Year Warranty</p>
+            <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">Complete protection</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Product Carousel Section -->
+  <ProductCarousel 
+    id="products"
+    title="Complete Product Line" 
+    description="Browse our full range of innovative products designed for every professional need."
+    productCount={8}
+    showPrice={true}
+    showRating={true}
+    background="alternate"
+  />
+
+  <!-- Feature Comparison Section -->
+  <ComparisonTable 
+    title="Find Your Perfect Match"
+    description="Compare specifications and features across our product range to make the best choice for your needs."
+    productCount={3}
+  />
+
+  <!-- Gallery Section -->
+  <GalleryGrid 
+    id="gallery"
+    title="See It In Action"
+    description="Explore detailed product images, lifestyle shots, and behind-the-scenes content."
+    layout="featured"
+    imageCount={12}
+    showMetadata={true}
+    showFilters={true}
+    background="alternate"
+  />
+
+  <!-- Testimonials Section - Horizontal Carousel -->
+  <section class="wireframe-section py-16">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          What Our Customers Say
+        </h2>
+        <p class="wireframe-text text-xl max-w-3xl mx-auto">
+          Real feedback from professionals who have transformed their workflows with our products.
+        </p>
+      </div>
+
+      <!-- Horizontal Testimonial Carousel -->
+      <div class="overflow-x-auto pb-6">
+        <div class="flex gap-8 min-w-max">
+          {Array.from({ length: 5 }, (_, i) => (
+            <div class="wireframe-box doodle-border p-8 flex-none w-96">
+              <!-- Rating -->
+              <div class="flex items-center gap-2 mb-4">
+                {Array.from({ length: 5 }, (_, star) => (
+                  <Icon name="bx:bxs-star" class="w-5 h-5" style="color: var(--color-theme-secondary);" />
+                ))}
+                <span class="wireframe-text text-sm font-medium">5.0</span>
+              </div>
+
+              <!-- Testimonial -->
+              <blockquote class="wireframe-text text-lg mb-6 leading-relaxed">
+                "This product has completely revolutionized how we approach our daily tasks. The performance improvements are remarkable and the interface is incredibly intuitive."
+              </blockquote>
+
+              <!-- Customer Info -->
+              <div class="flex items-center gap-4">
+                <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center">
+                  <Icon name="bx:bx-user" class="w-6 h-6" style="color: var(--color-theme-tertiary);" />
+                </div>
+                <div>
+                  <p class="wireframe-heading font-semibold">Customer Name {i + 1}</p>
+                  <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+                    {["CEO", "CTO", "Designer", "Engineer", "Manager"][i]}, Company {i + 1}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Carousel Controls -->
+      <div class="flex items-center justify-center gap-4 mt-8">
+        <button class="wireframe-box doodle-border p-3 rounded-full hover:opacity-80 transition-opacity">
+          <Icon name="bx:bx-chevron-left" class="w-6 h-6" style="color: var(--color-theme-button);" />
+        </button>
+        <div class="flex gap-2">
+          {Array.from({ length: 5 }, (_, i) => (
+            <button class={`w-3 h-3 rounded-full transition-opacity ${i === 0 ? 'opacity-100' : 'opacity-40'}`}
+                    style="background-color: var(--color-theme-button);">
+            </button>
+          ))}
+        </div>
+        <button class="wireframe-box doodle-border p-3 rounded-full hover:opacity-80 transition-opacity">
+          <Icon name="bx:bx-chevron-right" class="w-6 h-6" style="color: var(--color-theme-button);" />
+        </button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Specifications Section -->
+  <section class="wireframe-section py-16" style="background-color: var(--color-theme-quaternary);">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          Technical Specifications
+        </h2>
+        <p class="wireframe-text text-xl max-w-3xl mx-auto">
+          Detailed technical information and compatibility requirements for all our products.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Hardware Specs -->
+        <div class="wireframe-box doodle-border p-8 rounded-xl">
+          <h3 class="wireframe-heading text-2xl mb-6 flex items-center gap-3">
+            <Icon name="bx:bx-chip" class="w-8 h-8" style="color: var(--color-theme-button);" />
+            Hardware Specifications
+          </h3>
+          
+          <div class="space-y-4">
+            <div class="grid grid-cols-3 gap-4 py-3 border-b" style="border-color: var(--color-theme-stroke);">
+              <span class="wireframe-text font-medium">Processor</span>
+              <span class="wireframe-text col-span-2">Intel Core i7-13700K / AMD Ryzen 9 7900X</span>
+            </div>
+            <div class="grid grid-cols-3 gap-4 py-3 border-b" style="border-color: var(--color-theme-stroke);">
+              <span class="wireframe-text font-medium">Memory</span>
+              <span class="wireframe-text col-span-2">32GB DDR5-5600 (upgradeable to 128GB)</span>
+            </div>
+            <div class="grid grid-cols-3 gap-4 py-3 border-b" style="border-color: var(--color-theme-stroke);">
+              <span class="wireframe-text font-medium">Storage</span>
+              <span class="wireframe-text col-span-2">1TB NVMe SSD (2x M.2 slots available)</span>
+            </div>
+            <div class="grid grid-cols-3 gap-4 py-3 border-b" style="border-color: var(--color-theme-stroke);">
+              <span class="wireframe-text font-medium">Graphics</span>
+              <span class="wireframe-text col-span-2">NVIDIA RTX 4070 Ti / AMD RX 7800 XT</span>
+            </div>
+            <div class="grid grid-cols-3 gap-4 py-3 border-b" style="border-color: var(--color-theme-stroke);">
+              <span class="wireframe-text font-medium">Connectivity</span>
+              <span class="wireframe-text col-span-2">Wi-Fi 6E, Bluetooth 5.3, 2.5Gb Ethernet</span>
+            </div>
+            <div class="grid grid-cols-3 gap-4 py-3">
+              <span class="wireframe-text font-medium">Ports</span>
+              <span class="wireframe-text col-span-2">4x USB-C, 2x USB-A, HDMI 2.1, DisplayPort</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Software & Compatibility -->
+        <div class="wireframe-box doodle-border p-8 rounded-xl">
+          <h3 class="wireframe-heading text-2xl mb-6 flex items-center gap-3">
+            <Icon name="bx:bx-code-alt" class="w-8 h-8" style="color: var(--color-theme-secondary);" />
+            Software & Compatibility
+          </h3>
+          
+          <div class="space-y-6">
+            <!-- Operating Systems -->
+            <div>
+              <h4 class="wireframe-heading text-lg mb-3">Supported Operating Systems</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 rounded-lg text-sm" 
+                      style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+                  Windows 11
+                </span>
+                <span class="px-3 py-1 rounded-lg text-sm" 
+                      style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+                  macOS 13+
+                </span>
+                <span class="px-3 py-1 rounded-lg text-sm" 
+                      style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+                  Ubuntu 22.04+
+                </span>
+              </div>
+            </div>
+
+            <!-- Software Integration -->
+            <div>
+              <h4 class="wireframe-heading text-lg mb-3">Compatible Software</h4>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Adobe Creative Suite</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Microsoft Office 365</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">AutoCAD 2024</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Blender 4.0+</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Unity 2023 LTS</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Docker Desktop</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- API & Development -->
+            <div>
+              <h4 class="wireframe-heading text-lg mb-3">Developer Features</h4>
+              <ul class="space-y-2">
+                <li class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">REST API with OpenAPI 3.0 spec</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">GraphQL endpoint with real-time subscriptions</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">SDKs for Python, JavaScript, Go, and Rust</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Webhook support for event notifications</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Download Resources -->
+      <div class="mt-12 text-center">
+        <div class="wireframe-box doodle-border p-8 rounded-xl max-w-4xl mx-auto">
+          <h3 class="wireframe-heading text-2xl mb-4">Technical Resources</h3>
+          <p class="wireframe-text mb-6">
+            Download detailed documentation, setup guides, and compatibility tools.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <Button class="doodle" style="outline">
+              <Icon name="bx:bx-download" class="w-4 h-4 mr-2" />
+              Spec Sheet (PDF)
+            </Button>
+            <Button class="doodle" style="outline">
+              <Icon name="bx:bx-book" class="w-4 h-4 mr-2" />
+              Installation Guide
+            </Button>
+            <Button class="doodle" style="outline">
+              <Icon name="bx:bx-code-block" class="w-4 h-4 mr-2" />
+              API Documentation
+            </Button>
+            <Button class="doodle" style="primary">
+              <Icon name="bx:bx-support" class="w-4 h-4 mr-2" />
+              Contact Engineering
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="wireframe-section py-24">
+    <Container>
+      <div class="wireframe-box doodle-border p-16 text-center max-w-6xl mx-auto rounded-2xl">
+        <div class="mb-8">
+          <Icon name="bx:bx-rocket" class="w-24 h-24 mx-auto mb-6" style="color: var(--color-theme-button);" />
+          <h2 class="wireframe-heading text-4xl lg:text-5xl mb-6">
+            Ready to Experience the Future?
+          </h2>
+          <p class="wireframe-text text-2xl mb-8 max-w-3xl mx-auto">
+            Join over 50,000 professionals who have already upgraded their workflow with our revolutionary product line.
+          </p>
+        </div>
+
+        <!-- CTA Options -->
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+          <div class="wireframe-box doodle-border p-6 rounded-xl">
+            <Icon name="bx:bx-test-tube" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-secondary);" />
+            <h3 class="wireframe-heading text-xl mb-2">Free Trial</h3>
+            <p class="wireframe-text text-sm mb-4">30-day full-feature trial</p>
+            <Button class="w-full doodle" style="outline">Start Trial</Button>
+          </div>
+
+          <div class="wireframe-box doodle-border p-6 rounded-xl border-2" style="border-color: var(--color-theme-button);">
+            <Icon name="bx:bx-package" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-button);" />
+            <h3 class="wireframe-heading text-xl mb-2">Buy Now</h3>
+            <p class="wireframe-text text-sm mb-4">Best price guarantee</p>
+            <Button class="w-full doodle" style="primary" size="lg">Order Today</Button>
+          </div>
+
+          <div class="wireframe-box doodle-border p-6 rounded-xl">
+            <Icon name="bx:bx-phone" class="w-12 h-12 mx-auto mb-4" style="color: var(--color-theme-tertiary);" />
+            <h3 class="wireframe-heading text-xl mb-2">Schedule Demo</h3>
+            <p class="wireframe-text text-sm mb-4">Personalized walkthrough</p>
+            <Button class="w-full doodle" style="outline">Book Demo</Button>
+          </div>
+        </div>
+
+        <!-- Trust Signals -->
+        <div class="flex flex-wrap justify-center items-center gap-8 pt-8 border-t" style="border-color: var(--color-theme-stroke);">
+          <div class="flex items-center gap-2">
+            <Icon name="bx:bx-shield" class="w-6 h-6" style="color: var(--color-theme-button);" />
+            <span class="wireframe-text text-sm">Enterprise Security</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <Icon name="bx:bx-support" class="w-6 h-6" style="color: var(--color-theme-button);" />
+            <span class="wireframe-text text-sm">24/7 Support</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <Icon name="bx:bx-medal" class="w-6 h-6" style="color: var(--color-theme-button);" />
+            <span class="wireframe-text text-sm">Industry Awards</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <Icon name="bx:bx-group" class="w-6 h-6" style="color: var(--color-theme-button);" />
+            <span class="wireframe-text text-sm">50K+ Customers</span>
+          </div>
+        </div>
+
+        <p class="wireframe-text text-sm mt-6" style="color: var(--color-theme-tertiary);">
+          No credit card required for trial • 30-day money-back guarantee • Free shipping worldwide
+        </p>
+      </div>
+    </Container>
+  </section>
+</Layout>

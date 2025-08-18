@@ -1,0 +1,201 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Product name */
+  name?: string;
+  /** Product brand */
+  brand?: string;
+  /** Product category */
+  category?: string;
+  /** Product price */
+  price?: number;
+  /** Original price (for discounts) */
+  originalPrice?: number;
+  /** Product rating */
+  rating?: number;
+  /** Number of reviews */
+  reviewCount?: number;
+  /** Product badge text */
+  badge?: string;
+  /** Discount percentage */
+  discount?: number;
+  /** Show product image */
+  showImage?: boolean;
+  /** Show price */
+  showPrice?: boolean;
+  /** Show rating */
+  showRating?: boolean;
+  /** Show features list */
+  showFeatures?: boolean;
+  /** Show action buttons */
+  showActions?: boolean;
+  /** Card size */
+  size?: "sm" | "md" | "lg";
+  /** Custom classes */
+  class?: string;
+  /** Custom features list */
+  features?: string[];
+}
+
+const { 
+  name = "Premium Product",
+  brand = "TechCorp",
+  category = "Electronics",
+  price = 99,
+  originalPrice = 129,
+  rating = 4.5,
+  reviewCount = 128,
+  badge = "Sale",
+  discount = 23,
+  showImage = true,
+  showPrice = true,
+  showRating = true,
+  showFeatures = true,
+  showActions = true,
+  size = "md",
+  class: className = "",
+  features = ["Free shipping", "30-day returns", "1-year warranty"]
+} = Astro.props;
+
+const sizeClasses = {
+  sm: "p-4",
+  md: "p-6",
+  lg: "p-8"
+};
+
+const imageSizes = {
+  sm: "h-32",
+  md: "h-48", 
+  lg: "h-64"
+};
+
+const hasDiscount = discount && discount > 0;
+---
+
+<div class={`wireframe-box doodle-border ${sizeClasses[size]} hover:opacity-95 transition-opacity cursor-pointer ${className}`}>
+  <!-- Product Image -->
+  {showImage && (
+    <div class={`wireframe-box doodle-border mb-4 relative overflow-hidden ${imageSizes[size]}`}>
+      <div class="w-full h-full flex items-center justify-center bg-opacity-20" 
+           style="background-color: var(--color-theme-quaternary);">
+        <div class="text-center">
+          <Icon name="bx:bx-image" class="w-12 h-12 mx-auto mb-2" style="color: var(--color-theme-tertiary);" />
+          <p class="wireframe-text text-sm">Product Photo</p>
+        </div>
+      </div>
+      
+      <!-- Badges -->
+      {badge && (
+        <div class="absolute top-2 left-2">
+          <span class="px-2 py-1 text-xs rounded-full wireframe-text font-medium"
+                style={`background-color: var(--color-theme-secondary); color: var(--color-theme-button-text);`}>
+            {badge}
+          </span>
+        </div>
+      )}
+      
+      {hasDiscount && (
+        <div class="absolute top-2 right-2">
+          <span class="px-2 py-1 text-xs rounded-full wireframe-text font-medium"
+                style={`background-color: var(--color-theme-button); color: var(--color-theme-button-text);`}>
+            -{discount}%
+          </span>
+        </div>
+      )}
+      
+      <!-- Quick Actions Overlay -->
+      <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+        <button class="wireframe-box doodle-border p-2 bg-white hover:scale-105 transition-transform" title="Add to Wishlist">
+          <Icon name="bx:bx-heart" class="w-5 h-5" style="color: var(--color-theme-button);" />
+        </button>
+        <button class="wireframe-box doodle-border p-2 bg-white hover:scale-105 transition-transform" title="Quick View">
+          <Icon name="bx:bx-show" class="w-5 h-5" style="color: var(--color-theme-button);" />
+        </button>
+        <button class="wireframe-box doodle-border p-2 bg-white hover:scale-105 transition-transform" title="Add to Cart">
+          <Icon name="bx:bx-shopping-bag" class="w-5 h-5" style="color: var(--color-theme-button);" />
+        </button>
+      </div>
+    </div>
+  )}
+
+  <!-- Product Info -->
+  <div class="space-y-3">
+    <!-- Brand & Category -->
+    <div>
+      <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
+        {brand} • {category}
+      </p>
+    </div>
+
+    <!-- Product Name -->
+    <h3 class="wireframe-heading text-lg leading-tight line-clamp-2">
+      {name}
+    </h3>
+
+    <!-- Rating -->
+    {showRating && (
+      <div class="flex items-center gap-2">
+        <div class="flex items-center">
+          {Array.from({ length: 5 }, (_, i) => (
+            <Icon 
+              name={i < Math.floor(rating) ? "bx:bxs-star" : "bx:bx-star"} 
+              class="w-4 h-4" 
+              style={`color: ${i < Math.floor(rating) ? 'var(--color-theme-secondary)' : 'var(--color-theme-tertiary)'};`}
+            />
+          ))}
+        </div>
+        <span class="wireframe-text text-sm">
+          {rating} ({reviewCount})
+        </span>
+      </div>
+    )}
+
+    <!-- Price -->
+    {showPrice && (
+      <div class="flex items-center gap-2">
+        <span class="wireframe-heading text-xl" style="color: var(--color-theme-button);">
+          ${price}
+        </span>
+        {hasDiscount && (
+          <span class="wireframe-text text-sm line-through" style="color: var(--color-theme-tertiary);">
+            ${originalPrice}
+          </span>
+        )}
+        {hasDiscount && (
+          <span class="wireframe-text text-sm font-medium" style="color: var(--color-theme-button);">
+            Save ${originalPrice - price}
+          </span>
+        )}
+      </div>
+    )}
+
+    <!-- Product Features -->
+    {showFeatures && features && (
+      <ul class="space-y-1">
+        {features.map((feature) => (
+          <li class="flex items-center gap-2">
+            <Icon name="bx:bx-check" class="w-4 h-4" style="color: var(--color-theme-button);" />
+            <span class="wireframe-text text-sm">{feature}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <!-- Action Buttons -->
+    {showActions && (
+      <div class="flex gap-2 pt-2">
+        <button class="flex-1 py-2 px-4 rounded-lg transition-all hover:opacity-90 hover:scale-[0.98]" 
+                style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+          <span class="text-sm font-medium">Add to Cart</span>
+        </button>
+        <button class="wireframe-box doodle-border p-2 hover:opacity-80 transition-opacity" title="Add to Wishlist">
+          <Icon name="bx:bx-heart" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+        </button>
+        <button class="wireframe-box doodle-border p-2 hover:opacity-80 transition-opacity" title="Compare">
+          <Icon name="bx:bx-git-compare" class="w-5 h-5" style="color: var(--color-theme-tertiary);" />
+        </button>
+      </div>
+    )}
+  </div>
+</div>

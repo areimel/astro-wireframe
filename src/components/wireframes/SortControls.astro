@@ -1,0 +1,183 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Default sort option */
+  defaultSort?: string;
+  /** Show results count */
+  showResultsCount?: boolean;
+  /** Total results count */
+  resultsCount?: number;
+  /** Show view toggle */
+  showViewToggle?: boolean;
+  /** Current view mode */
+  currentView?: "grid" | "list";
+  /** Show items per page selector */
+  showItemsPerPage?: boolean;
+  /** Custom classes */
+  class?: string;
+  /** Compact layout */
+  compact?: boolean;
+}
+
+const { 
+  defaultSort = "relevance",
+  showResultsCount = true,
+  resultsCount = 1234,
+  showViewToggle = true,
+  currentView = "grid",
+  showItemsPerPage = true,
+  class: className = "",
+  compact = false
+} = Astro.props;
+
+// Sort options
+const sortOptions = [
+  { value: "relevance", label: "Best Match" },
+  { value: "price-low", label: "Price: Low to High" },
+  { value: "price-high", label: "Price: High to Low" },
+  { value: "rating", label: "Customer Rating" },
+  { value: "newest", label: "Newest First" },
+  { value: "popularity", label: "Most Popular" },
+  { value: "discount", label: "Biggest Savings" }
+];
+
+// Items per page options
+const itemsPerPageOptions = [12, 24, 48, 96];
+---
+
+<div class={`flex ${compact ? 'items-center gap-4' : 'flex-col sm:flex-row sm:items-center sm:justify-between'} gap-4 ${className}`}>
+  <!-- Results Count & Filter Summary -->
+  <div class="flex items-center gap-4">
+    {showResultsCount && (
+      <div class="flex items-center gap-2">
+        <span class="wireframe-text">
+          Showing <strong>{resultsCount.toLocaleString()}</strong> results
+        </span>
+        <div class="flex items-center gap-1 text-sm" style="color: var(--color-theme-tertiary);">
+          <span class="wireframe-text">for</span>
+          <span class="px-2 py-1 rounded-full wireframe-box doodle-border">
+            <span class="wireframe-text text-xs">Electronics</span>
+          </span>
+        </div>
+      </div>
+    )}
+  </div>
+
+  <!-- Controls Container -->
+  <div class="flex items-center gap-4">
+    <!-- Sort Dropdown -->
+    <div class="flex items-center gap-2">
+      <label class="wireframe-text text-sm whitespace-nowrap">Sort by:</label>
+      <div class="relative">
+        <select class="wireframe-box doodle-border py-2 px-4 pr-10 wireframe-text appearance-none cursor-pointer hover:opacity-80 transition-opacity"
+                style="background-color: var(--color-theme-bg);">
+          {sortOptions.map((option) => (
+            <option value={option.value} selected={option.value === defaultSort}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <Icon name="bx:bx-chevron-down" class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none" 
+              style="color: var(--color-theme-tertiary);" />
+      </div>
+    </div>
+
+    <!-- View Toggle -->
+    {showViewToggle && (
+      <div class="flex items-center gap-1 wireframe-box doodle-border p-1 rounded-lg">
+        <button class={`p-2 rounded transition-all ${currentView === 'grid' ? 'opacity-100' : 'opacity-50 hover:opacity-70'}`}
+                style={currentView === 'grid' ? `background-color: var(--color-theme-button); color: var(--color-theme-button-text);` : ''}>
+          <Icon name="bx:bx-grid-alt" class="w-4 h-4" />
+        </button>
+        <button class={`p-2 rounded transition-all ${currentView === 'list' ? 'opacity-100' : 'opacity-50 hover:opacity-70'}`}
+                style={currentView === 'list' ? `background-color: var(--color-theme-button); color: var(--color-theme-button-text);` : ''}>
+          <Icon name="bx:bx-list-ul" class="w-4 h-4" />
+        </button>
+      </div>
+    )}
+
+    <!-- Items Per Page -->
+    {showItemsPerPage && (
+      <div class="flex items-center gap-2">
+        <label class="wireframe-text text-sm whitespace-nowrap">Show:</label>
+        <div class="relative">
+          <select class="wireframe-box doodle-border py-2 px-4 pr-10 wireframe-text appearance-none cursor-pointer hover:opacity-80 transition-opacity"
+                  style="background-color: var(--color-theme-bg);">
+            {itemsPerPageOptions.map((count) => (
+              <option value={count} selected={count === 24}>
+                {count}
+              </option>
+            ))}
+          </select>
+          <Icon name="bx:bx-chevron-down" class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none" 
+                style="color: var(--color-theme-tertiary);" />
+        </div>
+      </div>
+    )}
+
+    <!-- Additional Controls -->
+    <div class="flex items-center gap-2">
+      <!-- Compare Toggle -->
+      <button class="wireframe-box doodle-border p-2 hover:opacity-80 transition-opacity" title="Compare Products">
+        <Icon name="bx:bx-git-compare" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+      </button>
+
+      <!-- Save Search -->
+      <button class="wireframe-box doodle-border p-2 hover:opacity-80 transition-opacity" title="Save Search">
+        <Icon name="bx:bx-bookmark" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+      </button>
+
+      <!-- Share Results -->
+      <button class="wireframe-box doodle-border p-2 hover:opacity-80 transition-opacity" title="Share Results">
+        <Icon name="bx:bx-share" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Active Filters & Quick Actions -->
+<div class="mt-4 pt-4" style="border-top: 1px solid var(--color-theme-stroke);">
+  <div class="flex flex-wrap items-center gap-3">
+    <!-- Active Filters -->
+    <div class="flex items-center gap-2">
+      <span class="wireframe-text text-sm">Filters:</span>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-3 py-1 text-sm rounded-full wireframe-box doodle-border flex items-center gap-2">
+          <span class="wireframe-text">Electronics</span>
+          <Icon name="bx:bx-x" class="w-3 h-3 cursor-pointer hover:opacity-70" style="color: var(--color-theme-tertiary);" />
+        </span>
+        <span class="px-3 py-1 text-sm rounded-full wireframe-box doodle-border flex items-center gap-2">
+          <span class="wireframe-text">$50-$200</span>
+          <Icon name="bx:bx-x" class="w-3 h-3 cursor-pointer hover:opacity-70" style="color: var(--color-theme-tertiary);" />
+        </span>
+        <span class="px-3 py-1 text-sm rounded-full wireframe-box doodle-border flex items-center gap-2">
+          <span class="wireframe-text">4+ Stars</span>
+          <Icon name="bx:bx-x" class="w-3 h-3 cursor-pointer hover:opacity-70" style="color: var(--color-theme-tertiary);" />
+        </span>
+      </div>
+    </div>
+
+    <!-- Clear All Filters -->
+    <button class="wireframe-text text-sm hover:opacity-70 transition-opacity"
+            style="color: var(--color-theme-button);">
+      Clear all filters
+    </button>
+
+    <!-- Quick Sort Options -->
+    <div class="ml-auto flex items-center gap-2">
+      <span class="wireframe-text text-sm">Quick sort:</span>
+      <div class="flex gap-1">
+        <button class="px-3 py-1 text-sm rounded-full wireframe-box doodle-border hover:opacity-80 transition-opacity">
+          <span class="wireframe-text">On Sale</span>
+        </button>
+        <button class="px-3 py-1 text-sm rounded-full wireframe-box doodle-border hover:opacity-80 transition-opacity">
+          <span class="wireframe-text">Free Ship</span>
+        </button>
+        <button class="px-3 py-1 text-sm rounded-full wireframe-box doodle-border hover:opacity-80 transition-opacity">
+          <span class="wireframe-text">Prime</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,316 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Feed title */
+  title?: string;
+  /** Activity items */
+  activities?: Array<{
+    id: string;
+    type: "success" | "warning" | "error" | "info" | "update";
+    title: string;
+    description?: string;
+    user?: string;
+    timestamp: string;
+    icon?: string;
+    link?: string;
+    metadata?: Record<string, any>;
+  }>;
+  /** Show timestamps */
+  showTimestamps?: boolean;
+  /** Show user avatars */
+  showAvatars?: boolean;
+  /** Maximum items to display */
+  maxItems?: number;
+  /** Enable real-time updates */
+  realTime?: boolean;
+  /** Custom classes */
+  class?: string;
+  /** Feed size */
+  size?: "sm" | "md" | "lg";
+  /** Enable grouping by date */
+  groupByDate?: boolean;
+}
+
+const { 
+  title = "Recent Activity",
+  activities = [],
+  showTimestamps = true,
+  showAvatars = true,
+  maxItems = 10,
+  realTime = false,
+  class: className = "",
+  size = "md",
+  groupByDate = false
+} = Astro.props;
+
+// Default activities if none provided
+const defaultActivities = [
+  {
+    id: "1",
+    type: "success",
+    title: "New user registered",
+    description: "Sarah Chen completed account setup",
+    user: "Sarah Chen",
+    timestamp: "2 minutes ago",
+    icon: "bx:bx-user-plus"
+  },
+  {
+    id: "2", 
+    type: "update",
+    title: "Report generated",
+    description: "Monthly analytics report is ready for review",
+    user: "System",
+    timestamp: "5 minutes ago",
+    icon: "bx:bx-file",
+    link: "#"
+  },
+  {
+    id: "3",
+    type: "warning",
+    title: "Server usage high",
+    description: "CPU usage at 85% - monitoring required",
+    user: "Monitoring",
+    timestamp: "8 minutes ago", 
+    icon: "bx:bx-error-circle"
+  },
+  {
+    id: "4",
+    type: "info",
+    title: "Backup completed",
+    description: "Daily backup finished successfully",
+    user: "System",
+    timestamp: "15 minutes ago",
+    icon: "bx:bx-check-shield"
+  },
+  {
+    id: "5",
+    type: "success",
+    title: "Payment received",
+    description: "Invoice #INV-2024-001 paid by Acme Corp",
+    user: "Billing",
+    timestamp: "23 minutes ago",
+    icon: "bx:bx-dollar-circle",
+    metadata: { amount: "$1,250.00", invoice: "INV-2024-001" }
+  },
+  {
+    id: "6",
+    type: "update",
+    title: "Project milestone",
+    description: "Project Alpha reached 75% completion",
+    user: "Mike Johnson",
+    timestamp: "1 hour ago",
+    icon: "bx:bx-trophy"
+  },
+  {
+    id: "7",
+    type: "error",
+    title: "API request failed",
+    description: "Third-party integration timeout",
+    user: "System",
+    timestamp: "2 hours ago",
+    icon: "bx:bx-error"
+  },
+  {
+    id: "8",
+    type: "info",
+    title: "System maintenance",
+    description: "Scheduled maintenance completed",
+    user: "DevOps",
+    timestamp: "3 hours ago",
+    icon: "bx:bx-wrench"
+  }
+];
+
+const feedActivities = (activities.length > 0 ? activities : defaultActivities).slice(0, maxItems);
+
+// Activity type styling
+const getActivityStyles = (type: string) => {
+  const styles = {
+    success: { color: "#10b981", bgColor: "#10b981" },
+    warning: { color: "#f59e0b", bgColor: "#f59e0b" },
+    error: { color: "#ef4444", bgColor: "#ef4444" },
+    info: { color: "#3b82f6", bgColor: "#3b82f6" },
+    update: { color: "var(--color-theme-button)", bgColor: "var(--color-theme-button)" }
+  };
+  return styles[type as keyof typeof styles] || styles.info;
+};
+
+// Default icons for activity types
+const getDefaultIcon = (type: string) => {
+  const icons = {
+    success: "bx:bx-check-circle",
+    warning: "bx:bx-error-circle", 
+    error: "bx:bx-x-circle",
+    info: "bx:bx-info-circle",
+    update: "bx:bx-edit"
+  };
+  return icons[type as keyof typeof icons] || "bx:bx-circle";
+};
+
+// Size classes
+const sizeClasses = {
+  sm: "text-sm",
+  md: "text-base",
+  lg: "text-lg"
+};
+
+const feedClasses = `
+  wireframe-box doodle-border ${className}
+  ${sizeClasses[size]}
+`.trim();
+---
+
+<div class={feedClasses}>
+  <!-- Header -->
+  <div class="p-6 border-b" style="border-color: var(--color-theme-stroke);">
+    <div class="flex items-center justify-between">
+      <h3 class="wireframe-heading text-lg lg:text-xl">
+        {title}
+      </h3>
+      
+      <div class="flex items-center gap-2">
+        {realTime && (
+          <div class="flex items-center gap-2">
+            <div 
+              class="w-2 h-2 rounded-full animate-pulse"
+              style="background-color: #10b981;"
+            />
+            <span class="wireframe-text text-xs" style="color: var(--color-theme-tertiary);">
+              Live
+            </span>
+          </div>
+        )}
+        
+        <!-- Refresh Button -->
+        <button class="p-2 rounded-lg hover:opacity-80 transition-opacity">
+          <Icon name="bx:bx-refresh" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+        </button>
+        
+        <!-- Settings Button -->
+        <button class="p-2 rounded-lg hover:opacity-80 transition-opacity">
+          <Icon name="bx:bx-cog" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity Feed -->
+  <div class="max-h-96 overflow-y-auto">
+    <div class="p-4 space-y-4">
+      {feedActivities.map((activity, index) => {
+        const styles = getActivityStyles(activity.type);
+        const iconName = activity.icon || getDefaultIcon(activity.type);
+        
+        return (
+          <div class="flex items-start gap-3 group hover:opacity-80 transition-opacity">
+            <!-- Activity Icon -->
+            <div 
+              class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
+              style={`background-color: ${styles.bgColor}; background-opacity: 0.1;`}
+            >
+              <Icon 
+                name={iconName} 
+                class="w-4 h-4" 
+                style={`color: ${styles.color};`}
+              />
+            </div>
+
+            <!-- Activity Content -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-2">
+                <div class="flex-1">
+                  {activity.link ? (
+                    <a 
+                      href={activity.link}
+                      class="wireframe-text font-medium hover:opacity-80 transition-opacity"
+                      style="color: var(--color-theme-button);"
+                    >
+                      {activity.title}
+                    </a>
+                  ) : (
+                    <p class="wireframe-text font-medium">
+                      {activity.title}
+                    </p>
+                  )}
+                  
+                  {activity.description && (
+                    <p class="wireframe-text text-sm mt-1" style="color: var(--color-theme-card-text);">
+                      {activity.description}
+                    </p>
+                  )}
+
+                  {activity.metadata && (
+                    <div class="mt-2 p-2 rounded-lg wireframe-box doodle-border">
+                      <div class="flex items-center gap-4 text-xs wireframe-text">
+                        {Object.entries(activity.metadata).map(([key, value]) => (
+                          <div>
+                            <span class="font-medium">{key}:</span>
+                            <span style="color: var(--color-theme-button);">{value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* User and Timestamp */}
+                  <div class="flex items-center gap-2 mt-2">
+                    {showAvatars && activity.user && (
+                      <div class="flex items-center gap-2">
+                        <div class="w-5 h-5 rounded-full wireframe-box doodle-border flex items-center justify-center">
+                          <Icon name="bx:bx-user" class="w-3 h-3" style="color: var(--color-theme-tertiary);" />
+                        </div>
+                        <span class="wireframe-text text-xs" style="color: var(--color-theme-tertiary);">
+                          {activity.user}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {showTimestamps && (
+                      <span class="wireframe-text text-xs" style="color: var(--color-theme-tertiary);">
+                        {showAvatars && activity.user ? '•' : ''} {activity.timestamp}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                
+                <!-- Action Menu -->
+                <button class="opacity-0 group-hover:opacity-100 p-1 rounded hover:opacity-80 transition-opacity">
+                  <Icon name="bx:bx-dots-horizontal-rounded" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <!-- Footer Actions -->
+  <div class="p-4 border-t" style="border-color: var(--color-theme-stroke);">
+    <div class="flex items-center justify-between">
+      <button class="wireframe-text text-sm hover:opacity-80 transition-opacity" style="color: var(--color-theme-button);">
+        View All Activity
+      </button>
+      
+      <div class="flex items-center gap-2">
+        <!-- Filter Options -->
+        <select class="wireframe-box doodle-border px-3 py-1 text-xs bg-transparent wireframe-text">
+          <option value="all">All Types</option>
+          <option value="success">Success</option>
+          <option value="warning">Warnings</option>
+          <option value="error">Errors</option>
+          <option value="info">Info</option>
+        </select>
+        
+        <!-- Export -->
+        <button class="p-1 rounded hover:opacity-80 transition-opacity">
+          <Icon name="bx:bx-download" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Content Slot -->
+  <slot />
+</div>

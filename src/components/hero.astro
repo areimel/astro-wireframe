@@ -4,11 +4,12 @@ import heroImage from "@/assets/hero.png";
 import Link from "@/components/ui/link.astro";
 import { Icon } from "astro-icon/components";
 import links from "@/data/links.json";
+import PlaceHolderImage from "@/components/SvgComponents/PlaceHolderImage.astro";
 ---
 
 <main
   class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24 wireframe-section">
-  <div class="py-6 md:order-1 hidden md:block wireframe-box doodle-border">
+  <div class="py-6 md:order-1 hidden md:block ">
     <!-- <Picture
       src={heroImage}
       alt="Astronaut in the air"
@@ -17,36 +18,31 @@ import links from "@/data/links.json";
       loading="eager"
       format="avif"
     /> -->
-    <img src="/hero-1.svg" class="max-w-md" />
+    <PlaceHolderImage />
   </div>
   <div class="wireframe-box doodle-border">
     <h1
       class="wireframe-heading text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
-      ARDA Website Template - Built With Astro
+      Professional Wireframe System with Hand-Drawn Charm
     </h1>
     <p class="wireframe-text text-lg mt-4 max-w-xl">
-      The Advanced Research & Development Agency is dedicated to bringing high-tech products to the average person.
+      Create website and SaaS wireframes without investing in specific design styles. Our hand-drawn aesthetic encourages rapid iteration and keeps teams focused on structure over aesthetics.
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
       <Link
-        href="#"
-        href="https://web3templates.com/templates/astroship-starter-website-template-for-astro"
-        target="_blank"
+        href="/wireframes"
         class="flex gap-1 items-center justify-center doodle"
         rel="noopener">
-        <Icon class="w-5 h-5" name="bx:bxs-cloud-download" />
-
-        Download for Free
+        <Icon class="w-5 h-5" name="bx:bx-layout" />
+        Explore Wireframe Layouts
       </Link>
       <Link
         size="lg"
         style="outline"
-        rel="noopener"
-        href={links.githubLink}
-        class="flex gap-1 items-center justify-center doodle"
-        target="_blank">
-        <Icon class="w-4 h-4" name="bx:bxl-github" />
-        GitHub Repo
+        href="/styleguide"
+        class="flex gap-1 items-center justify-center doodle">
+        <Icon class="w-4 h-4" name="bx:bx-palette" />
+        View Design System
       </Link>
     </div>
   </div>

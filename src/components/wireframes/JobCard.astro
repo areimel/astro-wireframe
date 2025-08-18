@@ -1,0 +1,184 @@
+---
+export interface Props {
+  /** Job title */
+  title: string;
+  /** Company name */
+  company: string;
+  /** Job location */
+  location: string;
+  /** Salary range */
+  salary?: string;
+  /** Job type (Full-time, Part-time, Contract, etc.) */
+  type: string;
+  /** Experience level required */
+  experience: string;
+  /** When the job was posted */
+  postedDate: string;
+  /** Company logo */
+  logo?: {
+    src: string;
+    alt: string;
+  };
+  /** Job description snippet */
+  description?: string;
+  /** Key skills/tags */
+  skills?: string[];
+  /** Whether this is a featured/promoted job */
+  featured?: boolean;
+  /** Whether this is a remote position */
+  remote?: boolean;
+  /** Whether this is an urgent hiring */
+  urgent?: boolean;
+  /** Custom classes */
+  class?: string;
+}
+
+const { 
+  title,
+  company,
+  location,
+  salary,
+  type,
+  experience,
+  postedDate,
+  logo,
+  description,
+  skills = [],
+  featured = false,
+  remote = false,
+  urgent = false,
+  class: className = ""
+} = Astro.props;
+
+import { Icon } from "astro-icon/components";
+---
+
+<div class={`wireframe-box doodle-border p-6 relative ${featured ? 'border-4' : ''} ${className}`}>
+  {/* Feature Badge */}
+  {featured && (
+    <div class="absolute -top-3 left-4 px-3 py-1 text-xs font-bold rounded-full theme-button-primary">
+      Featured
+    </div>
+  )}
+  
+  {/* Urgent Badge */}
+  {urgent && (
+    <div class="absolute -top-3 right-4 px-3 py-1 text-xs font-bold rounded-full" 
+         style="background-color: var(--color-theme-highlight); color: var(--color-theme-button-text);">
+      Urgent
+    </div>
+  )}
+
+  <div class="flex flex-col sm:flex-row gap-4">
+    <!-- Company Logo -->
+    <div class="flex-shrink-0">
+      {logo ? (
+        <div class="wireframe-box doodle-border w-16 h-16 bg-cover bg-center rounded-lg" 
+             style={`background-image: url('${logo.src}');`}>
+          <div class="w-full h-full flex items-center justify-center theme-section-bg bg-opacity-90 rounded-lg">
+            <Icon name="bx:bx-buildings" class="w-6 h-6" style="color: var(--color-theme-button);" />
+          </div>
+        </div>
+      ) : (
+        <div class="wireframe-box doodle-border w-16 h-16 theme-quaternary-bg flex items-center justify-center rounded-lg">
+          <Icon name="bx:bx-buildings" class="w-6 h-6" style="color: var(--color-theme-button);" />
+        </div>
+      )}
+    </div>
+
+    <!-- Job Details -->
+    <div class="flex-1 min-w-0">
+      <!-- Job Title & Company -->
+      <div class="mb-3">
+        <h3 class="wireframe-heading text-xl lg:text-2xl mb-1">
+          {title}
+        </h3>
+        <p class="wireframe-text text-lg font-semibold" style="color: var(--color-theme-link);">
+          {company}
+        </p>
+      </div>
+
+      <!-- Job Meta Info -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+        <!-- Location -->
+        <div class="flex items-center gap-2">
+          <Icon name="bx:bx-map" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+          <span class="wireframe-text text-sm">
+            {location}
+            {remote && (
+              <span class="ml-1 text-xs font-bold" style="color: var(--color-theme-button);">
+                (Remote)
+              </span>
+            )}
+          </span>
+        </div>
+
+        <!-- Job Type -->
+        <div class="flex items-center gap-2">
+          <Icon name="bx:bx-briefcase" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+          <span class="wireframe-text text-sm">{type}</span>
+        </div>
+
+        <!-- Experience -->
+        <div class="flex items-center gap-2">
+          <Icon name="bx:bx-trending-up" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+          <span class="wireframe-text text-sm">{experience}</span>
+        </div>
+
+        <!-- Posted Date -->
+        <div class="flex items-center gap-2">
+          <Icon name="bx:bx-calendar" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+          <span class="wireframe-text text-sm">{postedDate}</span>
+        </div>
+      </div>
+
+      <!-- Salary -->
+      {salary && (
+        <div class="mb-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full theme-quaternary-bg">
+            <Icon name="bx:bx-dollar-circle" class="w-4 h-4" style="color: var(--color-theme-button);" />
+            <span class="wireframe-text text-sm font-semibold">
+              {salary}
+            </span>
+          </div>
+        </div>
+      )}
+
+      <!-- Description -->
+      {description && (
+        <p class="wireframe-text text-sm mb-4 line-clamp-2">
+          {description}
+        </p>
+      )}
+
+      <!-- Skills Tags -->
+      {skills && skills.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-4">
+          {skills.slice(0, 6).map((skill) => (
+            <span class="wireframe-text text-xs px-2 py-1 rounded-full theme-quaternary-bg">
+              {skill}
+            </span>
+          ))}
+          {skills.length > 6 && (
+            <span class="wireframe-text text-xs px-2 py-1 rounded-full theme-quaternary-bg" style="color: var(--color-theme-secondary);">
+              +{skills.length - 6} more
+            </span>
+          )}
+        </div>
+      )}
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap gap-3">
+        <button class="theme-button-primary px-4 py-2 text-sm rounded-lg">
+          Apply Now
+        </button>
+        <button class="theme-button-outline px-4 py-2 text-sm rounded-lg">
+          Save Job
+        </button>
+        <button class="theme-button-outline px-4 py-2 text-sm rounded-lg">
+          View Details
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
