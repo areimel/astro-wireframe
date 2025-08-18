@@ -110,10 +110,10 @@
    - Title: "Validate Before You Invest"
    - Description: "Test multiple website concepts without committing to expensive design work. Perfect for startups and agencies working with tight budgets."
 
-4. **17-Theme Design System**
+4. **Comprehensive Design System**
    - Icon: `bx:bx-palette`
    - Title: "Theme-Ready Components"
-   - Description: "Every wireframe works with our 17-color palette system. Switch themes instantly to test different visual directions without rebuilding."
+   - Description: "Every wireframe works with our color palette system. Switch themes instantly to test different visual directions without rebuilding."
 
 5. **Mobile-First Responsive**
    - Icon: `bx:bx-devices`
@@ -160,7 +160,7 @@ Hand-drawn wireframe system for rapid website and SaaS prototyping without desig
 5. Developer-friendly implementation
 
 ### Proof Points
-- 17 color themes
+- Multiple color themes
 - 5+ layout patterns
 - Mobile-responsive components
 - Modern web standards

@@ -80,10 +80,10 @@ Four collections are configured:
 
 ## Design System & Color Palette
 
-This project implements a sophisticated **17-palette color system** with dynamic theme switching:
+This project implements a sophisticated **multi-palette color system** with dynamic theme switching:
 
 ### Color Palette System
-- **17 unique color themes** ranging from light to dark modes
+- **Multiple unique color themes** ranging from light to dark modes
 - **15 CSS custom properties** per theme for consistent styling:
   - `--color-theme-bg` - Main background
   - `--color-theme-card-bg` - Card backgrounds  
@@ -125,7 +125,7 @@ Use these predefined classes for consistent theming:
 
 ### Color Palette Data
 - Located in `/src/data/color-palettes.json`
-- Contains all 17 palettes with complete color definitions
+- Contains all available palettes with complete color definitions
 - Used by the ColorPaletteSelector component for dynamic switching
 
 ### Interactive Color Selector
@@ -162,7 +162,7 @@ Visit `/styleguide` for comprehensive design system documentation including:
 **CRITICAL: Before building any new components, ALWAYS review the relevant styleguide pages to maintain consistency:**
 
 - **📋 Main Styleguide Hub**: `/styleguide` - Overview and navigation to all sections
-- **🎨 Colors**: `/styleguide/colors` - 17-palette theme system, CSS variables, and theme classes
+- **🎨 Colors**: `/styleguide/colors` - Multi-palette theme system, CSS variables, and theme classes
 - **📝 Typography**: `/styleguide/typography` - Font hierarchy, text styles, and theme text classes
 - **🔘 Buttons**: `/styleguide/buttons` - Button variants, sizes, styles, and interactive states
 - **📄 Cards**: `/styleguide/cards` - Card patterns, layouts, pricing cards, and image cards
@@ -186,7 +186,7 @@ Visit `/styleguide` for comprehensive design system documentation including:
 **3. Theme System Integration**
 - NEVER use hard-coded colors - always use theme classes or CSS custom properties
 - Test components with different color palettes using the ColorPaletteSelector
-- Ensure components work across all 17 available themes
+- Ensure components work across all available themes
 
 **4. Component Quality Checklist**
 - ✅ Uses theme classes instead of hard-coded colors
@@ -194,7 +194,7 @@ Visit `/styleguide` for comprehensive design system documentation including:
 - ✅ Uses approved icon libraries and patterns
 - ✅ Responsive design that matches existing components
 - ✅ Consistent typography hierarchy
-- ✅ Tested across multiple color themes
+- ✅ Tested across all available color themes
 
 ### Working with the Color System
 
@@ -677,7 +677,7 @@ pnpm build  # Verify no build errors
 ```
 
 **11. Theme Integration Testing**
-- Test page with all 17 color palettes using ColorPaletteSelector
+- Test page with all available color palettes using ColorPaletteSelector
 - Verify all elements respond to theme changes
 - Check responsive behavior on mobile/tablet/desktop
 

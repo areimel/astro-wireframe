@@ -11,7 +11,7 @@ A modern, feature-rich website template built by the **Advanced Research & Devel
 | --- | ------ |
 | **Astro 5.x** | ✅ |
 | **TailwindCSS 4.x** | ✅ |
-| **17 Dynamic Color Themes** | ✅ |
+| **Dynamic Color Themes** | ✅ |
 | **Content Collections** | ✅ |
 | **MDX Support** | ✅ |
 | **TypeScript** | ✅ |
@@ -131,7 +131,7 @@ arda-astro-template/
 │   │   ├── products/        # Product showcases
 │   │   └── team/           # Team member profiles
 │   ├── data/               # JSON configuration files
-│   │   ├── color-palettes.json  # 17-theme color system
+│   │   ├── color-palettes.json  # Multi-theme color system
 │   │   ├── navigation.json     # Site navigation structure
 │   │   └── links.json         # External links
 │   ├── layouts/            # Page layouts
@@ -161,7 +161,7 @@ arda-astro-template/
 ## 🎯 What Makes This Template Special
 
 ### Advanced Theme System
-- **17 curated color palettes** ranging from light to dark modes
+- **Curated color palettes** ranging from light to dark modes
 - **Theme persistence** via localStorage  
 - **Real-time switching** with smooth transitions
 - **Developer-friendly** CSS custom properties

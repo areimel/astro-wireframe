@@ -216,6 +216,29 @@
   --color-theme-inverted-text: #f0f0f0;
 }
 
+/* Palette 9: Engineering Blueprint - White-on-blue engineering blueprint aesthetic */
+[data-theme="palette-9"] {
+  --color-theme-bg: #1e3d72;
+  --color-theme-card-bg: #2a4a85;
+  --color-theme-section-bg: #1a3565;
+  --color-theme-headline: #ffffff;
+  --color-theme-sub-headline: #e8f2ff;
+  --color-theme-paragraph: #d1e3ff;
+  --color-theme-card-text: #d1e3ff;
+  --color-theme-button: #ffffff;
+  --color-theme-button-text: #1e3d72;
+  --color-theme-link: #a8d1ff;
+  --color-theme-stroke: #7fb8ff;
+  --color-theme-highlight: #ffffff;
+  --color-theme-secondary: #8cc4ff;
+  --color-theme-tertiary: #5fa3ff;
+  --color-theme-quaternary: #345a99;
+  --color-theme-section-text: #ffffff;
+  --color-theme-card-text-alt: #d1e3ff;
+  --color-theme-quaternary-text: #e8f2ff;
+  --color-theme-inverted-text: #1e3d72;
+}
+
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,

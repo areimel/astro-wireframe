@@ -16,7 +16,8 @@
       "Bash(pnpm astro build:*)",
       "Bash(grep:*)",
       "Bash(timeout:*)",
-      "Bash(pnpm astro:*)"
+      "Bash(pnpm astro:*)",
+      "Bash(rg:*)"
     ],
     "deny": []
   }
