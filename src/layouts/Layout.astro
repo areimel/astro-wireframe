@@ -6,6 +6,7 @@ import ColorPaletteSelector from "@/components/ThemeComponents/ColorPaletteSelec
 import LoadingScreen from "@/components/LoadingScreen.astro";
 import GoogleTagManagerHead from "@/components/HeadComponents/GoogleTagManagerHead.astro";
 import GoogleTagManagerBody from "@/components/HeadComponents/GoogleTagManagerBody.astro";
+import AuthorLinkToast from "@/components/PopupComponents/AuthorLinkToast.astro";
 
 // Styles & Fonts
 import "@fontsource-variable/inter/index.css";
@@ -72,6 +73,9 @@ const makeTitle = title
       <Footer />
       <ColorPaletteSelector />
     </div>
+    
+    <!-- Author Link Toast -->
+    <AuthorLinkToast autoDismiss={false} toastId="authorLinkToast" />
     
     <!-- Global Styles -->
     <style is:global>

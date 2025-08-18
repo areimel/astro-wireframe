@@ -1,0 +1,184 @@
+---
+import { Icon } from "astro-icon/components";
+
+// AuthorLinkToast.astro - A toaster-style popup that appears in the lower right corner
+// Displays a brief message with a link to ARDA projects
+
+interface Props {
+  /**
+   * Unique identifier for the toast
+   */
+  toastId?: string;
+  /**
+   * Delay in milliseconds before showing the toast
+   */
+  showDelay?: number;
+  /**
+   * Whether the toast should automatically dismiss after a delay
+   */
+  autoDismiss?: boolean;
+  /**
+   * Delay in milliseconds before auto-dismiss (if enabled)
+   */
+  dismissDelay?: number;
+  /**
+   * Custom CSS classes to apply to the toast container
+   */
+  class?: string;
+}
+
+const {
+  toastId = "AuthorLinkToast",
+  showDelay = 30000, // 30 seconds default
+  autoDismiss = true,
+  dismissDelay = 10000, // 10 seconds default
+  class: className = ""
+} = Astro.props;
+---
+
+<div
+  id={toastId}
+  class:list={[
+    "author-link-toast",
+    "fixed bottom-6 right-6 z-50 max-w-sm",
+    "transform transition-all duration-500 ease-out",
+    "opacity-0 translate-y-8",
+    className
+  ]}
+  role="alert"
+  aria-live="polite"
+  aria-atomic="true"
+>
+  <div 
+    class="toast-content theme-card-bg rounded-lg shadow-xl p-4 border-2 doodle-border"
+  >
+    <!-- Toast Header -->
+    <div class="flex items-start justify-between">
+      <div class="flex-1">
+        <h3 class="theme-headline font-bold text-lg mb-1">
+          Like Our Work?
+        </h3>
+        <p class="theme-paragraph text-sm mb-3">
+          Check out more projects from ARDA
+        </p>
+        
+        <!-- Action Button -->
+        <a 
+          href="https://arda-astro-template.netlify.app" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="theme-button-primary text-sm px-4 py-2 rounded-md inline-flex items-center transition focus:ring-2 focus:ring-offset-2"
+          style="color: var(--color-theme-button-text); --tw-ring-color: var(--color-theme-button);"
+        >
+          <Icon name="bx:bx-link-external" class="w-4 h-4 mr-2" />
+          View Projects
+        </a>
+      </div>
+      
+      <!-- Close Button -->
+      <button
+        type="button"
+        class="toast-close ml-3 focus:outline-none p-1 transition-colors"
+        style="color: var(--color-theme-paragraph);"
+        aria-label="Close toast"
+        data-toast-close={toastId}
+      >
+        <Icon name="bx:bx-x" class="w-5 h-5" />
+      </button>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* Toast entrance animation - slide up from bottom */
+  .author-link-toast.toast-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Enhanced slide animation for smooth entry/exit */
+  .author-link-toast {
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  /* Slide down animation for exit */
+  .author-link-toast.toast-hiding {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  
+  /* Ensure proper hover states for buttons */
+  .author-link-toast .theme-button-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Close button hover state */
+  .author-link-toast .toast-close:hover {
+    color: var(--color-theme-button);
+  }
+  
+  /* Focus styles for accessibility */
+  .author-link-toast button:focus,
+  .author-link-toast a:focus {
+    --tw-ring-opacity: 0.3;
+  }
+  
+  /* Responsive adjustments for mobile */
+  @media (max-width: 640px) {
+    .author-link-toast {
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      max-width: none;
+    }
+  }
+</style>
+
+<script define:vars={{ toastId, showDelay, autoDismiss, dismissDelay }}>
+  // Client-side functionality for toast behavior
+  document.addEventListener('DOMContentLoaded', () => {
+    // Get toast element by ID
+    const toastElement = document.getElementById(toastId);
+    
+    if (toastElement) {
+      // Show toast after specified delay
+      setTimeout(() => {
+        toastElement.classList.add('toast-visible');
+      }, showDelay);
+      
+      // Handle auto-dismiss if enabled
+      if (autoDismiss) {
+        setTimeout(() => {
+          if (toastElement.classList.contains('toast-visible')) {
+            closeToast(toastElement);
+          }
+        }, showDelay + dismissDelay);
+      }
+      
+      // Handle close button clicks
+      document.addEventListener('click', function(e) {
+        const closeBtn = e.target.closest('[data-toast-close]');
+        if (closeBtn) {
+          const targetToastId = closeBtn.dataset.toastClose;
+          if (targetToastId === toastId) {
+            const targetToast = document.getElementById(targetToastId);
+            if (targetToast) {
+              closeToast(targetToast);
+            }
+          }
+        }
+      });
+    }
+    
+    function closeToast(toast) {
+      // Add hiding class for slide-down animation
+      toast.classList.add('toast-hiding');
+      toast.classList.remove('toast-visible');
+      // Remove element from DOM after animation completes
+      setTimeout(() => {
+        toast.remove();
+      }, 500);
+    }
+  });
+</script>
