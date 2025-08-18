@@ -4,9 +4,6 @@ import Layout from "@/layouts/Layout.astro";
 import Link from "@/components/ui/link.astro";
 import { Icon } from "astro-icon/components";
 import JobCard from "@/components/wireframes/JobCard.astro";
-import RequirementsList from "@/components/wireframes/RequirementsList.astro";
-import ApplicationFlow from "@/components/wireframes/ApplicationFlow.astro";
-import CompanyInfo from "@/components/wireframes/CompanyInfo.astro";
 ---
 
 <Layout title="Job Posting - Wireframe Landing Page">
@@ -55,84 +52,269 @@ import CompanyInfo from "@/components/wireframes/CompanyInfo.astro";
           />
 
           <!-- Job Requirements -->
-          <RequirementsList 
-            title="Requirements & Qualifications"
-            requirements={[
-              "5+ years of experience in frontend development",
-              "Expert knowledge of React and TypeScript",
-              "Strong understanding of modern CSS and responsive design",
-              "Experience with state management (Redux, Context API)",
-              "Familiarity with testing frameworks (Jest, React Testing Library)",
-              "Knowledge of build tools (Webpack, Vite) and version control (Git)",
-              "Bachelor's degree in Computer Science or related field"
-            ]}
-            preferred={[
-              "Experience with Next.js or other React frameworks",
-              "Knowledge of backend technologies (Node.js, Python)",
-              "Experience with cloud platforms (AWS, Azure, GCP)",
-              "Understanding of UX/UI design principles",
-              "Previous startup or fast-paced environment experience"
-            ]}
-          />
+          <div class="wireframe-box doodle-border p-6">
+            <h3 class="wireframe-heading text-xl mb-6">Requirements & Qualifications</h3>
+            
+            <!-- Required Skills -->
+            <div class="mb-8">
+              <h4 class="wireframe-heading text-lg mb-4 flex items-center gap-3">
+                <Icon name="bx:bx-check-circle" class="w-6 h-6" style="color: var(--color-theme-button);" />
+                Required Skills
+              </h4>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text">5+ years of experience in frontend development</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text">Expert knowledge of React and TypeScript</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text">Strong understanding of modern CSS and responsive design</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text">Experience with state management (Redux, Context API)</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text">Familiarity with testing frameworks (Jest, React Testing Library)</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text">Knowledge of build tools (Webpack, Vite) and version control (Git)</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text">Bachelor's degree in Computer Science or related field</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Preferred Skills -->
+            <div>
+              <h4 class="wireframe-heading text-lg mb-4 flex items-center gap-3">
+                <Icon name="bx:bx-circle" class="w-6 h-6" style="color: var(--color-theme-secondary);" />
+                Preferred Skills
+              </h4>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-plus" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+                  <span class="wireframe-text">Experience with Next.js or other React frameworks</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-plus" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+                  <span class="wireframe-text">Knowledge of backend technologies (Node.js, Python)</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-plus" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+                  <span class="wireframe-text">Experience with cloud platforms (AWS, Azure, GCP)</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-plus" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+                  <span class="wireframe-text">Understanding of UX/UI design principles</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <Icon name="bx:bx-plus" class="w-4 h-4 mt-1 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+                  <span class="wireframe-text">Previous startup or fast-paced environment experience</span>
+                </li>
+              </ul>
+            </div>
+          </div>
 
           <!-- Application Process -->
-          <ApplicationFlow 
-            steps={[
-              {
-                title: "Submit Application",
-                description: "Complete our online application form with your resume and cover letter",
-                icon: "bx:bx-file"
-              },
-              {
-                title: "Initial Screening",
-                description: "HR team reviews your application and conducts initial phone screening",
-                icon: "bx:bx-phone"
-              },
-              {
-                title: "Technical Interview",
-                description: "Technical assessment and coding challenge with our engineering team",
-                icon: "bx:bx-code-alt"
-              },
-              {
-                title: "Final Interview",
-                description: "Culture fit and team interview with hiring manager and potential colleagues",
-                icon: "bx:bx-user-check"
-              },
-              {
-                title: "Offer & Onboarding",
-                description: "Job offer negotiation and comprehensive onboarding process",
-                icon: "bx:bx-check-circle"
-              }
-            ]}
-          />
+          <div class="wireframe-box doodle-border p-6">
+            <h3 class="wireframe-heading text-xl mb-6">Application Process</h3>
+            <p class="wireframe-text mb-8">Follow these steps to join our team</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+              <!-- Step 1 -->
+              <div class="wireframe-box doodle-border p-4 text-center">
+                <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 theme-button-primary">
+                  <span class="wireframe-text font-bold text-white">1</span>
+                </div>
+                <div class="mb-4">
+                  <Icon name="bx:bx-file" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+                </div>
+                <h4 class="wireframe-heading text-lg mb-3">Submit Application</h4>
+                <p class="wireframe-text text-sm">Complete our online application form with your resume and cover letter</p>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="wireframe-box doodle-border p-4 text-center">
+                <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 theme-quaternary-bg">
+                  <span class="wireframe-text font-bold">2</span>
+                </div>
+                <div class="mb-4">
+                  <Icon name="bx:bx-phone" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+                </div>
+                <h4 class="wireframe-heading text-lg mb-3">Initial Screening</h4>
+                <p class="wireframe-text text-sm">HR team reviews your application and conducts initial phone screening</p>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="wireframe-box doodle-border p-4 text-center">
+                <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 theme-quaternary-bg">
+                  <span class="wireframe-text font-bold">3</span>
+                </div>
+                <div class="mb-4">
+                  <Icon name="bx:bx-code-alt" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+                </div>
+                <h4 class="wireframe-heading text-lg mb-3">Technical Interview</h4>
+                <p class="wireframe-text text-sm">Technical assessment and coding challenge with our engineering team</p>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="wireframe-box doodle-border p-4 text-center">
+                <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 theme-quaternary-bg">
+                  <span class="wireframe-text font-bold">4</span>
+                </div>
+                <div class="mb-4">
+                  <Icon name="bx:bx-user-check" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+                </div>
+                <h4 class="wireframe-heading text-lg mb-3">Final Interview</h4>
+                <p class="wireframe-text text-sm">Culture fit and team interview with hiring manager and potential colleagues</p>
+              </div>
+
+              <!-- Step 5 -->
+              <div class="wireframe-box doodle-border p-4 text-center">
+                <div class="wireframe-box doodle-border w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 theme-quaternary-bg">
+                  <span class="wireframe-text font-bold">5</span>
+                </div>
+                <div class="mb-4">
+                  <Icon name="bx:bx-check-circle" class="w-8 h-8 mx-auto" style="color: var(--color-theme-button);" />
+                </div>
+                <h4 class="wireframe-heading text-lg mb-3">Offer & Onboarding</h4>
+                <p class="wireframe-text text-sm">Job offer negotiation and comprehensive onboarding process</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Sidebar Column -->
         <div class="space-y-8">
           <!-- Company Information -->
-          <CompanyInfo 
-            companyName="TechInnovate Solutions"
-            industry="Software Development"
-            size="150-300 employees"
-            founded="2018"
-            location="San Francisco, CA"
-            website="www.techinnovate.com"
-            description="We're a fast-growing tech company building innovative software solutions that transform how businesses operate. Our mission is to make complex technology simple and accessible for everyone."
-            benefits={[
-              "Competitive salary & equity",
-              "Health, dental & vision insurance",
-              "Flexible work arrangements",
-              "Professional development budget",
-              "Unlimited PTO policy",
-              "Modern office in downtown SF"
-            ]}
-            culture={[
-              "Innovation-driven environment",
-              "Collaborative team culture", 
-              "Work-life balance focus",
-              "Continuous learning opportunities"
-            ]}
-          />
+          <div class="wireframe-box doodle-border p-6">
+            <!-- Company Header -->
+            <div class="text-center mb-6">
+              <div class="wireframe-box doodle-border w-20 h-20 mx-auto mb-4 theme-quaternary-bg flex items-center justify-center rounded-lg">
+                <Icon name="bx:bx-buildings" class="w-8 h-8" style="color: var(--color-theme-button);" />
+              </div>
+              <h2 class="wireframe-heading text-2xl mb-3">TechInnovate Solutions</h2>
+              <p class="wireframe-text text-sm">
+                We're a fast-growing tech company building innovative software solutions that transform how businesses operate.
+              </p>
+            </div>
+
+            <!-- Company Details -->
+            <div class="mb-6">
+              <h3 class="wireframe-heading text-lg mb-4">Company Details</h3>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <Icon name="bx:bx-briefcase-alt" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+                  <div>
+                    <span class="wireframe-text text-sm font-bold">Industry: </span>
+                    <span class="wireframe-text text-sm">Software Development</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <Icon name="bx:bx-group" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+                  <div>
+                    <span class="wireframe-text text-sm font-bold">Size: </span>
+                    <span class="wireframe-text text-sm">150-300 employees</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <Icon name="bx:bx-calendar" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+                  <div>
+                    <span class="wireframe-text text-sm font-bold">Founded: </span>
+                    <span class="wireframe-text text-sm">2018</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <Icon name="bx:bx-map" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+                  <div>
+                    <span class="wireframe-text text-sm font-bold">Location: </span>
+                    <span class="wireframe-text text-sm">San Francisco, CA</span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <Icon name="bx:bx-globe" class="w-4 h-4 flex-shrink-0" style="color: var(--color-theme-secondary);" />
+                  <div>
+                    <span class="wireframe-text text-sm font-bold">Website: </span>
+                    <a href="http://www.techinnovate.com" class="theme-link text-sm" target="_blank" rel="noopener">
+                      www.techinnovate.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefits -->
+            <div class="mb-6">
+              <h3 class="wireframe-heading text-lg mb-4">Benefits & Perks</h3>
+              <div class="space-y-2">
+                <div class="flex items-start gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Competitive salary & equity</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Health, dental & vision insurance</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Flexible work arrangements</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Professional development budget</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <Icon name="bx:bx-check" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Unlimited PTO policy</span>
+                </div>
+                <div class="wireframe-text text-sm opacity-75">
+                  +1 more benefits
+                </div>
+              </div>
+            </div>
+
+            <!-- Culture -->
+            <div class="mb-6">
+              <h3 class="wireframe-heading text-lg mb-4">Culture & Values</h3>
+              <div class="space-y-2">
+                <div class="flex items-start gap-2">
+                  <Icon name="bx:bx-heart" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Innovation-driven environment</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <Icon name="bx:bx-heart" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Collaborative team culture</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <Icon name="bx:bx-heart" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Work-life balance focus</span>
+                </div>
+                <div class="flex items-start gap-2">
+                  <Icon name="bx:bx-heart" class="w-4 h-4 mt-0.5 flex-shrink-0" style="color: var(--color-theme-button);" />
+                  <span class="wireframe-text text-sm">Continuous learning opportunities</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="space-y-3">
+              <button class="theme-button-primary w-full py-3 rounded-lg">
+                View All Jobs
+              </button>
+              <button class="theme-button-outline w-full py-3 rounded-lg">
+                Follow Company
+              </button>
+            </div>
+          </div>
 
           <!-- Quick Apply Section -->
           <div class="wireframe-box doodle-border p-6 sticky top-8">
