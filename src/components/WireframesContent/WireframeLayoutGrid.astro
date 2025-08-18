@@ -1,0 +1,91 @@
+---
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+import WireFrameSearch from "@/components/WireFrameSearch.astro";
+
+export interface Props {
+  layouts: Array<{
+    title: string;
+    description: string;
+    path: string;
+    icon: string;
+    category: string;
+    useCase: string;
+    components: string[];
+  }>;
+}
+
+const { layouts } = Astro.props;
+---
+
+<!-- Main Content Layout -->
+<div class="mt-16 max-w-screen-2xl md:flex md:gap-8">
+  <!-- Search & Filter Sidebar (Desktop) -->
+  <aside class="md:w-80 flex-shrink-0">
+    <WireFrameSearch layouts={layouts} />
+  </aside>
+
+  <!-- Wireframe Layouts Grid -->
+  <main class="flex-1 mt-8 md:mt-0">
+    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+      {layouts.map((layout) => (
+        <div 
+          class="wireframe-box doodle-border p-6 hover:shadow-lg transition-shadow"
+          data-layout-path={layout.path}
+          data-layout-category={layout.category}
+        >
+      <div class="flex items-center mb-4">
+        <div class="p-2 rounded-full doodle mr-3" style="background-color: var(--color-theme-button);">
+          <Icon name={layout.icon} class="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold wireframe-heading">{layout.title}</h3>
+          <span class="text-sm wireframe-text" style="color: var(--color-theme-secondary);">
+            {layout.category}
+          </span>
+        </div>
+      </div>
+      
+      <p class="wireframe-text mb-4 leading-relaxed">
+        {layout.description}
+      </p>
+      
+      <div class="mb-4">
+        <h4 class="font-semibold wireframe-heading text-sm mb-2">Best for:</h4>
+        <p class="wireframe-text text-sm">{layout.useCase}</p>
+      </div>
+      
+      <div class="mb-6">
+        <h4 class="font-semibold wireframe-heading text-sm mb-2">Key Components:</h4>
+        <div class="flex flex-wrap gap-1">
+          {layout.components.map((component) => (
+            <span class="text-xs px-2 py-1 wireframe-text doodle-border rounded" 
+                  style="background-color: var(--color-theme-quaternary);">
+              {component}
+            </span>
+          ))}
+        </div>
+      </div>
+      
+      <div class="flex gap-2">
+        <Link 
+          href={layout.path} 
+          class="flex-1 flex items-center justify-center gap-1 doodle"
+        >
+          <Icon name="bx:bx-show" class="w-4 h-4" />
+          View Layout
+        </Link>
+        <Link 
+          href={layout.path} 
+          style="outline" 
+          class="px-4 doodle"
+          target="_blank"
+        >
+          <Icon name="bx:bx-link-external" class="w-4 h-4" />
+        </Link>
+      </div>
+        </div>
+      ))}
+    </div>
+  </main>
+</div>

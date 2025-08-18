@@ -1,0 +1,42 @@
+---
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+import Layout from "@/layouts/Layout.astro";
+import WireframeLayoutGrid from "@/components/WireframesContent/WireframeLayoutGrid.astro";
+import WireframeDesignSystem from "@/components/WireframesContent/WireframeDesignSystem.astro";
+import WireframeGettingStarted from "@/components/WireframesContent/WireframeGettingStarted.astro";
+import WireframeCallToAction from "@/components/WireframesContent/WireframeCallToAction.astro";
+import wireframeLayoutsData from "@/data/wireframe-layouts.json";
+
+const wireframeLayouts = wireframeLayoutsData.layouts;
+---
+
+<Layout title="Wireframe Landing Page Layouts">
+  <Container class="max-w-screen-2xl">
+    <Sectionhead>
+      <Fragment slot="title">Wireframe Landing Page Layouts</Fragment>
+      <Fragment slot="desc">
+        Explore {wireframeLayouts.length} distinct wireframe-style landing page designs showcasing different layout approaches and use cases. Use the search and filter tools to find the perfect layout for your project.
+      </Fragment>
+    </Sectionhead>
+
+    <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
+      <h2 class="font-bold text-3xl wireframe-heading">
+        Choose Your Landing Page Style
+      </h2>
+      <p class="text-lg leading-relaxed wireframe-text">
+        Each wireframe layout demonstrates a different approach to organizing content and guiding user interactions. 
+        From traditional hero-centric designs to modern e-commerce checkout flows, professional case studies, and analytics dashboards, find the perfect structure for your project.
+      </p>
+    </div>
+
+    <WireframeLayoutGrid layouts={wireframeLayouts} />
+
+    <WireframeDesignSystem />
+
+    <WireframeGettingStarted />
+
+    <WireframeCallToAction />
+
+  </Container>
+</Layout>

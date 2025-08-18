@@ -2,63 +2,15 @@
   "header": {
     "menuitems": [
       {
-        "title": "Features",
-        "path": "#",
-        "children": [
-          { 
-            "title": "Wireframes", 
-            "path": "/wireframes",
-            "children": [
-              { "title": "Classic Hero Layout", "path": "/wireframes/classic" },
-              { "title": "Split-Screen Layout", "path": "/wireframes/split-screen" },
-              { "title": "Grid-Based Modular", "path": "/wireframes/modular" },
-              { "title": "Product Showcase", "path": "/wireframes/showcase" },
-              { "title": "Storytelling Layout", "path": "/wireframes/storytelling" },
-              { "title": "Job Posting", "path": "/wireframes/job-posting" },
-              { "title": "Classic Case Study", "path": "/wireframes/case-study-classic" },
-              { "title": "Visual Case Study", "path": "/wireframes/case-study-visual" },
-              { "title": "E-commerce Checkout", "path": "/wireframes/checkout" },
-              { "title": "SaaS Pricing", "path": "/wireframes/saas-pricing" },
-              { "title": "Product Listing", "path": "/wireframes/product-listing" },
-              { "title": "Dashboard", "path": "/wireframes/dashboard" }
-            ]
-          },
-          { 
-            "title": "Styleguide", 
-            "path": "/styleguide",
-            "children": [
-              { "title": "Colors", "path": "/styleguide/colors" },
-              { "title": "Typography", "path": "/styleguide/typography" },
-              { "title": "Buttons", "path": "/styleguide/buttons" },
-              { "title": "Cards", "path": "/styleguide/cards" },
-              { "title": "Icons", "path": "/styleguide/icons" },
-              { "title": "Spacing", "path": "/styleguide/spacing" }
-            ]
-          },
-          { "title": "404 Page", "path": "/404" }
-        ]
+        "title": "Wireframes",
+        "path": "/wireframes"
       },
       {
-        "title": "Dynamic Pages",
-        "path": "#",
-        "children": [
-          { "title": "Blog", "path": "/blog" },
-          { "title": "Case Studies", "path": "/case-studies" },
-          { "title": "Products", "path": "/products" },
-          { "title": "Careers", "path": "/careers" }
-        ]
+        "title": "Styleguide",
+        "path": "/styleguide"
       },
       {
-        "title": "About",
-        "path": "/about"
-      },
-      {
-        "title": "Blog",
-        "path": "/blog"
-      },
-      {
-        "title": "Contact",
-        "path": "/contact"
+        "title": "Contact"
       }
     ]
   },

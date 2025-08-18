@@ -1,0 +1,27 @@
+---
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<!-- Call to Action -->
+<div class="wireframe-section mt-16">
+  <div class="wireframe-box doodle-border text-center p-8">
+    <h3 class="wireframe-heading text-2xl font-bold mb-4">
+      Ready to Build Your Landing Page?
+    </h3>
+    <p class="wireframe-text mb-6 max-w-2xl mx-auto">
+      Choose a wireframe layout that matches your project needs and start prototyping immediately. 
+      All layouts are responsive, theme-aware, and built with modern web standards.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <Link href="/styleguide" class="doodle">
+        <Icon name="bx:bx-palette" class="w-4 h-4" />
+        View Styleguide
+      </Link>
+      <Link href="/contact" style="outline" class="doodle">
+        <Icon name="bx:bx-envelope" class="w-4 h-4" />
+        Get Support
+      </Link>
+    </div>
+  </div>
+</div>
