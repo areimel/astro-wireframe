@@ -228,7 +228,7 @@
   --color-theme-button: #ffffff;
   --color-theme-button-text: #1e3d72;
   --color-theme-link: #a8d1ff;
-  --color-theme-stroke: #7fb8ff;
+  --color-theme-stroke: #ffffff;
   --color-theme-highlight: #ffffff;
   --color-theme-secondary: #8cc4ff;
   --color-theme-tertiary: #5fa3ff;
@@ -320,7 +320,7 @@
   opacity: 0.8;
 }
 
-/* Expanded Theme Styles - 15-Variable System */
+/* Expanded Theme Styles */
 .theme-headline {
   color: var(--color-theme-headline);
 }
