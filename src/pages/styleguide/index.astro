@@ -3,6 +3,52 @@ import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
 import Link from "@/components/ui/link.astro";
 import { Icon } from "astro-icon/components";
+import StyleguideNavCard from "@/components/styleguide/StyleguideNavCard.astro";
+
+const styleguideCards = [
+  {
+    icon: "bx:bx-palette",
+    title: "Color Palettes",
+    description: "Interactive color swatches showing all available themes with hex codes, CSS variables, and theme switching functionality.",
+    href: "/styleguide/colors",
+    linkText: "Explore Colors"
+  },
+  {
+    icon: "bx:bx-text",
+    title: "Typography",
+    description: "Font hierarchy, text styles, and reading patterns using Inter Variable and Bricolage Grotesque Variable fonts.",
+    href: "/styleguide/typography",
+    linkText: "View Typography"
+  },
+  {
+    icon: "bx:bx-radio-circle-marked",
+    title: "Buttons",
+    description: "Interactive button variants with different styles, sizes, states, and accessibility features for all interface needs.",
+    href: "/styleguide/buttons",
+    linkText: "See Buttons"
+  },
+  {
+    icon: "bx:bx-card",
+    title: "Cards",
+    description: "Content card patterns used throughout the application including basic, feature, pricing, and image card layouts.",
+    href: "/styleguide/cards",
+    linkText: "Browse Cards"
+  },
+  {
+    icon: "bx:bx-star",
+    title: "Icons",
+    description: "Available icons from the astro-icon system including Box Icons, Unicons, and Simple Icons with search and copy features.",
+    href: "/styleguide/icons",
+    linkText: "Find Icons"
+  },
+  {
+    icon: "bx:bx-ruler",
+    title: "Spacing",
+    description: "Visual guide to margin, padding, and layout spacing using Tailwind's spacing system with interactive examples.",
+    href: "/styleguide/spacing",
+    linkText: "Learn Spacing"
+  }
+];
 ---
 
 <Layout title="Styleguide">
@@ -21,113 +67,13 @@ import { Icon } from "astro-icon/components";
 
       <!-- Styleguide Sections Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        
-        <!-- Colors Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg doodle-border hover:shadow-lg transition-all duration-300"">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-palette" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Color Palettes</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Interactive color swatches showing all available themes with hex codes, CSS variables, and theme switching functionality.
-          </p>
-          <Link href="/styleguide/colors" style="primary" size="md">
-            Explore Colors
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
-
-        <!-- Typography Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg doodle-border hover:shadow-lg transition-all duration-300"">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-text" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Typography</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Font hierarchy, text styles, and reading patterns using Inter Variable and Bricolage Grotesque Variable fonts.
-          </p>
-          <Link href="/styleguide/typography" style="primary" size="md">
-            View Typography
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
-
-        <!-- Buttons Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg doodle-border hover:shadow-lg transition-all duration-300"">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-radio-circle-marked" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Buttons</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Interactive button variants with different styles, sizes, states, and accessibility features for all interface needs.
-          </p>
-          <Link href="/styleguide/buttons" style="primary" size="md">
-            See Buttons
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
-
-        <!-- Cards Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg doodle-border hover:shadow-lg transition-all duration-300"">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-card" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Cards</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Content card patterns used throughout the application including basic, feature, pricing, and image card layouts.
-          </p>
-          <Link href="/styleguide/cards" style="primary" size="md">
-            Browse Cards
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
-
-        <!-- Icons Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg doodle-border hover:shadow-lg transition-all duration-300"">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-star" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Icons</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Available icons from the astro-icon system including Box Icons, Unicons, and Simple Icons with search and copy features.
-          </p>
-          <Link href="/styleguide/icons" style="primary" size="md">
-            Find Icons
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
-
-        <!-- Spacing Section Card -->
-        <div class="theme-card-bg p-8 rounded-lg doodle-border hover:shadow-lg transition-all duration-300"">
-          <div class="flex items-center mb-4">
-            <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
-              <Icon name="bx:bx-ruler" class="w-6 h-6" />
-            </div>
-            <h3 class="text-xl font-semibold theme-headline">Spacing</h3>
-          </div>
-          <p class="theme-paragraph mb-6">
-            Visual guide to margin, padding, and layout spacing using Tailwind's spacing system with interactive examples.
-          </p>
-          <Link href="/styleguide/spacing" style="primary" size="md">
-            Learn Spacing
-            <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
-          </Link>
-        </div>
-
+        {styleguideCards.map((card) => (
+          <StyleguideNavCard {...card} />
+        ))}
       </div>
 
       <!-- Quick Start Section -->
-      <div class="mb-16 p-8 rounded-lg theme-card-bg doodle-border"">
+      <div class="mb-16 p-8 rounded-lg theme-card-bg doodle-border">
         <h2 class="text-2xl font-semibold theme-headline mb-4">Getting Started</h2>
         <div class="grid md:grid-cols-2 gap-8">
           <div>
