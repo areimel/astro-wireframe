@@ -1,0 +1,129 @@
+---
+/**
+ * WireframeStats - Metric/stat display card
+ * Used for displaying key metrics and statistics
+ */
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Large number/metric value */
+  value: string;
+  /** Description label */
+  label: string;
+  /** Optional icon */
+  icon?: string;
+  /** Icon color */
+  iconColor?: string;
+  /** Optional trend indicator */
+  trend?: {
+    value: string;
+    direction: "up" | "down" | "neutral";
+  };
+  /** Layout variant */
+  variant?: "simple" | "card" | "inline";
+  /** Size variant */
+  size?: "sm" | "md" | "lg";
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  value,
+  label,
+  icon,
+  iconColor = "var(--color-theme-button)",
+  trend,
+  variant = "simple",
+  size = "md",
+  class: className,
+} = Astro.props;
+
+const sizeClasses = {
+  sm: {
+    value: "text-2xl",
+    label: "text-sm",
+    icon: "w-6 h-6",
+  },
+  md: {
+    value: "text-3xl",
+    label: "text-base",
+    icon: "w-8 h-8",
+  },
+  lg: {
+    value: "text-4xl lg:text-5xl",
+    label: "text-lg",
+    icon: "w-10 h-10",
+  },
+};
+
+const sizes = sizeClasses[size];
+
+const trendColors = {
+  up: "var(--color-theme-button)",
+  down: "var(--color-theme-secondary)",
+  neutral: "var(--color-theme-tertiary)",
+};
+
+const trendIcons = {
+  up: "bx:bx-up-arrow-alt",
+  down: "bx:bx-down-arrow-alt",
+  neutral: "bx:bx-minus",
+};
+---
+
+{variant === "simple" ? (
+  <!-- Simple centered stat -->
+  <div class:list={["text-center", className]}>
+    {icon && (
+      <Icon name={icon} class:list={[sizes.icon, "mx-auto mb-2"]} style={`color: ${iconColor};`} />
+    )}
+    <div class:list={["wireframe-heading mb-2", sizes.value]}>{value}</div>
+    <p class:list={["wireframe-text", sizes.label]}>{label}</p>
+    {trend && (
+      <div class="flex items-center justify-center gap-1 mt-2">
+        <Icon name={trendIcons[trend.direction]} class="w-4 h-4" style={`color: ${trendColors[trend.direction]};`} />
+        <span class="wireframe-text text-sm" style={`color: ${trendColors[trend.direction]};`}>
+          {trend.value}
+        </span>
+      </div>
+    )}
+  </div>
+) : variant === "card" ? (
+  <!-- Card with border -->
+  <div class:list={["wireframe-box doodle-border p-6 text-center", className]}>
+    {icon && (
+      <Icon name={icon} class:list={[sizes.icon, "mx-auto mb-3"]} style={`color: ${iconColor};`} />
+    )}
+    <div class:list={["wireframe-heading mb-2", sizes.value]}>{value}</div>
+    <p class:list={["wireframe-text", sizes.label]}>{label}</p>
+    {trend && (
+      <div class="flex items-center justify-center gap-1 mt-3">
+        <Icon name={trendIcons[trend.direction]} class="w-4 h-4" style={`color: ${trendColors[trend.direction]};`} />
+        <span class="wireframe-text text-sm" style={`color: ${trendColors[trend.direction]};`}>
+          {trend.value}
+        </span>
+      </div>
+    )}
+  </div>
+) : (
+  <!-- Inline layout with icon on left -->
+  <div class:list={["flex items-center gap-3", className]}>
+    {icon && (
+      <Icon name={icon} class={sizes.icon} style={`color: ${iconColor};`} />
+    )}
+    <div>
+      <p class:list={["wireframe-heading", sizes.value]}>{value}</p>
+      <p class:list={["wireframe-text", sizes.label]} style="color: var(--color-theme-tertiary);">
+        {label}
+      </p>
+    </div>
+    {trend && (
+      <div class="flex items-center gap-1 ml-auto">
+        <Icon name={trendIcons[trend.direction]} class="w-4 h-4" style={`color: ${trendColors[trend.direction]};`} />
+        <span class="wireframe-text text-sm" style={`color: ${trendColors[trend.direction]};`}>
+          {trend.value}
+        </span>
+      </div>
+    )}
+  </div>
+)}
