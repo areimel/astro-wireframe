@@ -100,3 +100,44 @@
 - Use `wireframe-box`, `doodle-border`, `wireframe-heading`, `wireframe-text` classes
 - Apply theme colors via CSS custom properties: `var(--color-theme-*)`
 - Test with ColorPaletteSelector after each page update
+
+---
+
+## Remaining Work - 3 Phase Plan
+
+### Phase 1: Build Verification & Error Fixes
+**Goal:** Ensure the current codebase compiles without errors
+
+1. Run `pnpm build` to check for compilation errors
+2. Fix any import errors (e.g., missing Link import)
+3. Verify no JSX-in-frontmatter issues remain
+4. Confirm build passes
+
+**Known Issues to Check:**
+- `case-study-classic.astro` - Link import may be missing
+- `saas-pricing.astro` - Uses Link, verify imported
+- `dashboard.astro` - Uses Link in multiple places
+
+---
+
+### Phase 2: WireframeCTA Integration (5 pages)
+**Goal:** Replace remaining inline CTAs with WireframeCTA component
+
+**Pages to update:**
+1. `case-study-classic.astro` (~lines 379-410)
+2. `case-study-visual.astro`
+3. `job-posting.astro`
+4. `saas-pricing.astro` (~lines 261-294)
+5. `storytelling.astro`
+
+---
+
+### Phase 3: Cleanup & Documentation
+**Goal:** Final verification and documentation updates
+
+1. Run final `pnpm build`
+2. Update this doc - mark CTA items complete
+3. Mark intentionally skipped items:
+   - showcase.astro (complex custom layouts)
+   - modular.astro section headers/testimonials/stats (uses ModularCard/GridShowcase)
+   - saas-pricing.astro hero (unique pricing layout)

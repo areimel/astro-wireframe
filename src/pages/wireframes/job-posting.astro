@@ -4,6 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 import Link from "@/components/ui/link.astro";
 import { Icon } from "astro-icon/components";
 import JobCard from "@/components/wireframes/JobCard.astro";
+import WireframeBreadcrumb from "@/components/wireframes/WireframeBreadcrumb.astro";
 ---
 
 <Layout title="Job Posting - Wireframe Landing Page">
@@ -12,14 +13,7 @@ import JobCard from "@/components/wireframes/JobCard.astro";
     <Container>
       <div class="wireframe-box doodle-border p-6 mb-8">
         <div class="flex items-center gap-4 mb-4">
-          <Link
-            href="/wireframes"
-            class="doodle flex items-center gap-2"
-            size="sm"
-            style="outline">
-            <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
-            Back to Wireframes
-          </Link>
+          <WireframeBreadcrumb />
         </div>
         <h1 class="wireframe-heading text-3xl lg:text-4xl mb-4">
           Job Posting Layout

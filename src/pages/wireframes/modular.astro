@@ -3,45 +3,24 @@ import Container from "@/components/container.astro";
 import Layout from "@/layouts/Layout.astro";
 import GridShowcase from "@/components/wireframes/GridShowcase.astro";
 import ModularCard from "@/components/wireframes/ModularCard.astro";
-import Link from "@/components/ui/link.astro";
 import Button from "@/components/ui/button.astro";
 import { Icon } from "astro-icon/components";
+
+// New reusable components
+import WireframeHero from "@/components/wireframes/WireframeHero.astro";
+import WireframeCTA from "@/components/wireframes/WireframeCTA.astro";
+import WireframeTestimonial from "@/components/wireframes/WireframeTestimonial.astro";
 ---
 
 <Layout title="Grid-Based Modular Layout - Wireframe Landing Page">
   <!-- Hero Section -->
-  <section class="wireframe-section py-16 lg:py-24">
-    <Container>
-      <div class="text-center max-w-4xl mx-auto">
-        <div class="wireframe-box doodle-border p-8 lg:p-12">
-          <h1 class="wireframe-heading text-4xl lg:text-6xl mb-6">
-            Your Everything Platform
-          </h1>
-          <p class="wireframe-text text-xl mb-8 max-w-3xl mx-auto">
-            Discover thousands of products, services, and opportunities all organized in beautiful, modular layouts designed for maximum discoverability.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="#categories"
-              class="doodle flex items-center justify-center gap-2"
-              size="lg"
-              style="primary">
-              <Icon name="bx:bx-grid-alt" class="w-5 h-5" />
-              Browse Categories
-            </Link>
-            <Link
-              href="#featured"
-              class="doodle flex items-center justify-center gap-2"
-              size="lg"
-              style="outline">
-              <Icon name="bx:bx-star" class="w-5 h-5" />
-              Featured Items
-            </Link>
-          </div>
-        </div>
-      </div>
-    </Container>
-  </section>
+  <WireframeHero
+    title="Your Everything Platform"
+    subtitle="Discover thousands of products, services, and opportunities all organized in beautiful, modular layouts designed for maximum discoverability."
+    layout="centered"
+    primaryCTA={{ text: "Browse Categories", href: "#categories", icon: "bx:bx-grid-alt" }}
+    secondaryCTA={{ text: "Featured Items", href: "#featured", icon: "bx:bx-star" }}
+  />
 
   <!-- Category Grid -->
   <GridShowcase
@@ -355,37 +334,11 @@ import { Icon } from "astro-icon/components";
   </GridShowcase>
 
   <!-- Final CTA -->
-  <section class="wireframe-section py-16">
-    <Container>
-      <div class="wireframe-box doodle-border p-12 text-center max-w-4xl mx-auto">
-        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
-          Join the Modular Marketplace
-        </h2>
-        <p class="wireframe-text text-xl mb-8 max-w-3xl mx-auto">
-          Whether you're looking to buy, sell, or discover new opportunities, our grid-based platform makes it easy to find exactly what you need. Join thousands of satisfied users today.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-          <Link
-            href="#"
-            class="doodle flex items-center justify-center gap-2"
-            size="lg"
-            style="primary">
-            <Icon name="bx:bx-user-plus" class="w-5 h-5" />
-            Create Account
-          </Link>
-          <Link
-            href="#"
-            class="doodle flex items-center justify-center gap-2"
-            size="lg"
-            style="outline">
-            <Icon name="bx:bx-search" class="w-5 h-5" />
-            Browse Without Signing Up
-          </Link>
-        </div>
-        <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">
-          Free to join • No listing fees for first 30 days • Premium features available
-        </p>
-      </div>
-    </Container>
-  </section>
+  <WireframeCTA
+    title="Join the Modular Marketplace"
+    description="Whether you're looking to buy, sell, or discover new opportunities, our grid-based platform makes it easy to find exactly what you need. Join thousands of satisfied users today."
+    primaryCTA={{ text: "Create Account", href: "#", icon: "bx:bx-user-plus" }}
+    secondaryCTA={{ text: "Browse Without Signing Up", href: "#", icon: "bx:bx-search" }}
+    disclaimer="Free to join • No listing fees for first 30 days • Premium features available"
+  />
 </Layout>

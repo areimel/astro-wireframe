@@ -7,19 +7,14 @@ import CaseStudyHero from "@/components/wireframes/CaseStudyHero.astro";
 import ResultsMetrics from "@/components/wireframes/ResultsMetrics.astro";
 import BeforeAfterComparison from "@/components/wireframes/BeforeAfterComparison.astro";
 import ProjectTimeline from "@/components/wireframes/ProjectTimeline.astro";
+import WireframeBreadcrumb from "@/components/wireframes/WireframeBreadcrumb.astro";
 ---
 
 <Layout title="Visual Case Study - Wireframe Landing Page">
   <!-- Back Navigation -->
   <section class="wireframe-section py-8">
     <Container>
-      <Link
-        href="/wireframes"
-        class="doodle flex items-center gap-2 w-fit"
-        style="outline">
-        <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
-        Back to Wireframes
-      </Link>
+      <WireframeBreadcrumb />
     </Container>
   </section>
 
