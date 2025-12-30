@@ -1,13 +1,14 @@
 ---
 import Container from "@/components/container.astro";
 import Layout from "@/layouts/Layout.astro";
-import Link from "@/components/ui/link.astro";
 import Button from "@/components/ui/button.astro";
+import Link from "@/components/ui/link.astro";
 import { Icon } from "astro-icon/components";
 import PricingTable from "@/components/wireframes/PricingTable.astro";
 import BillingToggle from "@/components/wireframes/BillingToggle.astro";
 import FeatureComparison from "@/components/wireframes/FeatureComparison.astro";
 import PricingCalculator from "@/components/wireframes/PricingCalculator.astro";
+import WireframeBreadcrumb from "@/components/wireframes/WireframeBreadcrumb.astro";
 ---
 
 <Layout title="SaaS Pricing - Wireframe Landing Page">
@@ -15,14 +16,7 @@ import PricingCalculator from "@/components/wireframes/PricingCalculator.astro";
   <section class="wireframe-section py-8">
     <Container>
       <div class="flex items-center justify-between mb-8">
-        <Link
-          href="/wireframes"
-          class="doodle flex items-center gap-2"
-          size="sm"
-          style="outline">
-          <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
-          Back to Wireframes
-        </Link>
+        <WireframeBreadcrumb />
         <div class="text-center">
           <h1 class="wireframe-heading text-2xl lg:text-3xl">SaaS Pricing</h1>
           <p class="wireframe-text" style="color: var(--color-theme-tertiary);">Comprehensive pricing strategy wireframe</p>

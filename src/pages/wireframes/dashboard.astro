@@ -8,6 +8,7 @@ import ChartWidget from "@/components/wireframes/ChartWidget.astro";
 import DataTable from "@/components/wireframes/DataTable.astro";
 import DashboardSidebar from "@/components/wireframes/DashboardSidebar.astro";
 import ActivityFeed from "@/components/wireframes/ActivityFeed.astro";
+import WireframeBreadcrumb from "@/components/wireframes/WireframeBreadcrumb.astro";
 ---
 
 <Layout title="Dashboard - Wireframe Landing Page">
@@ -45,13 +46,7 @@ import ActivityFeed from "@/components/wireframes/ActivityFeed.astro";
         <Container class="py-6">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
-              <Link
-                href="/wireframes"
-                class="flex items-center gap-2 wireframe-text hover:underline"
-                style="outline">
-                <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
-                Back to Wireframes
-              </Link>
+              <WireframeBreadcrumb />
               <div>
                 <h1 class="wireframe-heading text-2xl lg:text-3xl mb-1">Dashboard Overview</h1>
                 <p class="wireframe-text text-sm" style="color: var(--color-theme-tertiary);">

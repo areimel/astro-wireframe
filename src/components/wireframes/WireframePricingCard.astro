@@ -1,0 +1,88 @@
+---
+/**
+ * WireframePricingCard - Individual pricing plan card
+ * Used for pricing sections across wireframe pages
+ */
+import Button from "@/components/ui/button.astro";
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Plan name */
+  name: string;
+  /** Price value (just the number) */
+  price: string;
+  /** Billing period */
+  period?: string;
+  /** Plan description */
+  description?: string;
+  /** Array of feature strings */
+  features: string[];
+  /** Whether this is the featured/highlighted plan */
+  featured?: boolean;
+  /** Badge text (e.g., "Most Popular") */
+  badge?: string;
+  /** CTA button text */
+  ctaText?: string;
+  /** CTA button href */
+  ctaHref?: string;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  name,
+  price,
+  period = "/month",
+  description,
+  features,
+  featured = false,
+  badge,
+  ctaText = "Get Started",
+  ctaHref = "#",
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={[
+  "wireframe-box doodle-border p-8 relative",
+  featured && "ring-2",
+  className
+]} style={featured ? "border-color: var(--color-theme-button);" : ""}>
+
+  {badge && (
+    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+      <span
+        class="wireframe-text px-4 py-1 rounded-full text-sm whitespace-nowrap"
+        style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+        {badge}
+      </span>
+    </div>
+  )}
+
+  <div class="text-center mb-6">
+    <h3 class="wireframe-heading text-2xl mb-2">{name}</h3>
+    {description && (
+      <p class="wireframe-text mb-4">{description}</p>
+    )}
+    <div class="mb-4">
+      <span class="wireframe-heading text-4xl">${price}</span>
+      <span class="wireframe-text">{period}</span>
+    </div>
+  </div>
+
+  <ul class="space-y-3 mb-8">
+    {features.map((feature) => (
+      <li class="flex items-center gap-3">
+        <Icon name="bx:bx-check" class="w-5 h-5 flex-shrink-0" style="color: var(--color-theme-button);" />
+        <span class="wireframe-text">{feature}</span>
+      </li>
+    ))}
+  </ul>
+
+  <Button
+    class="w-full doodle"
+    style={featured ? "primary" : "outline"}
+    href={ctaHref}>
+    {ctaText}
+  </Button>
+</div>

@@ -7,6 +7,7 @@ import ProductGrid from "@/components/wireframes/ProductGrid.astro";
 import FilterSidebar from "@/components/wireframes/FilterSidebar.astro";
 import SearchBar from "@/components/wireframes/SearchBar.astro";
 import SortControls from "@/components/wireframes/SortControls.astro";
+import WireframeBreadcrumb from "@/components/wireframes/WireframeBreadcrumb.astro";
 ---
 
 <Layout title="Product Listing - Wireframe Landing Page">
@@ -14,13 +15,7 @@ import SortControls from "@/components/wireframes/SortControls.astro";
   <section class="wireframe-section py-8">
     <Container>
       <div class="flex items-center justify-between mb-8">
-        <Link
-          href="/wireframes"
-          class="flex items-center gap-2 wireframe-text hover:underline"
-          style="outline">
-          <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
-          Back to Wireframes
-        </Link>
+        <WireframeBreadcrumb />
         <h1 class="wireframe-heading text-2xl lg:text-3xl">Product Catalog</h1>
         <div class="w-24"></div> <!-- Spacer for centering -->
       </div>

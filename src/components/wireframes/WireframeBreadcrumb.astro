@@ -1,0 +1,58 @@
+---
+/**
+ * WireframeBreadcrumb - Back navigation with optional breadcrumb trail
+ * Used across wireframe pages for consistent navigation
+ */
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** URL to navigate back to */
+  backLink?: string;
+  /** Text for back link */
+  backText?: string;
+  /** Optional array of breadcrumb items */
+  breadcrumbs?: Array<{ label: string; href?: string }>;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  backLink = "/wireframes",
+  backText = "Back to Wireframes",
+  breadcrumbs,
+  class: className,
+} = Astro.props;
+---
+
+{breadcrumbs && breadcrumbs.length > 0 ? (
+  <!-- Full breadcrumb trail -->
+  <nav class:list={["flex items-center gap-2 wireframe-text", className]} aria-label="Breadcrumb">
+    {breadcrumbs.map((crumb, index) => (
+      <>
+        {index > 0 && (
+          <Icon name="bx:bx-chevron-right" class="w-4 h-4" style="color: var(--color-theme-tertiary);" />
+        )}
+        {crumb.href ? (
+          <Link
+            href={crumb.href}
+            class="hover:underline"
+            style="color: var(--color-theme-button);">
+            {crumb.label}
+          </Link>
+        ) : (
+          <span style="color: var(--color-theme-tertiary);">{crumb.label}</span>
+        )}
+      </>
+    ))}
+  </nav>
+) : (
+  <!-- Simple back link -->
+  <Link
+    href={backLink}
+    class:list={["doodle flex items-center gap-2 w-fit", className]}
+    style="outline">
+    <Icon name="bx:bx-arrow-back" class="w-4 h-4" />
+    {backText}
+  </Link>
+)}

@@ -1,0 +1,133 @@
+---
+/**
+ * WireframeTestimonial - Customer quote/testimonial card
+ * Used for social proof across wireframe pages
+ */
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Testimonial quote text */
+  quote: string;
+  /** Author name */
+  author: string;
+  /** Author title/role */
+  title?: string;
+  /** Avatar icon (defaults to bx:bx-user) */
+  avatarIcon?: string;
+  /** Star rating (1-5) */
+  rating?: number;
+  /** Layout variant */
+  variant?: "centered" | "card" | "inline";
+  /** Size variant */
+  size?: "sm" | "md" | "lg";
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  quote,
+  author,
+  title: authorTitle,
+  avatarIcon = "bx:bx-user",
+  rating,
+  variant = "centered",
+  size = "md",
+  class: className,
+} = Astro.props;
+
+const sizeClasses = {
+  sm: {
+    quote: "text-base mb-4",
+    avatar: "w-10 h-10",
+    avatarIcon: "w-5 h-5",
+    name: "text-sm",
+    title: "text-xs",
+  },
+  md: {
+    quote: "text-lg mb-6",
+    avatar: "w-12 h-12",
+    avatarIcon: "w-6 h-6",
+    name: "text-base",
+    title: "text-sm",
+  },
+  lg: {
+    quote: "text-xl mb-6",
+    avatar: "w-16 h-16",
+    avatarIcon: "w-8 h-8",
+    name: "text-lg",
+    title: "text-sm",
+  },
+};
+
+const sizes = sizeClasses[size];
+
+const variantClasses = {
+  centered: "p-8 max-w-4xl mx-auto text-center",
+  card: "p-6 text-left",
+  inline: "p-4 flex items-start gap-4",
+};
+---
+
+<div class:list={["wireframe-box doodle-border", variantClasses[variant], className]}>
+  {variant === "inline" ? (
+    <!-- Inline layout with avatar on left -->
+    <>
+      <div class:list={["wireframe-box doodle-border rounded-full flex items-center justify-center flex-shrink-0", sizes.avatar]}>
+        <Icon name={avatarIcon} class={sizes.avatarIcon} style="color: var(--color-theme-tertiary);" />
+      </div>
+      <div>
+        {rating && (
+          <div class="flex gap-1 mb-2">
+            {[...Array(5)].map((_, i) => (
+              <Icon
+                name={i < rating ? "bx:bxs-star" : "bx:bx-star"}
+                class="w-4 h-4"
+                style={`color: ${i < rating ? "var(--color-theme-button)" : "var(--color-theme-tertiary)"};`}
+              />
+            ))}
+          </div>
+        )}
+        <blockquote class:list={["wireframe-text italic", sizes.quote]}>
+          "{quote}"
+        </blockquote>
+        <p class:list={["wireframe-heading font-semibold", sizes.name]}>{author}</p>
+        {authorTitle && (
+          <p class:list={["wireframe-text", sizes.title]} style="color: var(--color-theme-tertiary);">
+            {authorTitle}
+          </p>
+        )}
+      </div>
+    </>
+  ) : (
+    <!-- Centered or card layout -->
+    <>
+      {rating && variant === "card" && (
+        <div class="flex gap-1 mb-3">
+          {[...Array(5)].map((_, i) => (
+            <Icon
+              name={i < rating ? "bx:bxs-star" : "bx:bx-star"}
+              class="w-4 h-4"
+              style={`color: ${i < rating ? "var(--color-theme-button)" : "var(--color-theme-tertiary)"};`}
+            />
+          ))}
+        </div>
+      )}
+      <blockquote class:list={["wireframe-text", sizes.quote, variant === "card" && "italic"]}>
+        {variant === "centered" ? `"${quote}"` : quote}
+      </blockquote>
+      <div class:list={["flex items-center gap-4", variant === "centered" && "justify-center"]}>
+        <div class:list={["wireframe-box doodle-border rounded-full flex items-center justify-center", sizes.avatar]}>
+          <Icon name={avatarIcon} class={sizes.avatarIcon} style="color: var(--color-theme-tertiary);" />
+        </div>
+        <div class={variant === "centered" ? "text-left" : ""}>
+          <p class:list={["wireframe-heading font-semibold", sizes.name]}>{author}</p>
+          {authorTitle && (
+            <p class:list={["wireframe-text", sizes.title]} style="color: var(--color-theme-tertiary);">
+              {authorTitle}
+            </p>
+          )}
+        </div>
+      </div>
+    </>
+  )}
+</div>

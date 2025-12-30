@@ -1,0 +1,169 @@
+---
+/**
+ * WireframeHero - Hero section with title, subtitle, and CTA buttons
+ * Supports centered and split layouts
+ */
+import Container from "@/components/container.astro";
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+
+export interface CTAButton {
+  text: string;
+  href: string;
+  icon?: string;
+}
+
+export interface Props {
+  /** Main headline */
+  title: string;
+  /** Subheading/description */
+  subtitle?: string;
+  /** Primary CTA button */
+  primaryCTA?: CTAButton;
+  /** Secondary CTA button */
+  secondaryCTA?: CTAButton;
+  /** Layout style */
+  layout?: "centered" | "split";
+  /** Size variant */
+  size?: "sm" | "md" | "lg" | "xl";
+  /** Content for right side in split layout (passed as slot) */
+  /** Whether to wrap in Container */
+  withContainer?: boolean;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  primaryCTA,
+  secondaryCTA,
+  layout = "centered",
+  size = "lg",
+  withContainer = true,
+  class: className,
+} = Astro.props;
+
+const sizeClasses = {
+  sm: {
+    title: "text-2xl lg:text-3xl mb-4",
+    subtitle: "text-base mb-6",
+    padding: "py-12",
+  },
+  md: {
+    title: "text-3xl lg:text-4xl mb-4",
+    subtitle: "text-lg mb-6",
+    padding: "py-12 lg:py-16",
+  },
+  lg: {
+    title: "text-4xl lg:text-6xl mb-6",
+    subtitle: "text-xl mb-8",
+    padding: "py-16 lg:py-24",
+  },
+  xl: {
+    title: "text-5xl lg:text-7xl mb-6",
+    subtitle: "text-xl lg:text-2xl mb-8",
+    padding: "py-20 lg:py-32",
+  },
+};
+
+const sizes = sizeClasses[size];
+const hasSlot = Astro.slots.has("default");
+---
+
+<section class:list={["wireframe-section", sizes.padding, className]}>
+  {withContainer ? (
+    <Container>
+      {layout === "split" && hasSlot ? (
+        <!-- Split layout with two columns -->
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="wireframe-box doodle-border p-8">
+            <h1 class:list={["wireframe-heading", sizes.title]}>
+              {title}
+            </h1>
+            {subtitle && (
+              <p class:list={["wireframe-text max-w-lg", sizes.subtitle]}>
+                {subtitle}
+              </p>
+            )}
+            {(primaryCTA || secondaryCTA) && (
+              <div class="flex flex-col sm:flex-row gap-4">
+                {primaryCTA && (
+                  <Link
+                    href={primaryCTA.href}
+                    class="doodle flex items-center justify-center gap-2"
+                    size="lg"
+                    style="primary">
+                    {primaryCTA.icon && <Icon name={primaryCTA.icon} class="w-5 h-5" />}
+                    {primaryCTA.text}
+                  </Link>
+                )}
+                {secondaryCTA && (
+                  <Link
+                    href={secondaryCTA.href}
+                    class="doodle flex items-center justify-center gap-2"
+                    size="lg"
+                    style="outline">
+                    {secondaryCTA.icon && <Icon name={secondaryCTA.icon} class="w-5 h-5" />}
+                    {secondaryCTA.text}
+                  </Link>
+                )}
+              </div>
+            )}
+          </div>
+          <slot />
+        </div>
+      ) : (
+        <!-- Centered layout -->
+        <div class="text-center max-w-4xl mx-auto">
+          <div class="wireframe-box doodle-border p-8 lg:p-12">
+            <h1 class:list={["wireframe-heading", sizes.title]}>
+              {title}
+            </h1>
+            {subtitle && (
+              <p class:list={["wireframe-text max-w-3xl mx-auto", sizes.subtitle]}>
+                {subtitle}
+              </p>
+            )}
+            {(primaryCTA || secondaryCTA) && (
+              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                {primaryCTA && (
+                  <Link
+                    href={primaryCTA.href}
+                    class="doodle flex items-center justify-center gap-2"
+                    size="lg"
+                    style="primary">
+                    {primaryCTA.icon && <Icon name={primaryCTA.icon} class="w-5 h-5" />}
+                    {primaryCTA.text}
+                  </Link>
+                )}
+                {secondaryCTA && (
+                  <Link
+                    href={secondaryCTA.href}
+                    class="doodle flex items-center justify-center gap-2"
+                    size="lg"
+                    style="outline">
+                    {secondaryCTA.icon && <Icon name={secondaryCTA.icon} class="w-5 h-5" />}
+                    {secondaryCTA.text}
+                  </Link>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </Container>
+  ) : (
+    <!-- No container wrapper -->
+    <div class="text-center">
+      <h1 class:list={["wireframe-heading", sizes.title]}>
+        {title}
+      </h1>
+      {subtitle && (
+        <p class:list={["wireframe-text", sizes.subtitle]}>
+          {subtitle}
+        </p>
+      )}
+    </div>
+  )}
+</section>

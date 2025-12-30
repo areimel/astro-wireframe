@@ -1,0 +1,29 @@
+---
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  href: string;
+  linkText: string;
+  class?: string;
+}
+
+const { icon, title, description, href, linkText, class: className } = Astro.props;
+---
+
+<div class:list={["theme-card-bg p-8 rounded-lg doodle-border hover:shadow-lg transition-all duration-300", className]}>
+  <div class="flex items-center mb-4">
+    <div class="p-3 rounded-lg mr-4" style="background-color: var(--color-theme-button); color: var(--color-theme-button-text);">
+      <Icon name={icon} class="w-6 h-6" />
+    </div>
+    <h3 class="text-xl font-semibold theme-headline">{title}</h3>
+  </div>
+  <p class="theme-paragraph mb-6">{description}</p>
+  <Link href={href} style="primary" size="md">
+    {linkText}
+    <Icon name="bx:bx-right-arrow-alt" class="w-4 h-4 ml-1" />
+  </Link>
+</div>

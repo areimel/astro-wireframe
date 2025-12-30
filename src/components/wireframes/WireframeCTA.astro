@@ -1,0 +1,128 @@
+---
+/**
+ * WireframeCTA - Final call-to-action section
+ * Most commonly used component across wireframe pages (9 pages)
+ */
+import Container from "@/components/container.astro";
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+
+export interface CTAButton {
+  text: string;
+  href: string;
+  icon?: string;
+}
+
+export interface Props {
+  /** CTA headline */
+  title: string;
+  /** CTA description */
+  description?: string;
+  /** Primary CTA button */
+  primaryCTA?: CTAButton;
+  /** Secondary CTA button */
+  secondaryCTA?: CTAButton;
+  /** Optional disclaimer text below buttons */
+  disclaimer?: string;
+  /** Whether to wrap in Container */
+  withContainer?: boolean;
+  /** Additional CSS classes for the outer section */
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  primaryCTA,
+  secondaryCTA,
+  disclaimer,
+  withContainer = true,
+  class: className,
+} = Astro.props;
+---
+
+<section class:list={["wireframe-section py-16", className]}>
+  {withContainer ? (
+    <Container>
+      <div class="wireframe-box doodle-border p-12 text-center max-w-4xl mx-auto">
+        <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+          {title}
+        </h2>
+        {description && (
+          <p class="wireframe-text text-xl mb-8 max-w-2xl mx-auto">
+            {description}
+          </p>
+        )}
+        {(primaryCTA || secondaryCTA) && (
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            {primaryCTA && (
+              <Link
+                href={primaryCTA.href}
+                class="doodle flex items-center justify-center gap-2"
+                size="lg"
+                style="primary">
+                {primaryCTA.icon && <Icon name={primaryCTA.icon} class="w-5 h-5" />}
+                {primaryCTA.text}
+              </Link>
+            )}
+            {secondaryCTA && (
+              <Link
+                href={secondaryCTA.href}
+                class="doodle flex items-center justify-center gap-2"
+                size="lg"
+                style="outline">
+                {secondaryCTA.icon && <Icon name={secondaryCTA.icon} class="w-5 h-5" />}
+                {secondaryCTA.text}
+              </Link>
+            )}
+          </div>
+        )}
+        {disclaimer && (
+          <p class="wireframe-text text-sm mt-6" style="color: var(--color-theme-tertiary);">
+            {disclaimer}
+          </p>
+        )}
+      </div>
+    </Container>
+  ) : (
+    <div class="wireframe-box doodle-border p-12 text-center max-w-4xl mx-auto">
+      <h2 class="wireframe-heading text-3xl lg:text-4xl mb-4">
+        {title}
+      </h2>
+      {description && (
+        <p class="wireframe-text text-xl mb-8 max-w-2xl mx-auto">
+          {description}
+        </p>
+      )}
+      {(primaryCTA || secondaryCTA) && (
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          {primaryCTA && (
+            <Link
+              href={primaryCTA.href}
+              class="doodle flex items-center justify-center gap-2"
+              size="lg"
+              style="primary">
+              {primaryCTA.icon && <Icon name={primaryCTA.icon} class="w-5 h-5" />}
+              {primaryCTA.text}
+            </Link>
+          )}
+          {secondaryCTA && (
+            <Link
+              href={secondaryCTA.href}
+              class="doodle flex items-center justify-center gap-2"
+              size="lg"
+              style="outline">
+              {secondaryCTA.icon && <Icon name={secondaryCTA.icon} class="w-5 h-5" />}
+              {secondaryCTA.text}
+            </Link>
+          )}
+        </div>
+      )}
+      {disclaimer && (
+        <p class="wireframe-text text-sm mt-6" style="color: var(--color-theme-tertiary);">
+          {disclaimer}
+        </p>
+      )}
+    </div>
+  )}
+</section>

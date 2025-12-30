@@ -1,0 +1,55 @@
+---
+/**
+ * WireframeFeatureCard - Icon + title + description card
+ * Used for feature grids across wireframe pages
+ */
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  /** Icon name (bx:bx-*) */
+  icon: string;
+  /** Feature title */
+  title: string;
+  /** Feature description */
+  description: string;
+  /** Icon color - CSS custom property name or direct color */
+  iconColor?: string;
+  /** Text alignment */
+  align?: "left" | "center";
+  /** Icon size */
+  iconSize?: "sm" | "md" | "lg";
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const {
+  icon,
+  title,
+  description,
+  iconColor = "var(--color-theme-button)",
+  align = "center",
+  iconSize = "md",
+  class: className,
+} = Astro.props;
+
+const alignClasses = {
+  left: "text-left",
+  center: "text-center",
+};
+
+const iconSizeClasses = {
+  sm: "w-8 h-8 mb-3",
+  md: "w-12 h-12 mb-4",
+  lg: "w-16 h-16 mb-4",
+};
+---
+
+<div class:list={["wireframe-box doodle-border p-6", alignClasses[align], className]}>
+  <Icon
+    name={icon}
+    class:list={[iconSizeClasses[iconSize], align === "center" && "mx-auto"]}
+    style={`color: ${iconColor};`}
+  />
+  <h3 class="wireframe-heading text-xl mb-3">{title}</h3>
+  <p class="wireframe-text">{description}</p>
+</div>
